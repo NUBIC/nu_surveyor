@@ -1,8 +1,8 @@
 //
 //  RootViewController.h
-//  surveyor_ios
+//  surveyor_two
 //
-//  Created by Mark Yoon on 4/19/2011.
+//  Created by Mark Yoon on 3/28/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,10 +11,11 @@
 @class DetailViewController;
 
 @interface RootViewController : UITableViewController {
-
+  DetailViewController *detailViewController;
+	NSDictionary *dict;
 }
 
-		
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) NSDictionary *dict;
 
 @end

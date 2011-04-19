@@ -1,0 +1,115 @@
+{ "survey": {
+  "title": "Kitchen Sink survey",
+  "sections": [
+    { "title": "Basic questions",
+      "questions_and_groups": [
+        { "type": "label", "text": "These questions are examples of the basic supported input types"},
+        { "reference": "1", "pick": "one", "text": "What is your favorite color?", "answers": [{"text": "red"},{"text": "blue"},{"text": "green"},{"text": "yellow"},{"text": "other"}]},
+        { "reference": "2", "pick": "any", "text": "Choose the colors you don't like", "answers": [{"text": "red"},{"text": "blue"},{"text": "green"},{"text": "yellow"},{"text": "omit", "exclusive": "true"}]},
+        { "reference": "2a", 
+          "text": "Please explain why you don't like this color?",
+          "answers": [{"text": "explanation", "type": "text"}], 
+          "dependency": {"rule": "A or B or C or D", "conditions": [
+            {"key": "A", "question": "2", "operator": "==", "answer": "1"},
+            {"key": "B", "question": "2", "operator": "==", "answer": "2"},
+            {"key": "C", "question": "2", "operator": "==", "answer": "3"},
+            {"key": "D", "question": "2", "operator": "==", "answer": "4"}
+          ]}
+        },
+        { "reference": "2b",
+          "text": "Please explain why you dislike so many colors?",
+          "answers": [{"text": "explanation", "type": "text"}],
+          "dependency": {"rule": "Z", "conditions": [{"key": "Z", "question": "2", "operator": ">", "count": "2"}]}
+        },
+        { "reference": "montypython3", "text": "What... is your name? (e.g. It is 'Arthur', King of the Britons)", "answers": [{"reference": "1", "type": "string"}]},
+        { "reference": "montypython4", 
+          "text": "What... is your quest? (e.g. To seek the Holy Grail)", 
+          "answers": [{"reference": "1", "type": "string"}], 
+          "dependency": {"rule": "A", "conditions": [{"key": "A", "question": "montypython3", "answer": "1", "operator": "==", "string": "It is 'Arthur', King of the Britons"}]}
+        },
+        { "reference": "montypython5", 
+          "text": "What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)", 
+          "answers": [{"reference": "1", "type": "string"}], 
+          "dependency": {"rule": "A", "conditions": [{"key": "A", "question": "montypython4", "answer": "1", "operator": "==", "string": "To seek the Holy Grail"}]}
+        },
+        { "type": "label", 
+          "text": "Huh? I-- I don't know that! Auuuuuuuugh!", 
+          "dependency": {"rule": "A", "conditions": [{"key": "A", "question": "montypython5", "answer": "1", "operator": "==", "string": "What do you mean? An African or European swallow?"}]}
+        },
+        { "reference": "improv_start", 
+          "export": "i_s",
+          "common_namespace": "sketch comedy questions",
+          "common_identifier": "get me started",
+          "text": "Get me started on an improv sketch",
+          "answers": [{"text": "who", "type": "string"}, {"text": "what", "type": "string"}, {"text": "where", "type": "string"}]
+        },
+        { "text": "How many pets do you own?", "answers": [{"type": "integer"}], "validation": {"rule": "A", "conditions": [{"key": "A", "operator": ">=", "integer": "0"}]}},
+        { "text": "What is your address?", "answers": [{"type": "text"}], "validation": {"rule": "A", "conditions": [{"key": "A", "operator": "=~", "regexp": "[0-9a-zA-z\\. #]"}]}},
+        { "text": "Pick your favorite date AND time", "answers": [{"type": "datetime"}]},
+        { "reference": "time_lunch", "text": "Pick your favorite date AND time", "answers": [{"type": "time"}]},
+        { "text": "When would you like to meet for dinner?", "answers": [{"type": "date"}]},
+        { "text": "Adjust the slider to reflect your level of awesomeness", "answers": [{"type": "slider", "range": "1..10"}]},
+        { "text": "How much do you like Ruby?", "pick": "one", "answers": [{"text": "not at all"}, {"text": "a little"}, {"text": "some"}, {"text": "a lot"}, {"text": "a ton"}]},
+        { "text": "How much money do you want?", "answers": [{"text": "$", "post_text": "USD", "type": "float"}]},
+        { "type": "inline_group", "text": "How much oil do you use per day?", "questions": [
+          { "text": "Quantity", "answers": [{"text": "Quantity", "type": "float"}]},
+          { "text": "Unit", "pick": "one", "type": "dropdown", "answers": [{"text": "Barrels"}, {"text": "Gallons"}, {"text": "Quarts"}]}
+        ]},
+        { "text": "Choose your Illinois county", "pick": "one", "type": "dropdown", 
+          "answers": [{"text": "Adams"},{"text": "Alexander"},{"text": "Bond"}, {"text": "Boone"},
+            {"text": "Brown"},{"text": "Bureau"},{"text": "Calhoun"},{"text": "Carroll"},{"text": "Cass"},
+            {"text": "Champaign"}, {"text": "Christian"}, {"text": "Clark"},{"text": "Clay"}, 
+            {"text": "Clinton"}, {"text": "Coles"}, {"text": "Cook"}, {"text": "Crawford"},{"text": "Cumberland"},{"text": "DeKalb"},
+            {"text": "De Witt"},{"text": "Douglas"},{"text": "DuPage"},{"text": "Edgar"}, {"text": "Edwards"},
+            {"text": "Effingham"},{"text": "Fayette"}, {"text": "Ford"},{"text": "Franklin"},{"text": "Fulton"},
+            {"text": "Gallatin"},{"text": "Greene"}, {"text": "Grundy"}, {"text": "Hamilton"},{"text": "Hancock"},
+            {"text": "Hardin"},{"text": "Henderson"},{"text": "Henry"},{"text": "Iroquois"},{"text": "Jackson"},
+            {"text": "Jasper"}, {"text": "Jefferson"},{"text": "Jersey"},{"text": "Jo Daviess"},{"text": "Johnson"},
+            {"text": "Kane"},{"text": "Kankakee"},{"text": "Kendall"},{"text": "Knox"}, {"text": "La Salle"},
+            {"text": "Lake"}, {"text": "Lawrence"}, {"text": "Lee"},{"text": "Livingston"},{"text": "Logan"},
+            {"text": "Macon"},{"text": "Macoupin"},{"text": "Madison"},{"text": "Marion"},{"text": "Marshall"}, {"text": "Mason"},
+            {"text": "Massac"},{"text": "McDonough"},{"text": "McHenry"},{"text": "McLean"},{"text": "Menard"},
+            {"text": "Mercer"},{"text": "Monroe"}, {"text": "Montgomery"},{"text": "Morgan"},{"text": "Moultrie"},
+            {"text": "Ogle"},{"text": "Peoria"},{"text": "Perry"},{"text": "Piatt"},{"text": "Pike"},{"text": "Pope"},
+            {"text": "Pulaski"},{"text": "Putnam"},{"text": "Randolph"},{"text": "Richland"},{"text": "Rock Island"},
+            {"text": "Saline"},{"text": "Sangamon"},{"text": "Schuyler"},{"text": "Scott"},{"text": "Shelby"},
+            {"text": "St. Clair"},{"text": "Stark"}, {"text": "Stephenson"},{"text": "Tazewell"},{"text": "Union"},
+            {"text": "Vermilion"},{"text": "Wabash"},{"text": "Warren"},{"text": "Washington"},{"text": "Wayne"},
+            {"text": "White"},{"text": "Whiteside"},{"text": "Will"},{"text": "Williamson"},{"text": "Winnebago"},{"text": "Woodford"}]
+        },
+        { "text": "Choose your favorite meats", "type": "inline", "pick": "one", "answers": [
+          {"text": "Chicken"},{"text": "Pork"},{"text": "Beef"},{"text": "Shellfish"},{"text": "Fish"},{"text": "I don't eat meats!!!", "exclusive": "true"}
+        ]},
+        { "text": "All out of ideas for questions?", "type": "inline", "pick": "one", "answers": [
+          {"text": "yes"},{"text": "maybe"},{"text": "no"},{"text": "I don't know"}
+        ]}        
+      ]
+    },
+    { "title": "Complicated questions",
+      "questions_and_groups": [
+        { "type": "grid", "text": "Tell us how often do you cover these each day",
+          "answers": [{"text": "1"},{"text":"2"},{"text":"3"}],
+          "questions": [{"text": "Head", "pick": "one"},{"text": "Knees", "pick": "one"},{"text": "Toes", "pick": "one"}]
+        },
+        { "type": "grid", "text": "Tell us how you feel today day",
+          "answers": [{"text": "-2"},{"text":"-1"},{"text":"0"},{"text": "1"},{"text":"2"}],
+          "questions": [{"text": "down", "post_text": "up", "pick": "one"},{"text": "sad", "post_text": "happy", "pick": "one"},{"text": "limp", "post_text": "perky", "pick": "one"}]
+        },
+        { "text": "Please rank the following foods based on how much you like them", 
+          "answers": [{"post_text": "pizza", "type": "integer"},{"post_text": "salad", "type": "integer"},{"post_text": "sushi", "type": "integer"},{"post_text": "ice cream", "type": "integer"},{"post_text": "breakfast ceral", "type": "integer"}]
+        },        
+        { "pick": "any", "text": "Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)",
+          "answers": [{"text": "spoon", "type": "string"},{"text": "fork", "type": "string"},{"text": "knife", "type": "string"},{"text": "Other", "type": "string"}]
+        },
+        { "type": "repeater", "text": "Tell us about the cars you own", "questions": [
+          { "text": "Make", "pick": "one", "answers": [{"text": "Toyota"},{"text": "Ford"},{"text": "GMChevy"},{"text": "Ferrari"},{"text": "Tesla"},{"text": "Honda"},{"text": "Other weak brand"}]},
+          { "text": "Model", "answers": [{"text": "Model", "type": "string"}]},
+          { "text": "Year", "answers": [{"text": "Year", "type": "string"}]}
+        ]},
+        { "type": "repeater", "text": "Tell us the name and age of your siblings", "questions": [
+          { "text": "Sibling", "answers": [{"text": "Name", "type": "string"},{"text": "Age", "post_text": "years", "type": "integer"}]}
+        ]}
+      ]
+    }
+  ]
+}}

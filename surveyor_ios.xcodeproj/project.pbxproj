@@ -10,6 +10,13 @@
 		3B160CCF135E1D6C007FF20C /* kitchen_sink_survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */; };
 		3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */; };
 		3B160CDE135E1D9D007FF20C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CDD135E1D9D007FF20C /* README */; };
+		3B1FD615135E489500E14158 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */; };
+		3B1FD616135E489500E14158 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD60E135E489500E14158 /* NSString+SBJSON.m */; };
+		3B1FD617135E489500E14158 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD610135E489500E14158 /* SBJsonBase.m */; };
+		3B1FD618135E489500E14158 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD612135E489500E14158 /* SBJsonParser.m */; };
+		3B1FD619135E489500E14158 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD614135E489500E14158 /* SBJsonWriter.m */; };
+		3B1FD61B135E48B200E14158 /* ks.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FD61A135E48B200E14158 /* ks.json */; };
+		3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */; };
 		3B9BB045135E1D37000450BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB044135E1D37000450BC /* UIKit.framework */; };
 		3B9BB047135E1D37000450BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB046135E1D37000450BC /* Foundation.framework */; };
 		3B9BB049135E1D37000450BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB048135E1D37000450BC /* CoreGraphics.framework */; };
@@ -42,6 +49,20 @@
 		3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kitchen_sink_survey.json; sourceTree = "<group>"; };
 		3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
 		3B160CDD135E1D9D007FF20C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
+		3B1FD60A135E489500E14158 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		3B1FD60B135E489500E14158 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		3B1FD60D135E489500E14158 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		3B1FD60E135E489500E14158 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		3B1FD60F135E489500E14158 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		3B1FD610135E489500E14158 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		3B1FD611135E489500E14158 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		3B1FD612135E489500E14158 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		3B1FD613135E489500E14158 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		3B1FD614135E489500E14158 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		3B1FD61A135E48B200E14158 /* ks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ks.json; path = ../surveyor_ios/ks.json; sourceTree = "<group>"; };
+		3B1FD61C135E48C000E14158 /* SurveyorQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyorQuestionView.h; sourceTree = "<group>"; };
+		3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyorQuestionView.m; sourceTree = "<group>"; };
 		3B9BB040135E1D37000450BC /* surveyor_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = surveyor_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9BB044135E1D37000450BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B9BB046135E1D37000450BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,20 +114,49 @@
 		3B160CCC135E1D6B007FF20C /* surveys */ = {
 			isa = PBXGroup;
 			children = (
+				3B1FD61A135E48B200E14158 /* ks.json */,
 				3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */,
 				3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */,
 			);
 			path = surveys;
 			sourceTree = "<group>";
 		};
+		3B1FD609135E489500E14158 /* json-framework */ = {
+			isa = PBXGroup;
+			children = (
+				3B1FD60A135E489500E14158 /* JSON.h */,
+				3B1FD60B135E489500E14158 /* NSObject+SBJSON.h */,
+				3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */,
+				3B1FD60D135E489500E14158 /* NSString+SBJSON.h */,
+				3B1FD60E135E489500E14158 /* NSString+SBJSON.m */,
+				3B1FD60F135E489500E14158 /* SBJsonBase.h */,
+				3B1FD610135E489500E14158 /* SBJsonBase.m */,
+				3B1FD611135E489500E14158 /* SBJsonParser.h */,
+				3B1FD612135E489500E14158 /* SBJsonParser.m */,
+				3B1FD613135E489500E14158 /* SBJsonWriter.h */,
+				3B1FD614135E489500E14158 /* SBJsonWriter.m */,
+			);
+			name = "json-framework";
+			path = surveyor_ios/Classes;
+			sourceTree = "<group>";
+		};
+		3B1FD61F135E48C500E14158 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				3B1FD61C135E48C000E14158 /* SurveyorQuestionView.h */,
+				3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */,
+			);
+			name = UIViews;
+			sourceTree = "<group>";
+		};
 		3B9BB035135E1D37000450BC = {
 			isa = PBXGroup;
 			children = (
 				3B9BB04A135E1D37000450BC /* surveyor_ios */,
+				3B160CCC135E1D6B007FF20C /* surveys */,
 				3B9BB06D135E1D37000450BC /* surveyor_iosTests */,
 				3B9BB043135E1D37000450BC /* Frameworks */,
 				3B9BB041135E1D37000450BC /* Products */,
-				3B160CCC135E1D6B007FF20C /* surveys */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +172,7 @@
 		3B9BB043135E1D37000450BC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B1FD609135E489500E14158 /* json-framework */,
 				3B9BB044135E1D37000450BC /* UIKit.framework */,
 				3B9BB046135E1D37000450BC /* Foundation.framework */,
 				3B9BB048135E1D37000450BC /* CoreGraphics.framework */,
@@ -132,7 +183,6 @@
 		3B9BB04A135E1D37000450BC /* surveyor_ios */ = {
 			isa = PBXGroup;
 			children = (
-				3B160CDD135E1D9D007FF20C /* README */,
 				3B9BB053135E1D37000450BC /* surveyor_iosAppDelegate.h */,
 				3B9BB054135E1D37000450BC /* surveyor_iosAppDelegate.m */,
 				3B9BB056135E1D37000450BC /* MainWindow.xib */,
@@ -141,6 +191,7 @@
 				3B9BB05C135E1D37000450BC /* DetailView.xib */,
 				3B9BB05F135E1D37000450BC /* RootViewController.h */,
 				3B9BB060135E1D37000450BC /* RootViewController.m */,
+				3B1FD61F135E48C500E14158 /* UIViews */,
 				3B9BB04B135E1D37000450BC /* Supporting Files */,
 			);
 			path = surveyor_ios;
@@ -149,6 +200,7 @@
 		3B9BB04B135E1D37000450BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3B160CDD135E1D9D007FF20C /* README */,
 				3B9BB04C135E1D37000450BC /* surveyor_ios-Info.plist */,
 				3B9BB04D135E1D37000450BC /* InfoPlist.strings */,
 				3B9BB050135E1D37000450BC /* surveyor_ios-Prefix.pch */,
@@ -250,6 +302,7 @@
 				3B160CCF135E1D6C007FF20C /* kitchen_sink_survey.json in Resources */,
 				3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */,
 				3B160CDE135E1D9D007FF20C /* README in Resources */,
+				3B1FD61B135E48B200E14158 /* ks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +342,12 @@
 				3B9BB055135E1D37000450BC /* surveyor_iosAppDelegate.m in Sources */,
 				3B9BB05B135E1D37000450BC /* DetailViewController.m in Sources */,
 				3B9BB061135E1D37000450BC /* RootViewController.m in Sources */,
+				3B1FD615135E489500E14158 /* NSObject+SBJSON.m in Sources */,
+				3B1FD616135E489500E14158 /* NSString+SBJSON.m in Sources */,
+				3B1FD617135E489500E14158 /* SBJsonBase.m in Sources */,
+				3B1FD618135E489500E14158 /* SBJsonParser.m in Sources */,
+				3B1FD619135E489500E14158 /* SBJsonWriter.m in Sources */,
+				3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +448,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "surveyor_ios/surveyor_ios-Prefix.pch";
 				INFOPLIST_FILE = "surveyor_ios/surveyor_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,7 +463,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "surveyor_ios/surveyor_ios-Prefix.pch";
 				INFOPLIST_FILE = "surveyor_ios/surveyor_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
