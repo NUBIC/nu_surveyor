@@ -54,6 +54,19 @@
 - (void)populateSection {
   [SurveyorQuestionView resetNumber];
   float y = 0.0;
+  
+  // Section title
+  UILabel *section_title = [[[UILabel alloc] init] autorelease];
+  section_title.font = [UIFont fontWithName:section_title.font.fontName size:22.0];
+  section_title.lineBreakMode = UILineBreakModeWordWrap;
+  section_title.numberOfLines = 0;
+  section_title.text = [detailItem valueForKey:@"title"];
+  y = [section_title.text sizeWithFont:section_title.font constrainedToSize:CGSizeMake(DetailScrollView.frame.size.width-40, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
+  section_title.frame = CGRectMake(10, 10.0, DetailScrollView.frame.size.width-40, y);
+  [DetailScrollView addSubview:section_title];
+  y+= 20.0;
+  
+  // Questions and groups  
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
       UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg showNumber:true] autorelease];
