@@ -32,7 +32,8 @@
   //	NSLog(@"%@", responseString);
 	dict = [[[SBJsonParser alloc] objectWithString:responseString] retain];
   //	NSLog(@"%@", [[dict objectForKey:@"survey"] objectForKey:@"title"]);
-	self.navigationItem.title = [[dict objectForKey:@"survey"] objectForKey:@"title"];
+	self.navigationItem.title = @"Sections";
+  detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 	detailViewController.dict = dict;
 	
 	// self.detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];

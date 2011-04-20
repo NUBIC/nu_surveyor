@@ -46,7 +46,6 @@
 
 - (void)configureView {
   // Update the user interface for the detail item.
-  detailDescriptionLabel.text = [detailItem objectForKey:@"title"];
   for (UIView *subview in DetailScrollView.subviews) {
     [subview removeFromSuperview];
   }
@@ -91,7 +90,7 @@
 
 - (void)splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc {
   
-  barButtonItem.title = [[dict objectForKey:@"survey"] objectForKey:@"title"]; //@"Root List";
+  barButtonItem.title = @"Sections"; //@"Root List";
   NSMutableArray *items = [[toolbar items] mutableCopy];
   [items insertObject:barButtonItem atIndex:0];
   [toolbar setItems:items animated:YES];
