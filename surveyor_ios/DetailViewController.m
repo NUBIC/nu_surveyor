@@ -13,7 +13,6 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 - (void)configureView;
 - (void)populateSection;
-- (UIView *)addGroupView:(NSDictionary *)q atHeight:(float)y;
 
 @end
 
@@ -57,13 +56,13 @@
   float y = 0.0;
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
-      UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-(40), 10) json:qg] autorelease];
-      //    UIView *q_view = [[[UIView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-(40), 10)] autorelease];
+      UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg showNumber:true] autorelease];
       //    q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
-      y += q_view.frame.size.height+2;
+      y += q_view.frame.size.height;
     }else{
-      UIView *g_view = [self addGroupView:qg atHeight:y];
+      UIView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg] autorelease];
+
       [DetailScrollView addSubview:g_view];
       y += g_view.frame.size.height;
     }
@@ -72,20 +71,6 @@
   DetailScrollView.contentSize = CGSizeMake(DetailScrollView.frame.size.width, y+5.0);
 }
 
-- (UIView *)addGroupView:(NSDictionary *)q atHeight:(float)y {
-  UILabel *qg_text = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-10, 65)] autorelease];
-  qg_text.text = [q valueForKey:@"text"];
-  if([q objectForKey:@"questions"]){
-    for (NSDictionary *question in [q objectForKey:@"questions"]) {
-      UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-(40), 10) json:question] autorelease];
-      //    UIView *q_view = [[[UIView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-(40), 10)] autorelease];
-      //    q_view.backgroundColor = [UIColor redColor];
-      [DetailScrollView addSubview:q_view];
-      y += q_view.frame.size.height+2;
-    }
-  }
-  return qg_text;
-}
 #pragma mark -
 #pragma mark Split view support
 

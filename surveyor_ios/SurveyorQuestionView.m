@@ -8,7 +8,6 @@
 
 #import "SurveyorQuestionView.h"
 
-
 @implementation SurveyorQuestionView
 + (void) initialize{
   qCount = 0;
@@ -20,7 +19,8 @@
 + (void) resetNumber{
   qCount = 0;
 }
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json{
+
+- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json showNumber:(BOOL)showNumber{
   self = [super initWithFrame:frame];
   if (self) {
     float height = 0.0;
@@ -29,7 +29,7 @@
       UILabel *q_text = [[[UILabel alloc] init] autorelease];
       q_text.lineBreakMode = UILineBreakModeWordWrap;
       q_text.numberOfLines = 0;
-      q_text.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];
+      q_text.text = showNumber ? [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]] : [json valueForKey:@"text"];
       height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
       q_text.frame = CGRectMake(0, 0, frame.size.width, height);
       //    q_text.backgroundColor = [UIColor blueColor];
@@ -76,13 +76,44 @@
 
       }
     }
-    [self layoutSubviews];
+//    [self layoutSubviews];
     
     
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
 //    NSLog(@"originy: %f", frame.origin.y);
 //    NSLog(@"height: %f", height);
 
+  }
+  return self;
+}
+
+- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json{
+  self = [super initWithFrame:frame];
+  if (self) {
+    float height = 0.0;
+    if ([json valueForKey:@"text"]) {
+      // Question text label wraps and expands height to fit
+      UILabel *q_text = [[[UILabel alloc] init] autorelease];
+      q_text.lineBreakMode = UILineBreakModeWordWrap;
+      q_text.numberOfLines = 0;
+      q_text.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];
+      height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
+      q_text.frame = CGRectMake(0, 0, frame.size.width, height);
+      //    q_text.backgroundColor = [UIColor blueColor];
+      [self addSubview:q_text];
+    }    
+    
+    if([json objectForKey:@"questions"]){
+      for (NSDictionary *question in [json objectForKey:@"questions"]) {
+        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width-40, 10) json:question showNumber:false] autorelease];
+        [self addSubview:q_view];
+        height += q_view.frame.size.height;
+      }
+    }
+
+    
+    self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
+    
   }
   return self;
 }

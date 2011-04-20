@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-static int qCount;
+static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
 @interface SurveyorQuestionView : UIView {
     
 }
 
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json;
+- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json showNumber:(BOOL)showNumber;
+- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json;
 + (void) initialize;
 + (int) nextNumber;
 + (void) resetNumber;
