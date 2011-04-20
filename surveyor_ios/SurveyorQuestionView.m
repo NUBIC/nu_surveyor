@@ -10,7 +10,16 @@
 
 
 @implementation SurveyorQuestionView
-
++ (void) initialize{
+  qCount = 0;
+}
++ (int) nextNumber{
+  qCount++;
+  return qCount;
+}
++ (void) resetNumber{
+  qCount = 0;
+}
 - (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json{
   self = [super initWithFrame:frame];
   if (self) {
@@ -20,7 +29,7 @@
       UILabel *q_text = [[[UILabel alloc] init] autorelease];
       q_text.lineBreakMode = UILineBreakModeWordWrap;
       q_text.numberOfLines = 0;
-      q_text.text = [json valueForKey:@"text"];
+      q_text.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];
       height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
       q_text.frame = CGRectMake(0, 0, frame.size.width, height);
       //    q_text.backgroundColor = [UIColor blueColor];
@@ -86,6 +95,8 @@
     }
     return self;
 }
+
+
 - (void)dealloc
 {
     [super dealloc];

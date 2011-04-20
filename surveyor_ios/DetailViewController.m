@@ -53,6 +53,7 @@
 }
 
 - (void)populateSection {
+  [SurveyorQuestionView resetNumber];
   float y = 0.0;
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){

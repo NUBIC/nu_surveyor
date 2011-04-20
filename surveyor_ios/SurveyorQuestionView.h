@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+static int qCount;
 
 @interface SurveyorQuestionView : UIView {
     
 }
 
 - (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json;
++ (void) initialize;
++ (int) nextNumber;
++ (void) resetNumber;
 
 @end
