@@ -29,7 +29,11 @@
       UILabel *q_text = [[[UILabel alloc] init] autorelease];
       q_text.lineBreakMode = UILineBreakModeWordWrap;
       q_text.numberOfLines = 0;
-      q_text.text = showNumber ? [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]] : [json valueForKey:@"text"];
+      
+      NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
+      [txt appendString: showNumber ? [NSString stringWithFormat:@"%d) ", [[self class] nextNumber]] : @""];
+      [txt appendString: [json valueForKey:@"post_text"] ? [NSString stringWithFormat:@"%@ | %@", [json valueForKey:@"post_text"], [json valueForKey:@"text"]] : [json valueForKey:@"text"]];
+      q_text.text = txt;
       height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
       q_text.frame = CGRectMake(0, 0, frame.size.width, height);
       //    q_text.backgroundColor = [UIColor blueColor];
@@ -43,6 +47,7 @@
       NSArray *answers = [json valueForKey:@"answers"];
       UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
       answers_label.text = [[answers valueForKey:@"text"] componentsJoinedByString:@", "];
+      
       height += answers_label.frame.size.height;
 
       [self addSubview:answers_label];
@@ -61,15 +66,14 @@
       NSArray *answers = [json valueForKey:@"answers"];
       if(answers){
         
-        NSMutableString *answers_label_text = [NSMutableString stringWithCapacity:0];
+        NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
         for (NSDictionary *answer in answers) {
-          if ([answers_label_text length] > 0) {
-            [answers_label_text appendString:@", "];
-          }
-          [answers_label_text appendString:[answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : [answer valueForKey:@"type"]];
+          [txt appendString: [txt length] > 0 ? @", " : @""];          
+          [txt appendString: [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : [answer valueForKey:@"type"]];
+          [txt appendString: [answer valueForKey:@"post_text"] ? [NSString stringWithFormat:@" | %@", [answer valueForKey:@"post_text"]] : @""];
         }
         UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
-        answers_label.text = answers_label_text;// [[answers valueForKey:@"text"] componentsJoinedByString:@","];
+        answers_label.text = txt;// [[answers valueForKey:@"text"] componentsJoinedByString:@","];
         height += answers_label.frame.size.height;
         //      answers_label.backgroundColor = [UIColor greenColor];
         [self addSubview:answers_label];
