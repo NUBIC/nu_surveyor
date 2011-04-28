@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B08C3EF136065CA00615EE0 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B08C3EE136065CA00615EE0 /* UILabel+Resize.m */; };
+		3B1181CC136A021B00A87FB1 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C4136A021B00A87FB1 /* checked.png */; };
+		3B1181CD136A021B00A87FB1 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C5136A021B00A87FB1 /* checked@2x.png */; };
+		3B1181CE136A021B00A87FB1 /* dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C6136A021B00A87FB1 /* dotted.png */; };
+		3B1181CF136A021B00A87FB1 /* dotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C7136A021B00A87FB1 /* dotted@2x.png */; };
+		3B1181D0136A021B00A87FB1 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C8136A021B00A87FB1 /* unchecked.png */; };
+		3B1181D1136A021B00A87FB1 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181C9136A021B00A87FB1 /* unchecked@2x.png */; };
+		3B1181D2136A021B00A87FB1 /* undotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181CA136A021B00A87FB1 /* undotted.png */; };
+		3B1181D3136A021B00A87FB1 /* undotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B1181CB136A021B00A87FB1 /* undotted@2x.png */; };
 		3B160CCF135E1D6C007FF20C /* kitchen_sink_survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */; };
 		3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */; };
 		3B160CDE135E1D9D007FF20C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CDD135E1D9D007FF20C /* README */; };
@@ -46,6 +55,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B1181C4136A021B00A87FB1 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
+		3B1181C5136A021B00A87FB1 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
+		3B1181C6136A021B00A87FB1 /* dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted.png; sourceTree = "<group>"; };
+		3B1181C7136A021B00A87FB1 /* dotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted@2x.png"; sourceTree = "<group>"; };
+		3B1181C8136A021B00A87FB1 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
+		3B1181C9136A021B00A87FB1 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
+		3B1181CA136A021B00A87FB1 /* undotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undotted.png; sourceTree = "<group>"; };
+		3B1181CB136A021B00A87FB1 /* undotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "undotted@2x.png"; sourceTree = "<group>"; };
 		3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kitchen_sink_survey.json; sourceTree = "<group>"; };
 		3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
 		3B160CDD135E1D9D007FF20C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
@@ -200,6 +217,14 @@
 		3B9BB04B135E1D37000450BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3B1181C4136A021B00A87FB1 /* checked.png */,
+				3B1181C5136A021B00A87FB1 /* checked@2x.png */,
+				3B1181C6136A021B00A87FB1 /* dotted.png */,
+				3B1181C7136A021B00A87FB1 /* dotted@2x.png */,
+				3B1181C8136A021B00A87FB1 /* unchecked.png */,
+				3B1181C9136A021B00A87FB1 /* unchecked@2x.png */,
+				3B1181CA136A021B00A87FB1 /* undotted.png */,
+				3B1181CB136A021B00A87FB1 /* undotted@2x.png */,
 				3B160CDD135E1D9D007FF20C /* README */,
 				3B9BB04C135E1D37000450BC /* surveyor_ios-Info.plist */,
 				3B9BB04D135E1D37000450BC /* InfoPlist.strings */,
@@ -303,6 +328,14 @@
 				3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */,
 				3B160CDE135E1D9D007FF20C /* README in Resources */,
 				3B1FD61B135E48B200E14158 /* ks.json in Resources */,
+				3B1181CC136A021B00A87FB1 /* checked.png in Resources */,
+				3B1181CD136A021B00A87FB1 /* checked@2x.png in Resources */,
+				3B1181CE136A021B00A87FB1 /* dotted.png in Resources */,
+				3B1181CF136A021B00A87FB1 /* dotted@2x.png in Resources */,
+				3B1181D0136A021B00A87FB1 /* unchecked.png in Resources */,
+				3B1181D1136A021B00A87FB1 /* unchecked@2x.png in Resources */,
+				3B1181D2136A021B00A87FB1 /* undotted.png in Resources */,
+				3B1181D3136A021B00A87FB1 /* undotted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

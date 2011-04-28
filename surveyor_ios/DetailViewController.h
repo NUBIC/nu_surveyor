@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SurveyorQuestionView.h"
-
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate> {
   
   UIPopoverController *popoverController;

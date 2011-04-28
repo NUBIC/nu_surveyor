@@ -174,7 +174,7 @@
    When a row is selected, set the detail view controller's detail item to the item associated with the selected row.
    */
   // detailViewController.detailItem = [NSString stringWithFormat:@"Row %d", indexPath.row];
-	detailViewController.detailItem = [[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row];
+	[detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
 }
 
 
