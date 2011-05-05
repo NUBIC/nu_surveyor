@@ -8,7 +8,7 @@
         { "reference": "2", "pick": "any", "text": "Choose the colors you don't like", "answers": [{"text": "red"},{"text": "blue"},{"text": "green"},{"text": "yellow"},{"text": "omit", "exclusive": "true"}]},
         { "reference": "2a", 
           "text": "Please explain why you don't like this color?",
-          "answers": [{"text": "explanation", "type": "text"}], 
+          "answers": [{"text": "explanation", "type": "text", "help": "Please give an explanation for each color you don't like"}], 
           "dependency": {"rule": "A or B or C or D", "conditions": [
             {"key": "A", "question": "2", "operator": "==", "answer": "1"},
             {"key": "B", "question": "2", "operator": "==", "answer": "2"},

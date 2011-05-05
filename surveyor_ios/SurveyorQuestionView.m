@@ -96,6 +96,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           [txt appendString: [txt length] > 0 ? @", " : @""];          
           [txt appendString: [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : [answer valueForKey:@"type"]];
           [txt appendString: [answer valueForKey:@"post_text"] ? [NSString stringWithFormat:@" | %@", [answer valueForKey:@"post_text"]] : @""];
+          [txt appendString: [answer valueForKey:@"help"] ? [NSString stringWithFormat:@" (%@)", [answer valueForKey:@"help"]] : @""];
           
           if([@"text" isEqual:[answer valueForKey:@"type"]]){
             UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 128)];
