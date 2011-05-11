@@ -94,7 +94,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
         for (NSDictionary *answer in answers) {
           [txt appendString: [txt length] > 0 ? @", " : @""];          
-          [txt appendString: [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : [answer valueForKey:@"type"]];
+          [txt appendString: [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : @""];
           [txt appendString: [answer valueForKey:@"post_text"] ? [NSString stringWithFormat:@" | %@", [answer valueForKey:@"post_text"]] : @""];
           [txt appendString: [answer valueForKey:@"help"] ? [NSString stringWithFormat:@" (%@)", [answer valueForKey:@"help"]] : @""];
           
