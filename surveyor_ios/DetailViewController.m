@@ -161,7 +161,7 @@
    */
   
   NSDictionary* userInfo = [notification userInfo];
-  CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+  CGSize kbSize = [self.view convertRect:[[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:nil].size;
   
   // Get the duration of the animation.
   NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
