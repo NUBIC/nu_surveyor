@@ -8,19 +8,20 @@
 
 #import "DetailViewController.h"
 #import "RootViewController.h"
+#import "SurveyorQuestionView.h"
 
 @interface DetailViewController ()
+@property (nonatomic, retain) UIView *editView;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 - (void)configureView;
 - (void)populateSection;
-
 @end
 
 
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, detailTextView, DetailScrollView;
+@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, detailTextView, DetailScrollView, editView;
 
 #pragma mark -
 #pragma mark Managing the detail item
@@ -81,12 +82,12 @@
   // Questions and groups  
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
-      UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg showNumber:true] autorelease];
+      SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg controller:self showNumber:true] autorelease];
 //      q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
       y += q_view.frame.size.height;
     }else{
-      UIView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg] autorelease];
+      SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg controller:self] autorelease];
 //      g_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:g_view];
       y += g_view.frame.size.height;
@@ -120,7 +121,6 @@
   self.popoverController = nil;
 }
 
-
 #pragma mark -
 #pragma mark Rotation support
 
@@ -140,14 +140,99 @@
 }
 
 #pragma mark -
+#pragma mark Keyboard Notifications
+
+- (void)registerForKeyboardNotifications
+{
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillShow:)
+                                               name:UIKeyboardWillShowNotification object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillHide:)
+                                               name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+  
+  /*
+   Reduce the size of the text view so that it's not obscured by the keyboard.
+   Animate the resize so that it's in sync with the appearance of the keyboard.
+   */
+  
+  NSDictionary* userInfo = [notification userInfo];
+  CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+  
+  // Get the duration of the animation.
+  NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+  NSTimeInterval animationDuration;
+  [animationDurationValue getValue:&animationDuration];
+  
+  // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:animationDuration];
+  
+  // If active text field is hidden by keyboard, scroll it so it's visible
+  CGPoint editViewOrigin = [editView convertPoint:editView.frame.origin toView:self.view];
+  if (self.view.frame.size.height - kbSize.height < editViewOrigin.y) {
+//    NSLog(@"view height:%f kbheight: %f, tap point: %f", self.view.frame.size.height, kbSize.height, editViewOrigin.y);
+    [DetailScrollView setContentOffset:CGPointMake(0.0, DetailScrollView.contentOffset.y + kbSize.height) animated:YES];
+  }
+  
+  UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+  DetailScrollView.contentInset = contentInsets;
+  DetailScrollView.scrollIndicatorInsets = contentInsets;
+  
+  [UIView commitAnimations];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+  /*
+   Restore the size of the text view (fill self's view).
+   Animate the resize so that it's in sync with the disappearance of the keyboard.
+   */
+  
+  NSDictionary* userInfo = [notification userInfo];
+  
+  // Get the duration of the animation.
+  NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+  NSTimeInterval animationDuration;
+  [animationDurationValue getValue:&animationDuration];
+  
+  // Animate the resize of the text view's frame in sync with the keyboard's appearance.
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:animationDuration];
+  
+  UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+  DetailScrollView.contentInset = contentInsets;
+  DetailScrollView.scrollIndicatorInsets = contentInsets;
+  
+  [UIView commitAnimations];
+}
+
+#pragma mark -
+#pragma mark UITextView and UITextField Delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+  //  NSLog(@"top: %f", [textField convertPoint:textField.frame.origin toView:self.view].y);
+  editView = textField;
+  return YES;
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+  //  NSLog(@"top: %f", [textView convertPoint:textView.frame.origin toView:self.view].y);
+  editView = textView;
+  return YES;
+}
+
+#pragma mark -
 #pragma mark View lifecycle
 
-/*
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad {
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
  [super viewDidLoad];
- }
- */
+ [self registerForKeyboardNotifications];
+}
 
 /*
  - (void)viewWillAppear:(BOOL)animated {
@@ -172,8 +257,10 @@
 
 - (void)viewDidUnload {
   // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
   self.popoverController = nil;
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 

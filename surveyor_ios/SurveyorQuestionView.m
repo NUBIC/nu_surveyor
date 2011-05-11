@@ -31,7 +31,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   qCount = 0;
 }
 
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json showNumber:(BOOL)showNumber{
+- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber{
   if((self = [super initWithFrame:frame])) {
     float height = 0.0;
     if ([json valueForKey:@"text"]) {
@@ -103,21 +103,25 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             text.layer.borderWidth = 1;
             text.layer.borderColor = [[UIColor grayColor] CGColor];
             text.layer.shadowColor = [[UIColor grayColor] CGColor];
+            text.delegate = dvc;
             [self addSubview:text];
             height += text.frame.size.height;
           }else if ([@"string" isEqual:[answer valueForKey:@"type"]]) {
             UITextField *string = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
+            string.delegate = dvc;
             [self addSubview:string];
             string.borderStyle = UITextBorderStyleRoundedRect;
             height += string.frame.size.height;
           }else if([@"integer" isEqual:[answer valueForKey:@"type"]]){
             UITextField *integerResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
+            integerResponse.delegate = dvc;
             [self addSubview:integerResponse];
             integerResponse.keyboardType = UIKeyboardTypeNumberPad;
             integerResponse.borderStyle = UITextBorderStyleRoundedRect;
             height += integerResponse.frame.size.height;
           }else if([@"float" isEqual:[answer valueForKey:@"type"]]){
             UITextField *floatResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
+            floatResponse.delegate = dvc;
             [self addSubview:floatResponse];
             floatResponse.keyboardType = UIKeyboardTypeDecimalPad;
             floatResponse.borderStyle = UITextBorderStyleRoundedRect;
@@ -139,7 +143,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   return self;
 }
 
-- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json{
+- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc{
   self = [super initWithFrame:frame];
   if (self) {
     float height = 0.0;
@@ -157,7 +161,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     
     if([json objectForKey:@"questions"]){
       for (NSDictionary *question in [json objectForKey:@"questions"]) {
-        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width-40, 10) json:question showNumber:false] autorelease];
+        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width-40, 10) json:question controller:dvc showNumber:false] autorelease];
         [self addSubview:q_view];
         height += q_view.frame.size.height;
       }

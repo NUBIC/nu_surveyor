@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SurveyorQuestionView.h"
-@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate> {
+
+@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate> {
   
   UIPopoverController *popoverController;
   UIToolbar *toolbar;

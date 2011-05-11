@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @interface SurveyorQuestionView : UIView <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource> {
   @private
   NSArray *tableViewItems;
 }
 
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json showNumber:(BOOL)showNumber;
-- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json;
+- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber;
+- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc;
 + (void) initialize;
 + (int) nextNumber;
 + (void) resetNumber;
