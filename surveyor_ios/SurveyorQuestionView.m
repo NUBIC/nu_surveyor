@@ -72,6 +72,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 //        height += segmented.frame.size.height;      
 //        [self addSubview:segmented];
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 44 * [answers count]) style:UITableViewStylePlain];
+        tableView.scrollEnabled = FALSE; 
         tableView.delegate = self;
         tableView.dataSource = self;
         [self addSubview:tableView];
@@ -82,6 +83,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     // pick any (checkboxes)
 
       UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 44 * [answers count]) style:UITableViewStylePlain];
+      tableView.scrollEnabled = FALSE; 
       tableView.delegate = self;
       tableView.dataSource = self;
       [self addSubview:tableView];
