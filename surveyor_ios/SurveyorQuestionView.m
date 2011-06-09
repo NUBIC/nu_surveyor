@@ -95,10 +95,12 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       if(answers){        
         NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
         for (NSDictionary *answer in answers) {
-          [txt appendString: [txt length] > 0 ? @", " : @""];          
-          [txt appendString: [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : @""];
-          [txt appendString: [answer valueForKey:@"post_text"] ? [NSString stringWithFormat:@" | %@", [answer valueForKey:@"post_text"]] : @""];
-          [txt appendString: [answer valueForKey:@"help"] ? [NSString stringWithFormat:@" (%@)", [answer valueForKey:@"help"]] : @""];
+          if ([answer valueForKey:@"text"] || [answer valueForKey:@"help"]) {
+            UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
+            answers_label.text = [NSString stringWithFormat:@"%@%@", [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : @"", [answer valueForKey:@"help"] ? [NSString stringWithFormat:@" (%@)", [answer valueForKey:@"help"]] : @""];
+            height += answers_label.frame.size.height;
+            [self addSubview:answers_label];
+          }
           
           if([@"text" isEqual:[answer valueForKey:@"type"]]){
             UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 128)];
@@ -130,12 +132,13 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             height += floatResponse.frame.size.height;
           }
           
+          if ([answer valueForKey:@"post_text"]) {
+            UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
+            answers_label.text = [answer valueForKey:@"post_text"];
+            height += answers_label.frame.size.height;
+            [self addSubview:answers_label];
+          }
         }
-        UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
-        answers_label.text = txt;// [[answers valueForKey:@"text"] componentsJoinedByString:@","];
-        height += answers_label.frame.size.height;
-        //      answers_label.backgroundColor = [UIColor greenColor];
-        [self addSubview:answers_label];
       }
     }    
     
