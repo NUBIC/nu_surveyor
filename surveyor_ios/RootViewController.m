@@ -35,6 +35,11 @@
 	self.navigationItem.title = @"Sections";
   detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 	detailViewController.dict = dict;
+  
+  if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
+    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
+  }
+  
 	
 	// self.detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 	
