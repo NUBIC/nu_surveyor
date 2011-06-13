@@ -332,7 +332,6 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
-  NSLog(@"UITableViewCell %@", cell.textLabel.font);
   if ([@"one" isEqual:pick]) {
     if (selectedCell) {
       selectedCell.imageView.image = [UIImage imageNamed:@"undotted.png"];
