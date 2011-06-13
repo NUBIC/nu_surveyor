@@ -117,14 +117,16 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             string.borderStyle = UITextBorderStyleRoundedRect;
             height += string.frame.size.height;
           }else if([@"integer" isEqual:[answer valueForKey:@"type"]]){
-            UITextField *integerResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
+            UITextField *integerResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/6, 31)];
+            integerResponse.textAlignment = UITextAlignmentRight;
             integerResponse.delegate = dvc;
             [self addSubview:integerResponse];
             integerResponse.keyboardType = UIKeyboardTypeNumberPad;
             integerResponse.borderStyle = UITextBorderStyleRoundedRect;
             height += integerResponse.frame.size.height;
           }else if([@"float" isEqual:[answer valueForKey:@"type"]]){
-            UITextField *floatResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
+            UITextField *floatResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/4, 31)];
+            floatResponse.textAlignment = UITextAlignmentRight;
             floatResponse.delegate = dvc;
             [self addSubview:floatResponse];
             floatResponse.keyboardType = UIKeyboardTypeDecimalPad;
@@ -166,7 +168,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     
     if([json objectForKey:@"questions"]){
       for (NSDictionary *question in [json objectForKey:@"questions"]) {
-        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width-40, 10) json:question controller:dvc showNumber:false] autorelease];
+        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 10) json:question controller:dvc showNumber:false] autorelease];
         [self addSubview:q_view];
         height += q_view.frame.size.height;
       }
