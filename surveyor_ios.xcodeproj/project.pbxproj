@@ -25,6 +25,7 @@
 		3B336F8E13A69CA700E43826 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8A13A69CA700E43826 /* checked@2x.png */; };
 		3B336F8F13A69CA700E43826 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8B13A69CA700E43826 /* unchecked.png */; };
 		3B336F9013A69CA700E43826 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8C13A69CA700E43826 /* unchecked@2x.png */; };
+		3B336F9613A69D9300E43826 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B336F9513A69D9300E43826 /* UILabel+Resize.m */; };
 		3B9BB045135E1D37000450BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB044135E1D37000450BC /* UIKit.framework */; };
 		3B9BB047135E1D37000450BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB046135E1D37000450BC /* Foundation.framework */; };
 		3B9BB049135E1D37000450BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB048135E1D37000450BC /* CoreGraphics.framework */; };
@@ -79,6 +80,8 @@
 		3B336F8A13A69CA700E43826 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
 		3B336F8B13A69CA700E43826 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
 		3B336F8C13A69CA700E43826 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
+		3B336F9413A69D9300E43826 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
+		3B336F9513A69D9300E43826 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
 		3B9BB040135E1D37000450BC /* surveyor_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = surveyor_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9BB044135E1D37000450BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B9BB046135E1D37000450BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -161,6 +164,8 @@
 			children = (
 				3B1FD61C135E48C000E14158 /* SurveyorQuestionView.h */,
 				3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */,
+				3B336F9413A69D9300E43826 /* UILabel+Resize.h */,
+				3B336F9513A69D9300E43826 /* UILabel+Resize.m */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				3B1FD618135E489500E14158 /* SBJsonParser.m in Sources */,
 				3B1FD619135E489500E14158 /* SBJsonWriter.m in Sources */,
 				3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */,
+				3B336F9613A69D9300E43826 /* UILabel+Resize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

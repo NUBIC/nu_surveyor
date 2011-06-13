@@ -7,7 +7,8 @@
 //
 
 #import "SurveyorQuestionView.h"
-#import <QuartzCore/QuartzCore.h> 
+#import <QuartzCore/QuartzCore.h>
+#import "UILabel+Resize.h"
 
 @interface SurveyorQuestionView ()
   @property (nonatomic,retain) NSArray* answers;
@@ -35,23 +36,24 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   if((self = [super initWithFrame:frame])) {
     float height = 0.0;
     if ([json valueForKey:@"text"]) {
-    // Question text label wraps and expands height to fit
-      
-      UILabel *q_text = [[[UILabel alloc] init] autorelease];
-      q_text.lineBreakMode = UILineBreakModeWordWrap;
-      q_text.numberOfLines = 0;
+      // Question text label wraps and expands height to fit
+      UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 44.0)];
       
       if ([@"label" isEqual:[json valueForKey:@"type"]]) {
         showNumber = false;
       }
+      
       NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
       [txt appendString: showNumber ? [NSString stringWithFormat:@"%d) ", [[self class] nextNumber]] : @""];
       [txt appendString: [json valueForKey:@"post_text"] ? [NSString stringWithFormat:@"%@ | %@", [json valueForKey:@"post_text"], [json valueForKey:@"text"]] : [json valueForKey:@"text"]];
-      q_text.text = txt;
-      height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
-      q_text.frame = CGRectMake(0, 0, frame.size.width, height);
-      //    q_text.backgroundColor = [UIColor blueColor];
-      [self addSubview:q_text];
+      question_text_label.text = txt;
+      
+      [question_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
+      question_text_label.font = [UIFont boldSystemFontOfSize:19.0];
+      
+      height = question_text_label.frame.size.height;
+      [self addSubview:question_text_label];
+      [question_text_label release];
     }
     
     self.answers = [json valueForKey:@"answers"];
@@ -71,7 +73,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 //        segmented.frame = CGRectMake(0, height, segmented.frame.size.width, segmented.frame.size.height);
 //        height += segmented.frame.size.height;      
 //        [self addSubview:segmented];
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 44 * [answers count]) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
         tableView.scrollEnabled = FALSE; 
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -82,7 +84,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     }else if([pick isEqualToString:@"any"] && answers){
     // pick any (checkboxes)
 
-      UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 44 * [answers count]) style:UITableViewStylePlain];
+      UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
       tableView.scrollEnabled = FALSE; 
       tableView.delegate = self;
       tableView.dataSource = self;
@@ -93,59 +95,95 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     // pick none, default
 
       if(answers){        
-        NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
         for (NSDictionary *answer in answers) {
-          if ([answer valueForKey:@"text"] || [answer valueForKey:@"help"]) {
-            UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
-            answers_label.text = [NSString stringWithFormat:@"%@%@", [answer valueForKey:@"text"] ? [answer valueForKey:@"text"] : @"", [answer valueForKey:@"help"] ? [NSString stringWithFormat:@" (%@)", [answer valueForKey:@"help"]] : @""];
-            height += answers_label.frame.size.height;
-            [self addSubview:answers_label];
+          // add help text
+          if ([answer valueForKey:@"help"]) {
+            UILabel *answer_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            answer_help_label.text = [answer valueForKey:@"help"];
+            answer_help_label.textColor = [UIColor darkGrayColor];
+            [answer_help_label setUpMultiLineVerticalResizeWithFontSize:14.0];
+            
+            height += answer_help_label.frame.size.height;
+            [self addSubview:answer_help_label];
+            [answer_help_label release];
+          }
+          // add answer text
+          if ([answer valueForKey:@"text"]) {
+            UILabel *answer_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            answer_text_label.text = [answer valueForKey:@"text"];
+            [answer_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
+            
+            height += answer_text_label.frame.size.height;
+            [self addSubview:answer_text_label];
+            [answer_text_label release];
           }
           
           if([@"text" isEqual:[answer valueForKey:@"type"]]){
-            UITextView *text = [[UITextView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 128)];
-            text.layer.borderWidth = 1;
-            text.layer.borderColor = [[UIColor grayColor] CGColor];
-            text.layer.shadowColor = [[UIColor grayColor] CGColor];
-            text.delegate = dvc;
-            [self addSubview:text];
-            height += text.frame.size.height;
+            // response type: text
+            UITextView *text_response = [[UITextView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 128.0)];
+            text_response.delegate = dvc;
+            
+            text_response.font = [UIFont systemFontOfSize:16.0];            
+            text_response.layer.cornerRadius = 8.0;
+            text_response.layer.borderWidth = 1.0;
+            text_response.layer.borderColor = [[UIColor grayColor] CGColor];
+            
+            height += text_response.frame.size.height;
+            [self addSubview:text_response];
+            [text_response release];
           }else if ([@"string" isEqual:[answer valueForKey:@"type"]]) {
-            UITextField *string = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 31)];
-            string.delegate = dvc;
-            [self addSubview:string];
-            string.borderStyle = UITextBorderStyleRoundedRect;
-            height += string.frame.size.height;
+            // response type: string
+            UITextField *string_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 31.0)];
+            string_response.delegate = dvc;
+            
+            string_response.font = [UIFont systemFontOfSize:16.0];
+            string_response.borderStyle = UITextBorderStyleRoundedRect;
+            
+            height += string_response.frame.size.height;
+            [self addSubview:string_response];
+            [string_response release];
           }else if([@"integer" isEqual:[answer valueForKey:@"type"]]){
-            UITextField *integerResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/6, 31)];
-            integerResponse.textAlignment = UITextAlignmentRight;
-            integerResponse.delegate = dvc;
-            [self addSubview:integerResponse];
-            integerResponse.keyboardType = UIKeyboardTypeNumberPad;
-            integerResponse.borderStyle = UITextBorderStyleRoundedRect;
-            height += integerResponse.frame.size.height;
+            // response type: integer
+            UITextField *integer_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/6, 31.0)];
+            integer_response.delegate = dvc;
+
+            integer_response.font = [UIFont systemFontOfSize:16.0];
+            integer_response.textAlignment = UITextAlignmentRight;
+            integer_response.keyboardType = UIKeyboardTypeNumberPad;
+            integer_response.borderStyle = UITextBorderStyleRoundedRect;
+
+            height += integer_response.frame.size.height;
+            [self addSubview:integer_response];
+            [integer_response release];
           }else if([@"float" isEqual:[answer valueForKey:@"type"]]){
-            UITextField *floatResponse = [[UITextField alloc] initWithFrame:CGRectMake(0, height, frame.size.width/4, 31)];
-            floatResponse.textAlignment = UITextAlignmentRight;
-            floatResponse.delegate = dvc;
-            [self addSubview:floatResponse];
-            floatResponse.keyboardType = UIKeyboardTypeDecimalPad;
-            floatResponse.borderStyle = UITextBorderStyleRoundedRect;
-            height += floatResponse.frame.size.height;
+            // response type: float
+            UITextField *float_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/4, 31.0)];
+            float_response.delegate = dvc;
+            
+            float_response.font = [UIFont systemFontOfSize:16.0];
+            float_response.textAlignment = UITextAlignmentRight;
+            float_response.keyboardType = UIKeyboardTypeDecimalPad;
+            float_response.borderStyle = UITextBorderStyleRoundedRect;
+            
+            height += float_response.frame.size.height;
+            [self addSubview:float_response];
+            [float_response release];
           }
           
+          // add answer post text
           if ([answer valueForKey:@"post_text"]) {
-            UILabel *answers_label = [[[UILabel alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 20)] autorelease];
-            answers_label.text = [answer valueForKey:@"post_text"];
-            height += answers_label.frame.size.height;
-            [self addSubview:answers_label];
+            UILabel *answer_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            answer_post_text_label.text = [answer valueForKey:@"post_text"];
+            [answer_post_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
+            
+            height += answer_post_text_label.frame.size.height;
+            [self addSubview:answer_post_text_label];
+            [answer_post_text_label release];
           }
         }
       }
     }    
-    
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
-
   }
   return self;
 }
@@ -156,27 +194,25 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     float height = 0.0;
     if ([json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
-      UILabel *q_text = [[[UILabel alloc] init] autorelease];
-      q_text.lineBreakMode = UILineBreakModeWordWrap;
-      q_text.numberOfLines = 0;
-      q_text.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];
-      height = [q_text.text sizeWithFont:q_text.font constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
-      q_text.frame = CGRectMake(0, 0, frame.size.width, height);
-      //    q_text.backgroundColor = [UIColor blueColor];
-      [self addSubview:q_text];
-    }    
-    
+      UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 44.0)];
+      
+      group_text_label.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];;
+      
+      [group_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
+      group_text_label.font = [UIFont boldSystemFontOfSize:19.0];
+      
+      height = group_text_label.frame.size.height;
+      [self addSubview:group_text_label];
+      [group_text_label release];
+    }
     if([json objectForKey:@"questions"]){
       for (NSDictionary *question in [json objectForKey:@"questions"]) {
-        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0, height, frame.size.width, 10) json:question controller:dvc showNumber:false] autorelease];
+        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) json:question controller:dvc showNumber:false] autorelease];
         [self addSubview:q_view];
         height += q_view.frame.size.height;
       }
     }
-
-    
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
-    
   }
   return self;
 }
@@ -243,6 +279,8 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
   // Configure the cell.
 //  cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
+  
+  cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
   cell.textLabel.text = [[answers objectAtIndex:indexPath.row] objectForKey:@"text"];
 //	cell.textLabel.text = @"foo";
 	return cell;
@@ -294,7 +332,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
-  
+  NSLog(@"UITableViewCell %@", cell.textLabel.font);
   if ([@"one" isEqual:pick]) {
     if (selectedCell) {
       selectedCell.imageView.image = [UIImage imageNamed:@"undotted.png"];
