@@ -15,6 +15,8 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 - (void)configureView;
 - (void)populateSection;
+- (void)showScrollViewWidth;
+- (CGFloat)widthBasedOnOrientation;
 @end
 
 
@@ -44,7 +46,6 @@
   }        
 }
 
-
 - (void)configureView {
   // Update the user interface for the detail item.
   
@@ -55,8 +56,28 @@
     }
   }
   [self populateSection];
+
+//  [self showScrollViewWidth];
+//  UILabel *mybox = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10,  DetailScrollView.frame.size.width - 20.0 , 300)] autorelease];
+//  mybox.text = @"As mentioned previously, this method gets called just before the user interface rotation takes place. Passed through as an argument to this method is the new orientation of the device in the form of the toInterfaceOrientation variable. Within the body of the method we identify if the device has rotated to a landscape or portrait orientation. Using the CGRectMake method (which takes x, y, width and height as arguments) we create a CGRect structure containing the new co-ordinates and dimensions for each button and assign them to the frame property of the button instances. When the method returns, the system will then proceed to draw the buttons using the new";
+//  [mybox setUpMultiLineFrameWithStartXPosition:10.0 withStartYPosition:10.0];
+
+//  mybox.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//  mybox.backgroundColor = [UIColor greenColor];
+//  mybox.lineBreakMode = UILineBreakModeWordWrap;
+//  mybox.numberOfLines = 0;
+
+//  mybox.contentMode = UIViewContentModeTopLeft;
+//  mybox.frame = CGRectMake(mybox.frame.origin.x, mybox.frame.origin.y, mybox.frame.size.width, [mybox.text sizeWithFont:mybox.font constrainedToSize:CGSizeMake(DetailScrollView.frame.size.width-20, 9999) lineBreakMode:UILineBreakModeWordWrap].height);
+
+//  [DetailScrollView addSubview:mybox];
+
 }
 
+
+- (void)showScrollViewWidth {
+  self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%f", DetailScrollView.frame.size.width];
+};
 - (void)populateSection {
   [SurveyorQuestionView resetNumber];
   float y = 0.0;
@@ -72,8 +93,8 @@
 //  section_title.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //  section_title.contentMode = UIViewContentModeTopLeft;
 //  section_title.backgroundColor = [UIColor greenColor];
-  y = [section_title.text sizeWithFont:section_title.font constrainedToSize:CGSizeMake(DetailScrollView.frame.size.width-40, 9999) lineBreakMode:UILineBreakModeWordWrap].height;
-  section_title.frame = CGRectMake(10, 10.0, DetailScrollView.frame.size.width-40, y);
+  y = [section_title.text sizeWithFont:section_title.font constrainedToSize:CGSizeMake([self widthBasedOnOrientation], 9999) lineBreakMode:UILineBreakModeWordWrap].height;
+  section_title.frame = CGRectMake(10, 10.0, [self widthBasedOnOrientation], y);
 //  [section_title sizeToFit];
   [DetailScrollView addSubview:section_title];
   
@@ -82,12 +103,12 @@
   // Questions and groups  
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
-      SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg controller:self showNumber:true] autorelease];
+      SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) json:qg controller:self showNumber:true] autorelease];
 //      q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
       y += q_view.frame.size.height;
     }else{
-      SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, DetailScrollView.frame.size.width-40, 10) json:qg controller:self] autorelease];
+      SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) json:qg controller:self] autorelease];
 //      g_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:g_view];
       y += g_view.frame.size.height;
@@ -134,9 +155,19 @@
 //  }
 //}
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-  for (UIView *subview in DetailScrollView.subviews) {
+//  for (UIView *subview in DetailScrollView.subviews) {
 //    [subview sizeToFit];
-  }  
+//  }  
+//  [self showScrollViewWidth];
+  DetailScrollView.contentSize = CGSizeMake(DetailScrollView.frame.size.width, DetailScrollView.contentSize.height);
+}
+- (CGFloat)widthBasedOnOrientation {
+//  NSLog(@"%d", [[UIApplication sharedApplication] statusBarOrientation]);
+  if([[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationLandscapeLeft || [[UIApplication sharedApplication] statusBarOrientation] == UIDeviceOrientationLandscapeRight){
+    return DetailScrollView.frame.size.width - 20.0;
+  }else{
+    return DetailScrollView.frame.size.width - 65.0 - 20.0;
+  }
 }
 
 #pragma mark -
