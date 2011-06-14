@@ -9,15 +9,19 @@
 #import "SurveyorQuestionView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UILabel+Resize.h"
+#import "PickerViewController.h"
 
 @interface SurveyorQuestionView ()
   @property (nonatomic,retain) NSArray* answers;
   @property (nonatomic,retain) NSString* pick;
   @property (nonatomic,retain) UITableViewCell* selectedCell;
+  @property (nonatomic,retain) PickerViewController* pickerContent;
+  @property (nonatomic,retain) UIPopoverController* popover;
+  @property (nonatomic,retain) UIButton* pickerButton;
 @end
 
 @implementation SurveyorQuestionView
-@synthesize answers, pick, selectedCell;
+@synthesize answers, pick, selectedCell, pickerContent, popover, pickerButton;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -60,40 +64,40 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     self.pick = [json valueForKey:@"pick"];
     
     if ([pick isEqualToString:@"one"] && answers) {
-    // pick one (radio buttons)
-      
-//      if ([@"dropdown" isEqual:[json valueForKey:@"type"]]) {
-//        UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, height, frame.size.width/2, 162)];
-//        picker.delegate = self;
-//        picker.dataSource = self;
-//        height += picker.frame.size.height;
-//        [self addSubview:picker];
-//      }else{
-//        UISegmentedControl *segmented = [[UISegmentedControl alloc] initWithItems:[answers valueForKey:@"text"]];
-//        segmented.frame = CGRectMake(0, height, segmented.frame.size.width, segmented.frame.size.height);
-//        height += segmented.frame.size.height;      
-//        [self addSubview:segmented];
+      // pick one (radio buttons)
+            
+      if ([@"dropdown" isEqual:[json valueForKey:@"type"]]) {
+        self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        pickerButton.frame = CGRectMake(0.0, height, 100.0, 35.0);
+        [pickerButton setTitle:@"Pick one" forState:UIControlStateNormal];
+        [pickerButton addTarget:self action:@selector(pickButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:pickerButton];
+        height += pickerButton.frame.size.height;
+        
+        self.pickerContent = [[PickerViewController alloc] init];
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
+        [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
+        self.popover.delegate = self;
+
+      }else{
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
         tableView.scrollEnabled = FALSE; 
         tableView.delegate = self;
         tableView.dataSource = self;
         [self addSubview:tableView];
         height += tableView.frame.size.height;   
-//      }
+      }
       
     }else if([pick isEqualToString:@"any"] && answers){
-    // pick any (checkboxes)
-
+      // pick any (checkboxes)
       UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
       tableView.scrollEnabled = FALSE; 
       tableView.delegate = self;
       tableView.dataSource = self;
       [self addSubview:tableView];
       height += tableView.frame.size.height;
-      
     }else{
-    // pick none, default
-
+      // pick none, default
       if(answers){        
         for (NSDictionary *answer in answers) {
           // add help text
@@ -227,6 +231,24 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 }
 
 #pragma mark -
+#pragma mark Pick Button target
+
+- (void) pickButtonPressed:(id) sender {
+  if ([sender isKindOfClass:[UIButton class]]) {
+    UIButton* myButton = (UIButton*)sender;
+    [self.popover presentPopoverFromRect:myButton.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+  }
+}
+- (void) pickerDone{
+  [self.popover dismissPopoverAnimated:NO];
+  [self.pickerButton setTitle:[[answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
+  [self.pickerButton sizeToFit];
+}
+- (void) pickerCancel{
+  [self.popover dismissPopoverAnimated:NO];
+}
+
+#pragma mark -
 #pragma mark Picker view data source
 
 
@@ -242,10 +264,11 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 }
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
   UILabel *pickerRow = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+  pickerRow.backgroundColor = [UIColor clearColor];
+  pickerRow.font = [UIFont systemFontOfSize:16.0];
   pickerRow.text = [[answers objectAtIndex:row] objectForKey:@"text"];
   return pickerRow;
 }
-
 
 #pragma mark -
 #pragma mark Table view data source

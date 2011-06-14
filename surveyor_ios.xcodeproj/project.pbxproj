@@ -26,6 +26,8 @@
 		3B336F8F13A69CA700E43826 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8B13A69CA700E43826 /* unchecked.png */; };
 		3B336F9013A69CA700E43826 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8C13A69CA700E43826 /* unchecked@2x.png */; };
 		3B336F9613A69D9300E43826 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B336F9513A69D9300E43826 /* UILabel+Resize.m */; };
+		3B336F9E13A6AF6100E43826 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B336F9C13A6AF6000E43826 /* PickerViewController.m */; };
+		3B336F9F13A6AF6100E43826 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F9D13A6AF6000E43826 /* PickerViewController.xib */; };
 		3B9BB045135E1D37000450BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB044135E1D37000450BC /* UIKit.framework */; };
 		3B9BB047135E1D37000450BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB046135E1D37000450BC /* Foundation.framework */; };
 		3B9BB049135E1D37000450BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B9BB048135E1D37000450BC /* CoreGraphics.framework */; };
@@ -82,6 +84,9 @@
 		3B336F8C13A69CA700E43826 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
 		3B336F9413A69D9300E43826 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		3B336F9513A69D9300E43826 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
+		3B336F9B13A6AF6000E43826 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
+		3B336F9C13A6AF6000E43826 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		3B336F9D13A6AF6000E43826 /* PickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		3B9BB040135E1D37000450BC /* surveyor_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = surveyor_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9BB044135E1D37000450BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B9BB046135E1D37000450BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -207,11 +212,14 @@
 				3B9BB053135E1D37000450BC /* surveyor_iosAppDelegate.h */,
 				3B9BB054135E1D37000450BC /* surveyor_iosAppDelegate.m */,
 				3B9BB056135E1D37000450BC /* MainWindow.xib */,
+				3B9BB05F135E1D37000450BC /* RootViewController.h */,
+				3B9BB060135E1D37000450BC /* RootViewController.m */,
 				3B9BB059135E1D37000450BC /* DetailViewController.h */,
 				3B9BB05A135E1D37000450BC /* DetailViewController.m */,
 				3B9BB05C135E1D37000450BC /* DetailView.xib */,
-				3B9BB05F135E1D37000450BC /* RootViewController.h */,
-				3B9BB060135E1D37000450BC /* RootViewController.m */,
+				3B336F9B13A6AF6000E43826 /* PickerViewController.h */,
+				3B336F9C13A6AF6000E43826 /* PickerViewController.m */,
+				3B336F9D13A6AF6000E43826 /* PickerViewController.xib */,
 				3B1FD61F135E48C500E14158 /* UIViews */,
 				3B9BB04B135E1D37000450BC /* Supporting Files */,
 			);
@@ -340,6 +348,7 @@
 				3B336F8E13A69CA700E43826 /* checked@2x.png in Resources */,
 				3B336F8F13A69CA700E43826 /* unchecked.png in Resources */,
 				3B336F9013A69CA700E43826 /* unchecked@2x.png in Resources */,
+				3B336F9F13A6AF6100E43826 /* PickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +395,7 @@
 				3B1FD619135E489500E14158 /* SBJsonWriter.m in Sources */,
 				3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */,
 				3B336F9613A69D9300E43826 /* UILabel+Resize.m in Sources */,
+				3B336F9E13A6AF6100E43826 /* PickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
