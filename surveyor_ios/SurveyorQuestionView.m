@@ -198,7 +198,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     float height = 0.0;
     if ([json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
-      UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 44.0)];
+      UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 44.0)];
       
       group_text_label.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];;
       
@@ -209,11 +209,76 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       [self addSubview:group_text_label];
       [group_text_label release];
     }
-    if([json objectForKey:@"questions"]){
+    if ([@"grid" isEqual:[json valueForKey:@"type"]] && [json valueForKey:@"questions"] && [json valueForKey:@"answers"]) {
+      // grid
+      float max_text_width = 0.0;
+      float max_post_text_width = 0.0;
+      
       for (NSDictionary *question in [json objectForKey:@"questions"]) {
-        UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) json:question controller:dvc showNumber:false] autorelease];
-        [self addSubview:q_view];
-        height += q_view.frame.size.height;
+        // loop to find maximum widths of text and post-text (+5.0 for extra padding)
+        if ([question valueForKey:@"text"]) {
+          max_text_width = MAX(max_text_width, 5.0+[[question valueForKey:@"text"] sizeWithFont:[UIFont boldSystemFontOfSize:19.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
+        }
+        if ([question valueForKey:@"post_text"]) {
+          max_post_text_width = MAX(max_text_width, 5.0+[[question valueForKey:@"post_text"] sizeWithFont:[UIFont boldSystemFontOfSize:19.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
+        }
+        max_text_width = MIN(max_text_width, frame.size.width/3);
+        max_post_text_width = MIN(max_post_text_width, frame.size.width/3);
+      }
+      
+      for (NSDictionary *question in [json objectForKey:@"questions"]) {
+        float max_height = 0.0;
+        float x_cursor = 0.0;
+        
+        // text
+        if ([question valueForKey:@"text"]) {
+          // Question text label wraps and expands height to fit
+          UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_text_width, 44.0)];
+          question_text_label.text = [question valueForKey:@"text"];
+          
+          [question_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
+          question_text_label.font = [UIFont boldSystemFontOfSize:19.0];
+          question_text_label.textAlignment = UITextAlignmentRight;
+          
+          max_height = MAX(max_height, question_text_label.frame.size.height);
+          x_cursor += question_text_label.frame.size.width;
+          [self addSubview:question_text_label];
+          [question_text_label release];
+        }
+        
+        // segment
+        UISegmentedControl *pickOneSegment = [[UISegmentedControl alloc] initWithItems:[[json valueForKey:@"answers"] valueForKey:@"text"]];
+        pickOneSegment.frame = CGRectMake(x_cursor, height, MIN(frame.size.width - max_text_width - max_post_text_width, pickOneSegment.frame.size.width), pickOneSegment.frame.size.height);
+        max_height = MAX(max_height, pickOneSegment.frame.size.height);
+        x_cursor += pickOneSegment.frame.size.width;
+        [self addSubview:pickOneSegment];
+        [pickOneSegment release];
+        
+        // post text
+        if ([question valueForKey:@"post_text"]) {
+          // Question text label wraps and expands height to fit
+          UILabel *question_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_post_text_width, 44.0)];
+          question_post_text_label.text = [question valueForKey:@"post_text"];
+          
+          [question_post_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
+          question_post_text_label.font = [UIFont boldSystemFontOfSize:19.0];
+          
+          max_height = MAX(max_height, question_post_text_label.frame.size.height);
+          [self addSubview:question_post_text_label];
+          [question_post_text_label release];
+        }
+        
+        height += max_height;
+        
+      }
+      
+    }else{
+      if([json objectForKey:@"questions"]){
+        for (NSDictionary *question in [json objectForKey:@"questions"]) {
+          UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) json:question controller:dvc showNumber:false] autorelease];
+          [self addSubview:q_view];
+          height += q_view.frame.size.height;
+        }
       }
     }
     self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
