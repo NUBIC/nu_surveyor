@@ -98,8 +98,26 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       height += tableView.frame.size.height;
     }else{
       // pick none, default
-      if(answers){        
+      float max_text_width = 0.0;
+      float max_post_text_width = 0.0;
+      
+      for (NSDictionary *answer in [json objectForKey:@"answers"]) {
+        // loop to find maximum widths of text and post-text (+5.0 for extra padding)
+        if ([answer valueForKey:@"text"]) {
+          max_text_width = MAX(max_text_width, 5.0+[[answer valueForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
+        }
+        if ([answer valueForKey:@"post_text"]) {
+          max_post_text_width = MAX(max_text_width, 5.0+[[answer valueForKey:@"post_text"] sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
+        }
+        max_text_width = MIN(max_text_width, frame.size.width/3);
+        max_post_text_width = MIN(max_post_text_width, frame.size.width/3);
+      }
+
+      if(answers){     
         for (NSDictionary *answer in answers) {
+          float max_height = 0.0;
+          float x_cursor = 0.0;
+
           // add help text
           if ([answer valueForKey:@"help"]) {
             UILabel *answer_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
@@ -113,18 +131,23 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           }
           // add answer text
           if ([answer valueForKey:@"text"]) {
-            UILabel *answer_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            UILabel *answer_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_text_width, 44.0)];
             answer_text_label.text = [answer valueForKey:@"text"];
             [answer_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
             
-            height += answer_text_label.frame.size.height;
+            x_cursor += answer_text_label.frame.size.width;
+            max_height = MAX(max_height, answer_text_label.frame.size.height);
             [self addSubview:answer_text_label];
             [answer_text_label release];
           }
           
           if([@"text" isEqual:[answer valueForKey:@"type"]]){
             // response type: text
-            UITextView *text_response = [[UITextView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 128.0)];
+            height += max_height;
+            x_cursor = 0.0;
+            max_height = 0.0;
+            
+            UITextView *text_response = [[UITextView alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 128.0)];
             text_response.delegate = dvc;
             
             text_response.font = [UIFont systemFontOfSize:16.0];            
@@ -132,23 +155,25 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             text_response.layer.borderWidth = 1.0;
             text_response.layer.borderColor = [[UIColor grayColor] CGColor];
             
-            height += text_response.frame.size.height;
+            x_cursor += text_response.frame.size.width;
+            max_height = MAX(max_height, text_response.frame.size.height);
             [self addSubview:text_response];
             [text_response release];
           }else if ([@"string" isEqual:[answer valueForKey:@"type"]]) {
             // response type: string
-            UITextField *string_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 31.0)];
+            UITextField *string_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 31.0)];
             string_response.delegate = dvc;
             
             string_response.font = [UIFont systemFontOfSize:16.0];
             string_response.borderStyle = UITextBorderStyleRoundedRect;
             
-            height += string_response.frame.size.height;
+            x_cursor += string_response.frame.size.width;
+            max_height = MAX(max_height, string_response.frame.size.height);
             [self addSubview:string_response];
             [string_response release];
           }else if([@"integer" isEqual:[answer valueForKey:@"type"]]){
             // response type: integer
-            UITextField *integer_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/6, 31.0)];
+            UITextField *integer_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/6, 31.0)];
             integer_response.delegate = dvc;
 
             integer_response.font = [UIFont systemFontOfSize:16.0];
@@ -156,12 +181,13 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             integer_response.keyboardType = UIKeyboardTypeNumberPad;
             integer_response.borderStyle = UITextBorderStyleRoundedRect;
 
-            height += integer_response.frame.size.height;
+            x_cursor += integer_response.frame.size.width;
+            max_height = MAX(max_height, integer_response.frame.size.height);
             [self addSubview:integer_response];
             [integer_response release];
           }else if([@"float" isEqual:[answer valueForKey:@"type"]]){
             // response type: float
-            UITextField *float_response = [[UITextField alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/4, 31.0)];
+            UITextField *float_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/4, 31.0)];
             float_response.delegate = dvc;
             
             float_response.font = [UIFont systemFontOfSize:16.0];
@@ -169,21 +195,24 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             float_response.keyboardType = UIKeyboardTypeDecimalPad;
             float_response.borderStyle = UITextBorderStyleRoundedRect;
             
-            height += float_response.frame.size.height;
+            x_cursor += float_response.frame.size.width;
+            max_height = MAX(max_height, float_response.frame.size.height);
             [self addSubview:float_response];
             [float_response release];
           }
           
           // add answer post text
           if ([answer valueForKey:@"post_text"]) {
-            UILabel *answer_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            UILabel *answer_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_post_text_width, 44.0)];
             answer_post_text_label.text = [answer valueForKey:@"post_text"];
             [answer_post_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
             
-            height += answer_post_text_label.frame.size.height;
+            max_height = MAX(max_height, answer_post_text_label.frame.size.height);
             [self addSubview:answer_post_text_label];
             [answer_post_text_label release];
           }
+          
+          height += max_height;
         }
       }
     }    
