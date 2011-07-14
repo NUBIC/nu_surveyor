@@ -45,7 +45,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     float height = 5.0;
     if ([json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
-      UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+      UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 24.0)];
       
       if ([@"label" isEqual:[json valueForKey:@"type"]]) {
         showNumber = false;
@@ -124,7 +124,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
           // add help text
           if ([answer valueForKey:@"help"]) {
-            UILabel *answer_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
+            UILabel *answer_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 24.0)];
             answer_help_label.text = [answer valueForKey:@"help"];
             answer_help_label.textColor = [UIColor darkGrayColor];
             [answer_help_label setUpMultiLineVerticalResizeWithFontSize:14.0];
@@ -135,7 +135,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           }
           // add answer text
           if ([answer valueForKey:@"text"]) {
-            UILabel *answer_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_text_width, 44.0)];
+            UILabel *answer_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_text_width, 24.0)];
             answer_text_label.text = [answer valueForKey:@"text"];
             [answer_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
             
@@ -219,7 +219,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           
           // add answer post text
           if ([answer valueForKey:@"post_text"]) {
-            UILabel *answer_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_post_text_width, 44.0)];
+            UILabel *answer_post_text_label = [[UILabel alloc] initWithFrame:CGRectMake(x_cursor, height, max_post_text_width, 24.0)];
             answer_post_text_label.text = [answer valueForKey:@"post_text"];
             [answer_post_text_label setUpMultiLineVerticalResizeWithFontSize:16.0];
             
