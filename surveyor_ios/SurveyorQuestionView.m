@@ -42,10 +42,10 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
 - (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber{
   if((self = [super initWithFrame:frame])) {
-    float height = 0.0;
+    float height = 5.0;
     if ([json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
-      UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 44.0)];
+      UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
       
       if ([@"label" isEqual:[json valueForKey:@"type"]]) {
         showNumber = false;
@@ -59,7 +59,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       [question_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
       question_text_label.font = [UIFont boldSystemFontOfSize:19.0];
       
-      height = question_text_label.frame.size.height;
+      height += question_text_label.frame.size.height + 5.0;
       [self addSubview:question_text_label];
       [question_text_label release];
     }
@@ -232,7 +232,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         }
       }
     }    
-    self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+10.0);
+    self.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, height+5.0);
   }
   return self;
 }
@@ -240,17 +240,17 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 - (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc{
   self = [super initWithFrame:frame];
   if (self) {
-    float height = 0.0;
+    float height = 5.0;
     if ([json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
-      UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 44.0)];
+      UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
       
       group_text_label.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];;
       
       [group_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
       group_text_label.font = [UIFont boldSystemFontOfSize:19.0];
       
-      height = group_text_label.frame.size.height;
+      height += group_text_label.frame.size.height + 5.0;
       [self addSubview:group_text_label];
       [group_text_label release];
     }
