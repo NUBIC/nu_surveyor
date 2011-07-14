@@ -19,6 +19,7 @@
   UIScrollView *DetailScrollView;
 	
 	NSDictionary *dict;
+  NSMutableArray *editViews;
 }
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
@@ -29,5 +30,10 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *DetailScrollView;
 
 @property (nonatomic, retain) NSDictionary *dict;
+@property (nonatomic, retain) NSMutableArray *editViews;
+
+- (void) editViewResignFirstResponder;
+- (void) prevField;
+- (void) nextField;
 
 @end

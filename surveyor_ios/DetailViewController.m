@@ -17,13 +17,14 @@
 - (void)populateSection;
 - (void)showScrollViewWidth;
 - (CGFloat)widthBasedOnOrientation;
+- (void) enableKeyboardAccessoryNavigation;
 @end
 
 
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, detailTextView, DetailScrollView, editView;
+@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, detailTextView, DetailScrollView, editView;
 
 #pragma mark -
 #pragma mark Managing the detail item
@@ -55,6 +56,7 @@
       [subview removeFromSuperview];
     }
   }
+  [editViews removeAllObjects];
   [self populateSection];
 
 //  [self showScrollViewWidth];
@@ -205,7 +207,7 @@
   
   // If active text field is hidden by keyboard, scroll it so it's visible
   CGPoint editViewOrigin = [editView convertPoint:editView.frame.origin toView:self.view];
-  if (self.view.frame.size.height - kbSize.height < editViewOrigin.y) {
+  if (self.view.frame.size.height - kbSize.height - 44.0 < editViewOrigin.y) {
 //    NSLog(@"view height:%f kbheight: %f, tap point: %f", self.view.frame.size.height, kbSize.height, editViewOrigin.y);
     [DetailScrollView setContentOffset:CGPointMake(0.0, DetailScrollView.contentOffset.y + kbSize.height) animated:YES];
   }
@@ -247,22 +249,50 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
   //  NSLog(@"top: %f", [textField convertPoint:textField.frame.origin toView:self.view].y);
   editView = textField;
+  [self enableKeyboardAccessoryNavigation];
   return YES;
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
   //  NSLog(@"top: %f", [textView convertPoint:textView.frame.origin toView:self.view].y);
   editView = textView;
+  [self enableKeyboardAccessoryNavigation];
   return YES;
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+  [textField resignFirstResponder];
+  return YES;
+}
+
+- (void) editViewResignFirstResponder {
+  [self.editView resignFirstResponder];
+}
+
+- (void) enableKeyboardAccessoryNavigation{
+//  NSLog(@"editViews: %d editView %d", [editViews count], [editViews indexOfObjectIdenticalTo:editView]);
+  ((UIBarButtonItem *)[((UIToolbar *)editView.inputAccessoryView).items objectAtIndex:0]).enabled = ([editViews indexOfObjectIdenticalTo:editView] != 0);
+  ((UIBarButtonItem *)[((UIToolbar *)editView.inputAccessoryView).items objectAtIndex:1]).enabled = ([editViews indexOfObjectIdenticalTo:editView] != [editViews count]-1);
+}
+- (void) prevField {
+  if ([editViews indexOfObjectIdenticalTo:editView] != 0) {
+    [[editViews objectAtIndex: ([editViews indexOfObjectIdenticalTo:editView] - 1)] becomeFirstResponder];
+  }
+}
+- (void) nextField {
+  if ([editViews indexOfObjectIdenticalTo:editView] != [editViews count] - 1 ) {
+    [[editViews objectAtIndex: ([editViews indexOfObjectIdenticalTo:editView] + 1)] becomeFirstResponder];
+  }
+}
+
 
 #pragma mark -
 #pragma mark View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
- [super viewDidLoad];
- [self registerForKeyboardNotifications];
+  [super viewDidLoad];
+  [self registerForKeyboardNotifications];
+  self.editViews = [[NSMutableArray alloc] init];
 }
 
 /*
@@ -289,7 +319,8 @@
 - (void)viewDidUnload {
   // Release any retained subviews of the main view.
   self.popoverController = nil;
-  
+  self.editViews = nil;
+  self.editView = nil;
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
@@ -310,6 +341,8 @@
 - (void)dealloc {
   [popoverController release];
   [toolbar release];
+  [editViews release];
+  [editView release];
   
 	[detailTextView release];
   [detailItem release];

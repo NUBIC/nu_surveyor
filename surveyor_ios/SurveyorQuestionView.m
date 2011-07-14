@@ -12,16 +12,20 @@
 #import "PickerViewController.h"
 
 @interface SurveyorQuestionView ()
+  // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
   @property (nonatomic,retain) NSArray* answers;
   @property (nonatomic,retain) NSString* pick;
   @property (nonatomic,retain) UITableViewCell* selectedCell;
   @property (nonatomic,retain) PickerViewController* pickerContent;
   @property (nonatomic,retain) UIPopoverController* popover;
   @property (nonatomic,retain) UIButton* pickerButton;
+  @property (nonatomic,retain) UIToolbar* surveyorKeyboardAccessory;
+  - (UIToolbar *)surveyorKeyboardAccessory:(DetailViewController *)dvc;
+  + (int) nextNumber;
 @end
 
 @implementation SurveyorQuestionView
-@synthesize answers, pick, selectedCell, pickerContent, popover, pickerButton;
+@synthesize answers, pick, selectedCell, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -149,6 +153,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             
             UITextView *text_response = [[UITextView alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 128.0)];
             text_response.delegate = dvc;
+            text_response.returnKeyType = UIReturnKeyDone;
+            text_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
+            [dvc.editViews addObject:text_response];
             
             text_response.font = [UIFont systemFontOfSize:16.0];            
             text_response.layer.cornerRadius = 8.0;
@@ -163,6 +170,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             // response type: string
             UITextField *string_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 31.0)];
             string_response.delegate = dvc;
+            string_response.returnKeyType = UIReturnKeyDone;
+            string_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
+            [dvc.editViews addObject:string_response];
             
             string_response.font = [UIFont systemFontOfSize:16.0];
             string_response.borderStyle = UITextBorderStyleRoundedRect;
@@ -175,6 +185,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             // response type: integer
             UITextField *integer_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/6, 31.0)];
             integer_response.delegate = dvc;
+            integer_response.returnKeyType = UIReturnKeyDone;
+            integer_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
+            [dvc.editViews addObject:integer_response];
 
             integer_response.font = [UIFont systemFontOfSize:16.0];
             integer_response.textAlignment = UITextAlignmentRight;
@@ -189,6 +202,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             // response type: float
             UITextField *float_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/4, 31.0)];
             float_response.delegate = dvc;
+            float_response.returnKeyType = UIReturnKeyDone;
+            float_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
+            [dvc.editViews addObject:float_response];
             
             float_response.font = [UIFont systemFontOfSize:16.0];
             float_response.textAlignment = UITextAlignmentRight;
@@ -322,6 +338,24 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         // Initialization code
     }
     return self;
+}
+
+#pragma mark -
+#pragma mark Input accessory view
+- (UIToolbar *)surveyorKeyboardAccessory:(DetailViewController *)dvc {
+  if (!surveyorKeyboardAccessory) {
+    
+    CGRect accessFrame = CGRectMake(0.0, 0.0, 768.0, 44.0);
+    surveyorKeyboardAccessory = [[UIToolbar alloc] initWithFrame:accessFrame];
+    surveyorKeyboardAccessory.barStyle = UIBarStyleBlackTranslucent;
+    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"Prev" style:UIBarButtonItemStyleBordered target:dvc action:@selector(prevField)];
+    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:dvc action:@selector(nextField)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:dvc action:@selector(editViewResignFirstResponder)];
+    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:prev, next, space, doneButton, nil];
+    
+  }
+  return surveyorKeyboardAccessory;
 }
 
 #pragma mark -

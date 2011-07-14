@@ -10,14 +10,11 @@
 #import "DetailViewController.h"
 
 @interface SurveyorQuestionView : UIView <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
-  @private
-  NSArray *tableViewItems;
 }
 
 - (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber;
 - (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc;
 + (void) initialize;
-+ (int) nextNumber;
 + (void) resetNumber;
 
 @end
