@@ -17,7 +17,8 @@
 - (void)populateSection;
 - (void)showScrollViewWidth;
 - (CGFloat)widthBasedOnOrientation;
-- (void) enableKeyboardAccessoryNavigation;
+- (void)enableKeyboardAccessoryNavigation;
+- (void)oneTouch:(UIGestureRecognizer *)sender;
 @end
 
 
@@ -57,7 +58,13 @@
     }
   }
   [editViews removeAllObjects];
+  editView = nil;
   [self populateSection];
+  
+  UITapGestureRecognizer *oneTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(oneTouch:)];
+  oneTap.cancelsTouchesInView = NO;
+  [self.view addGestureRecognizer:oneTap];
+  [oneTap release];
 
 //  [self showScrollViewWidth];
 //  UILabel *mybox = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10,  DetailScrollView.frame.size.width - 20.0 , 300)] autorelease];
@@ -172,6 +179,12 @@
   }
 }
 
+#pragma mark -
+#pragma mark Touch Notifications
+
+- (void)oneTouch:(UIGestureRecognizer *)sender {
+  [editView resignFirstResponder];
+}
 #pragma mark -
 #pragma mark Keyboard Notifications
 
