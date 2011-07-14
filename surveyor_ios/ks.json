@@ -103,8 +103,8 @@
         },
         { "type": "repeater", "text": "Tell us about the cars you own", "questions": [
           { "text": "Make", "pick": "one", "answers": [{"text": "Toyota"},{"text": "Ford"},{"text": "GMChevy"},{"text": "Ferrari"},{"text": "Tesla"},{"text": "Honda"},{"text": "Other weak brand"}]},
-          { "text": "Model", "answers": [{"text": "Model", "type": "string"}]},
-          { "text": "Year", "answers": [{"text": "Year", "type": "string"}]}
+          { "text": "Model", "answers": [{"type": "string"}]},
+          { "text": "Year", "answers": [{"type": "string"}]}
         ]},
         { "type": "repeater", "text": "Tell us the name and age of your siblings", "questions": [
           { "text": "Sibling", "answers": [{"text": "Name", "type": "string"},{"text": "Age", "post_text": "years", "type": "integer"}]}
