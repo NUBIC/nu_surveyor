@@ -8,7 +8,7 @@
         { "reference": "2", "pick": "any", "text": "Choose the colors you don't like", "answers": [{"text": "red"},{"text": "blue"},{"text": "green"},{"text": "yellow"},{"text": "omit", "exclusive": "true"}]},
         { "reference": "2a", 
           "text": "Please explain why you don't like this color?",
-          "answers": [{"text": "explanation", "type": "text", "help": "Please give an explanation for each color you don't like"}], 
+          "answers": [{"type": "text", "help": "Please give an explanation for each color you don't like"}], 
           "dependency": {"rule": "A or B or C or D", "conditions": [
             {"key": "A", "question": "2", "operator": "==", "answer": "1"},
             {"key": "B", "question": "2", "operator": "==", "answer": "2"},
@@ -18,7 +18,7 @@
         },
         { "reference": "2b",
           "text": "Please explain why you dislike so many colors?",
-          "answers": [{"text": "explanation", "type": "text"}],
+          "answers": [{"type": "text"}],
           "dependency": {"rule": "Z", "conditions": [{"key": "Z", "question": "2", "operator": ">", "count": "2"}]}
         },
         { "reference": "montypython3", "text": "What... is your name? (e.g. It is 'Arthur', King of the Britons)", "answers": [{"reference": "1", "type": "string"}]},
@@ -52,7 +52,7 @@
         { "text": "How much do you like Ruby?", "pick": "one", "answers": [{"text": "not at all"}, {"text": "a little"}, {"text": "some"}, {"text": "a lot"}, {"text": "a ton"}]},
         { "text": "How much money do you want?", "answers": [{"text": "$", "post_text": "USD", "type": "float"}]},
         { "type": "inline_group", "text": "How much oil do you use per day?", "questions": [
-          { "text": "Quantity", "answers": [{"text": "Quantity", "type": "float"}]},
+          { "text": "Quantity", "answers": [{"text": "", "type": "float"}]},
           { "text": "Unit", "pick": "one", "type": "dropdown", "answers": [{"text": "Barrels"}, {"text": "Gallons"}, {"text": "Quarts"}]}
         ]},
         { "text": "Choose your Illinois county", "pick": "one", "type": "dropdown", 
