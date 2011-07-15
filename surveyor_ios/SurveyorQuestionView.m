@@ -72,6 +72,8 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             
       if ([@"dropdown" isEqual:[json valueForKey:@"type"]]) {
         self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [pickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
+        [pickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
         pickerButton.frame = CGRectMake(0.0, height, 100.0, 35.0);
         [pickerButton setTitle:@"Pick one" forState:UIControlStateNormal];
         [pickerButton addTarget:self action:@selector(pickButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -369,6 +371,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 }
 - (void) pickerDone{
   [self.popover dismissPopoverAnimated:NO];
+  if ([self.pickerContent.picker selectedRowInComponent:0] != -1) {
+    self.pickerButton.selected = true;
+  }
   [self.pickerButton setTitle:[[answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
   [self.pickerButton sizeToFit];
 }
