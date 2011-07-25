@@ -44,6 +44,7 @@
 		3B9BB075135E1D38000450BC /* surveyor_iosTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3B9BB074135E1D38000450BC /* surveyor_iosTests.h */; };
 		3B9BB077135E1D38000450BC /* surveyor_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BB076135E1D38000450BC /* surveyor_iosTests.m */; };
 		3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF169313DDB3B80052D940 /* ks_with_uuid.json */; };
+		3BFF169713DDC0890052D940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFF169613DDC0890052D940 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		3B9BB074135E1D38000450BC /* surveyor_iosTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surveyor_iosTests.h; sourceTree = "<group>"; };
 		3B9BB076135E1D38000450BC /* surveyor_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = surveyor_iosTests.m; sourceTree = "<group>"; };
 		3BFF169313DDB3B80052D940 /* ks_with_uuid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_with_uuid.json; sourceTree = "<group>"; };
+		3BFF169613DDC0890052D940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BFF169713DDC0890052D940 /* CoreData.framework in Frameworks */,
 				3B9BB045135E1D37000450BC /* UIKit.framework in Frameworks */,
 				3B9BB047135E1D37000450BC /* Foundation.framework in Frameworks */,
 				3B9BB049135E1D37000450BC /* CoreGraphics.framework in Frameworks */,
@@ -201,6 +204,7 @@
 				3B1FD609135E489500E14158 /* json-framework */,
 				3B9BB044135E1D37000450BC /* UIKit.framework */,
 				3B9BB046135E1D37000450BC /* Foundation.framework */,
+				3BFF169613DDC0890052D940 /* CoreData.framework */,
 				3B9BB048135E1D37000450BC /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
