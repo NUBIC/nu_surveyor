@@ -109,7 +109,7 @@
   }
   NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"surveyor_ios_model" ofType:@"momd"];
   NSURL *modelURL = [NSURL fileURLWithPath:modelPath]; 
-	NSLog(@"model path %@", modelPath);
+	DLog(@"Model path %@", modelPath);
   managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
   return managedObjectModel_;
 }
