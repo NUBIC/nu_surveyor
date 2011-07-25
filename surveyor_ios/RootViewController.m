@@ -26,7 +26,7 @@
 	// JSON data
   //	responseData = [[NSMutableData alloc] init];
 	NSError *strError;
-	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"ks" ofType:@"json"];
+	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"ks_with_uuid" ofType:@"json"];
 	NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
   //	NSLog(@"%@", strError);
   //	NSLog(@"%@", responseString);

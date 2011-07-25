@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B160CCF135E1D6C007FF20C /* kitchen_sink_survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */; };
 		3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */; };
 		3B160CDE135E1D9D007FF20C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CDD135E1D9D007FF20C /* README */; };
 		3B1FD615135E489500E14158 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */; };
@@ -44,6 +43,7 @@
 		3B9BB072135E1D37000450BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B9BB070135E1D37000450BC /* InfoPlist.strings */; };
 		3B9BB075135E1D38000450BC /* surveyor_iosTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3B9BB074135E1D38000450BC /* surveyor_iosTests.h */; };
 		3B9BB077135E1D38000450BC /* surveyor_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BB076135E1D38000450BC /* surveyor_iosTests.m */; };
+		3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF169313DDB3B80052D940 /* ks_with_uuid.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kitchen_sink_survey.json; sourceTree = "<group>"; };
 		3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
 		3B160CDD135E1D9D007FF20C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
 		3B1FD60A135E489500E14158 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -109,6 +108,7 @@
 		3B9BB073135E1D38000450BC /* surveyor_iosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "surveyor_iosTests-Prefix.pch"; sourceTree = "<group>"; };
 		3B9BB074135E1D38000450BC /* surveyor_iosTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surveyor_iosTests.h; sourceTree = "<group>"; };
 		3B9BB076135E1D38000450BC /* surveyor_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = surveyor_iosTests.m; sourceTree = "<group>"; };
+		3BFF169313DDB3B80052D940 /* ks_with_uuid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_with_uuid.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +138,8 @@
 		3B160CCC135E1D6B007FF20C /* surveys */ = {
 			isa = PBXGroup;
 			children = (
+				3BFF169313DDB3B80052D940 /* ks_with_uuid.json */,
 				3B1FD61A135E48B200E14158 /* ks.json */,
-				3B160CCD135E1D6C007FF20C /* kitchen_sink_survey.json */,
 				3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */,
 			);
 			path = surveys;
@@ -336,7 +336,6 @@
 				3B9BB04F135E1D37000450BC /* InfoPlist.strings in Resources */,
 				3B9BB058135E1D37000450BC /* MainWindow.xib in Resources */,
 				3B9BB05E135E1D37000450BC /* DetailView.xib in Resources */,
-				3B160CCF135E1D6C007FF20C /* kitchen_sink_survey.json in Resources */,
 				3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */,
 				3B160CDE135E1D9D007FF20C /* README in Resources */,
 				3B1FD61B135E48B200E14158 /* ks.json in Resources */,
@@ -349,6 +348,7 @@
 				3B336F8F13A69CA700E43826 /* unchecked.png in Resources */,
 				3B336F9013A69CA700E43826 /* unchecked@2x.png in Resources */,
 				3B336F9F13A6AF6100E43826 /* PickerViewController.xib in Resources */,
+				3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
