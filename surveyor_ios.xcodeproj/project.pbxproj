@@ -45,6 +45,7 @@
 		3B9BB077135E1D38000450BC /* surveyor_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BB076135E1D38000450BC /* surveyor_iosTests.m */; };
 		3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF169313DDB3B80052D940 /* ks_with_uuid.json */; };
 		3BFF169713DDC0890052D940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFF169613DDC0890052D940 /* CoreData.framework */; };
+		3BFF169E13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF169C13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		3B9BB076135E1D38000450BC /* surveyor_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = surveyor_iosTests.m; sourceTree = "<group>"; };
 		3BFF169313DDB3B80052D940 /* ks_with_uuid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_with_uuid.json; sourceTree = "<group>"; };
 		3BFF169613DDC0890052D940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3BFF169D13DDC6050052D940 /* surveyor_ios_model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor_ios_model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				3B9BB04D135E1D37000450BC /* InfoPlist.strings */,
 				3B9BB050135E1D37000450BC /* surveyor_ios-Prefix.pch */,
 				3B9BB051135E1D37000450BC /* main.m */,
+				3BFF169C13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */,
 				3B336F9613A69D9300E43826 /* UILabel+Resize.m in Sources */,
 				3B336F9E13A6AF6100E43826 /* PickerViewController.m in Sources */,
+				3BFF169E13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +604,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3BFF169C13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3BFF169D13DDC6050052D940 /* surveyor_ios_model.xcdatamodel */,
+			);
+			currentVersion = 3BFF169D13DDC6050052D940 /* surveyor_ios_model.xcdatamodel */;
+			path = surveyor_ios_model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3B9BB037135E1D37000450BC /* Project object */;
 }

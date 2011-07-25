@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate> {
   
@@ -20,8 +21,12 @@
 	
 	NSDictionary *dict;
   NSMutableArray *editViews;
+@private
+  NSManagedObjectContext *managedObjectContext_;
+
 }
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 
 @property (nonatomic, retain) id detailItem;

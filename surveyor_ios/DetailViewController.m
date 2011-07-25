@@ -25,7 +25,7 @@
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, detailTextView, DetailScrollView, editView;
+@synthesize managedObjectContext=managedObjectContext_, toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, detailTextView, DetailScrollView, editView;
 
 #pragma mark -
 #pragma mark Managing the detail item
@@ -352,6 +352,7 @@
  */
 
 - (void)dealloc {
+  [managedObjectContext_ release];
   [popoverController release];
   [toolbar release];
   [editViews release];

@@ -107,7 +107,7 @@
   if (managedObjectModel_ != nil) {
     return managedObjectModel_;
   }
-  NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"coredataproject" ofType:@"momd"];
+  NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"surveyor_ios_model" ofType:@"momd"];
   NSURL *modelURL = [NSURL fileURLWithPath:modelPath]; 
 	NSLog(@"model path %@", modelPath);
   managedObjectModel_ = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
@@ -177,6 +177,7 @@ BOOL RSRunningOnOS4OrBetter(void) {
     abort();
   }    
   
+  // iOS 4 encryption
   if(RSRunningOnOS4OrBetter()){
     NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
     if(![[NSFileManager defaultManager] setAttributes:fileAttributes ofItemAtPath:storePath error:&error]){

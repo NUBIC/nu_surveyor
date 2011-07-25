@@ -12,7 +12,7 @@
 
 @implementation RootViewController
 
-@synthesize detailViewController, dict;
+@synthesize managedObjectContext=managedObjectContext_, detailViewController, dict;
 
 
 #pragma mark -
@@ -200,6 +200,7 @@
 
 
 - (void)dealloc {
+  [managedObjectContext_ release];
   [detailViewController release];
 	[dict release];
   [super dealloc];
