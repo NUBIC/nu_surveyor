@@ -25,7 +25,7 @@
 @end
 
 @implementation SurveyorQuestionView
-@synthesize answers, pick, selectedCell, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
+@synthesize responses, responseSetId, answers, pick, selectedCell, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -504,7 +504,15 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 
 - (void)dealloc
 {
+  [responses release];
+  [responseSetId release];
   [answers release];
+  [pick release];
+  [selectedCell release];
+  [pickerContent release];
+  [popover release];
+  [pickerButton release];
+  [surveyorKeyboardAccessory release];
   [super dealloc];
 }
 

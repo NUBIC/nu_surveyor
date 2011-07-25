@@ -21,12 +21,11 @@
 	
 	NSDictionary *dict;
   NSMutableArray *editViews;
-@private
-  NSManagedObjectContext *managedObjectContext_;
+  
+  NSManagedObjectID *responseSetId;
 
 }
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 
 @property (nonatomic, retain) id detailItem;
@@ -36,6 +35,8 @@
 
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSMutableArray *editViews;
+
+@property (nonatomic, retain) NSManagedObjectID *responseSetId;
 
 - (void) editViewResignFirstResponder;
 - (void) prevField;

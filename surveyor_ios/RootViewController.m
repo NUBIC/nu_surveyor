@@ -13,7 +13,7 @@
 
 @implementation RootViewController
 
-@synthesize managedObjectContext=managedObjectContext_, detailViewController, dict, responseSetId;
+@synthesize detailViewController, dict, responseSetId;
 
 
 #pragma mark -
@@ -41,12 +41,13 @@
     [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
   }
   
-  NSManagedObject *responseSet = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[self managedObjectContext]];
+  NSManagedObject *responseSet = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
   
   [responseSet setValue:[NSDate date] forKey:@"CreatedAt"];
   [responseSet setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
   [responseSet setValue:[UUID generateUuidString] forKey:@"UUID"];
-  responseSetId = [responseSet objectID];
+  self.responseSetId = [responseSet objectID];
+  DLog(@"%@", responseSetId);
   
   [UIAppDelegate saveContext:@"RootViewController viewDidLoad"];
 	
@@ -187,6 +188,7 @@
    */
   // detailViewController.detailItem = [NSString stringWithFormat:@"Row %d", indexPath.row];
 	[detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+  detailViewController.responseSetId = self.responseSetId;
 }
 
 
@@ -207,7 +209,6 @@
 
 
 - (void)dealloc {
-  [managedObjectContext_ release];
   [detailViewController release];
 	[dict release];
   [responseSetId release];
