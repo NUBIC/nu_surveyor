@@ -14,12 +14,14 @@
 @interface RootViewController : UITableViewController {
   DetailViewController *detailViewController;
 	NSDictionary *dict;
+  NSManagedObjectID *responseSetId;
 @private
   NSManagedObjectContext *managedObjectContext_;
 }
 
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) NSDictionary *dict;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSManagedObjectID *responseSetId;
 
 @end

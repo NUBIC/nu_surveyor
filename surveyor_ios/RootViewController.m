@@ -9,10 +9,11 @@
 #import "RootViewController.h"
 #import "DetailViewController.h"
 #import "JSON.h"
+#import "UUID.h"
 
 @implementation RootViewController
 
-@synthesize managedObjectContext=managedObjectContext_, detailViewController, dict;
+@synthesize managedObjectContext=managedObjectContext_, detailViewController, dict, responseSetId;
 
 
 #pragma mark -
@@ -40,8 +41,14 @@
     [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
   }
   
-	
-	// self.detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
+  NSManagedObject *responseSet = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[self managedObjectContext]];
+  
+  [responseSet setValue:[NSDate date] forKey:@"CreatedAt"];
+  [responseSet setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
+  [responseSet setValue:[UUID generateUuidString] forKey:@"UUID"];
+  responseSetId = [responseSet objectID];
+  
+  [UIAppDelegate saveContext:@"RootViewController viewDidLoad"];
 	
 	//	NSURL *url = [NSURL URLWithString:@"http://sb/dsl.json"];
   //	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
@@ -203,6 +210,7 @@
   [managedObjectContext_ release];
   [detailViewController release];
 	[dict release];
+  [responseSetId release];
   [super dealloc];
 }
 
