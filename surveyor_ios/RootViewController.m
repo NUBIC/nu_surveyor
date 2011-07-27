@@ -18,7 +18,6 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.clearsSelectionOnViewWillAppear = NO;
@@ -36,21 +35,22 @@
 	self.navigationItem.title = @"Sections";
   detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 	detailViewController.dict = dict;
-  
-  if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
-    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
-  }
-  
+    
   NSManagedObject *responseSet = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
   
   [responseSet setValue:[NSDate date] forKey:@"CreatedAt"];
   [responseSet setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
   [responseSet setValue:[UUID generateUuidString] forKey:@"UUID"];
-  self.responseSetId = [responseSet objectID];
-  DLog(@"%@", responseSetId);
   
   [UIAppDelegate saveContext:@"RootViewController viewDidLoad"];
+  self.responseSetId = [responseSet objectID];
+  detailViewController.responseSetId = responseSetId;
+//  DLog(@"viewDidLoad responseSetId: %@", responseSetId);
 	
+  if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
+    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
+  }
+  
 	//	NSURL *url = [NSURL URLWithString:@"http://sb/dsl.json"];
   //	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
   //	//NSLog(@"request");
@@ -187,8 +187,7 @@
    When a row is selected, set the detail view controller's detail item to the item associated with the selected row.
    */
   // detailViewController.detailItem = [NSString stringWithFormat:@"Row %d", indexPath.row];
-	[detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
-  detailViewController.responseSetId = self.responseSetId;
+  [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
 }
 
 

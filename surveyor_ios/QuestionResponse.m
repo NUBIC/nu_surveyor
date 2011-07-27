@@ -25,6 +25,7 @@
   if (self) {
     self.json = dict;
     self.responseSetId = nsmoid;
+//    DLog(@"initWithJson responseSetId: %@", self.responseSetId);
     self.answers = [self.json valueForKey:@"answers"];
 //    DLog(@"%@", self.answers);
     self.pick  = [self.json valueForKey:@"pick"];
@@ -57,6 +58,32 @@
   }
   
   return results;
+}
+- (NSManagedObject *) responseForQuestion:(NSString *)qid answer:(NSString *)aid{
+//  DLog(@"responseForQuestion %@ answer %@", qid, aid);
+  // setup fetch request
+	NSError *error = nil;
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+  NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+  [request setEntity:entity];
+  // Set example predicate and sort orderings...
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                            @"(Answer == %@) AND (Question == %@)", aid, qid];
+  [request setPredicate:predicate];
+
+  // http://coderslike.us/2009/05/05/finding-freeddeallocated-instances-of-objects/
+  NSArray *results = [[UIAppDelegate managedObjectContext] executeFetchRequest:request error:&error];
+  if (results == nil)
+  {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+     */
+    NSLog(@"Unresolved responseForQuestion answer fetch error %@, %@", error, [error userInfo]);
+    abort();
+  }
+//  DLog(@"responseForQuestion result: %@", [results lastObject]);
+  return [results lastObject];
 }
 
 #pragma mark -
@@ -106,6 +133,12 @@
     cell.imageView.image = [UIImage imageNamed:[pick isEqual:@"one"] ? @"undotted" : @"unchecked.png"];
   }
   
+  NSManagedObject *existingResponse = [self responseForQuestion:[json valueForKey:@"uuid"] answer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
+  if (existingResponse) {
+    cell.imageView.image = [UIImage imageNamed:[pick isEqual:@"one"] ? @"dotted" : @"checked.png"];
+    selectedCell = cell;
+  }
+  
   // Configure the cell.
   //  cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
   
@@ -123,9 +156,23 @@
   if ([@"one" isEqual:pick]) {
     if (selectedCell) {
       selectedCell.imageView.image = [UIImage imageNamed:@"undotted.png"];
+      NSManagedObject *existingResponse = [self responseForQuestion:[json valueForKey:@"uuid"] answer:[[answers objectAtIndex:[[aTableView indexPathForCell:selectedCell] row]] valueForKey:@"uuid"]];
+      [UIAppDelegate.managedObjectContext deleteObject:existingResponse];
     }
     cell.imageView.image = [UIImage imageNamed:@"dotted.png"];
     selectedCell = cell;
+    
+    NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+    [newResponse setValue:[NSDate date] forKey:@"CreatedAt"];
+    [newResponse setValue:[json valueForKey:@"uuid"] forKey:@"Question"];
+    [newResponse setValue:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"] forKey:@"Answer"];
+    NSError *error = nil;
+    NSManagedObject *responseSet = [[UIAppDelegate managedObjectContext] existingObjectWithID:responseSetId error:&error];
+    [newResponse setValue:responseSet forKey:@"responseSet"];
+
+    // Save the context.
+    [UIAppDelegate saveContext:@"QuestionResponse tableView didSelectRowAtIndexPath"];
+    
   } else {
     Boolean checked = cell.imageView.image == [UIImage imageNamed:@"checked.png"];  
     cell.imageView.image = checked ? [UIImage imageNamed:@"unchecked.png"] : [UIImage imageNamed:@"checked.png"];

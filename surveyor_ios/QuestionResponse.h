@@ -18,5 +18,5 @@
 
 - (NSArray *) responsesForQuestion;
 - (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSetId:(NSManagedObjectID *)nsmoid;
-
+- (NSManagedObject *) responseForQuestion:(NSString *)qid answer:(NSString *)aid;
 @end
