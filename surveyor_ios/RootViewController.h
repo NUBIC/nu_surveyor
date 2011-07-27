@@ -19,6 +19,6 @@
 
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) NSDictionary *dict;
-@property (nonatomic, retain) NSManagedObjectID *responseSetId;
+@property (nonatomic, retain) NSManagedObject *responseSet;
 
 @end

@@ -314,7 +314,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     }else{
       if([qr.json objectForKey:@"questions"]){
         for (NSDictionary *question in [qr.json objectForKey:@"questions"]) {
-          QuestionResponse *qqr = [[QuestionResponse alloc] initWithJson:question responseSetId:qr.responseSetId];
+          QuestionResponse *qqr = [[QuestionResponse alloc] initWithJson:question responseSet:qr.responseSet];
           UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) questionResponse:qqr controller:dvc showNumber:false] autorelease];
           [self addSubview:q_view];
           height += q_view.frame.size.height;

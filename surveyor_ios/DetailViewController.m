@@ -25,7 +25,7 @@
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, responseSetId, detailTextView, DetailScrollView, editView;
+@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, responseSet, detailTextView, DetailScrollView, editView;
 
 #pragma mark -
 #pragma mark Managing the detail item
@@ -113,13 +113,13 @@
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
       
-      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSetId:responseSetId];
+      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSet:responseSet];
       SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self showNumber:true] autorelease];
 //      q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
       y += q_view.frame.size.height;
     }else{
-      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSetId:responseSetId];
+      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSet:responseSet];
       SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self] autorelease];
 //      g_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:g_view];

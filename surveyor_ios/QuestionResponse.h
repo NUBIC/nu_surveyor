@@ -12,11 +12,11 @@
 }
 @property (nonatomic, retain) NSDictionary *json;
 @property (nonatomic, retain) NSString *UUID;
-@property (nonatomic, retain) NSManagedObjectID *responseSetId;
-@property (nonatomic,retain) NSArray* answers;
-@property (nonatomic,retain) NSString* pick;
+@property (nonatomic, retain) NSArray* answers;
+@property (nonatomic, retain) NSString* pick;
+@property (nonatomic, retain) NSManagedObject *responseSet;
 
-- (NSArray *) responsesForQuestion;
-- (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSetId:(NSManagedObjectID *)nsmoid;
-- (NSManagedObject *) responseForQuestion:(NSString *)qid answer:(NSString *)aid;
+- (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSet:(NSManagedObject *)nsmo;
+- (NSManagedObject *) responseForAnswer:(NSString *)aid;
+- (void) newResponseForAnswer:(NSString *)aid;
 @end

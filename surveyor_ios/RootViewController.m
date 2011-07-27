@@ -13,7 +13,7 @@
 
 @implementation RootViewController
 
-@synthesize detailViewController, dict, responseSetId;
+@synthesize detailViewController, dict, responseSet;
 
 
 #pragma mark -
@@ -36,15 +36,15 @@
   detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 	detailViewController.dict = dict;
     
-  NSManagedObject *responseSet = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+  NSManagedObject *rs = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
   
-  [responseSet setValue:[NSDate date] forKey:@"CreatedAt"];
-  [responseSet setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
-  [responseSet setValue:[UUID generateUuidString] forKey:@"UUID"];
+  [rs setValue:[NSDate date] forKey:@"CreatedAt"];
+  [rs setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
+  [rs setValue:[UUID generateUuidString] forKey:@"UUID"];
   
   [UIAppDelegate saveContext:@"RootViewController viewDidLoad"];
-  self.responseSetId = [responseSet objectID];
-  detailViewController.responseSetId = responseSetId;
+  self.responseSet = rs;
+  detailViewController.responseSet = rs;
 //  DLog(@"viewDidLoad responseSetId: %@", responseSetId);
 	
   if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {

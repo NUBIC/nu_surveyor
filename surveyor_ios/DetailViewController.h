@@ -36,7 +36,7 @@
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSMutableArray *editViews;
 
-@property (nonatomic, retain) NSManagedObjectID *responseSetId;
+@property (nonatomic, retain) NSManagedObject *responseSet;
 
 - (void) editViewResignFirstResponder;
 - (void) prevField;
