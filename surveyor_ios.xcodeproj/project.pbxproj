@@ -43,6 +43,7 @@
 		3B9BB072135E1D37000450BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B9BB070135E1D37000450BC /* InfoPlist.strings */; };
 		3B9BB075135E1D38000450BC /* surveyor_iosTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 3B9BB074135E1D38000450BC /* surveyor_iosTests.h */; };
 		3B9BB077135E1D38000450BC /* surveyor_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9BB076135E1D38000450BC /* surveyor_iosTests.m */; };
+		3BF2ECB813DF40CF007A5347 /* QuestionResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF2ECB713DF40CF007A5347 /* QuestionResponse.m */; };
 		3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BFF169313DDB3B80052D940 /* ks_with_uuid.json */; };
 		3BFF169713DDC0890052D940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BFF169613DDC0890052D940 /* CoreData.framework */; };
 		3BFF169E13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF169C13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld */; };
@@ -111,6 +112,8 @@
 		3B9BB073135E1D38000450BC /* surveyor_iosTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "surveyor_iosTests-Prefix.pch"; sourceTree = "<group>"; };
 		3B9BB074135E1D38000450BC /* surveyor_iosTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surveyor_iosTests.h; sourceTree = "<group>"; };
 		3B9BB076135E1D38000450BC /* surveyor_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = surveyor_iosTests.m; sourceTree = "<group>"; };
+		3BF2ECB613DF40CF007A5347 /* QuestionResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionResponse.h; sourceTree = "<group>"; };
+		3BF2ECB713DF40CF007A5347 /* QuestionResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionResponse.m; sourceTree = "<group>"; };
 		3BFF169313DDB3B80052D940 /* ks_with_uuid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_with_uuid.json; sourceTree = "<group>"; };
 		3BFF169613DDC0890052D940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3BFF169D13DDC6050052D940 /* surveyor_ios_model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = surveyor_ios_model.xcdatamodel; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				3B9BB059135E1D37000450BC /* DetailViewController.h */,
 				3B9BB05A135E1D37000450BC /* DetailViewController.m */,
 				3B9BB05C135E1D37000450BC /* DetailView.xib */,
+				3BF2ECB613DF40CF007A5347 /* QuestionResponse.h */,
+				3BF2ECB713DF40CF007A5347 /* QuestionResponse.m */,
 				3B336F9B13A6AF6000E43826 /* PickerViewController.h */,
 				3B336F9C13A6AF6000E43826 /* PickerViewController.m */,
 				3B336F9D13A6AF6000E43826 /* PickerViewController.xib */,
@@ -410,6 +415,7 @@
 				3B336F9E13A6AF6100E43826 /* PickerViewController.m in Sources */,
 				3BFF169E13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld in Sources */,
 				3BFF16A113DDF6950052D940 /* UUID.m in Sources */,
+				3BF2ECB813DF40CF007A5347 /* QuestionResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

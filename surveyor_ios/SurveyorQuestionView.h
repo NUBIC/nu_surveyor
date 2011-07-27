@@ -8,17 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
+#import "QuestionResponse.h"
 
-@interface SurveyorQuestionView : UIView <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
-  NSMutableArray* responses;
-  NSManagedObjectID *responseSetId;
+@interface SurveyorQuestionView : UIView <UIPopoverControllerDelegate> {
+
 }
 
-@property (nonatomic, retain) NSMutableArray* responses;
-@property (nonatomic, retain) NSManagedObjectID *responseSetId;
+@property (nonatomic, retain) QuestionResponse *questionResponse;
 
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber;
-- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc;
+- (id)initWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber;
+- (id)initGroupWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc;
 + (void) initialize;
 + (void) resetNumber;
 

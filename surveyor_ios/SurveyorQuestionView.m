@@ -13,9 +13,6 @@
 
 @interface SurveyorQuestionView ()
   // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
-  @property (nonatomic,retain) NSArray* answers;
-  @property (nonatomic,retain) NSString* pick;
-  @property (nonatomic,retain) UITableViewCell* selectedCell;
   @property (nonatomic,retain) PickerViewController* pickerContent;
   @property (nonatomic,retain) UIPopoverController* popover;
   @property (nonatomic,retain) UIButton* pickerButton;
@@ -25,7 +22,7 @@
 @end
 
 @implementation SurveyorQuestionView
-@synthesize responses, responseSetId, answers, pick, selectedCell, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
+@synthesize questionResponse, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -40,20 +37,21 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   qCount = 0;
 }
 
-- (id)initWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber{
+- (id)initWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber {
   if((self = [super initWithFrame:frame])) {
+    self.questionResponse = qr;
     float height = 5.0;
-    if ([json valueForKey:@"text"]) {
+    if ([qr.json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
       UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 24.0)];
       
-      if ([@"label" isEqual:[json valueForKey:@"type"]]) {
+      if ([@"label" isEqual:[qr.json valueForKey:@"type"]]) {
         showNumber = false;
       }
       
       NSMutableString *txt = [[[NSMutableString alloc] init] autorelease];
       [txt appendString: showNumber ? [NSString stringWithFormat:@"%d) ", [[self class] nextNumber]] : @""];
-      [txt appendString: [json valueForKey:@"post_text"] ? [NSString stringWithFormat:@"%@ | %@", [json valueForKey:@"post_text"], [json valueForKey:@"text"]] : [json valueForKey:@"text"]];
+      [txt appendString: [qr.json valueForKey:@"post_text"] ? [NSString stringWithFormat:@"%@ | %@", [qr.json valueForKey:@"post_text"], [qr.json valueForKey:@"text"]] : [qr.json valueForKey:@"text"]];
       question_text_label.text = txt;
       
       [question_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
@@ -63,14 +61,10 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       [self addSubview:question_text_label];
       [question_text_label release];
     }
-    
-    self.answers = [json valueForKey:@"answers"];
-    self.pick = [json valueForKey:@"pick"];
-    
-    if ([pick isEqualToString:@"one"] && answers) {
+    if ([questionResponse.pick isEqualToString:@"one"] && questionResponse.answers) {
       // pick one (radio buttons)
             
-      if ([@"dropdown" isEqual:[json valueForKey:@"type"]]) {
+      if ([@"dropdown" isEqual:[qr.json valueForKey:@"type"]]) {
         self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [pickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
         [pickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
@@ -82,24 +76,24 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         
         self.pickerContent = [[PickerViewController alloc] init];
         self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
-        [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
+        [self.pickerContent setupDelegate:self withTitle:[qr.json valueForKey:@"text"]];
         self.popover.delegate = self;
 
       }else{
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [questionResponse.answers count]) style:UITableViewStylePlain];
         tableView.scrollEnabled = FALSE; 
-        tableView.delegate = self;
-        tableView.dataSource = self;
+        tableView.delegate = questionResponse;
+        tableView.dataSource = questionResponse;
         [self addSubview:tableView];
-        height += tableView.frame.size.height;   
+        height += tableView.frame.size.height;
       }
       
-    }else if([pick isEqualToString:@"any"] && answers){
+    }else if([questionResponse.pick isEqualToString:@"any"] && questionResponse.answers){
       // pick any (checkboxes)
-      UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [answers count]) style:UITableViewStylePlain];
+      UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [questionResponse.answers count]) style:UITableViewStylePlain];
       tableView.scrollEnabled = FALSE; 
-      tableView.delegate = self;
-      tableView.dataSource = self;
+      tableView.delegate = questionResponse;
+      tableView.dataSource = questionResponse;
       [self addSubview:tableView];
       height += tableView.frame.size.height;
     }else{
@@ -107,7 +101,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       float max_text_width = 0.0;
       float max_post_text_width = 0.0;
       
-      for (NSDictionary *answer in [json objectForKey:@"answers"]) {
+      for (NSDictionary *answer in qr.answers) {
         // loop to find maximum widths of text and post-text (+5.0 for extra padding)
         if ([answer valueForKey:@"text"]) {
           max_text_width = MAX(max_text_width, 5.0+[[answer valueForKey:@"text"] sizeWithFont:[UIFont systemFontOfSize:16.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
@@ -119,8 +113,8 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         max_post_text_width = MIN(max_post_text_width, frame.size.width/3);
       }
 
-      if(answers){     
-        for (NSDictionary *answer in answers) {
+      if(questionResponse.answers){     
+        for (NSDictionary *answer in questionResponse.answers) {
           float max_height = 0.0;
           float x_cursor = 0.0;
 
@@ -239,29 +233,27 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   return self;
 }
 
-- (id)initGroupWithFrame:(CGRect)frame json:(NSDictionary *)json controller:(DetailViewController *)dvc{
+- (id)initGroupWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc {
   self = [super initWithFrame:frame];
   if (self) {
+    self.questionResponse = qr;
     float height = 5.0;
-    if ([json valueForKey:@"text"]) {
+    if ([qr.json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
       UILabel *group_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0)];
-      
-      group_text_label.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [json valueForKey:@"text"]];;
-      
+      group_text_label.text = [NSString stringWithFormat:@"%d) %@", [[self class] nextNumber], [qr.json valueForKey:@"text"]];;
       [group_text_label setUpMultiLineVerticalResizeWithFontSize:19.0];
       group_text_label.font = [UIFont boldSystemFontOfSize:19.0];
-      
       height += group_text_label.frame.size.height + 5.0;
       [self addSubview:group_text_label];
       [group_text_label release];
     }
-    if ([@"grid" isEqual:[json valueForKey:@"type"]] && [json valueForKey:@"questions"] && [json valueForKey:@"answers"]) {
+    if ([@"grid" isEqual:[qr.json valueForKey:@"type"]] && [qr.json valueForKey:@"questions"] && [qr.json valueForKey:@"answers"]) {
       // grid
       float max_text_width = 0.0;
       float max_post_text_width = 0.0;
       
-      for (NSDictionary *question in [json objectForKey:@"questions"]) {
+      for (NSDictionary *question in [qr.json objectForKey:@"questions"]) {
         // loop to find maximum widths of text and post-text (+5.0 for extra padding)
         if ([question valueForKey:@"text"]) {
           max_text_width = MAX(max_text_width, 5.0+[[question valueForKey:@"text"] sizeWithFont:[UIFont boldSystemFontOfSize:19.0] constrainedToSize:CGSizeMake(999.0, 44.0)].width);
@@ -273,7 +265,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         max_post_text_width = MIN(max_post_text_width, frame.size.width/3);
       }
       
-      for (NSDictionary *question in [json objectForKey:@"questions"]) {
+      for (NSDictionary *question in [qr.json objectForKey:@"questions"]) {
         float max_height = 0.0;
         float x_cursor = 0.0;
         
@@ -294,7 +286,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
         }
         
         // segment
-        UISegmentedControl *pickOneSegment = [[UISegmentedControl alloc] initWithItems:[[json valueForKey:@"answers"] valueForKey:@"text"]];
+        UISegmentedControl *pickOneSegment = [[UISegmentedControl alloc] initWithItems:[[qr.json valueForKey:@"answers"] valueForKey:@"text"]];
         pickOneSegment.frame = CGRectMake(x_cursor, height, MIN(frame.size.width - max_text_width - max_post_text_width, pickOneSegment.frame.size.width), pickOneSegment.frame.size.height);
         max_height = MAX(max_height, pickOneSegment.frame.size.height);
         x_cursor += pickOneSegment.frame.size.width;
@@ -320,9 +312,10 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       }
       
     }else{
-      if([json objectForKey:@"questions"]){
-        for (NSDictionary *question in [json objectForKey:@"questions"]) {
-          UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) json:question controller:dvc showNumber:false] autorelease];
+      if([qr.json objectForKey:@"questions"]){
+        for (NSDictionary *question in [qr.json objectForKey:@"questions"]) {
+          QuestionResponse *qqr = [[QuestionResponse alloc] initWithJson:question responseSetId:qr.responseSetId];
+          UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) questionResponse:qqr controller:dvc showNumber:false] autorelease];
           [self addSubview:q_view];
           height += q_view.frame.size.height;
         }
@@ -374,141 +367,15 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   if ([self.pickerContent.picker selectedRowInComponent:0] != -1) {
     self.pickerButton.selected = true;
   }
-  [self.pickerButton setTitle:[[answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
+  [self.pickerButton setTitle:[[questionResponse.answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
   [self.pickerButton sizeToFit];
 }
 - (void) pickerCancel{
   [self.popover dismissPopoverAnimated:NO];
 }
 
-#pragma mark -
-#pragma mark Picker view data source
-
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-  return 1;
-}
-
-#pragma mark -
-#pragma mark Picker view delegate
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-  return [answers count];
-}
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-  UILabel *pickerRow = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-  pickerRow.backgroundColor = [UIColor clearColor];
-  pickerRow.font = [UIFont systemFontOfSize:16.0];
-  pickerRow.text = [[answers objectAtIndex:row] objectForKey:@"text"];
-  return pickerRow;
-}
-
-#pragma mark -
-#pragma mark Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView {
-  // Return the number of sections.
-  return 1;
-}
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//	return @"Very long title Very long title Very long title Very long title Very long title Very long title Very long title Very long title Very long title Very long title ";
-//}
-
-- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [answers count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-  static NSString *CellIdentifier = @"CheckboxCellIdentifier";
-  
-  // Dequeue or create a cell of the appropriate type.
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-  if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.imageView.image = [UIImage imageNamed:[pick isEqual:@"one"] ? @"undotted" : @"unchecked.png"];
-  }
-
-  // Configure the cell.
-//  cell.textLabel.text = [NSString stringWithFormat:@"Row %d", indexPath.row];
-  
-  cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0];
-  cell.textLabel.text = [[answers objectAtIndex:indexPath.row] objectForKey:@"text"];
-//	cell.textLabel.text = @"foo";
-	return cell;
-}
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
- }   
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
- }
- */
-
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
-  if ([@"one" isEqual:pick]) {
-    if (selectedCell) {
-      selectedCell.imageView.image = [UIImage imageNamed:@"undotted.png"];
-    }
-    cell.imageView.image = [UIImage imageNamed:@"dotted.png"];
-    selectedCell = cell;
-  } else {
-    Boolean checked = cell.imageView.image == [UIImage imageNamed:@"checked.png"];  
-    cell.imageView.image = checked ? [UIImage imageNamed:@"unchecked.png"] : [UIImage imageNamed:@"checked.png"];
-  }
-}
-
-
-
 - (void)dealloc
 {
-  [responses release];
-  [responseSetId release];
-  [answers release];
-  [pick release];
-  [selectedCell release];
   [pickerContent release];
   [popover release];
   [pickerButton release];

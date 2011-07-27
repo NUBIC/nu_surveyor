@@ -112,14 +112,15 @@
   // Questions and groups  
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
     if([qg objectForKey:@"questions"] == nil){
-      SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) json:qg controller:self showNumber:true] autorelease];
-      q_view.responseSetId = self.responseSetId;
+      
+      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSetId:responseSetId];
+      SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self showNumber:true] autorelease];
 //      q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
       y += q_view.frame.size.height;
     }else{
-      SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) json:qg controller:self] autorelease];
-      g_view.responseSetId = self.responseSetId;
+      QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSetId:responseSetId];
+      SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self] autorelease];
 //      g_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:g_view];
       y += g_view.frame.size.height;
