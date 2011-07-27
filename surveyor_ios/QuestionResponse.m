@@ -131,7 +131,7 @@
   
   NSManagedObject *existingResponse = [self responseForAnswer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
   if (existingResponse) {
-    DLog(@"tableViewcellForRowAtIndexPath: %@", existingResponse);
+//    DLog(@"tableViewcellForRowAtIndexPath: %@", existingResponse);
     cell.imageView.image = [UIImage imageNamed:[pick isEqual:@"one"] ? @"dotted" : @"checked.png"];
     selectedCell = cell;
   }
@@ -150,12 +150,12 @@
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
-  if ([@"one" isEqual:pick]) {
+  if ([@"one" isEqualToString:pick]) {
     if (selectedCell) {
       selectedCell.imageView.image = [UIImage imageNamed:@"undotted.png"];
       NSManagedObject *existingResponse = [self responseForAnswer:[[answers objectAtIndex:[[aTableView indexPathForCell:selectedCell] row]] valueForKey:@"uuid"]];
       if (existingResponse) {
-        DLog(@"tableViewdidSelectRowAtIndexPath removing: %@", existingResponse);
+//        DLog(@"tableViewdidSelectRowAtIndexPath removing: %@", existingResponse);
         [UIAppDelegate.managedObjectContext deleteObject:existingResponse];
         // Save the context.
         [UIAppDelegate saveContext:@"tableViewdidSelectRowAtIndexPath removing"];
@@ -167,8 +167,18 @@
     [self newResponseForAnswer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
     
   } else {
+    
     Boolean checked = cell.imageView.image == [UIImage imageNamed:@"checked.png"];  
     cell.imageView.image = checked ? [UIImage imageNamed:@"unchecked.png"] : [UIImage imageNamed:@"checked.png"];
+    if (checked) {
+      NSManagedObject *existingResponse = [self responseForAnswer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
+      if (existingResponse) {
+        [UIAppDelegate.managedObjectContext deleteObject:existingResponse];
+        [UIAppDelegate saveContext:@"tableViewdidSelectRowAtIndexPath removing"];
+      }
+    } else{
+      [self newResponseForAnswer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
+    }
   }
 }
 
