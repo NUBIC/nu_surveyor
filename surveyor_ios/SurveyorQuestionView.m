@@ -13,8 +13,6 @@
 
 @interface SurveyorQuestionView ()
   // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
-  @property (nonatomic,retain) PickerViewController* pickerContent;
-  @property (nonatomic,retain) UIPopoverController* popover;
   @property (nonatomic,retain) UIButton* pickerButton;
   @property (nonatomic,retain) UIToolbar* surveyorKeyboardAccessory;
   - (UIToolbar *)surveyorKeyboardAccessory:(DetailViewController *)dvc;
@@ -22,7 +20,7 @@
 @end
 
 @implementation SurveyorQuestionView
-@synthesize questionResponse, pickerContent, popover, pickerButton, surveyorKeyboardAccessory;
+@synthesize questionResponse, pickerButton, surveyorKeyboardAccessory;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -65,20 +63,12 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       // pick one (radio buttons)
             
       if ([@"dropdown" isEqual:[qr.json valueForKey:@"type"]]) {
-        self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [pickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
-        [pickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
+        self.pickerButton = [questionResponse setupPickerButton];
         pickerButton.frame = CGRectMake(0.0, height, 100.0, 35.0);
-        [pickerButton setTitle:@"Pick one" forState:UIControlStateNormal];
-        [pickerButton addTarget:self action:@selector(pickButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+
         [self addSubview:pickerButton];
         height += pickerButton.frame.size.height;
         
-        self.pickerContent = [[PickerViewController alloc] init];
-        self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
-        [self.pickerContent setupDelegate:self withTitle:[qr.json valueForKey:@"text"]];
-        self.popover.delegate = self;
-
       }else{
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width/2, 44.0 * [questionResponse.answers count]) style:UITableViewStylePlain];
         tableView.scrollEnabled = FALSE; 
@@ -353,31 +343,8 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   return surveyorKeyboardAccessory;
 }
 
-#pragma mark -
-#pragma mark Pick Button target
-
-- (void) pickButtonPressed:(id) sender {
-  if ([sender isKindOfClass:[UIButton class]]) {
-    UIButton* myButton = (UIButton*)sender;
-    [self.popover presentPopoverFromRect:myButton.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-  }
-}
-- (void) pickerDone{
-  [self.popover dismissPopoverAnimated:NO];
-  if ([self.pickerContent.picker selectedRowInComponent:0] != -1) {
-    self.pickerButton.selected = true;
-  }
-  [self.pickerButton setTitle:[[questionResponse.answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
-  [self.pickerButton sizeToFit];
-}
-- (void) pickerCancel{
-  [self.popover dismissPopoverAnimated:NO];
-}
-
 - (void)dealloc
 {
-  [pickerContent release];
-  [popover release];
   [pickerButton release];
   [surveyorKeyboardAccessory release];
   [super dealloc];

@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface QuestionResponse : NSObject <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface QuestionResponse : NSObject <UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIPopoverControllerDelegate> {
 }
 @property (nonatomic, retain) NSDictionary *json;
 @property (nonatomic, retain) NSString *UUID;
 @property (nonatomic, retain) NSArray* answers;
 @property (nonatomic, retain) NSString* pick;
 @property (nonatomic, retain) NSManagedObject *responseSet;
+@property (nonatomic, retain) UIButton *pickerButton;
 
 - (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSet:(NSManagedObject *)nsmo;
 - (NSManagedObject *) responseForAnswer:(NSString *)aid;
 - (void) newResponseForAnswer:(NSString *)aid;
+- (UIButton *) setupPickerButton;
 @end

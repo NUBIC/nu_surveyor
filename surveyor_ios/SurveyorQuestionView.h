@@ -10,7 +10,7 @@
 #import "DetailViewController.h"
 #import "QuestionResponse.h"
 
-@interface SurveyorQuestionView : UIView <UIPopoverControllerDelegate> {
+@interface SurveyorQuestionView : UIView {
 
 }
 

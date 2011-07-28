@@ -8,18 +8,23 @@
 
 #import "QuestionResponse.h"
 #import "UUID.h"
+#import "PickerViewController.h"
 
 @interface QuestionResponse ()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 @property (nonatomic,retain) UITableViewCell* selectedCell;
+@property (nonatomic,retain) PickerViewController* pickerContent;
+@property (nonatomic,retain) UIPopoverController* popover;
+@property (nonatomic,assign) NSInteger pickedRow;
+
 @end
 
 @implementation QuestionResponse
 
 // public properties
-@synthesize json, UUID, responseSet, answers, pick;
+@synthesize json, UUID, answers, pick, responseSet, pickerButton;
 // private properties
-@synthesize selectedCell;
+@synthesize selectedCell, pickerContent, popover, pickedRow;
 
 - (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSet:(NSManagedObject *)nsmo {
   self = [super init];
@@ -32,6 +37,12 @@
     self.pick  = [json valueForKey:@"pick"];
     self.UUID = [json valueForKey:@"uuid"];
 //    DLog(@"%@", self.pick);
+    if ([pick isEqualToString:@"one"] && [@"dropdown" isEqual:[json valueForKey:@"type"]]) {
+      self.pickerContent = [[PickerViewController alloc] init];
+      self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
+      [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
+      self.popover.delegate = self;
+    }
   }
   return self;
 }
@@ -83,6 +94,58 @@
 }
 
 #pragma mark -
+#pragma mark Pick Button
+
+- (UIButton *) setupPickerButton {
+  DLog(@"setupPickerButton");
+  self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [pickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
+  [pickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
+  [pickerButton addTarget:self action:@selector(pickButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+  [pickerButton setTitle:@"Pick one" forState:UIControlStateNormal];
+  
+  for (NSDictionary *answer in answers) {
+    NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+    if (existingResponse) {
+      self.pickerButton.selected = true;
+      [pickerButton setTitle:[answer valueForKey:@"text"] forState:UIControlStateNormal];
+      [pickerContent.picker selectRow:[answers indexOfObject:answer] inComponent:0 animated:FALSE];
+    }
+  }
+  
+  return pickerButton;
+}
+
+- (void) pickButtonPressed:(id) sender {
+  if ([sender isKindOfClass:[UIButton class]]) {
+    UIButton* myButton = (UIButton*)sender;
+    [self.popover presentPopoverFromRect:myButton.frame inView:pickerButton.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+  }
+}
+- (void) pickerDone{
+  [popover dismissPopoverAnimated:NO];
+  if ([pickerContent.picker selectedRowInComponent:0] != -1) {
+    self.pickerButton.selected = true;
+    
+    NSManagedObject *existingResponse = [self responseForAnswer:[[answers objectAtIndex:[pickerContent.picker selectedRowInComponent:0]] valueForKey:@"uuid"]];
+    if (existingResponse) {
+      //        DLog(@"tableViewdidSelectRowAtIndexPath removing: %@", existingResponse);
+      [UIAppDelegate.managedObjectContext deleteObject:existingResponse];
+      // Save the context.
+      [UIAppDelegate saveContext:@"tableViewdidSelectRowAtIndexPath removing"];
+    }
+    
+    [self newResponseForAnswer:[[answers objectAtIndex:[pickerContent.picker selectedRowInComponent:0]] valueForKey:@"uuid"]];
+    
+  }
+  [self.pickerButton setTitle:[[answers objectAtIndex:[self.pickerContent.picker selectedRowInComponent:0]] objectForKey:@"text"] forState:UIControlStateNormal];
+  [self.pickerButton sizeToFit];
+}
+- (void) pickerCancel{
+  [self.popover dismissPopoverAnimated:NO];
+}
+
+#pragma mark -
 #pragma mark Picker view data source
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -100,6 +163,7 @@
   pickerRow.backgroundColor = [UIColor clearColor];
   pickerRow.font = [UIFont systemFontOfSize:16.0];
   pickerRow.text = [[answers objectAtIndex:row] objectForKey:@"text"];
+  
   return pickerRow;
 }
 
@@ -180,6 +244,14 @@
       [self newResponseForAnswer:[[answers objectAtIndex:[indexPath row]] valueForKey:@"uuid"]];
     }
   }
+}
+
+- (void)dealloc
+{
+  [pickerContent release];
+  [popover release];
+
+  [super dealloc];
 }
 
 @end
