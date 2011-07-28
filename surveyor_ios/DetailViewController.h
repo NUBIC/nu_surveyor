@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate> {
+@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate> {
   
   UIPopoverController *popoverController;
   UIToolbar *toolbar;
@@ -38,6 +38,8 @@
 
 @property (nonatomic, retain) NSManagedObject *responseSet;
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView;
 - (void) editViewResignFirstResponder;
 - (void) prevField;
 - (void) nextField;

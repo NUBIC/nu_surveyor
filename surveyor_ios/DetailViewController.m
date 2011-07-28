@@ -114,12 +114,14 @@
     if([qg objectForKey:@"questions"] == nil){
       
       QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSet:responseSet];
+      qr.detailViewController = self;
       SurveyorQuestionView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self showNumber:true] autorelease];
 //      q_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:q_view];
       y += q_view.frame.size.height;
     }else{
       QuestionResponse *qr = [[QuestionResponse alloc] initWithJson:qg responseSet:responseSet];
+      qr.detailViewController = self;
       SurveyorQuestionView *g_view = [[[SurveyorQuestionView alloc] initGroupWithFrame:CGRectMake(10, y, [self widthBasedOnOrientation], 10) questionResponse:qr controller:self] autorelease];
 //      g_view.backgroundColor = [UIColor redColor];
       [DetailScrollView addSubview:g_view];
@@ -263,6 +265,7 @@
 #pragma mark -
 #pragma mark UITextView and UITextField Delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//  DLog(@"DetailViewController textFieldShouldBeginEditing");
   //  NSLog(@"top: %f", [textField convertPoint:textField.frame.origin toView:self.view].y);
   editView = textField;
   [self enableKeyboardAccessoryNavigation];
@@ -270,31 +273,32 @@
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+//  DLog(@"DetailViewController textViewShouldBeginEditing");
   //  NSLog(@"top: %f", [textView convertPoint:textView.frame.origin toView:self.view].y);
   editView = textView;
   [self enableKeyboardAccessoryNavigation];
   return YES;
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-  [textField resignFirstResponder];
-  return YES;
-}
 
 - (void) editViewResignFirstResponder {
+//  DLog(@"DetailViewController editViewResignFirstResponder");
   [self.editView resignFirstResponder];
 }
 
 - (void) enableKeyboardAccessoryNavigation{
+//  DLog(@"DetailViewController enableKeyboardAccessoryNavigation");
 //  NSLog(@"editViews: %d editView %d", [editViews count], [editViews indexOfObjectIdenticalTo:editView]);
   ((UIBarButtonItem *)[((UIToolbar *)editView.inputAccessoryView).items objectAtIndex:0]).enabled = ([editViews indexOfObjectIdenticalTo:editView] != 0);
   ((UIBarButtonItem *)[((UIToolbar *)editView.inputAccessoryView).items objectAtIndex:1]).enabled = ([editViews indexOfObjectIdenticalTo:editView] != [editViews count]-1);
 }
 - (void) prevField {
+//  DLog(@"DetailViewController prevField");
   if ([editViews indexOfObjectIdenticalTo:editView] != 0) {
     [[editViews objectAtIndex: ([editViews indexOfObjectIdenticalTo:editView] - 1)] becomeFirstResponder];
   }
 }
 - (void) nextField {
+//  DLog(@"DetailViewController nextField");
   if ([editViews indexOfObjectIdenticalTo:editView] != [editViews count] - 1 ) {
     [[editViews objectAtIndex: ([editViews indexOfObjectIdenticalTo:editView] + 1)] becomeFirstResponder];
   }

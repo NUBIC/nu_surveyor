@@ -7,20 +7,17 @@
 //
 
 #import "SurveyorQuestionView.h"
-#import <QuartzCore/QuartzCore.h>
 #import "UILabel+Resize.h"
 #import "PickerViewController.h"
 
 @interface SurveyorQuestionView ()
   // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
   @property (nonatomic,retain) UIButton* pickerButton;
-  @property (nonatomic,retain) UIToolbar* surveyorKeyboardAccessory;
-  - (UIToolbar *)surveyorKeyboardAccessory:(DetailViewController *)dvc;
   + (int) nextNumber;
 @end
 
 @implementation SurveyorQuestionView
-@synthesize questionResponse, pickerButton, surveyorKeyboardAccessory;
+@synthesize questionResponse, pickerButton;
 
 static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-for-objective-c-and-c/
 
@@ -36,6 +33,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 }
 
 - (id)initWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc showNumber:(BOOL)showNumber {
+//  DLog(@"SurveyorQuestionView initWithFramequestionResponsecontrollershowNumber");
   if((self = [super initWithFrame:frame])) {
     self.questionResponse = qr;
     float height = 5.0;
@@ -133,74 +131,42 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           
           if([@"text" isEqual:[answer valueForKey:@"type"]]){
             // response type: text
+            
+            // drop to next line for text view
             height += max_height;
             x_cursor = 0.0;
             max_height = 0.0;
             
-            UITextView *text_response = [[UITextView alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 128.0)];
-            text_response.delegate = dvc;
-            text_response.returnKeyType = UIReturnKeyDone;
-            text_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
-            [dvc.editViews addObject:text_response];
-            
-            text_response.font = [UIFont systemFontOfSize:16.0];            
-            text_response.layer.cornerRadius = 8.0;
-            text_response.layer.borderWidth = 1.0;
-            text_response.layer.borderColor = [[UIColor grayColor] CGColor];
-            
+            UITextView *text_response = [questionResponse setupTextViewWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 128.0) forAnswer:answer];
+
             x_cursor += text_response.frame.size.width;
             max_height = MAX(max_height, text_response.frame.size.height);
             [self addSubview:text_response];
-            [text_response release];
           }else if ([@"string" isEqual:[answer valueForKey:@"type"]]) {
             // response type: string
-            UITextField *string_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 31.0)];
-            string_response.delegate = dvc;
-            string_response.returnKeyType = UIReturnKeyDone;
-            string_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
-            [dvc.editViews addObject:string_response];
-            
-            string_response.font = [UIFont systemFontOfSize:16.0];
-            string_response.borderStyle = UITextBorderStyleRoundedRect;
+            UITextField *string_response = [questionResponse setupTextFieldWithFrame:CGRectMake(x_cursor, height, frame.size.width/2, 31.0) forAnswer:answer];
             
             x_cursor += string_response.frame.size.width;
             max_height = MAX(max_height, string_response.frame.size.height);
             [self addSubview:string_response];
-            [string_response release];
           }else if([@"integer" isEqual:[answer valueForKey:@"type"]]){
             // response type: integer
-            UITextField *integer_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/6, 31.0)];
-            integer_response.delegate = dvc;
-            integer_response.returnKeyType = UIReturnKeyDone;
-            integer_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
-            [dvc.editViews addObject:integer_response];
-
-            integer_response.font = [UIFont systemFontOfSize:16.0];
+            UITextField *integer_response = [questionResponse setupTextFieldWithFrame:CGRectMake(x_cursor, height, frame.size.width/6, 31.0) forAnswer:answer];
             integer_response.textAlignment = UITextAlignmentRight;
             integer_response.keyboardType = UIKeyboardTypeNumberPad;
-            integer_response.borderStyle = UITextBorderStyleRoundedRect;
 
             x_cursor += integer_response.frame.size.width;
             max_height = MAX(max_height, integer_response.frame.size.height);
             [self addSubview:integer_response];
-            [integer_response release];
           }else if([@"float" isEqual:[answer valueForKey:@"type"]]){
             // response type: float
-            UITextField *float_response = [[UITextField alloc] initWithFrame:CGRectMake(x_cursor, height, frame.size.width/4, 31.0)];
-            float_response.delegate = dvc;
-            float_response.returnKeyType = UIReturnKeyDone;
-            float_response.inputAccessoryView = [self surveyorKeyboardAccessory:dvc];
-            [dvc.editViews addObject:float_response];
-            
-            float_response.font = [UIFont systemFontOfSize:16.0];
+            UITextField *float_response = [questionResponse setupTextFieldWithFrame:CGRectMake(x_cursor, height, frame.size.width/4, 31.0) forAnswer:answer];
             float_response.textAlignment = UITextAlignmentRight;
             float_response.keyboardType = UIKeyboardTypeDecimalPad;
-            float_response.borderStyle = UITextBorderStyleRoundedRect;
             
             x_cursor += float_response.frame.size.width;
             max_height = MAX(max_height, float_response.frame.size.height);
             [self addSubview:float_response];
-            [float_response release];
           }
           
           // add answer post text
@@ -224,6 +190,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
 }
 
 - (id)initGroupWithFrame:(CGRect)frame questionResponse:(QuestionResponse *)qr controller:(DetailViewController *)dvc {
+//  DLog(@"SurveyorQuestionView initGroupWithFramequestionResponsecontrollershowNumber");
   self = [super initWithFrame:frame];
   if (self) {
     self.questionResponse = qr;
@@ -305,6 +272,7 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       if([qr.json objectForKey:@"questions"]){
         for (NSDictionary *question in [qr.json objectForKey:@"questions"]) {
           QuestionResponse *qqr = [[QuestionResponse alloc] initWithJson:question responseSet:qr.responseSet];
+          qqr.detailViewController = qr.detailViewController;
           UIView *q_view = [[[SurveyorQuestionView alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 44.0) questionResponse:qqr controller:dvc showNumber:false] autorelease];
           [self addSubview:q_view];
           height += q_view.frame.size.height;
@@ -325,28 +293,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
     return self;
 }
 
-#pragma mark -
-#pragma mark Input accessory view
-- (UIToolbar *)surveyorKeyboardAccessory:(DetailViewController *)dvc {
-  if (!surveyorKeyboardAccessory) {
-    
-    CGRect accessFrame = CGRectMake(0.0, 0.0, 768.0, 44.0);
-    surveyorKeyboardAccessory = [[UIToolbar alloc] initWithFrame:accessFrame];
-    surveyorKeyboardAccessory.barStyle = UIBarStyleBlackTranslucent;
-    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"Prev" style:UIBarButtonItemStyleBordered target:dvc action:@selector(prevField)];
-    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:dvc action:@selector(nextField)];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:dvc action:@selector(editViewResignFirstResponder)];
-    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:prev, next, space, doneButton, nil];
-    
-  }
-  return surveyorKeyboardAccessory;
-}
-
 - (void)dealloc
 {
   [pickerButton release];
-  [surveyorKeyboardAccessory release];
   [super dealloc];
 }
 

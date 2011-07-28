@@ -6,6 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "QuestionResponse.h"
 #import "UUID.h"
 #import "PickerViewController.h"
@@ -16,15 +17,18 @@
 @property (nonatomic,retain) PickerViewController* pickerContent;
 @property (nonatomic,retain) UIPopoverController* popover;
 @property (nonatomic,assign) NSInteger pickedRow;
+@property (nonatomic,retain) UIToolbar* surveyorKeyboardAccessory;
+@property (nonatomic,retain) NSMutableDictionary *textFieldsAndViews;
 
+- (UIToolbar *)surveyorKeyboardAccessory;
 @end
 
 @implementation QuestionResponse
 
 // public properties
-@synthesize json, UUID, answers, pick, responseSet, pickerButton;
+@synthesize json, UUID, answers, pick, responseSet, pickerButton, detailViewController;
 // private properties
-@synthesize selectedCell, pickerContent, popover, pickedRow;
+@synthesize selectedCell, pickerContent, popover, pickedRow, surveyorKeyboardAccessory, textFieldsAndViews;
 
 - (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSet:(NSManagedObject *)nsmo {
   self = [super init];
@@ -43,6 +47,7 @@
       [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
       self.popover.delegate = self;
     }
+    self.textFieldsAndViews = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -88,16 +93,33 @@
   [newResponse setValue:[UUID generateUuidString] forKey:@"UUID"];
   
   // Save the context.
-  [UIAppDelegate saveContext:@"QuestionResponse newResponseForQuestion"];
+  [UIAppDelegate saveContext:@"QuestionResponse newResponseForAnswer"];
   
-//  DLog(@"newResponseForQuestion answer: %@", newResponse);
+//  DLog(@"newResponseForAnswer: %@", newResponse);
+}
+
+- (void) newResponseForAnswer:(NSString *)aid value:(NSString *)value{
+  NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+  [newResponse setValue:self.responseSet forKey:@"responseSet"];
+  [newResponse setValue:self.UUID forKey:@"Question"];
+  [newResponse setValue:aid forKey:@"Answer"];
+  [newResponse setValue:value forKey:@"Value"];
+  
+  [newResponse setValue:[NSDate date] forKey:@"CreatedAt"];
+  [newResponse setValue:[UUID generateUuidString] forKey:@"UUID"];
+  
+  // Save the context.
+  [UIAppDelegate saveContext:@"QuestionResponse newResponseForAnswerValue"];
+  
+//  DLog(@"newResponseForAnswerValue: %@", newResponse);
+  
 }
 
 #pragma mark -
 #pragma mark Pick Button
 
 - (UIButton *) setupPickerButton {
-  DLog(@"setupPickerButton");
+//  DLog(@"setupPickerButton");
   self.pickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [pickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
   [pickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
@@ -246,10 +268,136 @@
   }
 }
 
+#pragma mark -
+#pragma mark UITextView and UITextField Delegate
+
+- (UITextField *) setupTextFieldWithFrame:(CGRect)frame forAnswer:(NSDictionary *)answer{
+//  DLog(@"QuestionResponse setupTextFieldWithFrame forAnswer %@", answer);
+  
+  UITextField *textField = [[[UITextField alloc] initWithFrame:frame] autorelease];
+  textField.delegate = self;
+  textField.returnKeyType = UIReturnKeyDone;
+  textField.inputAccessoryView = [self surveyorKeyboardAccessory];
+  [detailViewController.editViews addObject:textField];
+  [textFieldsAndViews setValue:textField forKey:[answer valueForKey:@"uuid"]];
+  
+  NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+  if (existingResponse) {
+    textField.text = (NSString *)[existingResponse valueForKey:@"value"];
+  }
+  
+  textField.font = [UIFont systemFontOfSize:16.0];
+  textField.borderStyle = UITextBorderStyleRoundedRect;
+  
+
+//  DLog(@"%@", textFieldsAndViews);
+  return textField;
+}
+- (UITextView *) setupTextViewWithFrame:(CGRect)frame forAnswer:(NSDictionary *)answer{
+//  DLog(@"QuestionResponse setupTextViewWithFrame forAnswer %@", answer);
+  
+  UITextView *textView = [[[UITextView alloc] initWithFrame:frame] autorelease];
+  textView.delegate = self;
+  textView.returnKeyType = UIReturnKeyDefault;
+  textView.inputAccessoryView = [self surveyorKeyboardAccessory];
+  [detailViewController.editViews addObject:textView];
+  [textFieldsAndViews setValue:textView forKey:[answer valueForKey:@"uuid"]];
+  
+  NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+  if (existingResponse) {
+    textView.text = (NSString *)[existingResponse valueForKey:@"value"];
+  }
+  
+  textView.font = [UIFont systemFontOfSize:16.0];            
+  textView.layer.cornerRadius = 8.0;
+  textView.layer.borderWidth = 1.0;
+  textView.layer.borderColor = [[UIColor grayColor] CGColor];
+//  DLog(@"%@", textFieldsAndViews);
+  return textView;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//  DLog(@"QuestionResponse textFieldShouldReturn");
+
+  [textField resignFirstResponder];
+  return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+//  DLog(@"QuestionResponse textFieldDidEndEditing");
+
+  NSManagedObject *existingResponse = [self responseForAnswer:[[textFieldsAndViews allKeysForObject:textField] lastObject]];
+  if (existingResponse) {
+//    DLog(@"existingResponse");
+    [existingResponse setValue:textField.text forKey:@"value"];
+    [UIAppDelegate saveContext:@"textFieldShouldReturn"];
+  }else{
+    [self newResponseForAnswer:[[textFieldsAndViews allKeysForObject:textField] lastObject] value:textField.text];
+  }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+//  DLog(@"QuestionResponse textViewDidEndEditing");
+
+  NSManagedObject *existingResponse = [self responseForAnswer:[[textFieldsAndViews allKeysForObject:textView] lastObject]];
+  if (existingResponse) {
+//    DLog(@"existingResponse");
+    [existingResponse setValue:textView.text forKey:@"value"];
+    [UIAppDelegate saveContext:@"textFieldShouldReturn"];
+  }else{
+    [self newResponseForAnswer:[[textFieldsAndViews allKeysForObject:textView] lastObject] value:textView.text];
+  }
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//  DLog(@"QuestionResponse textFieldShouldBeginEditing");
+
+  return [detailViewController textFieldShouldBeginEditing:textField];
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+//  DLog(@"QuestionResponse textViewShouldBeginEditing");
+
+  return [detailViewController textViewShouldBeginEditing:textView];
+}
+
+#pragma mark -
+#pragma mark Input accessory view
+- (UIToolbar *)surveyorKeyboardAccessory {
+  if (!surveyorKeyboardAccessory) {
+    
+    CGRect accessFrame = CGRectMake(0.0, 0.0, 768.0, 44.0);
+    surveyorKeyboardAccessory = [[UIToolbar alloc] initWithFrame:accessFrame];
+    surveyorKeyboardAccessory.barStyle = UIBarStyleBlackTranslucent;
+    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"Prev" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(prevField)];
+    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(nextField)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:detailViewController action:@selector(editViewResignFirstResponder)];
+    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:prev, next, space, doneButton, nil];
+    
+  }
+  return surveyorKeyboardAccessory;
+}
+
+#pragma mark -
+#pragma mark Memory management
+
 - (void)dealloc
 {
+  [json release];
+  [UUID release];
+  [answers release];
+  [pick release];
+  [responseSet release];
+  [pickerButton release];
+  detailViewController = nil;
+  
+  [selectedCell release];
   [pickerContent release];
   [popover release];
+  pickedRow = 0;
+  [surveyorKeyboardAccessory release];
+  [textFieldsAndViews release];
 
   [super dealloc];
 }
