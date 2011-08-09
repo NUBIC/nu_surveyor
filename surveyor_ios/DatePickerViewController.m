@@ -1,20 +1,19 @@
 //
-//  PickerViewController.m
+//  DatePickerViewController.m
 //  surveyor_ios
 //
-//  Created by Mark Yoon on 6/13/2011.
+//  Created by Mark Yoon on 7/29/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "PickerViewController.h"
+#import "DatePickerViewController.h"
 
-@implementation PickerViewController
+@implementation DatePickerViewController
 
-@synthesize picker, bar;
+@synthesize datePicker, bar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-//    DLog(@"%@", nibNameOrNil);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -24,7 +23,7 @@
 
 - (void)dealloc
 {
-  [picker release];
+  [datePicker release];
   [bar release];
   [super dealloc];
 }
@@ -41,26 +40,24 @@
 -(void)setupDelegate:(id)delegate withTitle:(NSString *)title
 {
 //  DLog(@"%@",self.bar);
-//  DLog(@"%@",self.picker);
-  self.picker.delegate = delegate;
-  self.picker.dataSource = delegate;
+//  DLog(@"%@",self.datePicker);
   self.bar.rightBarButtonItem.target = delegate;
-  self.bar.rightBarButtonItem.action = @selector(pickerDone);
+  self.bar.rightBarButtonItem.action = @selector(datePickerDone);
   self.bar.leftBarButtonItem.target = delegate;
-  self.bar.leftBarButtonItem.action = @selector(pickerCancel);
+  self.bar.leftBarButtonItem.action = @selector(datePickerCancel);
   self.bar.title = title;
 }
-
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
-    self.bar.title = @"hi";
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
+  self.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
+  self.bar.title = @"hi";
+  // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)viewDidUnload
 {

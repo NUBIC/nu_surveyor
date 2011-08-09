@@ -27,10 +27,14 @@
   //	responseData = [[NSMutableData alloc] init];
 	NSError *strError;
 	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"ks_with_uuid" ofType:@"json"];
-	NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  //	NSLog(@"%@", strError);
-  //	NSLog(@"%@", responseString);
-	dict = [[[SBJsonParser alloc] objectWithString:responseString] retain];
+//	DLog(@"%@", strPath);
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+//	NSLog(@"%@", strError);
+//	NSLog(@"%@", responseString);
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  dict = [[parser objectWithString:responseString] retain];
+//  DLog(@"%@", [parser errorTrace]);
+//  DLog(@"%@", dict);
   //	NSLog(@"%@", [[dict objectForKey:@"survey"] objectForKey:@"title"]);
 	self.navigationItem.title = @"Sections";
   detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];

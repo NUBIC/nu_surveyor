@@ -6,10 +6,12 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "QuestionResponse.h"
 #import "UUID.h"
 #import "PickerViewController.h"
+#import "DatePickerViewController.h"
 
 @interface QuestionResponse ()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
@@ -19,6 +21,9 @@
 @property (nonatomic,assign) NSInteger pickedRow;
 @property (nonatomic,retain) UIToolbar* surveyorKeyboardAccessory;
 @property (nonatomic,retain) NSMutableDictionary *textFieldsAndViews;
+@property (nonatomic,retain) NSMutableArray *datePickerButtons;
+@property (nonatomic,retain) DatePickerViewController *datePickerContent;
+@property (nonatomic,assign) NSInteger datePickerAnswerIndex;
 
 - (UIToolbar *)surveyorKeyboardAccessory;
 @end
@@ -26,9 +31,9 @@
 @implementation QuestionResponse
 
 // public properties
-@synthesize json, UUID, answers, pick, responseSet, pickerButton, detailViewController;
+@synthesize json, UUID, answers, pick, responseSet, pickerButton, detailViewController, datePickerContent, datePickerAnswerIndex;
 // private properties
-@synthesize selectedCell, pickerContent, popover, pickedRow, surveyorKeyboardAccessory, textFieldsAndViews;
+@synthesize selectedCell, pickerContent, popover, pickedRow, surveyorKeyboardAccessory, textFieldsAndViews, datePickerButtons;
 
 - (QuestionResponse *) initWithJson:(NSDictionary *)dict responseSet:(NSManagedObject *)nsmo {
   self = [super init];
@@ -41,13 +46,10 @@
     self.pick  = [json valueForKey:@"pick"];
     self.UUID = [json valueForKey:@"uuid"];
 //    DLog(@"%@", self.pick);
-    if ([pick isEqualToString:@"one"] && [@"dropdown" isEqual:[json valueForKey:@"type"]]) {
-      self.pickerContent = [[PickerViewController alloc] init];
-      self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
-      [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
-      self.popover.delegate = self;
-    }
+    
     self.textFieldsAndViews = [[NSMutableDictionary alloc] init];
+    self.datePickerButtons = [[NSMutableArray alloc] init];
+    self.datePickerAnswerIndex = 0;
   }
   return self;
 }
@@ -134,6 +136,11 @@
       [pickerContent.picker selectRow:[answers indexOfObject:answer] inComponent:0 animated:FALSE];
     }
   }
+
+  self.pickerContent = [[PickerViewController alloc] init];
+  self.popover = [[UIPopoverController alloc] initWithContentViewController:pickerContent];
+  [self.pickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
+  popover.delegate = self;  
   
   return pickerButton;
 }
@@ -359,6 +366,126 @@
 //  DLog(@"QuestionResponse textViewShouldBeginEditing");
 
   return [detailViewController textViewShouldBeginEditing:textView];
+}
+
+#pragma mark -
+#pragma mark Date Button
+
+- (UIButton *) setupDateButton:(UIDatePickerMode)mode forAnswer:(NSDictionary *)answer {
+  //  DLog(@"setupDateButtonForAnswer");
+  UIButton *datePickerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [datePickerButton setTitleColor:[UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0] forState:UIControlStateNormal];
+  [datePickerButton setTitleColor:[UIColor colorWithRed:0.0 green:0.37 blue:0.90 alpha:1.0] forState:UIControlStateSelected];
+  [datePickerButton addTarget:self action:@selector(dateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+  NSString *type = [answer valueForKey:@"type"];
+  if([type isEqualToString:@"datetime"]){
+    [datePickerButton setTitle:@"Pick date and time" forState:UIControlStateNormal];
+  }else if([type isEqualToString:@"time"]){
+    [datePickerButton setTitle:@"Pick time" forState:UIControlStateNormal];
+  }else{
+    [datePickerButton setTitle:@"Pick date" forState:UIControlStateNormal];
+  }
+  
+  NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+  if (existingResponse) {
+    datePickerButton.selected = true;
+    [datePickerButton setTitle:[existingResponse valueForKey:@"value"] forState:UIControlStateNormal];
+  }
+
+  [datePickerButtons insertObject:datePickerButton atIndex:[answers indexOfObject:answer]];
+//  DLog(@"setupDateButton datePickerButtons: %@",datePickerButtons);
+  if (self.datePickerContent == nil) {
+    self.datePickerContent = [[DatePickerViewController alloc] init];
+    self.popover = [[UIPopoverController alloc] initWithContentViewController:datePickerContent];
+    [datePickerContent setupDelegate:self withTitle:[json valueForKey:@"text"]];
+    popover.delegate = self;
+  }
+
+  return datePickerButton;
+}
+
+- (void) dateButtonPressed:(id) sender {
+  if ([sender isKindOfClass:[UIButton class]]) {
+    UIButton* myButton = (UIButton*)sender;
+    self.datePickerAnswerIndex = [datePickerButtons indexOfObject:myButton];
+    
+//    DLog(@"dateButtonPressed myButton: %@",myButton);
+//    DLog(@"dateButtonPressed datePickerButtons: %@",datePickerButtons);
+//    DLog(@"dateButtonPressed datePickerAnswerIndex: %d",datePickerAnswerIndex);
+    
+    NSDictionary *answer = [answers objectAtIndex:datePickerAnswerIndex];
+    NSString *type = [answer valueForKey:@"type"];
+//    DLog(@"dateButtonPressed type: %@",type);
+//    DLog(@"dateButtonPressed answer: %@",answer);
+    
+    if([type isEqualToString:@"datetime"]){
+      datePickerContent.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    }else if([type isEqualToString:@"time"]){
+      datePickerContent.datePicker.datePickerMode = UIDatePickerModeTime;
+    }else{
+      datePickerContent.datePicker.datePickerMode = UIDatePickerModeDate;
+    }
+    
+    NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+    if (existingResponse) {
+      datePickerContent.datePicker.date = [self dateFromString:[existingResponse valueForKey:@"value"] ofType:[answer valueForKey:@"type"]];
+    }
+    
+    [self.popover presentPopoverFromRect:myButton.frame inView:myButton.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+    
+  }
+}
+- (void) datePickerDone{
+  [popover dismissPopoverAnimated:NO];
+  NSDictionary *answer = [answers objectAtIndex:datePickerAnswerIndex];
+//  DLog(@"datePickerDone datePickerAnswerIndex: %d",datePickerAnswerIndex);
+
+  NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
+  if (existingResponse) {
+    [existingResponse setValue:[self stringFromDate:datePickerContent.datePicker.date ofType:[answer valueForKey:@"type"]] forKey:@"value"];
+    [UIAppDelegate saveContext:@"datePickerDone existingResponse"];
+  }else{
+    [self newResponseForAnswer:[answer valueForKey:@"uuid"] value:[self stringFromDate:datePickerContent.datePicker.date ofType:[answer valueForKey:@"type"]]];
+  }
+  
+  UIButton* myButton = (UIButton*)[datePickerButtons objectAtIndex:datePickerAnswerIndex];
+  myButton.selected = true;
+  [myButton setTitle:[self stringFromDate:datePickerContent.datePicker.date ofType:[answer valueForKey:@"type"]] forState:UIControlStateNormal];
+  
+  self.datePickerAnswerIndex = -1;
+}
+- (void) datePickerCancel{
+  [self.popover dismissPopoverAnimated:NO];
+  self.datePickerAnswerIndex = -1;
+}
+
+- (NSDate *) dateFromString:(NSString *)str ofType:(NSString *)type {
+  
+  NSDateFormatter *nsdf = [[[NSDateFormatter alloc] init] autorelease];
+  if ([type isEqualToString:@"time"]) {
+    [nsdf setDateFormat:@"H:mm:ss"];
+  } else if([type isEqualToString:@"datetime"]) {
+    [nsdf setDateFormat:@"yyyy-MM-dd H:mm:ss"];
+  } else if([type isEqualToString:@"date"]){
+    [nsdf setDateFormat:@"yyyy-MM-dd"];
+  } else {
+    DLog(@"no matched type dateFromString ofType %@", type);
+  }
+  return [nsdf dateFromString:str];
+}
+
+- (NSString *) stringFromDate:(NSDate *)date ofType:(NSString *)type {
+  NSDateFormatter *nsdf = [[[NSDateFormatter alloc] init] autorelease];
+  if ([type isEqualToString:@"time"]) {
+    [nsdf setDateFormat:@"H:mm:ss"];
+  } else if([type isEqualToString:@"datetime"]) {
+    [nsdf setDateFormat:@"yyyy-MM-dd H:mm:ss"];
+  } else if([type isEqualToString:@"date"]){
+    [nsdf setDateFormat:@"yyyy-MM-dd"];
+  } else {
+    DLog(@"no matched type stringFromDate ofType %@", type);
+  }
+  return [nsdf stringFromDate:date];
 }
 
 #pragma mark -

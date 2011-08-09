@@ -167,6 +167,13 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
             x_cursor += float_response.frame.size.width;
             max_height = MAX(max_height, float_response.frame.size.height);
             [self addSubview:float_response];
+          }else if([@"date" isEqual:[answer valueForKey:@"type"]] || [@"datetime" isEqual:[answer valueForKey:@"type"]] || [@"time" isEqual:[answer valueForKey:@"type"]]){
+            // response type: date
+            self.pickerButton = [questionResponse setupDateButton:UIDatePickerModeDate forAnswer:answer];
+            pickerButton.frame = CGRectMake(0.0, height, [@"datetime" isEqual:[answer valueForKey:@"type"]] ? 170.0 : 100.0, 35.0);
+            
+            [self addSubview:pickerButton];
+            height += pickerButton.frame.size.height;
           }
           
           // add answer post text

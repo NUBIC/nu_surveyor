@@ -16,6 +16,8 @@
 		3B1FD619135E489500E14158 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD614135E489500E14158 /* SBJsonWriter.m */; };
 		3B1FD61B135E48B200E14158 /* ks.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FD61A135E48B200E14158 /* ks.json */; };
 		3B1FD61E135E48C000E14158 /* SurveyorQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */; };
+		3B1FDC4513E30B8F005C1422 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FDC4313E30B8F005C1422 /* DatePickerViewController.m */; };
+		3B1FDC4613E30B8F005C1422 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1FDC4413E30B8F005C1422 /* DatePickerViewController.xib */; };
 		3B336F8513A69B2000E43826 /* dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8113A69B2000E43826 /* dotted.png */; };
 		3B336F8613A69B2000E43826 /* dotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8213A69B2000E43826 /* dotted@2x.png */; };
 		3B336F8713A69B2000E43826 /* undotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B336F8313A69B2000E43826 /* undotted.png */; };
@@ -77,6 +79,9 @@
 		3B1FD61A135E48B200E14158 /* ks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ks.json; path = ../surveyor_ios/ks.json; sourceTree = "<group>"; };
 		3B1FD61C135E48C000E14158 /* SurveyorQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyorQuestionView.h; sourceTree = "<group>"; };
 		3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyorQuestionView.m; sourceTree = "<group>"; };
+		3B1FDC4213E30B8F005C1422 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		3B1FDC4313E30B8F005C1422 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		3B1FDC4413E30B8F005C1422 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
 		3B336F8113A69B2000E43826 /* dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted.png; sourceTree = "<group>"; };
 		3B336F8213A69B2000E43826 /* dotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted@2x.png"; sourceTree = "<group>"; };
 		3B336F8313A69B2000E43826 /* undotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undotted.png; sourceTree = "<group>"; };
@@ -234,6 +239,9 @@
 				3B336F9B13A6AF6000E43826 /* PickerViewController.h */,
 				3B336F9C13A6AF6000E43826 /* PickerViewController.m */,
 				3B336F9D13A6AF6000E43826 /* PickerViewController.xib */,
+				3B1FDC4213E30B8F005C1422 /* DatePickerViewController.h */,
+				3B1FDC4313E30B8F005C1422 /* DatePickerViewController.m */,
+				3B1FDC4413E30B8F005C1422 /* DatePickerViewController.xib */,
 				3BFF169F13DDF6950052D940 /* UUID.h */,
 				3BFF16A013DDF6950052D940 /* UUID.m */,
 				3B1FD61F135E48C500E14158 /* UIViews */,
@@ -366,6 +374,7 @@
 				3B336F9013A69CA700E43826 /* unchecked@2x.png in Resources */,
 				3B336F9F13A6AF6100E43826 /* PickerViewController.xib in Resources */,
 				3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */,
+				3B1FDC4613E30B8F005C1422 /* DatePickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +425,7 @@
 				3BFF169E13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld in Sources */,
 				3BFF16A113DDF6950052D940 /* UUID.m in Sources */,
 				3BF2ECB813DF40CF007A5347 /* QuestionResponse.m in Sources */,
+				3B1FDC4513E30B8F005C1422 /* DatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

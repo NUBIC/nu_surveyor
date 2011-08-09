@@ -26,4 +26,7 @@
 - (UIButton *) setupPickerButton;
 - (UITextField *) setupTextFieldWithFrame:(CGRect)frame forAnswer:(NSDictionary *)answer;
 - (UITextView *) setupTextViewWithFrame:(CGRect)frame forAnswer:(NSDictionary *)answer;
+- (UIButton *) setupDateButton:(UIDatePickerMode)mode forAnswer:(NSDictionary *)answer;
+- (NSDate *) dateFromString:(NSString *)str ofType:(NSString *)type;
+- (NSString *) stringFromDate:(NSDate *)date ofType:(NSString *)type;
 @end
