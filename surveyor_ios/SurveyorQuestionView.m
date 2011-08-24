@@ -56,6 +56,21 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
       height += question_text_label.frame.size.height + 5.0;
       [self addSubview:question_text_label];
       [question_text_label release];
+      
+    }
+    if ([qr.json valueForKey:@"help_text"]) {
+      // Question help text label wraps and expands height to fit
+      UILabel *question_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 15.0)];
+      
+      question_help_label.text = [qr.json valueForKey:@"help_text"];
+      
+      [question_help_label setUpMultiLineVerticalResizeWithFontSize:15.0];
+      question_help_label.font = [UIFont italicSystemFontOfSize:15.0];
+      question_help_label.textColor = RGB(100, 100, 100);
+      
+      height += question_help_label.frame.size.height + 5.0;
+      [self addSubview:question_help_label];
+      [question_help_label release];
     }
     if ([questionResponse.pick isEqualToString:@"one"] && questionResponse.answers) {
       // pick one (radio buttons)
@@ -110,8 +125,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
           if ([answer valueForKey:@"help"]) {
             UILabel *answer_help_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 24.0)];
             answer_help_label.text = [answer valueForKey:@"help"];
-            answer_help_label.textColor = [UIColor darkGrayColor];
-            [answer_help_label setUpMultiLineVerticalResizeWithFontSize:14.0];
+            answer_help_label.textColor = [UIColor lightGrayColor];
+            [answer_help_label setUpMultiLineVerticalResizeWithFontSize:12.0];
+            answer_help_label.font = [UIFont italicSystemFontOfSize:12.0];
             
             height += answer_help_label.frame.size.height;
             [self addSubview:answer_help_label];
