@@ -49,6 +49,8 @@
   [UIAppDelegate saveContext:@"RootViewController viewDidLoad"];
   self.responseSet = rs;
   detailViewController.responseSet = rs;
+  
+  detailViewController.pageControl.numberOfPages = [self numberOfSections];
 //  DLog(@"viewDidLoad responseSetId: %@", responseSetId);
 	
   if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
@@ -120,7 +122,7 @@
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
 	
-  return [[[dict objectForKey:@"survey"] objectForKey:@"sections"] count];
+  return [self numberOfSections];
 }
 
 
@@ -186,14 +188,35 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
   /*
    When a row is selected, set the detail view controller's detail item to the item associated with the selected row.
    */
   // detailViewController.detailItem = [NSString stringWithFormat:@"Row %d", indexPath.row];
   [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+  detailViewController.pageControl.currentPage = indexPath.row;
 }
 
+#pragma mark - Section navigation
+
+- (NSInteger) numberOfSections {
+  return [[[dict objectForKey:@"survey"] objectForKey:@"sections"] count];
+}
+- (void) nextSection{
+  if (([self.tableView indexPathForSelectedRow].row + 1) < [[[dict objectForKey:@"survey"] objectForKey:@"sections"] count]) {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row + 1) inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+  }
+  
+}
+- (void) prevSection{
+  if (([self.tableView indexPathForSelectedRow].row) > 0) {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row - 1) inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+  }
+  
+}
 
 #pragma mark -
 #pragma mark Memory management

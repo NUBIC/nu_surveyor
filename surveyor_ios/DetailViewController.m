@@ -25,7 +25,7 @@
 
 @implementation DetailViewController
 
-@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, responseSet, detailTextView, DetailScrollView, editView;
+@synthesize toolbar, popoverController, detailItem, detailDescriptionLabel, dict, editViews, responseSet, detailTextView, DetailScrollView, pageControl, editView;
 
 #pragma mark -
 #pragma mark Managing the detail item
@@ -49,6 +49,16 @@
 }
 
 - (void)configureView {
+  //
+  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedr:)];
+  r.direction = UISwipeGestureRecognizerDirectionRight;
+  
+  UISwipeGestureRecognizer *l = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedl:)];
+  l.direction = UISwipeGestureRecognizerDirectionLeft;
+  [self.DetailScrollView addGestureRecognizer:r];
+  [self.DetailScrollView addGestureRecognizer:l];
+
+  
   // Update the user interface for the detail item.
   
   for (UIView *subview in DetailScrollView.subviews) {
@@ -83,6 +93,18 @@
 
 }
 
+- (void)swipedr:(id*)sender {
+  if ((self.pageControl.currentPage) > 0) {
+    self.pageControl.currentPage = self.pageControl.currentPage - 1;
+  }
+  [UIAppDelegate.rootViewController prevSection];
+}
+- (void)swipedl:(id*)sender {
+  if ((self.pageControl.currentPage + 1) < self.pageControl.numberOfPages) {
+    self.pageControl.currentPage = self.pageControl.currentPage + 1;
+  }
+  [UIAppDelegate.rootViewController nextSection];
+}
 
 - (void)showScrollViewWidth {
   self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%f", DetailScrollView.frame.size.width];

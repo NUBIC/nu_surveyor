@@ -18,6 +18,7 @@
   UILabel *detailDescriptionLabel;
 	UITextView *detailTextView;
   UIScrollView *DetailScrollView;
+  UIPageControl *pageControl;
 	
 	NSDictionary *dict;
   NSMutableArray *editViews;
@@ -32,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *detailDescriptionLabel;
 @property (nonatomic, retain) IBOutlet UITextView *detailTextView;
 @property (nonatomic, retain) IBOutlet UIScrollView *DetailScrollView;
+@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSMutableArray *editViews;

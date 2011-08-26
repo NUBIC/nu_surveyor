@@ -21,4 +21,7 @@
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSManagedObject *responseSet;
 
+- (void) nextSection;
+- (void) prevSection;
+- (NSInteger) numberOfSections;
 @end
