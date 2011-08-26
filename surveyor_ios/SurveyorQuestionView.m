@@ -37,6 +37,9 @@ static int qCount; // http://jongampark.wordpress.com/2009/04/25/class-variable-
   if((self = [super initWithFrame:frame])) {
     self.questionResponse = qr;
     float height = 5.0;
+    if ([[qr.json valueForKey:@"display_type"] isEqualToString:@"hidden"]) {
+      return self;
+    }
     if ([qr.json valueForKey:@"text"]) {
       // Question text label wraps and expands height to fit
       UILabel *question_text_label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, height, frame.size.width, 24.0)];
