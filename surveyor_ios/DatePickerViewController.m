@@ -10,7 +10,7 @@
 
 @implementation DatePickerViewController
 
-@synthesize datePicker, bar;
+@synthesize datePicker, bar, now;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,11 +41,14 @@
 {
 //  DLog(@"%@",self.bar);
 //  DLog(@"%@",self.datePicker);
+  self.bar.title = title;
   self.bar.rightBarButtonItem.target = delegate;
   self.bar.rightBarButtonItem.action = @selector(datePickerDone);
   self.bar.leftBarButtonItem.target = delegate;
   self.bar.leftBarButtonItem.action = @selector(datePickerCancel);
-  self.bar.title = title;
+  self.now.target = delegate;
+  self.now.action = @selector(nowPressed);
+  
 }
 
 #pragma mark - View lifecycle
@@ -53,7 +56,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
+  self.contentSizeForViewInPopover = CGSizeMake(384.0, 304.0);
   self.bar.title = @"hi";
   // Do any additional setup after loading the view from its nib.
 }

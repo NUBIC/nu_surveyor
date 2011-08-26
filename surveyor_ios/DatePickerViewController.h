@@ -12,10 +12,12 @@
 @interface DatePickerViewController : UIViewController {
   UIDatePicker *picker;
   UINavigationItem *bar;
+  UIBarButtonItem *now;
 }
 
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UINavigationItem *bar;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *now;
 
 -(void)setupDelegate:(id)delegate withTitle:(NSString *)title;
 

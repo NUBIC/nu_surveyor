@@ -26,6 +26,7 @@
 @property (nonatomic,assign) NSInteger datePickerAnswerIndex;
 
 - (UIToolbar *)surveyorKeyboardAccessory;
+- (void) datePickerDone;
 @end
 
 @implementation QuestionResponse
@@ -420,10 +421,13 @@
     
     if([type isEqualToString:@"datetime"]){
       datePickerContent.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+      datePickerContent.now.title = @"Now";
     }else if([type isEqualToString:@"time"]){
       datePickerContent.datePicker.datePickerMode = UIDatePickerModeTime;
+      datePickerContent.now.title = @"Now";
     }else{
       datePickerContent.datePicker.datePickerMode = UIDatePickerModeDate;
+      datePickerContent.now.title = @"Today";
     }
     
     NSManagedObject *existingResponse = [self responseForAnswer:[answer valueForKey:@"uuid"]];
@@ -434,6 +438,10 @@
     [self.popover presentPopoverFromRect:myButton.frame inView:myButton.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
     
   }
+}
+- (void) nowPressed{
+  datePickerContent.datePicker.date = [NSDate new];
+  [self datePickerDone];
 }
 - (void) datePickerDone{
   [popover dismissPopoverAnimated:NO];
