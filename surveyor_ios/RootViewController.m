@@ -13,8 +13,7 @@
 
 @implementation RootViewController
 
-@synthesize detailViewController, dict, responseSet;
-
+@synthesize detailViewController, dict, responseSet, currentSection;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -54,7 +53,7 @@
 //  DLog(@"viewDidLoad responseSetId: %@", responseSetId);
 	
   if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
-    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]];
+    [self showSection:0];
   }
   
 	//	NSURL *url = [NSURL URLWithString:@"http://sb/dsl.json"];
@@ -192,8 +191,7 @@
    When a row is selected, set the detail view controller's detail item to the item associated with the selected row.
    */
   // detailViewController.detailItem = [NSString stringWithFormat:@"Row %d", indexPath.row];
-  [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
-  detailViewController.pageControl.currentPage = indexPath.row;
+  [self showSection:indexPath.row];
 }
 
 #pragma mark - Section navigation
@@ -201,11 +199,17 @@
 - (NSInteger) numberOfSections {
   return [[[dict objectForKey:@"survey"] objectForKey:@"sections"] count];
 }
+- (void) showSection:(NSUInteger)index {
+  self.currentSection = index;
+  [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:index]];
+  detailViewController.pageControl.currentPage = index;
+}
+
 - (void) nextSection{
   if (([self.tableView indexPathForSelectedRow].row + 1) < [[[dict objectForKey:@"survey"] objectForKey:@"sections"] count]) {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row + 1) inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+    [self showSection:indexPath.row];
   }
   
 }
@@ -213,7 +217,7 @@
   if (([self.tableView indexPathForSelectedRow].row) > 0) {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row - 1) inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row]];
+    [self showSection:indexPath.row];
   }
   
 }

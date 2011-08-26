@@ -284,7 +284,7 @@
   UITextField *textField = [[[UITextField alloc] initWithFrame:frame] autorelease];
   textField.delegate = self;
   textField.returnKeyType = UIReturnKeyDone;
-  textField.inputAccessoryView = [self surveyorKeyboardAccessory];
+//  textField.inputAccessoryView = [self surveyorKeyboardAccessory];
   [detailViewController.editViews addObject:textField];
   [textFieldsAndViews setValue:textField forKey:[answer valueForKey:@"uuid"]];
   
@@ -306,7 +306,7 @@
   UITextView *textView = [[[UITextView alloc] initWithFrame:frame] autorelease];
   textView.delegate = self;
   textView.returnKeyType = UIReturnKeyDefault;
-  textView.inputAccessoryView = [self surveyorKeyboardAccessory];
+//  textView.inputAccessoryView = [self surveyorKeyboardAccessory];
   [detailViewController.editViews addObject:textView];
   [textFieldsAndViews setValue:textView forKey:[answer valueForKey:@"uuid"]];
   
@@ -496,11 +496,12 @@
     CGRect accessFrame = CGRectMake(0.0, 0.0, 768.0, 44.0);
     surveyorKeyboardAccessory = [[UIToolbar alloc] initWithFrame:accessFrame];
     surveyorKeyboardAccessory.barStyle = UIBarStyleBlackTranslucent;
-    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"Prev" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(prevField)];
-    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(nextField)];
+//    UIBarButtonItem *prev = [[UIBarButtonItem alloc] initWithTitle:@"Prev" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(prevField)];
+//    UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStyleBordered target:detailViewController action:@selector(nextField)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:detailViewController action:@selector(editViewResignFirstResponder)];
-    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:prev, next, space, doneButton, nil];
+//    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:prev, next, space, doneButton, nil];
+    surveyorKeyboardAccessory.items = [NSArray arrayWithObjects:space, doneButton, nil];
     
   }
   return surveyorKeyboardAccessory;

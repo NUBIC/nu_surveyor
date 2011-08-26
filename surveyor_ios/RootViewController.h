@@ -15,13 +15,16 @@
   DetailViewController *detailViewController;
 	NSDictionary *dict;
   NSManagedObjectID *responseSetId;
+  NSUInteger currentSection;
 }
 
 @property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSManagedObject *responseSet;
+@property (nonatomic, assign) NSUInteger currentSection;
 
 - (void) nextSection;
 - (void) prevSection;
 - (NSInteger) numberOfSections;
+- (void) showSection:(NSUInteger) index;
 @end

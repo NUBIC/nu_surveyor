@@ -50,10 +50,10 @@
 
 - (void)configureView {
   //
-  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedr:)];
+  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:UIAppDelegate.rootViewController action:@selector(prevSection)];
   r.direction = UISwipeGestureRecognizerDirectionRight;
   
-  UISwipeGestureRecognizer *l = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedl:)];
+  UISwipeGestureRecognizer *l = [[UISwipeGestureRecognizer alloc] initWithTarget:UIAppDelegate.rootViewController action:@selector(nextSection)];
   l.direction = UISwipeGestureRecognizerDirectionLeft;
   [self.DetailScrollView addGestureRecognizer:r];
   [self.DetailScrollView addGestureRecognizer:l];
@@ -63,7 +63,7 @@
   
   for (UIView *subview in DetailScrollView.subviews) {
     // Don't remove the scroll indicator
-    if ([subview isKindOfClass:[SurveyorQuestionView class]]) {
+    if ([subview isKindOfClass:[SurveyorQuestionView class]] || [subview isKindOfClass:[UILabel class]] || [subview isKindOfClass:[UIButton class]]) {
       [subview removeFromSuperview];
     }
   }
@@ -93,43 +93,32 @@
 
 }
 
-- (void)swipedr:(id*)sender {
-  if ((self.pageControl.currentPage) > 0) {
-    self.pageControl.currentPage = self.pageControl.currentPage - 1;
-  }
-  [UIAppDelegate.rootViewController prevSection];
-}
-- (void)swipedl:(id*)sender {
-  if ((self.pageControl.currentPage + 1) < self.pageControl.numberOfPages) {
-    self.pageControl.currentPage = self.pageControl.currentPage + 1;
-  }
-  [UIAppDelegate.rootViewController nextSection];
-}
-
 - (void)showScrollViewWidth {
   self.detailDescriptionLabel.text = [NSString stringWithFormat:@"%f", DetailScrollView.frame.size.width];
 };
 - (void)populateSection {
   [SurveyorQuestionView resetNumber];
-  float y = 0.0;
+  float y = 5.0;
+  
+  if(UIAppDelegate.rootViewController.currentSection > 0) {
+    UIButton *prev_section_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  prev_section_button.frame = CGRectMake(10.0, y, 170.0, 44.0);
+    [prev_section_button setTitle:@"<< Previous section" forState:UIControlStateNormal];
+    [prev_section_button addTarget:UIAppDelegate.rootViewController action:@selector(prevSection) forControlEvents:UIControlEventTouchUpInside];
+    y = y + prev_section_button.frame.size.height + 5.0;
+    [DetailScrollView addSubview:prev_section_button];
+  }  
   
   // Section title
   UILabel *section_title = [[[UILabel alloc] init] autorelease];
-//  UILabel *section_title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, DetailScrollView.frame.size.width, 5)] autorelease];
-
   section_title.font = [UIFont fontWithName:section_title.font.fontName size:22.0];
   section_title.lineBreakMode = UILineBreakModeWordWrap;
   section_title.numberOfLines = 0;
   section_title.text = [detailItem valueForKey:@"title"];
-//  section_title.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//  section_title.contentMode = UIViewContentModeTopLeft;
-//  section_title.backgroundColor = [UIColor greenColor];
-  y = [section_title.text sizeWithFont:section_title.font constrainedToSize:CGSizeMake([self widthBasedOnOrientation], 9999) lineBreakMode:UILineBreakModeWordWrap].height;
-  section_title.frame = CGRectMake(10, 10.0, [self widthBasedOnOrientation], y);
-//  [section_title sizeToFit];
+  section_title.frame = CGRectMake(10.0, y, [self widthBasedOnOrientation], [section_title.text sizeWithFont:section_title.font constrainedToSize:CGSizeMake([self widthBasedOnOrientation], 9999) lineBreakMode:UILineBreakModeWordWrap].height);
   [DetailScrollView addSubview:section_title];
   
-  y+= 20.0;
+  y+= section_title.frame.size.height;
   
   // Questions and groups  
 	for(NSDictionary *qg in [detailItem objectForKey:@"questions_and_groups"]){
@@ -151,7 +140,18 @@
     }
     //    NSLog(@"y: %f", y);
   }
+  
+  if((UIAppDelegate.rootViewController.currentSection + 1) < UIAppDelegate.rootViewController.numberOfSections) {
+    UIButton *prev_section_button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    prev_section_button.frame = CGRectMake(DetailScrollView.frame.size.width/2, y, 170.0, 44.0);
+    [prev_section_button setTitle:@"Next section >>" forState:UIControlStateNormal];
+    [prev_section_button addTarget:UIAppDelegate.rootViewController action:@selector(nextSection) forControlEvents:UIControlEventTouchUpInside];
+    y = y + prev_section_button.frame.size.height + 5.0;
+    [DetailScrollView addSubview:prev_section_button];
+  }
+
   DetailScrollView.contentSize = CGSizeMake(DetailScrollView.frame.size.width, y+5.0);
+  DetailScrollView.contentOffset = CGPointMake(0.0, 0.0);
 }
 
 #pragma mark -

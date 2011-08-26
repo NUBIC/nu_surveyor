@@ -220,7 +220,7 @@ BOOL RSRunningOnOS4OrBetter(void) {
   [_splitViewController release];
   [_rootViewController release];
   [_detailViewController release];
-    [super dealloc];
+  [super dealloc];
 }
 
 @end
