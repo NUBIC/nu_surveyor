@@ -7,7 +7,7 @@
 //
 
 #import "surveyor_iosTests.h"
-
+#import "UUID.h"
 
 @implementation surveyor_iosTests
 
@@ -25,9 +25,10 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in surveyor_iosTests");
+- (void)testUUID{
+  NSString *str = [UUID generateUuidString];
+  STAssertEquals([str length], (NSUInteger)36, @"UUID length should be 36");
 }
+
 
 @end
