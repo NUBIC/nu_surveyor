@@ -48,10 +48,10 @@
 {
 	[super handleSelectionInTableView:aTableView];
 	
-	NSInteger rowIndex = [aTableView indexPathForCell:self].row;
-	[((PageViewController *)aTableView.delegate).navigationController
-		pushViewController:[[[DetailViewController alloc] initWithRowIndex:rowIndex] autorelease]
-		animated:YES];
+//	NSInteger rowIndex = [aTableView indexPathForCell:self].row;
+//	[((PageViewController *)aTableView.delegate).navigationController
+//		pushViewController:[[[DetailViewController alloc] initWithRowIndex:rowIndex] autorelease]
+//		animated:YES];
 }
 
 //

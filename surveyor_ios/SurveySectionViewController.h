@@ -9,7 +9,12 @@
 #import "PageViewController.h"
 
 @interface SurveySectionViewController : PageViewController {
+  id detailItem;
+
 }
+@property (nonatomic, retain) id detailItem;
+
+- (void)createHeader;
 
 @end
 

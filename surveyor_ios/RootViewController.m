@@ -201,7 +201,7 @@
 }
 - (void) showSection:(NSUInteger)index {
   self.currentSection = index;
-//  [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:index]];
+  [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:index]];
 //  detailViewController.pageControl.currentPage = index;
 }
 

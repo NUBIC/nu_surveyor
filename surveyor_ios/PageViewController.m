@@ -23,6 +23,7 @@
 
 #import "PageViewController.h"
 #import "PageCell.h"
+#import "UILabel+Resize.h"
 
 static const double PageViewControllerTextAnimationDuration = 0.33;
 
@@ -729,7 +730,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 	viewForHeaderInSection:(NSInteger)section
 {
 	NSString *title = [self tableView:aTableView titleForHeaderInSection:section];
-	if ([title length] == 0)
+  NSString *subTitle = [self tableView:aTableView subTitleForHeaderInSection:section];
+	if ([title length] == 0 && [subTitle length] == 0)
 	{
 		return nil;
 	}
@@ -749,6 +751,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 			const CGFloat PageViewSectionPlainHeaderHeight = 22;
 			const CGFloat PageViewSectionGroupHeaderMargin = 20;
 			const CGFloat PageViewSectionPlainHeaderMargin = 5;
+      const CGFloat BottomMargin = 5;
+      CGFloat y = 0.0;
 
 			CGRect frame = CGRectMake(0, 0, tableView.bounds.size.width,
 				isGrouped ? PageViewSectionGroupHeaderHeight : PageViewSectionPlainHeaderHeight);
@@ -762,21 +766,49 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 			frame.origin.x = isGrouped ?
 				PageViewSectionGroupHeaderMargin : PageViewSectionPlainHeaderMargin;
 			frame.size.width -= 2.0 * frame.origin.x;
-
-			UILabel *label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-			label.text = [self tableView:aTableView titleForHeaderInSection:[headerViews count]];
-			label.backgroundColor = [UIColor clearColor];
-			label.textColor = isGrouped ?
+      
+      if ([title length] > 0) {
+        // Title label wraps and expands height to fit
+        UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, y, frame.size.width, 10.0)] autorelease];
+        label.text = title;
+        [label setUpMultiLineVerticalResizeWithFontSize:[UIFont labelFontSize] + (isGrouped ? 0 : 1)];
+        label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize] + (isGrouped ? 0 : 1)];
+        
+        label.backgroundColor = [UIColor clearColor];
+        label.textColor = isGrouped ?
 				[UIColor colorWithRed:0.3 green:0.33 blue:0.43 alpha:1.0] :
 				[UIColor whiteColor];
-			label.shadowColor = isGrouped ? [UIColor whiteColor] : [UIColor darkGrayColor];
-			label.shadowOffset = CGSizeMake(0, 1.0);
-			label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize] + (isGrouped ? 0 : 1)];
-			label.lineBreakMode = UILineBreakModeMiddleTruncation;
-			label.adjustsFontSizeToFitWidth = YES;
-			label.minimumFontSize = 12.0;
-			[headerView addSubview:label];
-			
+        label.shadowColor = isGrouped ? [UIColor whiteColor] : [UIColor darkGrayColor];
+        label.shadowOffset = CGSizeMake(0, 1.0);
+        
+//        label.lineBreakMode = UILineBreakModeMiddleTruncation;
+//        label.adjustsFontSizeToFitWidth = YES;
+//        label.minimumFontSize = 12.0;
+        [headerView addSubview:label];
+        y += label.frame.size.height + BottomMargin;
+      }
+      if ([subTitle length] > 0) {
+        // Subtitle label wraps and expands height to fit
+        UILabel *subTitleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, y, frame.size.width, 10.0)] autorelease];
+        subTitleLabel.text = subTitle;
+        [subTitleLabel setUpMultiLineVerticalResizeWithFontSize:[UIFont labelFontSize] - (isGrouped ? 3 : 2)];
+        subTitleLabel.font = [UIFont italicSystemFontOfSize:[UIFont labelFontSize] - (isGrouped ? 3 : 2)];
+        
+        subTitleLabel.backgroundColor = [UIColor clearColor];
+        subTitleLabel.textColor = isGrouped ?
+        [UIColor colorWithRed:0.39 green:0.39 blue:0.39 alpha:1.0] :
+        [UIColor whiteColor];
+        subTitleLabel.shadowColor = isGrouped ? [UIColor whiteColor] : [UIColor darkGrayColor];
+        subTitleLabel.shadowOffset = CGSizeMake(0, 1.0);
+        
+//        subTitleLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+//        subTitleLabel.adjustsFontSizeToFitWidth = YES;
+//        subTitleLabel.minimumFontSize = 12.0;
+        [headerView addSubview:subTitleLabel];
+        y += subTitleLabel.frame.size.height + BottomMargin;
+      }
+      frame.size.height = y;
+      headerView.frame = frame;
 			[headerViews addObject:headerView];
 		}
 	}
@@ -798,7 +830,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 - (CGFloat)tableView:(UITableView *)aTableView heightForHeaderInSection:(NSInteger)section
 {
 	NSString *title = [self tableView:aTableView titleForHeaderInSection:section];
-	if ([title length] == 0)
+  NSString *subTitle = [self tableView:aTableView subTitleForHeaderInSection:section];
+	if ([title length] == 0 && [subTitle length] == 0)
 	{
 		return 0;
 	}
@@ -899,6 +932,23 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 //
 - (NSString *)tableView:(UITableView *)aTableView
 	titleForHeaderInSection:(NSInteger)section
+{
+	return nil;
+}
+
+//
+// tableView:subTitleForHeaderInSection:
+//
+// Sets the section header subtitle
+//
+// Parameters:
+//    aTableView - the table view
+//    section - the section
+//
+// returns the section header as a string
+//
+- (NSString *)tableView:(UITableView *)aTableView
+  subTitleForHeaderInSection:(NSInteger)section
 {
 	return nil;
 }

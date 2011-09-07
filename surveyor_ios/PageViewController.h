@@ -69,6 +69,7 @@
 - (void)hideLoadingIndicator;
 - (void)refresh:(id)sender;
 - (void)headerSectionsReordered;
+- (NSString *)tableView:(UITableView *)aTableView subTitleForHeaderInSection:(NSInteger)section;
 
 @end
 
