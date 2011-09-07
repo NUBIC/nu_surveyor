@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@class DetailViewController;
+//@class DetailViewController;
+@class SurveySectionViewController;
 
 @interface RootViewController : UITableViewController {
-  DetailViewController *detailViewController;
+//  DetailViewController *detailViewController;
+  SurveySectionViewController *detailViewController;
 	NSDictionary *dict;
   NSManagedObjectID *responseSetId;
   NSUInteger currentSection;
 }
 
-@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+//@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) IBOutlet SurveySectionViewController *detailViewController;
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NSManagedObject *responseSet;
 @property (nonatomic, assign) NSUInteger currentSection;

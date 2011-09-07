@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		3B160CD0135E1D6C007FF20C /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */; };
 		3B160CDE135E1D9D007FF20C /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3B160CDD135E1D9D007FF20C /* README */; };
+		3B1A3C621417C1E900BFE2EF /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C5D1417C1E900BFE2EF /* PageCell.m */; };
+		3B1A3C631417C1E900BFE2EF /* PageCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C5F1417C1E900BFE2EF /* PageCellBackground.m */; };
+		3B1A3C641417C1E900BFE2EF /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C611417C1E900BFE2EF /* PageViewController.m */; };
+		3B1A3C681417C31900BFE2EF /* SurveySectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C671417C31900BFE2EF /* SurveySectionViewController.m */; };
+		3B1A3C6F1417C45E00BFE2EF /* LabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C6A1417C45E00BFE2EF /* LabelCell.m */; };
+		3B1A3C701417C45E00BFE2EF /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C6C1417C45E00BFE2EF /* TextFieldCell.m */; };
+		3B1A3C711417C45E00BFE2EF /* NibLoadedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C6E1417C45E00BFE2EF /* NibLoadedCell.m */; };
+		3B1A3C751417C47D00BFE2EF /* GradientBackgroundTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C741417C47D00BFE2EF /* GradientBackgroundTable.m */; };
+		3B1A3C781417C49300BFE2EF /* RoundRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A3C771417C49300BFE2EF /* RoundRect.m */; };
+		3B1A3C7A1417C75700BFE2EF /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1A3C791417C75700BFE2EF /* NibCell.xib */; };
 		3B1FD615135E489500E14158 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */; };
 		3B1FD616135E489500E14158 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD60E135E489500E14158 /* NSString+SBJSON.m */; };
 		3B1FD617135E489500E14158 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD610135E489500E14158 /* SBJsonBase.m */; };
@@ -65,6 +75,25 @@
 /* Begin PBXFileReference section */
 		3B160CCE135E1D6C007FF20C /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
 		3B160CDD135E1D9D007FF20C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = SOURCE_ROOT; };
+		3B1A3C5C1417C1E900BFE2EF /* PageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCell.h; sourceTree = "<group>"; };
+		3B1A3C5D1417C1E900BFE2EF /* PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
+		3B1A3C5E1417C1E900BFE2EF /* PageCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCellBackground.h; sourceTree = "<group>"; };
+		3B1A3C5F1417C1E900BFE2EF /* PageCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCellBackground.m; sourceTree = "<group>"; };
+		3B1A3C601417C1E900BFE2EF /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		3B1A3C611417C1E900BFE2EF /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
+		3B1A3C661417C31900BFE2EF /* SurveySectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveySectionViewController.h; sourceTree = "<group>"; };
+		3B1A3C671417C31900BFE2EF /* SurveySectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveySectionViewController.m; sourceTree = "<group>"; };
+		3B1A3C691417C45E00BFE2EF /* LabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelCell.h; sourceTree = "<group>"; };
+		3B1A3C6A1417C45E00BFE2EF /* LabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelCell.m; sourceTree = "<group>"; };
+		3B1A3C6B1417C45E00BFE2EF /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		3B1A3C6C1417C45E00BFE2EF /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		3B1A3C6D1417C45E00BFE2EF /* NibLoadedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NibLoadedCell.h; sourceTree = "<group>"; };
+		3B1A3C6E1417C45E00BFE2EF /* NibLoadedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NibLoadedCell.m; sourceTree = "<group>"; };
+		3B1A3C731417C47D00BFE2EF /* GradientBackgroundTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientBackgroundTable.h; sourceTree = "<group>"; };
+		3B1A3C741417C47D00BFE2EF /* GradientBackgroundTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientBackgroundTable.m; sourceTree = "<group>"; };
+		3B1A3C761417C49300BFE2EF /* RoundRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundRect.h; sourceTree = "<group>"; };
+		3B1A3C771417C49300BFE2EF /* RoundRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundRect.m; sourceTree = "<group>"; };
+		3B1A3C791417C75700BFE2EF /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
 		3B1FD60A135E489500E14158 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		3B1FD60B135E489500E14158 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		3B1FD60C135E489500E14158 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -161,6 +190,42 @@
 			path = surveys;
 			sourceTree = "<group>";
 		};
+		3B1A3C5A1417C1D500BFE2EF /* PageView Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				3B1A3C5C1417C1E900BFE2EF /* PageCell.h */,
+				3B1A3C5D1417C1E900BFE2EF /* PageCell.m */,
+				3B1A3C5E1417C1E900BFE2EF /* PageCellBackground.h */,
+				3B1A3C5F1417C1E900BFE2EF /* PageCellBackground.m */,
+				3B1A3C601417C1E900BFE2EF /* PageViewController.h */,
+				3B1A3C611417C1E900BFE2EF /* PageViewController.m */,
+			);
+			name = "PageView Hierarchy";
+			sourceTree = "<group>";
+		};
+		3B1A3C651417C21F00BFE2EF /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3B9BB050135E1D37000450BC /* surveyor_ios-Prefix.pch */,
+				3B9BB051135E1D37000450BC /* main.m */,
+			);
+			name = "Other Sources";
+			path = surveyor_ios;
+			sourceTree = "<group>";
+		};
+		3B1A3C721417C46200BFE2EF /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3B1A3C691417C45E00BFE2EF /* LabelCell.h */,
+				3B1A3C6A1417C45E00BFE2EF /* LabelCell.m */,
+				3B1A3C6B1417C45E00BFE2EF /* TextFieldCell.h */,
+				3B1A3C6C1417C45E00BFE2EF /* TextFieldCell.m */,
+				3B1A3C6D1417C45E00BFE2EF /* NibLoadedCell.h */,
+				3B1A3C6E1417C45E00BFE2EF /* NibLoadedCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
 		3B1FD609135E489500E14158 /* json-framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,15 +245,19 @@
 			path = surveyor_ios/Classes;
 			sourceTree = "<group>";
 		};
-		3B1FD61F135E48C500E14158 /* UIViews */ = {
+		3B1FD61F135E48C500E14158 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				3B1FD61C135E48C000E14158 /* SurveyorQuestionView.h */,
 				3B1FD61D135E48C000E14158 /* SurveyorQuestionView.m */,
 				3B336F9413A69D9300E43826 /* UILabel+Resize.h */,
 				3B336F9513A69D9300E43826 /* UILabel+Resize.m */,
+				3B1A3C731417C47D00BFE2EF /* GradientBackgroundTable.h */,
+				3B1A3C741417C47D00BFE2EF /* GradientBackgroundTable.m */,
+				3B1A3C761417C49300BFE2EF /* RoundRect.h */,
+				3B1A3C771417C49300BFE2EF /* RoundRect.m */,
 			);
-			name = UIViews;
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		3B9BB035135E1D37000450BC = {
@@ -196,6 +265,8 @@
 			children = (
 				3B9BB04A135E1D37000450BC /* surveyor_ios */,
 				3B160CCC135E1D6B007FF20C /* surveys */,
+				3B9BB04B135E1D37000450BC /* Resources */,
+				3B1A3C651417C21F00BFE2EF /* Other Sources */,
 				3B9BB06D135E1D37000450BC /* surveyor_iosTests */,
 				3B9BB043135E1D37000450BC /* Frameworks */,
 				3B9BB041135E1D37000450BC /* Products */,
@@ -228,31 +299,35 @@
 			children = (
 				3B9BB053135E1D37000450BC /* surveyor_iosAppDelegate.h */,
 				3B9BB054135E1D37000450BC /* surveyor_iosAppDelegate.m */,
-				3B9BB056135E1D37000450BC /* MainWindow.xib */,
 				3B9BB05F135E1D37000450BC /* RootViewController.h */,
 				3B9BB060135E1D37000450BC /* RootViewController.m */,
 				3B9BB059135E1D37000450BC /* DetailViewController.h */,
 				3B9BB05A135E1D37000450BC /* DetailViewController.m */,
-				3B9BB05C135E1D37000450BC /* DetailView.xib */,
+				3B1A3C661417C31900BFE2EF /* SurveySectionViewController.h */,
+				3B1A3C671417C31900BFE2EF /* SurveySectionViewController.m */,
 				3BF2ECB613DF40CF007A5347 /* QuestionResponse.h */,
 				3BF2ECB713DF40CF007A5347 /* QuestionResponse.m */,
 				3B336F9B13A6AF6000E43826 /* PickerViewController.h */,
 				3B336F9C13A6AF6000E43826 /* PickerViewController.m */,
-				3B336F9D13A6AF6000E43826 /* PickerViewController.xib */,
 				3B1FDC4213E30B8F005C1422 /* DatePickerViewController.h */,
 				3B1FDC4313E30B8F005C1422 /* DatePickerViewController.m */,
-				3B1FDC4413E30B8F005C1422 /* DatePickerViewController.xib */,
 				3BFF169F13DDF6950052D940 /* UUID.h */,
 				3BFF16A013DDF6950052D940 /* UUID.m */,
-				3B1FD61F135E48C500E14158 /* UIViews */,
-				3B9BB04B135E1D37000450BC /* Supporting Files */,
+				3B1A3C5A1417C1D500BFE2EF /* PageView Hierarchy */,
+				3B1A3C721417C46200BFE2EF /* Custom Cells */,
+				3B1FD61F135E48C500E14158 /* Custom Views */,
 			);
 			path = surveyor_ios;
 			sourceTree = "<group>";
 		};
-		3B9BB04B135E1D37000450BC /* Supporting Files */ = {
+		3B9BB04B135E1D37000450BC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B1A3C791417C75700BFE2EF /* NibCell.xib */,
+				3B9BB056135E1D37000450BC /* MainWindow.xib */,
+				3B9BB05C135E1D37000450BC /* DetailView.xib */,
+				3B1FDC4413E30B8F005C1422 /* DatePickerViewController.xib */,
+				3B336F9D13A6AF6000E43826 /* PickerViewController.xib */,
 				3B336F8913A69CA700E43826 /* checked.png */,
 				3B336F8A13A69CA700E43826 /* checked@2x.png */,
 				3B336F8B13A69CA700E43826 /* unchecked.png */,
@@ -264,11 +339,10 @@
 				3B160CDD135E1D9D007FF20C /* README */,
 				3B9BB04C135E1D37000450BC /* surveyor_ios-Info.plist */,
 				3B9BB04D135E1D37000450BC /* InfoPlist.strings */,
-				3B9BB050135E1D37000450BC /* surveyor_ios-Prefix.pch */,
-				3B9BB051135E1D37000450BC /* main.m */,
 				3BFF169C13DDC6050052D940 /* surveyor_ios_model.xcdatamodeld */,
 			);
-			name = "Supporting Files";
+			name = Resources;
+			path = surveyor_ios;
 			sourceTree = "<group>";
 		};
 		3B9BB06D135E1D37000450BC /* surveyor_iosTests */ = {
@@ -375,6 +449,7 @@
 				3B336F9F13A6AF6100E43826 /* PickerViewController.xib in Resources */,
 				3BFF169413DDB3B80052D940 /* ks_with_uuid.json in Resources */,
 				3B1FDC4613E30B8F005C1422 /* DatePickerViewController.xib in Resources */,
+				3B1A3C7A1417C75700BFE2EF /* NibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +501,15 @@
 				3BFF16A113DDF6950052D940 /* UUID.m in Sources */,
 				3BF2ECB813DF40CF007A5347 /* QuestionResponse.m in Sources */,
 				3B1FDC4513E30B8F005C1422 /* DatePickerViewController.m in Sources */,
+				3B1A3C621417C1E900BFE2EF /* PageCell.m in Sources */,
+				3B1A3C631417C1E900BFE2EF /* PageCellBackground.m in Sources */,
+				3B1A3C641417C1E900BFE2EF /* PageViewController.m in Sources */,
+				3B1A3C681417C31900BFE2EF /* SurveySectionViewController.m in Sources */,
+				3B1A3C6F1417C45E00BFE2EF /* LabelCell.m in Sources */,
+				3B1A3C701417C45E00BFE2EF /* TextFieldCell.m in Sources */,
+				3B1A3C711417C45E00BFE2EF /* NibLoadedCell.m in Sources */,
+				3B1A3C751417C47D00BFE2EF /* GradientBackgroundTable.m in Sources */,
+				3B1A3C781417C49300BFE2EF /* RoundRect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
