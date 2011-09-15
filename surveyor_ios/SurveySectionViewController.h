@@ -8,13 +8,22 @@
 
 #import "PageViewController.h"
 
-@interface SurveySectionViewController : PageViewController {
+@interface SurveySectionViewController : PageViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextViewDelegate> {
   id detailItem;
-
+  UIPopoverController *popoverController;
+  UIToolbar *toolbar;
+  UIPageControl *pageControl;
+  UILabel *detailDescriptionLabel;
 }
 @property (nonatomic, retain) id detailItem;
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) IBOutlet UILabel *detailDescriptionLabel;
 
 - (void)createHeader;
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath;
++ (Class) classForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer;
 
 @end
 

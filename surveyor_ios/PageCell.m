@@ -22,7 +22,7 @@
 //
 
 #import "PageCell.h"
-#import "PageCellBackground.h"
+//#import "PageCellBackground.h"
 #import "PageViewController.h"
 
 const CGFloat PageCellDefaultRowHeight = 44.0;
@@ -67,10 +67,10 @@ const CGFloat PageCellDefaultRowHeight = 44.0;
 //
 // returns the subclass of PageCellBackground used for drawing the background
 //
-+ (Class)pageCellBackgroundClass
-{
-	return [PageCellBackground class];
-}
+//+ (Class)pageCellBackgroundClass
+//{
+//	return [PageCellBackground class];
+//}
 
 //
 // rowHeight
@@ -202,29 +202,29 @@ const CGFloat PageCellDefaultRowHeight = 44.0;
 	tableView:(UITableView *)aTableView
 	indexPath:(NSIndexPath *)anIndexPath
 {
-	if (!self.backgroundView)
-	{
-		PageCellBackground *cellBackgroundView =
-			[[[[[self class] pageCellBackgroundClass] alloc]
-				initSelected:NO
-				grouped:aTableView.style == UITableViewStyleGrouped]
-			autorelease];
-		self.backgroundView = cellBackgroundView;
-		PageCellBackground *cellSelectionView =
-			[[[[[self class] pageCellBackgroundClass] alloc]
-				initSelected:YES
-				grouped:aTableView.style == UITableViewStyleGrouped]
-			autorelease];
-		self.selectedBackgroundView = cellSelectionView;
-	}
-	
-	if (aTableView.style == UITableViewStyleGrouped)
-	{
-		PageCellGroupPosition position = 
-			[PageCellBackground positionForIndexPath:anIndexPath inTableView:aTableView];
-		((PageCellBackground *)self.backgroundView).position = position;
-		((PageCellBackground *)self.selectedBackgroundView).position = position;
-	}
+//	if (!self.backgroundView)
+//	{
+//		PageCellBackground *cellBackgroundView =
+//			[[[[[self class] pageCellBackgroundClass] alloc]
+//				initSelected:NO
+//				grouped:aTableView.style == UITableViewStyleGrouped]
+//			autorelease];
+//		self.backgroundView = cellBackgroundView;
+//		PageCellBackground *cellSelectionView =
+//			[[[[[self class] pageCellBackgroundClass] alloc]
+//				initSelected:YES
+//				grouped:aTableView.style == UITableViewStyleGrouped]
+//			autorelease];
+//		self.selectedBackgroundView = cellSelectionView;
+//	}
+//	
+//	if (aTableView.style == UITableViewStyleGrouped)
+//	{
+//		PageCellGroupPosition position = 
+//			[PageCellBackground positionForIndexPath:anIndexPath inTableView:aTableView];
+//		((PageCellBackground *)self.backgroundView).position = position;
+//		((PageCellBackground *)self.selectedBackgroundView).position = position;
+//	}
 }
 
 //

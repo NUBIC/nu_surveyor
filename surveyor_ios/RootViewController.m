@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "DetailViewController.h"
+#import "SurveySectionViewController.h"
 #import "JSON.h"
 #import "UUID.h"
 
@@ -36,7 +36,7 @@
 //  DLog(@"%@", dict);
   //	NSLog(@"%@", [[dict objectForKey:@"survey"] objectForKey:@"title"]);
 	self.navigationItem.title = @"Sections";
-//  detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
+  detailViewController.detailDescriptionLabel.text = [[dict objectForKey:@"survey"] objectForKey:@"title"];
 //	detailViewController.dict = dict;
     
   NSManagedObject *rs = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
@@ -49,7 +49,7 @@
   self.responseSet = rs;
 //  detailViewController.responseSet = rs;
   
-//  detailViewController.pageControl.numberOfPages = [self numberOfSections];
+  detailViewController.pageControl.numberOfPages = [self numberOfSections];
 //  DLog(@"viewDidLoad responseSetId: %@", responseSetId);
 	
   if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
@@ -202,7 +202,8 @@
 - (void) showSection:(NSUInteger)index {
   self.currentSection = index;
   [detailViewController setDetailItem:[[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:index]];
-//  detailViewController.pageControl.currentPage = index;
+  [detailViewController refresh:self];
+  detailViewController.pageControl.currentPage = index;
 }
 
 - (void) nextSection{
