@@ -9,6 +9,11 @@
 #import "surveyor_iosTests.h"
 #import "UUID.h"
 #import "SurveySectionViewController.h"
+#import "SurveyorDatePickerAnswerCell.h"
+
+@interface SurveyorDatePickerAnswerCell (Test)
+- (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
+@end
 
 @implementation surveyor_iosTests
 
@@ -67,6 +72,15 @@
   questionOrGroup = [NSDictionary dictionaryWithObjectsAndKeys:@"none", @"pick", nil];
   answer = [NSDictionary dictionaryWithObjectsAndKeys:@"time", @"type", nil];
   STAssertEquals(NSClassFromString(@"SurveyorDatePickerAnswerCell"), [SurveySectionViewController classForQuestion:questionOrGroup answer:answer], @"Class should be SurveyorDatePickerAnswerCell");
+}
+
+- (void) testDatePickerModeFromType {
+  SurveyorDatePickerAnswerCell *cell = [[SurveyorDatePickerAnswerCell alloc] init];
+  STAssertEquals([cell datePickerModeFromType:@"datetime"], UIDatePickerModeDateAndTime, @"date and time");
+  STAssertEquals([cell datePickerModeFromType:@"date"], UIDatePickerModeDate, @"date");
+  STAssertEquals([cell datePickerModeFromType:@"time"], UIDatePickerModeTime, @"time");
+  STAssertEquals([cell datePickerModeFromType:@""], UIDatePickerModeDate, @"empty string");
+  STAssertEquals([cell datePickerModeFromType:nil], UIDatePickerModeDate, @"nil case");
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface SurveyorDatePickerAnswerCell()
 - (void) datePickerDone;
+- (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
 @end
 @implementation SurveyorDatePickerAnswerCell
 @synthesize datePickerViewController, popoverController;
@@ -33,14 +34,24 @@
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
   
-  
   if (self.datePickerViewController == nil) {
     self.datePickerViewController = [[DatePickerViewController alloc] init];
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:datePickerViewController];
-    [datePickerViewController setupDelegate:self withTitle:[dataObject valueForKey:@"text"]];
+    [datePickerViewController setupDelegate:self withTitle:[NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]]];
+    datePickerViewController.now.title = [[dataObject objectForKey:@"type"] isEqualToString:@"date"] ? @"    Today   " : @"      Now     ";
+    datePickerViewController.datePicker.datePickerMode = [self datePickerModeFromType:[dataObject objectForKey:@"type"]];
     popoverController.delegate = self;
   }
   
+}
+
+- (UIDatePickerMode)datePickerModeFromType:(NSString *)type {
+  if ([type isEqualToString:@"datetime"]) {
+    return UIDatePickerModeDateAndTime;
+  } else if ([type isEqualToString:@"time"]) {
+    return UIDatePickerModeTime;
+  }
+  return UIDatePickerModeDate;
 }
 
 //
