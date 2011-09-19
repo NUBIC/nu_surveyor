@@ -108,6 +108,15 @@
   
 }
 
+- (void)handleSelectionInTableView:(UITableView *)aTableView
+{
+  // super call unnecessary because of UITableViewCellSelectionStyleNone
+//	[super handleSelectionInTableView:aTableView];
+  if (textField.hidden == NO) {
+    [textField becomeFirstResponder];
+  }
+}
+
 //
 // configureForData:tableView:indexPath:
 //

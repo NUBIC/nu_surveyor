@@ -25,7 +25,7 @@
   self.font = [UIFont boldSystemFontOfSize:fontSize];
 	self.textAlignment = UITextAlignmentLeft;
 	self.backgroundColor = [UIColor whiteColor];
-	self.highlightedTextColor = [UIColor colorWithRed:0.50 green:0.2 blue:0.0 alpha:1.0];
+	self.highlightedTextColor = [UIColor whiteColor];
 	self.textColor = [UIColor blackColor];
 	self.shadowColor = [UIColor whiteColor];
 	self.shadowOffset = CGSizeMake(0, 1);
