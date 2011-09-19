@@ -8,32 +8,14 @@
 
 #import "SurveyorNoneAnswerCell.h"
 #import "PageViewController.h"
+#import "UILabel+Resize.h"
+
+@interface SurveyorNoneAnswerCell()
+- (void) resetFrames;
+@end
 
 @implementation SurveyorNoneAnswerCell
-@synthesize textField;
-
-//
-// configureForData:tableView:indexPath:
-//
-// Invoked when the cell is given data. All fields should be updated to reflect
-// the data.
-//
-// Parameters:
-//    dataObject - the dataObject (can be nil for data-less objects)
-//    aTableView - the tableView (passed in since the cell may not be in the
-//		hierarchy)
-//    anIndexPath - the indexPath of the cell
-//
-//- (void)configureForData:(id)dataObject
-//               tableView:(UITableView *)aTableView
-//               indexPath:(NSIndexPath *)anIndexPath
-//{
-//	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-//	
-//	self.textLabel.text = [dataObject objectForKey:@"text"];
-//  
-//}
-
+@synthesize textField, label, postLabel;
 
 //
 // dealloc
@@ -46,6 +28,8 @@
 	textField = nil;
 	[label release];
 	label = nil;
+  [postLabel release];
+  postLabel = nil;
   
 	[super dealloc];
 }
@@ -59,7 +43,7 @@
 //
 - (NSString *)accessibilityLabel
 {
-	return [NSString stringWithFormat:@"%@ %@", label.text, textField.text];
+	return [NSString stringWithFormat:@"%@ %@ %@", label.text, textField.text, postLabel.text];
 }
 
 //
@@ -71,54 +55,57 @@
 {
   
 	[super finishConstruction];
-	
-	CGFloat height = self.contentView.bounds.size.height;
-	CGFloat width = self.contentView.bounds.size.width;
-	CGFloat fontSize = [UIFont labelFontSize] - 2;
-	CGFloat labelWidth = 100;
-	CGFloat margin = 8;
-	CGFloat heightPadding = 8;
+  self.textLabel.text = nil;
+  
+  CGFloat fontSize = [UIFont labelFontSize] - 2;
   
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
   
-  textField =
-  [[UITextField alloc]
-   initWithFrame:
-   CGRectMake(
-              labelWidth + 2 * margin,
-              0, 
-              width - labelWidth - 2.0 * margin,
-              height - 1)];
+
+	self.label = [[UILabel alloc] init];
+  self.textField = [[UITextField alloc] init];
+  self.postLabel = [[UILabel alloc] init];
+  
+  [self resetFrames];
+  
+  // (pre) text
+	[label setUpCellLabelWithFontSize:fontSize];
+  label.textAlignment = UITextAlignmentRight;
+  label.backgroundColor = [UIColor whiteColor];
+  [self.contentView addSubview:label];
+  
+  // input
 	textField.font = [UIFont systemFontOfSize:fontSize];
 	textField.textAlignment = UITextAlignmentLeft;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
-	textField.backgroundColor = [UIColor clearColor];
+	textField.backgroundColor = [UIColor whiteColor];
 	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 	textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  
 	[self.contentView addSubview:textField];
   
-	label = 
-  [[UILabel alloc]
-   initWithFrame:
-   CGRectMake(
-              margin,
-              floor(0.5 * (height - fontSize - heightPadding)),
-              labelWidth,
-              fontSize + heightPadding)];
-	label.textAlignment = UITextAlignmentRight;
-	label.backgroundColor = [UIColor clearColor];
-	label.font = [UIFont boldSystemFontOfSize:fontSize];
-	label.highlightedTextColor = [UIColor colorWithRed:0.50 green:0.2 blue:0.0 alpha:1.0];
-	label.textColor = [UIColor blackColor];
-	label.shadowColor = [UIColor whiteColor];
-	label.shadowOffset = CGSizeMake(0, 1);
+  // (post) text
+  [postLabel setUpCellLabelWithFontSize:fontSize];
+  postLabel.backgroundColor = [UIColor whiteColor];
+  postLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
+  [self.contentView addSubview:postLabel];
+
+}
+- (void) resetFrames {
+  CGFloat widthPadding = 8;
+  CGFloat heightPadding = 8;
+	CGFloat height = self.contentView.frame.size.height - heightPadding * 2;
+	CGFloat width = self.contentView.frame.size.width - widthPadding * 2;
+
+  label.frame = CGRectMake(widthPadding, heightPadding, .2 * width, height);
+  textField.frame = CGRectMake(widthPadding + (.2 * width) + widthPadding, heightPadding, .6 * width - widthPadding, height);
+  postLabel.frame = CGRectMake(widthPadding + (.8 * width), heightPadding, .2 * width, height);
   
-	[self.contentView addSubview:label];
+  [label setHidden:NO];
+  [textField setHidden:NO];
+  [postLabel setHidden:NO];
   
-  self.textLabel.text = nil;
 }
 
 //
@@ -138,27 +125,47 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-	
-	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
-    label.text = [(NSDictionary *)dataObject objectForKey:@"text"];
-    textField.text = [(NSDictionary *)dataObject objectForKey:@"value"];
-    textField.placeholder = [(NSDictionary *)dataObject objectForKey:@"placeholder"];
-    
-    textField.delegate = (PageViewController *)aTableView.delegate;
+  [self resetFrames];
 
+  // (pre) text
+  if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
+    [label setHidden:YES];
+    textField.frame = CGRectMake(label.frame.origin.x, 
+                                 label.frame.origin.y, 
+                                 textField.frame.origin.x - label.frame.origin.x + textField.frame.size.width, 
+                                 textField.frame.size.height);
+    label.text = nil;
+  } else {
+    label.text = [dataObject objectForKey:@"text"];
+  }
+  
+  // input
+	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
+//    textField.text = [(NSDictionary *)dataObject objectForKey:@"value"];
+//    textField.placeholder = [(NSDictionary *)dataObject objectForKey:@"placeholder"];
+    textField.delegate = (PageViewController *)aTableView.delegate;
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
-    label.text = [(NSDictionary *)dataObject objectForKey:@"text"];
-    textField.text = [(NSDictionary *)dataObject objectForKey:@"value"];
-    textField.placeholder = [(NSDictionary *)dataObject objectForKey:@"placeholder"];
-    
+//    textField.text = [(NSDictionary *)dataObject objectForKey:@"value"];
+//    textField.placeholder = [(NSDictionary *)dataObject objectForKey:@"placeholder"];
     textField.delegate = (PageViewController *)aTableView.delegate;
     textField.keyboardType = UIKeyboardTypeNumberPad;
   } else {
-    [self.textField removeFromSuperview];
-    [label removeFromSuperview];
-    self.textLabel.text = [dataObject objectForKey:@"text"] == nil ? @"" : [dataObject objectForKey:@"text"];
+    [self.textField setHidden:YES];
   }
+  
+  // (post) text
+  if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
+    [postLabel setHidden:YES];
+    textField.frame = CGRectMake(textField.frame.origin.x, 
+                                 textField.frame.origin.y, 
+                                 postLabel.frame.size.width + textField.frame.size.width, 
+                                 textField.frame.size.height);
+  } else {
+    postLabel.text = [dataObject objectForKey:@"post_text"];
+  }
+
+  [self layoutSubviews];
 }
 
 @end

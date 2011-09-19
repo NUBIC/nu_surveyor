@@ -73,39 +73,36 @@
   textView =
   [[UITextView alloc]
    initWithFrame:
-   CGRectMake(
-              widthPadding,
+   CGRectMake(widthPadding,
               heightPadding + labelHeight, 
               width - 2.0 * widthPadding,
               height - 2.0 * heightPadding - labelHeight)];
-	textView.font = [UIFont systemFontOfSize:fontSize];
+	textView.backgroundColor = [UIColor whiteColor];
+  textView.font = [UIFont systemFontOfSize:fontSize];
 	textView.textAlignment = UITextAlignmentLeft;
+  
 	textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	textView.autocorrectionType = UITextAutocorrectionTypeNo;
-	textView.backgroundColor = [UIColor clearColor];
 	textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  
 	[self.contentView addSubview:textView];
   
 	label = 
   [[UILabel alloc]
    initWithFrame:
-   CGRectMake(
-              widthPadding,
+   CGRectMake(widthPadding,
               heightPadding,
               width - 2.0 * widthPadding,
               labelHeight)];
-	label.textAlignment = UITextAlignmentLeft;
-	label.backgroundColor = [UIColor clearColor];
-	label.font = [UIFont boldSystemFontOfSize:fontSize];
+	label.backgroundColor = [UIColor whiteColor];
+  label.font = [UIFont boldSystemFontOfSize:fontSize];
+  label.textAlignment = UITextAlignmentLeft;
+	
 	label.highlightedTextColor = [UIColor colorWithRed:0.50 green:0.2 blue:0.0 alpha:1.0];
 	label.textColor = [UIColor blackColor];
 	label.shadowColor = [UIColor whiteColor];
 	label.shadowOffset = CGSizeMake(0, 1);
   
 	[self.contentView addSubview:label];
-  
-
 }
 
 //
@@ -125,13 +122,18 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-  if ([[dataObject objectForKey:@"text"] isEqualToString:@""]) {
+  if ([[dataObject objectForKey:@"text"] length] < 1 ) {
+    self.label.text = @"";
     self.textView.frame = CGRectMake(self.label.frame.origin.x,
-                                     self.label.frame.origin.y, 
+                                     self.label.frame.origin.y + self.label.frame.size.height / 2, 
                                      self.textView.frame.size.width,
-                                     self.textView.frame.size.height + self.label.frame.size.height);
+                                     self.textView.frame.size.height);
     [self.label setHidden:TRUE];
   } else {
+    self.textView.frame = CGRectMake(self.label.frame.origin.x,
+                                     self.label.frame.origin.y + self.label.frame.size.height, 
+                                     self.textView.frame.size.width,
+                                     self.textView.frame.size.height);
     self.label.text = [dataObject objectForKey:@"text"];
     [self.label setHidden:FALSE];
   }

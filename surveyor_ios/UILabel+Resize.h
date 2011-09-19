@@ -11,5 +11,5 @@
 
 @interface UILabel (Resize)
 -(void)setUpMultiLineVerticalResizeWithFontSize:(CGFloat)fontSize;
-
+-(void)setUpCellLabelWithFontSize:(CGFloat)fontSize;
 @end

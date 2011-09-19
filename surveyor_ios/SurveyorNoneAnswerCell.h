@@ -12,8 +12,11 @@
 @interface SurveyorNoneAnswerCell : PageCell {
   UITextField *textField;
   UILabel *label;
+  UILabel *postLabel;
 }
   
 @property (nonatomic, retain) UITextField *textField;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) UILabel *postLabel;
 
 @end
