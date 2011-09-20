@@ -58,7 +58,7 @@
   self.textLabel.text = nil;
   
   CGFloat fontSize = [UIFont labelFontSize] - 2;
-  
+  UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
   
 
@@ -71,7 +71,7 @@
   // (pre) text
 	[label setUpCellLabelWithFontSize:fontSize];
   label.textAlignment = UITextAlignmentRight;
-  label.backgroundColor = [UIColor whiteColor];
+  label.backgroundColor = groupedBackgroundColor;
   [self.contentView addSubview:label];
   
   // input
@@ -79,7 +79,7 @@
 	textField.textAlignment = UITextAlignmentLeft;
 	textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	textField.autocorrectionType = UITextAutocorrectionTypeNo;
-	textField.backgroundColor = [UIColor whiteColor];
+	textField.backgroundColor = groupedBackgroundColor;
 	textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 	textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -87,7 +87,7 @@
   
   // (post) text
   [postLabel setUpCellLabelWithFontSize:fontSize];
-  postLabel.backgroundColor = [UIColor whiteColor];
+  postLabel.backgroundColor = groupedBackgroundColor;
   postLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth;
   [self.contentView addSubview:postLabel];
 

@@ -66,7 +66,7 @@
 	CGFloat heightPadding = 8;
   CGFloat labelHeight = fontSize + heightPadding;
 	CGFloat widthPadding = 8;
-	
+	UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
   
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
   
@@ -77,7 +77,7 @@
               heightPadding + labelHeight, 
               width - 2.0 * widthPadding,
               height - 2.0 * heightPadding - labelHeight)];
-	textView.backgroundColor = [UIColor whiteColor];
+	textView.backgroundColor = groupedBackgroundColor;
   textView.font = [UIFont systemFontOfSize:fontSize];
 	textView.textAlignment = UITextAlignmentLeft;
   
@@ -93,7 +93,7 @@
               heightPadding,
               width - 2.0 * widthPadding,
               labelHeight)];
-	label.backgroundColor = [UIColor whiteColor];
+	label.backgroundColor = groupedBackgroundColor;
   label.font = [UIFont boldSystemFontOfSize:fontSize];
   label.textAlignment = UITextAlignmentLeft;
 	
