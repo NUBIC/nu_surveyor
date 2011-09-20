@@ -14,6 +14,19 @@
 @end
 @implementation SurveyorDatePickerAnswerCell
 @synthesize datePickerViewController, popoverController;
+
+//
+// accessibilityLabel
+//
+// Make sure people using VoiceOver can use the view correctly
+//
+// returns the description of this cell (i.e. Label followed by TextField value)
+//
+- (NSString *)accessibilityLabel
+{
+	return [NSString stringWithFormat:@"%@", self.textLabel.text];
+}
+
 //
 // configureForData:tableView:indexPath:
 //

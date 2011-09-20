@@ -12,6 +12,18 @@
 @implementation SurveyorAnyAnswerCell
 
 //
+// accessibilityLabel
+//
+// Make sure people using VoiceOver can use the view correctly
+//
+// returns the description of this cell (i.e. Label followed by TextField value)
+//
+- (NSString *)accessibilityLabel
+{
+	return [NSString stringWithFormat:@"%@", self.textLabel.text];
+}
+
+//
 // configureForData:tableView:indexPath:
 //
 // Invoked when the cell is given data. All fields should be updated to reflect
