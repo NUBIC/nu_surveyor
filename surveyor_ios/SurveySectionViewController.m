@@ -90,7 +90,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
       // regular questions
       if (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"]) {
         [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];        
-        if ([(NSString *)[questionOrGroup objectForKey:@"type"] isEqualToString:@"dropdown"]){
+        if ([(NSString *)[questionOrGroup objectForKey:@"type"] isEqualToString:@"dropdown"] || [(NSString *)[questionOrGroup objectForKey:@"type"] isEqualToString:@"slider"]){
           [self
            appendRowToSection:i
            cellClass: [NSClassFromString(@"SurveyorPickerAnswerCell") class]
