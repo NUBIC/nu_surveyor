@@ -149,6 +149,7 @@
   }
   
   // input
+  textField.text = nil;
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
 //    textField.text = [(NSDictionary *)dataObject objectForKey:@"value"];
 //    textField.placeholder = [(NSDictionary *)dataObject objectForKey:@"placeholder"];
@@ -170,6 +171,7 @@
                                  textField.frame.origin.y, 
                                  postLabel.frame.size.width + textField.frame.size.width, 
                                  textField.frame.size.height);
+    postLabel.text = nil;
   } else {
     postLabel.text = [dataObject objectForKey:@"post_text"];
   }
