@@ -122,6 +122,7 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
+  textView.delegate = (PageViewController *)aTableView.delegate;
   if ([[dataObject objectForKey:@"text"] length] < 1 ) {
     self.label.text = @"";
     self.textView.frame = CGRectMake(self.label.frame.origin.x,

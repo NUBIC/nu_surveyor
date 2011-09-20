@@ -24,18 +24,18 @@
 #import <UIKit/UIKit.h>
 
 @interface PageViewController : UIViewController
-	<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+	<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UITextViewDelegate>
 {
 	IBOutlet UITableView *tableView;
 	NSMutableArray *tableSections;
-	UITextField *currentTextField;
+	UIView *currentTextField;
 	CGFloat textFieldAnimatedDistance;
 	NSMutableArray *headerViews;
 	BOOL constantRowHeight;
 	BOOL useCustomHeaders;
 }
 
-@property (nonatomic, retain) UITextField *currentTextField;
+@property (nonatomic, retain) UIView *currentTextField;
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, assign) BOOL constantRowHeight;
 @property (nonatomic, assign) BOOL useCustomHeaders;

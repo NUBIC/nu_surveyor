@@ -983,12 +983,12 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 		return;
 	}
 	
-	CGRect viewFrame = self.view.frame;
+	CGRect viewFrame = self.tableView.frame;
 	viewFrame.size.height += textFieldAnimatedDistance;
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
-	[self.view setFrame:viewFrame];
+	[self.tableView setFrame:viewFrame];
 	[UIView commitAnimations];
 	
 	textFieldAnimatedDistance = 0;
@@ -1066,7 +1066,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
-		[self.view setFrame:viewFrame];
+		[self.tableView setFrame:viewFrame];
 		[UIView commitAnimations];
 	}
 	
@@ -1139,6 +1139,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 	[currentTextField resignFirstResponder];
 }
 
+#pragma mark - UITextFieldDelegate
 //
 // textFieldShouldBeginEditing:
 //
@@ -1162,13 +1163,30 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 }
 
 //
-// textFieldShouldBeginEditing:
+// textFieldDidEndEditing:
 //
-// Changes the default to YES and resign firstResponder.
+//
 //
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	if ([currentTextField isEqual:textField])
+	{
+		self.currentTextField = nil;
+	}
+}
+
+# pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+  self.currentTextField = textView;
+	return YES;
+}
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+	[textView resignFirstResponder];
+	return YES;
+}
+- (void)textViewDidEndEditing:(UITextView *)textView {
+  if ([currentTextField isEqual:textView])
 	{
 		self.currentTextField = nil;
 	}
