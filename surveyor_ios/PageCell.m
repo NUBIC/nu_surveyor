@@ -262,14 +262,14 @@ const CGFloat PageCellDefaultRowHeight = 44.0;
 
 	if (!content)
 	{
-		UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
-		if (![self.textLabel.backgroundColor isEqual:groupedBackgroundColor])
+		UIColor *clearColor = [UIColor clearColor];
+		if (![self.textLabel.backgroundColor isEqual:clearColor])
 		{
-			self.textLabel.backgroundColor = groupedBackgroundColor;
+			self.textLabel.backgroundColor = [UIColor clearColor];
 		}
-		if (![self.detailTextLabel.backgroundColor isEqual:groupedBackgroundColor])
+		if (![self.detailTextLabel.backgroundColor isEqual:clearColor])
 		{
-			self.detailTextLabel.backgroundColor = groupedBackgroundColor;
+			self.detailTextLabel.backgroundColor = [UIColor clearColor];
 		}
 	}
 }
