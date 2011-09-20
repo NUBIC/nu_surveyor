@@ -14,12 +14,17 @@
   UIToolbar *toolbar;
   UIPageControl *pageControl;
   UILabel *detailDescriptionLabel;
+  NSMutableArray *sectionTitles;
+  NSMutableArray *sectionSubTitles;
 }
 @property (nonatomic, retain) id detailItem;
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UILabel *detailDescriptionLabel;
+@property (nonatomic, retain) NSMutableArray *sectionTitles;
+@property (nonatomic, retain) NSMutableArray *sectionSubTitles;
+
 
 - (void)createHeader;
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath;
