@@ -10,6 +10,8 @@
 #import "TextFieldCell.h"
 #import "UILabel+Resize.h"
 
+static const double PageViewControllerTextAnimationDuration = 0.33;
+
 @implementation SurveySectionViewController
 @synthesize detailItem, toolbar, popoverController, pageControl, detailDescriptionLabel;
 
@@ -283,9 +285,86 @@ subTitleForHeaderInSection:(NSInteger)section
 	[cell handleSelectionInTableView:aTableView];
 }
 
-#pragma mark - UITextViewDelegate
-- (void)textViewDidEndEditing:(UITextView *)textView{
-  //  DLog(@"QuestionResponse textViewDidEndEditing");
+#pragma mark - Keyboard support
+
+//
+// keyboardWillHideNotification:
+//
+// Slides the view back when done editing.
+//
+- (void)keyboardWillHideNotification:(NSNotification *)aNotification
+{
+	if (textFieldAnimatedDistance == 0)
+	{
+		return;
+	}
+	
+	CGRect viewFrame = self.tableView.frame;
+	viewFrame.size.height += textFieldAnimatedDistance;
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
+	[self.tableView setFrame:viewFrame];
+	[UIView commitAnimations];
+	
+	textFieldAnimatedDistance = 0;
+}
+
+//
+// keyboardWillShowNotification:
+//
+// Slides the view to avoid the keyboard.
+//
+- (void)keyboardWillShowNotification:(NSNotification *)aNotification
+{
+  //
+	// Remove any previous view offset.
+	//
+	[self keyboardWillHideNotification:nil];
+  
+  //
+	// Only animate if the text field is part of the hierarchy that we manage.
+	//
+	UIView *parentView = [currentTextField superview];
+	while (parentView != nil && ![parentView isEqual:self.tableView])
+	{
+		parentView = [parentView superview];
+	}
+	if (parentView == nil)
+	{
+		//
+		// Not our hierarchy... ignore.
+		//
+		return;
+	}
+  
+  //
+  // https://github.com/futuretap/InAppSettingsKit/blob/master/InAppSettingsKit/Controllers/IASKAppSettingsViewController.m
+  //
+  
+  NSDictionary* userInfo = [aNotification userInfo];
+  // we don't use SDK constants here to be universally compatible with all SDKs ≥ 3.0
+  NSValue* keyboardFrameValue = [userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
+  if (!keyboardFrameValue) {
+    keyboardFrameValue = [userInfo objectForKey:@"UIKeyboardFrameEndUserInfoKey"];
+  }
+  
+  textFieldAnimatedDistance = 0;
+  textFieldAnimatedDistance = [keyboardFrameValue CGRectValue].size.height;
+  CGRect newframe = self.tableView.frame;
+  newframe.size.height -= textFieldAnimatedDistance;
+  
+  [UIView beginAnimations:nil context:NULL];
+  [UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
+  [self.tableView setFrame:newframe];
+  [UIView commitAnimations];
+	
+	const CGFloat PageViewControllerTextFieldScrollSpacing = 40;
+  
+	CGRect textFieldRect =
+  [self.tableView convertRect:currentTextField.bounds fromView:currentTextField];
+	textFieldRect = CGRectInset(textFieldRect, 0, -PageViewControllerTextFieldScrollSpacing);
+	[self.tableView scrollRectToVisible:textFieldRect animated:NO];
 }
 
 #pragma mark - Split view support

@@ -983,12 +983,12 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 		return;
 	}
 	
-	CGRect viewFrame = self.tableView.frame;
+	CGRect viewFrame = self.view.frame;
 	viewFrame.size.height += textFieldAnimatedDistance;
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
-	[self.tableView setFrame:viewFrame];
+	[self.view setFrame:viewFrame];
 	[UIView commitAnimations];
 	
 	textFieldAnimatedDistance = 0;
@@ -1066,7 +1066,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:PageViewControllerTextAnimationDuration];
-		[self.tableView setFrame:viewFrame];
+		[self.view setFrame:viewFrame];
 		[UIView commitAnimations];
 	}
 	
