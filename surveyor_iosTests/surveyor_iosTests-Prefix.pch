@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'surveyor_iosTests' target in the 'surveyor_iosTests' project
-//
-
-#ifdef __OBJC__
-  #import <UIKit/UIKit.h>
-#endif

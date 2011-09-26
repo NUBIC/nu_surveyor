@@ -1,0 +1,3 @@
+# Surveyor on iOS
+
+This project is an iOS port of the Surveyor ruby gem (http://github.com/NUBIC/surveyor). It brings surveys to iPads and other iOS devices, with offline and sync capabilities.
