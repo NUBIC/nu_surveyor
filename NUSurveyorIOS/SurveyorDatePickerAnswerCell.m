@@ -9,7 +9,7 @@
 #import "SurveyorDatePickerAnswerCell.h"
 
 @interface SurveyorDatePickerAnswerCell()
-- (void) datePickerDone;
+- (void) pickerDone;
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
 @end
 @implementation SurveyorDatePickerAnswerCell
@@ -49,10 +49,12 @@
   
   if (self.pickerController == nil) {
     self.pickerController = [[NUPickerVC alloc] init];
+    pickerController.contentSizeForViewInPopover = CGSizeMake(384.0, 304.0);
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:pickerController];
     [pickerController setupDelegate:self withTitle:[NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]] date:YES];
     pickerController.nowButton.title = [[dataObject objectForKey:@"type"] isEqualToString:@"date"] ? @"    Today   " : @"      Now     ";
     pickerController.datePicker.datePickerMode = [self datePickerModeFromType:[dataObject objectForKey:@"type"]];
+
     popoverController.delegate = self;
   }
   
@@ -83,12 +85,12 @@
 }
 
 - (void) nowPressed{
-  [self datePickerDone];
+  [self pickerDone];
 }
-- (void) datePickerDone{
+- (void) pickerDone{
   [popoverController dismissPopoverAnimated:NO];
 }
-- (void) datePickerCancel{
+- (void) pickerCancel{
   [popoverController dismissPopoverAnimated:NO];
 }
 

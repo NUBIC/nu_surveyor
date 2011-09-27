@@ -46,12 +46,11 @@
   self.answers = dataObject;
   if (pickerController == nil) {
     self.pickerController = [[NUPickerVC alloc] init];
+    pickerController.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:pickerController];
     [pickerController setupDelegate:self withTitle:@"Pick one" date:NO];
     popoverController.delegate = self;
   }
-
-  
 }
 - (void)handleSelectionInTableView:(UITableView *)aTableView
 {

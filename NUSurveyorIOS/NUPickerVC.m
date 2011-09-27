@@ -8,7 +8,6 @@
 
 #import "NUPickerVC.h"
 
-
 @implementation NUPickerVC
 @synthesize bar, picker, datePicker, toolBar, nowButton;
 
@@ -53,10 +52,15 @@
     nowButton.target = delegate;
     nowButton.action = @selector(nowPressed);
     [toolBar setHidden:NO];
-    self.contentSizeForViewInPopover = CGSizeMake(384.0, 304.0);
+    [picker setHidden:YES];
+    [datePicker setHidden:NO];
+    datePicker.datePickerMode = UIDatePickerModeDate;
   }else {
     [toolBar setHidden:YES];
-    self.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
+    [picker setHidden:NO];
+    [datePicker setHidden:YES];
+    picker.delegate = delegate;
+    picker.dataSource = delegate;
   }
 }
 
@@ -64,8 +68,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  [super viewDidLoad];
+  // Do any additional setup after loading the view from its nib.
+
 }
 
 - (void)viewDidUnload
