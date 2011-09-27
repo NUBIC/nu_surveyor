@@ -130,7 +130,7 @@ const CGFloat PageCellDefaultRowHeight = 44.0;
 	UITableViewCellStyle style = [[self class] style];
 	NSString *identifier = [[self class] reuseIdentifier];
 
-	if (self = [super initWithStyle:style reuseIdentifier:identifier])
+	if((self = [super initWithStyle:style reuseIdentifier:identifier]))
 	{
 		NSString *nibName = [[self class] nibName];
 		if (nibName)
