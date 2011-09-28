@@ -19,9 +19,16 @@
 @property (nonatomic, retain) id detailItem;
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
 @property (nonatomic, retain) NSMutableArray *sectionSubTitles;
+@property (nonatomic, retain) NSMutableArray *sections;
+@property (nonatomic, retain) NSManagedObject *responseSet;
 
 - (void)createHeader;
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath;
 + (Class) classForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer;
+
+- (NSArray *) responsesForIndexPath:(NSIndexPath *)i;
+- (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i;
+- (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value;
+- (void) deleteResponseForIndexPath:(NSIndexPath *)i;
 
 @end

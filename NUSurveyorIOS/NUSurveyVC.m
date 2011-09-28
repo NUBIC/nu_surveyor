@@ -74,6 +74,7 @@
   self.responseSet = rs;
   
 	// Setup sectionController
+  sectionController.responseSet = responseSet;
   sectionController.bar.title = [[dict objectForKey:@"survey"] objectForKey:@"title"];  
   sectionController.pageControl.numberOfPages = [self numberOfSections];
   if ([[[dict objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {

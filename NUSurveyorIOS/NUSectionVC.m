@@ -9,17 +9,21 @@
 #import "NUSectionVC.h"
 #import "TextFieldCell.h"
 #import "UILabel+Resize.h"
+#import "NUSurveyVC.h"
+#import "UUID.h"
 
 static const double PageViewControllerTextAnimationDuration = 0.33;
 
 @interface NUSectionVC()
+// http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
+- (NSDictionary *)idsForIndexPath:(NSIndexPath *)i;
 - (void) createQuestionWithIndex:(NSInteger)i dictionary:(NSDictionary *)question;
 @end
 
 @implementation NUSectionVC
-@synthesize bar, pageControl, popoverController, detailItem, sectionTitles, sectionSubTitles;
+@synthesize bar, pageControl, popoverController, detailItem, sectionTitles, sectionSubTitles, sections, responseSet;
 
-#pragma mark - Class methods
+#pragma mark - Utility class methods
 + (Class) classForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer {
   NSString *className;
   if ([(NSString *)[questionOrGroup objectForKey:@"pick"] isEqualToString:@"one"]) {
@@ -42,6 +46,78 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   return [NSClassFromString(className) class];
 }
 
+#pragma mark - Core Data
+- (NSArray *) responsesForIndexPath:(NSIndexPath *)i{
+  NSDictionary *ids = [self idsForIndexPath:i];
+  //  DLog(@"responseForQuestion %@ answer %@", qid, aid);
+  // setup fetch request
+	NSError *error = nil;
+  NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+  [request setEntity:entity];
+  
+  // Set predicate
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                            @"(responseSet == %@) AND (Question == %@) AND (Answer == %@)", 
+                            responseSet, [ids objectForKey:@"qid"], [ids objectForKey:@"aid"]];
+  [request setPredicate:predicate];
+  
+  NSArray *results = [[UIAppDelegate managedObjectContext] executeFetchRequest:request error:&error];
+  if (results == nil)
+  {
+    /*
+     Replace this implementation with code to handle the error appropriately.
+     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+     */
+    NSLog(@"Unresolved responseForAnswer fetch error %@, %@", error, [error userInfo]);
+    abort();
+  }
+  //  DLog(@"responseForAnswer: %@ result: %@", aid, [results lastObject]);
+  //  DLog(@"responseForAnswer #:%d", [results count]);
+  return results;
+}
+- (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value{
+  NSDictionary *ids = [self idsForIndexPath:i];
+//  DLog(@"%@", responseSet);
+  NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
+  [newResponse setValue:responseSet forKey:@"responseSet"];
+  [newResponse setValue:[ids objectForKey:@"qid"] forKey:@"Question"];
+  [newResponse setValue:[ids objectForKey:@"aid"] forKey:@"Answer"];
+  [newResponse setValue:value forKey:@"Value"];
+  
+  [newResponse setValue:[NSDate date] forKey:@"CreatedAt"];
+  [newResponse setValue:[UUID generateUuidString] forKey:@"UUID"];
+  
+  // Save the context.
+  [UIAppDelegate saveContext:@"QuestionResponse newResponseForAnswerValue"];
+  
+  return newResponse;
+}
+- (NSManagedObject *) newResponseForIndexPath:i {
+  return [self newResponseForIndexPath:i Value:nil];
+}
+- (NSDictionary *)idsForIndexPath:(NSIndexPath *)i{
+  if (i.section < [sections count] && i.row < [[[sections objectAtIndex:i.section] objectForKey:@"answers"] count]) {
+    NSString *qid = [[sections objectAtIndex:i.section] objectForKey:@"uuid"];
+    NSString *aid = [[[[sections objectAtIndex:i.section] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
+    //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
+    return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];
+  }else{
+    // this happens when the tableview is refreshed
+    // and self.tableView deleteSections is called
+    return [NSDictionary dictionaryWithObjectsAndKeys:nil, @"qid", nil, @"aid", nil];
+  }
+}
+- (void) deleteResponseForIndexPath:(NSIndexPath *)i {
+  NSArray *existingResponses = [self responsesForIndexPath:i];
+  for (NSManagedObject *existingResponse in existingResponses) {
+    [[UIAppDelegate managedObjectContext] deleteObject:existingResponse];
+  }
+  
+  // Save the context
+  [UIAppDelegate saveContext:@"tableViewdidSelectRowAtIndexPath removing"];  
+}
+
 #pragma mark - Memory management
 - (void)dealloc
 {
@@ -52,6 +128,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   [detailItem release];
   [sectionTitles release];
   [sectionSubTitles release];
+  [sections release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +203,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 { 
   self.sectionTitles = [[NSMutableArray alloc] init];
   self.sectionSubTitles = [[NSMutableArray alloc] init];
+  self.sections = [[NSMutableArray alloc] init];
   
   [self createHeader];
   NSInteger i = 0;
@@ -146,7 +224,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
         i++;
       } else {
         // inline
-        [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];        
+        [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];  
+        [sections insertObject:questionOrGroup atIndex:i];
         if ([questionOrGroup objectForKey:@"text"] != nil) {
           [sectionTitles insertObject:[questionOrGroup objectForKey:@"text"] atIndex:i];
         }
@@ -156,6 +235,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
         i++;
         for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
           [self createQuestionWithIndex:i dictionary:question];
+          [sections insertObject:question atIndex:i];
           i++;
         }
       }
@@ -165,7 +245,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 	[self hideLoadingIndicator];
 }
 - (void) createQuestionWithIndex:(NSInteger)i dictionary:(NSDictionary *)question {
-  [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];        
+  [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
+  [sections insertObject:question atIndex:i];
   if ([question objectForKey:@"text"] != nil) {
     [sectionTitles insertObject:[question objectForKey:@"text"] atIndex:i];
   }
@@ -288,13 +369,21 @@ subTitleForHeaderInSection:(NSInteger)section
 	PageCell *cell = (PageCell *)[aTableView cellForRowAtIndexPath:anIndexPath];
 	if ([cell isKindOfClass:NSClassFromString(@"SurveyorAnyAnswerCell")])
 	{
-    UIImage *img = [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image;
-    [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = 
-    img == [UIImage imageNamed:@"unchecked"] ? [UIImage imageNamed:@"checked"] : [UIImage imageNamed:@"unchecked"]; 
+    if ([[self responsesForIndexPath:anIndexPath] lastObject]) {
+      [self deleteResponseForIndexPath:anIndexPath];
+      [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = [UIImage imageNamed:@"unchecked"];
+    } else {
+      [self newResponseForIndexPath:anIndexPath];
+      [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = [UIImage imageNamed:@"checked"];
+    }
+//    [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = 
+//      img == [UIImage imageNamed:@"unchecked"] ? [UIImage imageNamed:@"checked"] : [UIImage imageNamed:@"unchecked"]; 
 	} else if ([cell isKindOfClass:NSClassFromString(@"SurveyorOneAnswerCell")]) {
     for (int i = 0; i < [aTableView numberOfRowsInSection:anIndexPath.section]; i++) {
-      [aTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:anIndexPath.section]].imageView.image = 
-      i == anIndexPath.row ? [UIImage imageNamed:@"dotted"] : [UIImage imageNamed:@"undotted"];
+      NSIndexPath *j = [NSIndexPath indexPathForRow:i inSection:anIndexPath.section];
+      j == anIndexPath ? [self newResponseForIndexPath:j] : [self deleteResponseForIndexPath:j];
+      [aTableView cellForRowAtIndexPath:j].imageView.image = 
+        j == anIndexPath ? [UIImage imageNamed:@"dotted"] : [UIImage imageNamed:@"undotted"];
     }
   }
 	
@@ -309,18 +398,18 @@ subTitleForHeaderInSection:(NSInteger)section
 // Update the rowData for the text field rows to match the edited value of the
 // text field.
 //
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-	UIView *parentOfParent = textField.superview.superview;
-	if ([parentOfParent isKindOfClass:[TextFieldCell class]])
-	{
-		TextFieldCell *cell = (TextFieldCell *)parentOfParent;
-		NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
-		NSMutableDictionary *rowData =
-    [self dataForRow:indexPathForCell.row inSection:indexPathForCell.section];
-		[rowData setObject:textField.text forKey:@"value"];
-	}
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//	UIView *parentOfParent = textField.superview.superview;
+//	if ([parentOfParent isKindOfClass:[TextFieldCell class]])
+//	{
+//		TextFieldCell *cell = (TextFieldCell *)parentOfParent;
+//		NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
+//		NSMutableDictionary *rowData =
+//    [self dataForRow:indexPathForCell.row inSection:indexPathForCell.section];
+//		[rowData setObject:textField.text forKey:@"value"];
+//	}
+//}
 
 #pragma mark - Keyboard support
 //

@@ -7,7 +7,7 @@
 //
 
 #import "SurveyorOneAnswerCell.h"
-
+#import "NUSectionVC.h"
 
 @implementation SurveyorOneAnswerCell
 
@@ -40,8 +40,7 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-	
-  self.imageView.image = [UIImage imageNamed:@"undotted"];
+	self.imageView.image = [[(NUSectionVC *)aTableView.delegate responsesForIndexPath:anIndexPath] lastObject] ? [UIImage imageNamed:@"dotted"] : [UIImage imageNamed:@"undotted"];
 	self.textLabel.text = [dataObject objectForKey:@"text"];
   
 }

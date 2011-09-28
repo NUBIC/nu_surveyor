@@ -7,10 +7,19 @@
 //
 
 #import "SurveyorAnyAnswerCell.h"
-
+#import "NUSectionVC.h"
 
 @implementation SurveyorAnyAnswerCell
 
+- (void)finishConstruction
+{
+  
+	[super finishConstruction];
+  self.imageView.image = [UIImage imageNamed:@"unchecked"];
+	self.textLabel.text = nil;
+
+  
+}
 //
 // accessibilityLabel
 //
@@ -39,11 +48,9 @@
                tableView:(UITableView *)aTableView
                indexPath:(NSIndexPath *)anIndexPath
 {
-	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-	
-  self.imageView.image = [UIImage imageNamed:@"unchecked"];
+	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];	
+  self.imageView.image = [[(NUSectionVC *)aTableView.delegate responsesForIndexPath:anIndexPath] lastObject] ? [UIImage imageNamed:@"checked"] : [UIImage imageNamed:@"unchecked"];
 	self.textLabel.text = [dataObject objectForKey:@"text"];
-  
 }
 
 @end
