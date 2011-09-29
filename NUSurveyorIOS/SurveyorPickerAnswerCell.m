@@ -10,7 +10,7 @@
 
 
 @implementation SurveyorPickerAnswerCell
-@synthesize pickerController, popoverController, answers;
+@synthesize pickerController, popoverController, answers, delegate;
 
 //
 // accessibilityLabel
@@ -23,7 +23,9 @@
 {
 	return [NSString stringWithFormat:@"%@", self.textLabel.text];
 }
-
+- (NSIndexPath *)myIndexPathWithRow:(NSUInteger)r {
+  return [NSIndexPath indexPathForRow:r inSection:[(UITableView *)delegate.tableView indexPathForCell:self].section];
+}
 //
 // configureForData:tableView:indexPath:
 //
@@ -42,8 +44,16 @@
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  self.answers = (NSArray *)dataObject;
+  self.delegate = (NUSectionVC *)[aTableView delegate];
   self.textLabel.text = @"Pick one";
-  self.answers = dataObject;
+  self.textLabel.textColor = [UIColor blackColor];
+  for (int i = 0; i < [answers count]; i++) {
+    if ([[delegate responsesForIndexPath:[NSIndexPath indexPathForRow:i inSection:anIndexPath.section]] lastObject]) {
+      self.textLabel.text = [[answers objectAtIndex:i] valueForKey:@"text"];
+      self.textLabel.textColor = RGB(1, 113, 233);
+    }
+  }
   if (pickerController == nil) {
     self.pickerController = [[NUPickerVC alloc] init];
     pickerController.contentSizeForViewInPopover = CGSizeMake(384.0, 260.0);
@@ -59,6 +69,13 @@
 }
 - (void) pickerDone{
   [popoverController dismissPopoverAnimated:NO];
+  NSUInteger selectedRow = [pickerController.picker selectedRowInComponent:0]; 
+  if (selectedRow != -1) {
+    [delegate deleteResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    [delegate newResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    self.textLabel.text = [(NSDictionary *)[answers objectAtIndex:selectedRow] objectForKey:@"text"];
+    self.textLabel.textColor = RGB(1, 113, 233);
+  }
 }
 - (void) pickerCancel{
   [popoverController dismissPopoverAnimated:NO];
@@ -82,7 +99,7 @@
   UILabel *pickerRow = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
   pickerRow.backgroundColor = [UIColor clearColor];
   pickerRow.font = [UIFont systemFontOfSize:16.0];
-  pickerRow.text = [[(NSArray *)answers objectAtIndex:row] objectForKey:@"text"];
+  pickerRow.text = [[answers objectAtIndex:row] objectForKey:@"text"];
   
   return pickerRow;
 }
