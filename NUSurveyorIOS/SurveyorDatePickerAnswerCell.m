@@ -11,9 +11,10 @@
 @interface SurveyorDatePickerAnswerCell()
 - (void) pickerDone;
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
+- (NSDateFormatter *) dateFormatterFromType:(NSString *)type;
 @end
 @implementation SurveyorDatePickerAnswerCell
-@synthesize pickerController, popoverController;
+@synthesize pickerController, popoverController, delegate, myDateFormatter;
 
 //
 // accessibilityLabel
@@ -44,20 +45,33 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
+  // set up cell
+  self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  self.myDateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
   
-  if (self.pickerController == nil) {
+  // set up popover with datepicker
+  if (pickerController == nil) {
     self.pickerController = [[NUPickerVC alloc] init];
     pickerController.contentSizeForViewInPopover = CGSizeMake(384.0, 304.0);
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:pickerController];
     [pickerController setupDelegate:self withTitle:[NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]] date:YES];
     pickerController.nowButton.title = [[dataObject objectForKey:@"type"] isEqualToString:@"date"] ? @"    Today   " : @"      Now     ";
     pickerController.datePicker.datePickerMode = [self datePickerModeFromType:[dataObject objectForKey:@"type"]];
-
     popoverController.delegate = self;
   }
-  
+
+  // look up existing response, fill in text and set datepicker
+  self.delegate = (NUSectionVC *)[aTableView delegate];
+  NSManagedObject *existingResponse = [[delegate responsesForIndexPath:anIndexPath] lastObject];
+  if (existingResponse) {
+    self.textLabel.text = [existingResponse valueForKey:@"value"];
+    self.textLabel.textColor = RGB(1, 113, 233);
+    pickerController.datePicker.date = [myDateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
+  } else {
+    self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
+    self.textLabel.textColor = [UIColor blackColor];
+  }
+
 }
 
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type {
@@ -67,6 +81,16 @@
     return UIDatePickerModeTime;
   }
   return UIDatePickerModeDate;
+}
+- (NSDateFormatter *) dateFormatterFromType:(NSString *)type {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  [formatter setDateFormat:@"MM/dd/yyyy"];
+  if ([type isEqualToString:@"datetime"]) {
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+  } else if ([type isEqualToString:@"time"]) {
+    [formatter setDateFormat:@"HH:mm"];
+  }
+  return formatter;
 }
 
 //
@@ -85,10 +109,18 @@
 }
 
 - (void) nowPressed{
-  [self pickerDone];
+  [pickerController.datePicker setDate:[NSDate date] animated:YES];
+  [self performSelector:@selector(pickerDone) withObject:nil afterDelay:0.4];
+//  [self  pickerDone];  
 }
 - (void) pickerDone{
   [popoverController dismissPopoverAnimated:NO];
+  
+  NSString *selectedDate = [myDateFormatter stringFromDate:[pickerController.datePicker date]]; 
+  [delegate deleteResponseForIndexPath:[delegate.tableView indexPathForCell:self]];
+  [delegate newResponseForIndexPath:[delegate.tableView indexPathForCell:self] Value:selectedDate];
+  self.textLabel.text = selectedDate;
+  self.textLabel.textColor = RGB(1, 113, 233);
 }
 - (void) pickerCancel{
   [popoverController dismissPopoverAnimated:NO];
