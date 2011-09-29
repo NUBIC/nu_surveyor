@@ -7,6 +7,7 @@
 //
 
 #import "PageCell.h"
+#import "NUSectionVC.h"
 
 @interface SurveyorNoneTextAnswerCell : PageCell {
   UITextView *textView;
@@ -15,5 +16,6 @@
 
 @property (nonatomic, retain) UITextView *textView;
 @property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) NUSectionVC *delegate;
 
 @end

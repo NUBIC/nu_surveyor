@@ -11,7 +11,7 @@
 #import "PageViewController.h"
 
 @implementation SurveyorNoneTextAnswerCell
-@synthesize textView, label;
+@synthesize textView, label, delegate;
 
 
 + (CGFloat)rowHeight
@@ -123,7 +123,17 @@
                indexPath:(NSIndexPath *)anIndexPath
 {
 	[super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
-  textView.delegate = (PageViewController *)aTableView.delegate;
+  textView.text = nil;
+  textView.delegate = nil;
+  
+  // look up existing response, fill in text
+  self.delegate = (NUSectionVC *)[aTableView delegate];
+  NSManagedObject *existingResponse = [[delegate responsesForIndexPath:anIndexPath] lastObject];
+  if (existingResponse) {
+    textView.text = [existingResponse valueForKey:@"value"];
+  }
+  textView.delegate = delegate;
+  
   if ([[dataObject objectForKey:@"text"] length] < 1 ) {
     self.label.text = @"";
     self.textView.frame = CGRectMake(self.label.frame.origin.x,
@@ -139,7 +149,5 @@
     self.label.text = [dataObject objectForKey:@"text"];
     [self.label setHidden:FALSE];
   }
-  
 }
-
 @end

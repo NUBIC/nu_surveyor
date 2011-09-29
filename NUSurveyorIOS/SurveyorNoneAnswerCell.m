@@ -16,7 +16,7 @@
 @end
 
 @implementation SurveyorNoneAnswerCell
-@synthesize textField, label, postLabel;
+@synthesize textField, label, postLabel, delegate;
 
 //
 // dealloc
@@ -104,6 +104,8 @@
   postLabel.text = nil;
   
   textField.keyboardType = UIKeyboardTypeDefault;
+  textField.returnKeyType = UIReturnKeyDone;
+  textField.delegate = nil;
 }
 - (void) layoutSubviews {
   [super layoutSubviews];
@@ -158,6 +160,13 @@
   [super configureForData:dataObject tableView:aTableView indexPath:anIndexPath];
   [self resetContent];
 
+  // look up existing response, fill in text
+  self.delegate = (NUSectionVC *)[aTableView delegate];
+  NSManagedObject *existingResponse = [[delegate responsesForIndexPath:anIndexPath] lastObject];
+  if (existingResponse) {
+    self.textField.text = [existingResponse valueForKey:@"value"];
+  }
+
   // (pre) text
   if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
     [label setHidden:YES];
@@ -167,11 +176,13 @@
   
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
-    textField.delegate = (PageViewController *)aTableView.delegate;
+    // string
+    textField.delegate = delegate;
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
-    textField.delegate = (PageViewController *)aTableView.delegate;
+    // number
     textField.keyboardType = UIKeyboardTypeNumberPad;
+    textField.delegate = delegate;
   } else {
     [self.textField setHidden:YES];
   }
@@ -182,6 +193,7 @@
   } else {
     postLabel.text = [dataObject objectForKey:@"post_text"];
   }
+  
 }
 
 @end

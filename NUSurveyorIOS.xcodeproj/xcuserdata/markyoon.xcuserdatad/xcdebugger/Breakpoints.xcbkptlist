@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "NUSurveyorIOS/SurveyorNoneAnswerCell.m"
-         timestampString = "339022695.635584"
+         timestampString = "339025096.247343"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "158"
-         endingLineNumber = "158"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
          landmarkName = "-configureForData:tableView:indexPath:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PageViewController.h"
 
-@interface NUSectionVC : PageViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextViewDelegate> {
+@interface NUSectionVC : PageViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate> {
     
 }
 

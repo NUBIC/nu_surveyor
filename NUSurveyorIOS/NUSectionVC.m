@@ -398,18 +398,22 @@ subTitleForHeaderInSection:(NSInteger)section
 // Update the rowData for the text field rows to match the edited value of the
 // text field.
 //
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//	UIView *parentOfParent = textField.superview.superview;
-//	if ([parentOfParent isKindOfClass:[TextFieldCell class]])
-//	{
-//		TextFieldCell *cell = (TextFieldCell *)parentOfParent;
-//		NSIndexPath *indexPathForCell = [self.tableView indexPathForCell:cell];
-//		NSMutableDictionary *rowData =
-//    [self dataForRow:indexPathForCell.row inSection:indexPathForCell.section];
-//		[rowData setObject:textField.text forKey:@"value"];
-//	}
-//}
+- (void)textFieldDidEndEditing:(UITextField *)aTextField {
+  NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextField.superview.superview];
+  [self deleteResponseForIndexPath:idx];
+  if (aTextField.text != nil && ![aTextField.text isEqualToString:@""]) {
+    [self newResponseForIndexPath:idx Value:aTextField.text];
+  }
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)aTextView {
+  NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextView.superview.superview];
+  [self deleteResponseForIndexPath:idx];
+  if (aTextView.text != nil && ![aTextView.text isEqualToString:@""]) {
+    [self newResponseForIndexPath:idx Value:aTextView.text];
+  }
+}
 
 #pragma mark - Keyboard support
 //
