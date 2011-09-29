@@ -7,9 +7,9 @@
 //
 
 #import "NUSectionVC.h"
-#import "TextFieldCell.h"
-#import "UILabel+Resize.h"
 #import "NUSurveyVC.h"
+#import "PageCell.h"
+#import "UILabel+Resize.h"
 #import "UUID.h"
 
 static const double PageViewControllerTextAnimationDuration = 0.33;
@@ -171,7 +171,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+  // Return YES for supported orientations
 	return YES;
 }
 
