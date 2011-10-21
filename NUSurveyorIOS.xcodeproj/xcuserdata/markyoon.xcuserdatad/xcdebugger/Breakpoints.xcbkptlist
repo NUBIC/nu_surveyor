@@ -23,39 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "338930904.947185"
+         timestampString = "340662994.645953"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
-         landmarkName = "-responseForIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "338932801.116135"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
-         landmarkName = "-deleteResponseForIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "339022695.635584"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "382"
-         endingLineNumber = "382"
+         startingLineNumber = "349"
+         endingLineNumber = "349"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "339022695.635584"
+         timestampString = "340662994.645953"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-createRows"
          landmarkType = "5">
       </FileBreakpoint>
@@ -79,39 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "338930895.724829"
+         timestampString = "340662994.645953"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
-         landmarkName = "-newResponseForIndexPath:Value:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "338932801.116135"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "-idsForIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "339022695.635584"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "374"
-         endingLineNumber = "374"
+         startingLineNumber = "341"
+         endingLineNumber = "341"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -121,26 +65,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "339022695.635584"
+         timestampString = "340662994.645953"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "377"
-         endingLineNumber = "377"
+         startingLineNumber = "344"
+         endingLineNumber = "344"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "NUSurveyorIOS/NUSectionVC.m"
-         timestampString = "338933230.477268"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "93"
-         endingLineNumber = "93"
-         landmarkName = "-newResponseForIndexPath:Value:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

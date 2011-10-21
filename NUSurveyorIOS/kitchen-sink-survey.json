@@ -1,0 +1,267 @@
+{"survey":
+{"sections":[
+{"questions_and_groups":[
+{"type":"label","text":"These questions are examples of the basic supported input types","uuid":"f09876c0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"text":"red","uuid":"f0997920-d703-012e-9ef2-00254bc472f4"},
+{"text":"blue","uuid":"f0998ff0-d703-012e-9ef2-00254bc472f4"},
+{"text":"green","uuid":"f099a540-d703-012e-9ef2-00254bc472f4"},
+{"text":"yellow","uuid":"f099b930-d703-012e-9ef2-00254bc472f4"},
+{"text":"Other","uuid":"f099cd40-d703-012e-9ef2-00254bc472f4"}],"reference":"1","pick":"one","text":"What is your favorite color?","uuid":"f0989620-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"text":"red","uuid":"f099fa00-d703-012e-9ef2-00254bc472f4"},
+{"text":"blue","uuid":"f09a0bd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"green","uuid":"f09a1db0-d703-012e-9ef2-00254bc472f4"},
+{"text":"yellow","uuid":"f09a2fa0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Omit","exclusive":true,"uuid":"f09a44f0-d703-012e-9ef2-00254bc472f4"}],"reference":"2","pick":"any","text":"Choose the colors you don't like","uuid":"f099e5e0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"text","text":"explanation","uuid":"f09a6d80-d703-012e-9ef2-00254bc472f4"}],"dependency":
+{"conditions":[
+{"answer":"f099fa00-d703-012e-9ef2-00254bc472f4","operator":"==","value":4291,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"A"},
+{"answer":"f09a0bd0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4292,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"B"},
+{"answer":"f09a1db0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4293,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"C"},
+{"answer":"f09a2fa0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4294,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"D"}],"rule":"A or B or C or D"},"reference":"2a","text":"Please explain why you don't like this color?","uuid":"f09a5a30-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"text","text":"explanation","uuid":"f09b8a90-d703-012e-9ef2-00254bc472f4"}],"dependency":
+{"conditions":[
+{"answer":null,"operator":"count>2","value":null,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"Z"}],"rule":"Z"},"reference":"2b","text":"Please explain why you dislike so many colors?","uuid":"f09b76d0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"","uuid":"f09bcbf0-d703-012e-9ef2-00254bc472f4"}],"reference":"montypython3","text":"What... is your name? (e.g. It is 'Arthur', King of the Britons)","uuid":"f09bb800-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"","uuid":"f09bf500-d703-012e-9ef2-00254bc472f4"}],"dependency":
+{"conditions":[
+{"answer":"f09bcbf0-d703-012e-9ef2-00254bc472f4","operator":"==","value":"It is 'Arthur', King of the Britons","question":"f09bb800-d703-012e-9ef2-00254bc472f4","rule_key":"A"}],"rule":"A"},"reference":"montypython4","text":"What... is your quest? (e.g. To seek the Holy Grail)","uuid":"f09be090-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"","uuid":"f09c3790-d703-012e-9ef2-00254bc472f4"}],"dependency":
+{"conditions":[
+{"answer":"f09bf500-d703-012e-9ef2-00254bc472f4","operator":"==","value":"To seek the Holy Grail","question":"f09be090-d703-012e-9ef2-00254bc472f4","rule_key":"A"}],"rule":"A"},"reference":"montypython5","text":"What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)","uuid":"f09c23b0-d703-012e-9ef2-00254bc472f4"},
+{"type":"label","dependency":
+{"conditions":[
+{"answer":"f09c3790-d703-012e-9ef2-00254bc472f4","operator":"==","value":"What do you mean? An African or European swallow?","question":"f09c23b0-d703-012e-9ef2-00254bc472f4","rule_key":"A"}],"rule":"A"},"text":"Huh? I-- I don't know that! Auuuuuuuugh!","uuid":"f09c6560-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"who","uuid":"f09ca620-d703-012e-9ef2-00254bc472f4"},
+{"type":"string","text":"what","uuid":"f09cb7a0-d703-012e-9ef2-00254bc472f4"},
+{"type":"string","text":"where","uuid":"f09cc990-d703-012e-9ef2-00254bc472f4"}],"reference":"improv_start","text":"Get me started on an improv sketch","uuid":"f09c9340-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"integer","text":"","uuid":"f09cf130-d703-012e-9ef2-00254bc472f4"}],"text":"How many pets do you own?","uuid":"f09cdd70-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"text","text":"","uuid":"f09de970-d703-012e-9ef2-00254bc472f4"}],"text":"What is your address?","uuid":"f09dd450-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"datetime","text":"","uuid":"f09e2610-d703-012e-9ef2-00254bc472f4"}],"text":"Pick your favorite date AND time","uuid":"f09e12a0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"time","text":"","uuid":"f09e4db0-d703-012e-9ef2-00254bc472f4"}],"reference":"time_lunch","text":"What time do you usually take a lunch break?","uuid":"f09e39f0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"date","text":"","uuid":"f09e7540-d703-012e-9ef2-00254bc472f4"}],"text":"When would you like to meet for dinner?","uuid":"f09e6180-d703-012e-9ef2-00254bc472f4"},
+{"type":"slider","answers":[
+{"text":"1","uuid":"f09e9bb0-d703-012e-9ef2-00254bc472f4"},
+{"text":"2","uuid":"f09eac80-d703-012e-9ef2-00254bc472f4"},
+{"text":"3","uuid":"f09ebd70-d703-012e-9ef2-00254bc472f4"},
+{"text":"4","uuid":"f09ece90-d703-012e-9ef2-00254bc472f4"},
+{"text":"5","uuid":"f09edfd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"6","uuid":"f09ef0e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"7","uuid":"f09f0210-d703-012e-9ef2-00254bc472f4"},
+{"text":"8","uuid":"f09f1340-d703-012e-9ef2-00254bc472f4"},
+{"text":"9","uuid":"f09f2480-d703-012e-9ef2-00254bc472f4"},
+{"text":"10","uuid":"f09f3640-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"Adjust the slider to reflect your level of awesomeness","uuid":"f09e88c0-d703-012e-9ef2-00254bc472f4"},
+{"type":"slider","answers":[
+{"text":"not at all","uuid":"f09f5e60-d703-012e-9ef2-00254bc472f4"},
+{"text":"a little","uuid":"f09f6f50-d703-012e-9ef2-00254bc472f4"},
+{"text":"some","uuid":"f09f8060-d703-012e-9ef2-00254bc472f4"},
+{"text":"a lot","uuid":"f09f91b0-d703-012e-9ef2-00254bc472f4"},
+{"text":"a ton","uuid":"f09fa2f0-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"How much do you like Ruby?","uuid":"f09f4af0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"float","post_text":"USD","text":"$","uuid":"f09fca50-d703-012e-9ef2-00254bc472f4"}],"text":"How much money do you want?","uuid":"f09fb710-d703-012e-9ef2-00254bc472f4"},
+{"type":"inline","questions":[
+{"answers":[
+{"type":"float","text":"","uuid":"f0a06030-d703-012e-9ef2-00254bc472f4"}],"text":"Quantity","uuid":"f0a04870-d703-012e-9ef2-00254bc472f4"},
+{"type":"dropdown","answers":[
+{"text":"Barrels","uuid":"f0a08790-d703-012e-9ef2-00254bc472f4"},
+{"text":"Gallons","uuid":"f0a098a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Quarts","uuid":"f0a0aa60-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"Unit","uuid":"f0a073c0-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"type":"float","text":"","uuid":"f0a06030-d703-012e-9ef2-00254bc472f4"}],"text":"How much oil do you use per day?"},
+{"type":"dropdown","answers":[
+{"text":"Adams","uuid":"f0a0d600-d703-012e-9ef2-00254bc472f4"},
+{"text":"Alexander","uuid":"f0a0e760-d703-012e-9ef2-00254bc472f4"},
+{"text":"Bond","uuid":"f0a0f830-d703-012e-9ef2-00254bc472f4"},
+{"text":"Boone","uuid":"f0a10920-d703-012e-9ef2-00254bc472f4"},
+{"text":"Brown","uuid":"f0a11a40-d703-012e-9ef2-00254bc472f4"},
+{"text":"Bureau","uuid":"f0a12b70-d703-012e-9ef2-00254bc472f4"},
+{"text":"Calhoun","uuid":"f0a13c70-d703-012e-9ef2-00254bc472f4"},
+{"text":"Carroll","uuid":"f0a14da0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Cass","uuid":"f0a15ee0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Champaign","uuid":"f0a17010-d703-012e-9ef2-00254bc472f4"},
+{"text":"Christian","uuid":"f0a18160-d703-012e-9ef2-00254bc472f4"},
+{"text":"Clark","uuid":"f0a192f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Clay","uuid":"f0a1a490-d703-012e-9ef2-00254bc472f4"},
+{"text":"Clinton","uuid":"f0a1b660-d703-012e-9ef2-00254bc472f4"},
+{"text":"Coles","uuid":"f0a1c870-d703-012e-9ef2-00254bc472f4"},
+{"text":"Cook","uuid":"f0a1dad0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Crawford","uuid":"f0a1ed80-d703-012e-9ef2-00254bc472f4"},
+{"text":"Cumberland","uuid":"f0a1fff0-d703-012e-9ef2-00254bc472f4"},
+{"text":"DeKalb","uuid":"f0a211e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"De Witt","uuid":"f0a223f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Douglas","uuid":"f0a23600-d703-012e-9ef2-00254bc472f4"},
+{"text":"DuPage","uuid":"f0a24800-d703-012e-9ef2-00254bc472f4"},
+{"text":"Edgar","uuid":"f0a25a10-d703-012e-9ef2-00254bc472f4"},
+{"text":"Edwards","uuid":"f0a26dd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Effingham","uuid":"f0a28070-d703-012e-9ef2-00254bc472f4"},
+{"text":"Fayette","uuid":"f0a29350-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ford","uuid":"f0a2a660-d703-012e-9ef2-00254bc472f4"},
+{"text":"Franklin","uuid":"f0a2b920-d703-012e-9ef2-00254bc472f4"},
+{"text":"Fulton","uuid":"f0a2cc00-d703-012e-9ef2-00254bc472f4"},
+{"text":"Gallatin","uuid":"f0a2dec0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Greene","uuid":"f0a2f180-d703-012e-9ef2-00254bc472f4"},
+{"text":"Grundy","uuid":"f0a30490-d703-012e-9ef2-00254bc472f4"},
+{"text":"Hamilton","uuid":"f0a31780-d703-012e-9ef2-00254bc472f4"},
+{"text":"Hancock","uuid":"f0a32ac0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Hardin","uuid":"f0a33e60-d703-012e-9ef2-00254bc472f4"},
+{"text":"Henderson","uuid":"f0a35190-d703-012e-9ef2-00254bc472f4"},
+{"text":"Henry","uuid":"f0a36530-d703-012e-9ef2-00254bc472f4"},
+{"text":"Iroquois","uuid":"f0a37920-d703-012e-9ef2-00254bc472f4"},
+{"text":"Jackson","uuid":"f0a38d20-d703-012e-9ef2-00254bc472f4"},
+{"text":"Jasper","uuid":"f0a3a0a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Jefferson","uuid":"f0a3b480-d703-012e-9ef2-00254bc472f4"},
+{"text":"Jersey","uuid":"f0a3c8b0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Jo Daviess","uuid":"f0a3dc80-d703-012e-9ef2-00254bc472f4"},
+{"text":"Johnson","uuid":"f0a3f0a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Kane","uuid":"f0a41340-d703-012e-9ef2-00254bc472f4"},
+{"text":"Kankakee","uuid":"f0a42730-d703-012e-9ef2-00254bc472f4"},
+{"text":"Kendall","uuid":"f0a43b60-d703-012e-9ef2-00254bc472f4"},
+{"text":"Knox","uuid":"f0a44fa0-d703-012e-9ef2-00254bc472f4"},
+{"text":"La Salle","uuid":"f0a46410-d703-012e-9ef2-00254bc472f4"},
+{"text":"Lake","uuid":"f0a478a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Lawrence","uuid":"f0a48cd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Lee","uuid":"f0a4a130-d703-012e-9ef2-00254bc472f4"},
+{"text":"Livingston","uuid":"f0a4b5f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Logan","uuid":"f0a4ca80-d703-012e-9ef2-00254bc472f4"},
+{"text":"Macon","uuid":"f0a4df70-d703-012e-9ef2-00254bc472f4"},
+{"text":"Macoupin","uuid":"f0a4f440-d703-012e-9ef2-00254bc472f4"},
+{"text":"Madison","uuid":"f0a508e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Marion","uuid":"f0a51dc0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Marshall","uuid":"f0a53260-d703-012e-9ef2-00254bc472f4"},
+{"text":"Mason","uuid":"f0a54750-d703-012e-9ef2-00254bc472f4"},
+{"text":"Massac","uuid":"f0a55ce0-d703-012e-9ef2-00254bc472f4"},
+{"text":"McDonough","uuid":"f0a57290-d703-012e-9ef2-00254bc472f4"},
+{"text":"McHenry","uuid":"f0a59470-d703-012e-9ef2-00254bc472f4"},
+{"text":"McLean","uuid":"f0a5a9b0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Menard","uuid":"f0a5bf30-d703-012e-9ef2-00254bc472f4"},
+{"text":"Mercer","uuid":"f0a5d4b0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Monroe","uuid":"f0a5ea70-d703-012e-9ef2-00254bc472f4"},
+{"text":"Montgomery","uuid":"f0a60030-d703-012e-9ef2-00254bc472f4"},
+{"text":"Morgan","uuid":"f0a615c0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Moultrie","uuid":"f0a62b30-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ogle","uuid":"f0a640e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Peoria","uuid":"f0a656a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Perry","uuid":"f0a66e50-d703-012e-9ef2-00254bc472f4"},
+{"text":"Piatt","uuid":"f0a68490-d703-012e-9ef2-00254bc472f4"},
+{"text":"Pike","uuid":"f0a69a90-d703-012e-9ef2-00254bc472f4"},
+{"text":"Pope","uuid":"f0a6b0e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Pulaski","uuid":"f0a6c710-d703-012e-9ef2-00254bc472f4"},
+{"text":"Putnam","uuid":"f0a6dd50-d703-012e-9ef2-00254bc472f4"},
+{"text":"Randolph","uuid":"f0a6f3c0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Richland","uuid":"f0a70b10-d703-012e-9ef2-00254bc472f4"},
+{"text":"Rock Island","uuid":"f0a72210-d703-012e-9ef2-00254bc472f4"},
+{"text":"Saline","uuid":"f0a745f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Sangamon","uuid":"f0a75cf0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Schuyler","uuid":"f0a77490-d703-012e-9ef2-00254bc472f4"},
+{"text":"Scott","uuid":"f0a78c10-d703-012e-9ef2-00254bc472f4"},
+{"text":"Shelby","uuid":"f0a7a300-d703-012e-9ef2-00254bc472f4"},
+{"text":"St. Clair","uuid":"f0a7ba10-d703-012e-9ef2-00254bc472f4"},
+{"text":"Stark","uuid":"f0a7d100-d703-012e-9ef2-00254bc472f4"},
+{"text":"Stephenson","uuid":"f0a7ea10-d703-012e-9ef2-00254bc472f4"},
+{"text":"Tazewell","uuid":"f0a802a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Union","uuid":"f0a81b40-d703-012e-9ef2-00254bc472f4"},
+{"text":"Vermilion","uuid":"f0a83550-d703-012e-9ef2-00254bc472f4"},
+{"text":"Wabash","uuid":"f0a84df0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Warren","uuid":"f0a86670-d703-012e-9ef2-00254bc472f4"},
+{"text":"Washington","uuid":"f0a87ef0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Wayne","uuid":"f0a897c0-d703-012e-9ef2-00254bc472f4"},
+{"text":"White","uuid":"f0a8b0c0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Whiteside","uuid":"f0a8c9f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Will","uuid":"f0a8e2c0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Williamson","uuid":"f0a8fbe0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Winnebago","uuid":"f0a914e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Woodford","uuid":"f0a92e90-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"Choose your Illinois county","uuid":"f0a0c160-d703-012e-9ef2-00254bc472f4"},
+{"type":"inline","answers":[
+{"text":"Chicken","uuid":"f0a96650-d703-012e-9ef2-00254bc472f4"},
+{"text":"Pork","uuid":"f0a978d0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Beef","uuid":"f0a98b70-d703-012e-9ef2-00254bc472f4"},
+{"text":"Shellfish","uuid":"f0a99f60-d703-012e-9ef2-00254bc472f4"},
+{"text":"Fish","uuid":"f0a9b230-d703-012e-9ef2-00254bc472f4"},
+{"text":"I don't eat meats!!!","exclusive":true,"uuid":"f0a9c5a0-d703-012e-9ef2-00254bc472f4"}],"pick":"any","text":"Choose your favorite meats","uuid":"f0a94ef0-d703-012e-9ef2-00254bc472f4"},
+{"type":"inline","answers":[
+{"text":"yes","uuid":"f0a9f200-d703-012e-9ef2-00254bc472f4"},
+{"text":"maybe","uuid":"f0aa03d0-d703-012e-9ef2-00254bc472f4"},
+{"text":"no","uuid":"f0aa15f0-d703-012e-9ef2-00254bc472f4"},
+{"text":"I don't know","uuid":"f0aa2870-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"All out of ideas for questions?","uuid":"f0a9dc80-d703-012e-9ef2-00254bc472f4"}],"title":"Basic questions"},
+{"questions_and_groups":[
+{"type":"grid","questions":[
+{"pick":"one","text":"Head","uuid":"f0aa9630-d703-012e-9ef2-00254bc472f4"},
+{"pick":"one","text":"Knees","uuid":"f0ab0080-d703-012e-9ef2-00254bc472f4"},
+{"pick":"one","text":"Toes","uuid":"f0ab6830-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"text":"1","uuid":"f0aa5c70-d703-012e-9ef2-00254bc472f4"},
+{"text":"2","uuid":"f0aa6dd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"3","uuid":"f0aa7fe0-d703-012e-9ef2-00254bc472f4"}],"text":"Tell us how often do you cover these each day"},
+{"type":"grid","questions":[
+{"post_text":"up","pick":"one","text":"down","uuid":"f0ac35f0-d703-012e-9ef2-00254bc472f4"},
+{"post_text":"happy","pick":"one","text":"sad","uuid":"f0acd810-d703-012e-9ef2-00254bc472f4"},
+{"post_text":"perky","pick":"one","text":"limp","uuid":"f0ad7990-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"text":"-2","uuid":"f0abdd70-d703-012e-9ef2-00254bc472f4"},
+{"text":"-1","uuid":"f0abee70-d703-012e-9ef2-00254bc472f4"},
+{"text":"0","uuid":"f0abff70-d703-012e-9ef2-00254bc472f4"},
+{"text":"1","uuid":"f0ac1090-d703-012e-9ef2-00254bc472f4"},
+{"text":"2","uuid":"f0ac2190-d703-012e-9ef2-00254bc472f4"}],"text":"Tell us how you feel today day"},
+{"type":"grid","questions":[
+{"pick":"any","text":"SUV","uuid":"f0ae7d60-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Sedan","uuid":"f0af1ae0-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Coupe","uuid":"f0afb880-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Convertible","uuid":"f0b057e0-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Minivan","uuid":"f0b0fa90-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Crossover","uuid":"f0b19fd0-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Wagon","uuid":"f0b23ea0-d703-012e-9ef2-00254bc472f4"},
+{"pick":"any","text":"Other","uuid":"f0b2df10-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"text":"Leather seats","uuid":"f0ae25d0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Shiny rims","uuid":"f0ae3700-d703-012e-9ef2-00254bc472f4"},
+{"text":"Subwoofer","uuid":"f0ae47e0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Sunroof","uuid":"f0ae58b0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Turbocharger","uuid":"f0ae6980-d703-012e-9ef2-00254bc472f4"}],"text":"For each of the car types checked, what type of options would you prefer?"},
+{"answers":[
+{"type":"integer","post_text":"pizza","text":"","uuid":"f0b397b0-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"salad","text":"","uuid":"f0b3a9f0-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"sushi","text":"","uuid":"f0b3bc50-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"ice cream","text":"","uuid":"f0b3cec0-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"breakfast ceral","text":"","uuid":"f0b3e150-d703-012e-9ef2-00254bc472f4"}],"text":"Please rank the following foods based on how much you like them","uuid":"f0b38300-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"spoon","uuid":"f0b40ae0-d703-012e-9ef2-00254bc472f4"},
+{"type":"string","text":"fork","uuid":"f0b41d20-d703-012e-9ef2-00254bc472f4"},
+{"type":"string","text":"knife","uuid":"f0b430b0-d703-012e-9ef2-00254bc472f4"},
+{"type":"string","text":"Other","uuid":"f0b44300-d703-012e-9ef2-00254bc472f4"}],"pick":"any","text":"Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)","uuid":"f0b3f6c0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"text":"Yes","uuid":"f0b46c80-d703-012e-9ef2-00254bc472f4"},
+{"text":"No","uuid":"f0b47ed0-d703-012e-9ef2-00254bc472f4"}],"reference":"car","pick":"one","text":"Do you own a car?","uuid":"f0b45890-d703-012e-9ef2-00254bc472f4"},
+{"type":"repeater","questions":[
+{"type":"dropdown","answers":[
+{"text":"Toyota","uuid":"f0b4da90-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ford","uuid":"f0b4ed50-d703-012e-9ef2-00254bc472f4"},
+{"text":"GMChevy","uuid":"f0b4ffd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ferrari","uuid":"f0b51240-d703-012e-9ef2-00254bc472f4"},
+{"text":"Tesla","uuid":"f0b52510-d703-012e-9ef2-00254bc472f4"},
+{"text":"Honda","uuid":"f0b537a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Other weak brand","uuid":"f0b54a60-d703-012e-9ef2-00254bc472f4"}],"pick":"one","text":"Make","uuid":"f0b4c5b0-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"","uuid":"f0b574f0-d703-012e-9ef2-00254bc472f4"}],"text":"Model","uuid":"f0b55f60-d703-012e-9ef2-00254bc472f4"},
+{"answers":[
+{"type":"string","text":"","uuid":"f0b59f40-d703-012e-9ef2-00254bc472f4"}],"text":"Year","uuid":"f0b589c0-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"text":"Toyota","uuid":"f0b4da90-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ford","uuid":"f0b4ed50-d703-012e-9ef2-00254bc472f4"},
+{"text":"GMChevy","uuid":"f0b4ffd0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Ferrari","uuid":"f0b51240-d703-012e-9ef2-00254bc472f4"},
+{"text":"Tesla","uuid":"f0b52510-d703-012e-9ef2-00254bc472f4"},
+{"text":"Honda","uuid":"f0b537a0-d703-012e-9ef2-00254bc472f4"},
+{"text":"Other weak brand","uuid":"f0b54a60-d703-012e-9ef2-00254bc472f4"}],"text":"Tell us about the cars you own"},
+{"type":"repeater","questions":[
+{"answers":[
+{"type":"string","text":"Name","uuid":"f0b5d7a0-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"years","text":"Age","uuid":"f0b5ea70-d703-012e-9ef2-00254bc472f4"}],"text":"Sibling","uuid":"f0b5c230-d703-012e-9ef2-00254bc472f4"}],"answers":[
+{"type":"string","text":"Name","uuid":"f0b5d7a0-d703-012e-9ef2-00254bc472f4"},
+{"type":"integer","post_text":"years","text":"Age","uuid":"f0b5ea70-d703-012e-9ef2-00254bc472f4"}],"text":"Tell us the name and age of your siblings"}],"title":"Complicated questions"}],"title":"Kitchen Sink survey","uuid":"f091b7c0-d703-012e-9ef2-00254bc472f4"}}

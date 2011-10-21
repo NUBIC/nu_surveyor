@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PageViewController.h"
+#import "NUResponseSet.h"
 
 @interface NUSectionVC : PageViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate> {
     
@@ -20,7 +21,7 @@
 @property (nonatomic, retain) NSMutableArray *sectionTitles;
 @property (nonatomic, retain) NSMutableArray *sectionSubTitles;
 @property (nonatomic, retain) NSMutableArray *sections;
-@property (nonatomic, retain) NSManagedObject *responseSet;
+@property (nonatomic, retain) NUResponseSet *responseSet;
 
 - (void)createHeader;
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath;

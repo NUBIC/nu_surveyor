@@ -46,78 +46,6 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   return [NSClassFromString(className) class];
 }
 
-#pragma mark - Core Data
-- (NSArray *) responsesForIndexPath:(NSIndexPath *)i{
-  NSDictionary *ids = [self idsForIndexPath:i];
-  //  DLog(@"responseForQuestion %@ answer %@", qid, aid);
-  // setup fetch request
-	NSError *error = nil;
-  NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
-  [request setEntity:entity];
-  
-  // Set predicate
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                            @"(responseSet == %@) AND (Question == %@) AND (Answer == %@)", 
-                            responseSet, [ids objectForKey:@"qid"], [ids objectForKey:@"aid"]];
-  [request setPredicate:predicate];
-  
-  NSArray *results = [[UIAppDelegate managedObjectContext] executeFetchRequest:request error:&error];
-  if (results == nil)
-  {
-    /*
-     Replace this implementation with code to handle the error appropriately.
-     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-     */
-    NSLog(@"Unresolved responseForAnswer fetch error %@, %@", error, [error userInfo]);
-    abort();
-  }
-  //  DLog(@"responseForAnswer: %@ result: %@", aid, [results lastObject]);
-  //  DLog(@"responseForAnswer #:%d", [results count]);
-  return results;
-}
-- (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value{
-  NSDictionary *ids = [self idsForIndexPath:i];
-//  DLog(@"%@", responseSet);
-  NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
-  [newResponse setValue:responseSet forKey:@"responseSet"];
-  [newResponse setValue:[ids objectForKey:@"qid"] forKey:@"Question"];
-  [newResponse setValue:[ids objectForKey:@"aid"] forKey:@"Answer"];
-  [newResponse setValue:value forKey:@"Value"];
-  
-  [newResponse setValue:[NSDate date] forKey:@"CreatedAt"];
-  [newResponse setValue:[UUID generateUuidString] forKey:@"UUID"];
-  
-  // Save the context.
-  [UIAppDelegate saveContext:@"QuestionResponse newResponseForAnswerValue"];
-  
-  return newResponse;
-}
-- (NSManagedObject *) newResponseForIndexPath:i {
-  return [self newResponseForIndexPath:i Value:nil];
-}
-- (NSDictionary *)idsForIndexPath:(NSIndexPath *)i{
-  if (i.section < [sections count] && i.row < [[[sections objectAtIndex:i.section] objectForKey:@"answers"] count]) {
-    NSString *qid = [[sections objectAtIndex:i.section] objectForKey:@"uuid"];
-    NSString *aid = [[[[sections objectAtIndex:i.section] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
-    //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
-    return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];
-  }else{
-    // this happens when the tableview is refreshed
-    // and self.tableView deleteSections is called
-    return [NSDictionary dictionaryWithObjectsAndKeys:nil, @"qid", nil, @"aid", nil];
-  }
-}
-- (void) deleteResponseForIndexPath:(NSIndexPath *)i {
-  NSArray *existingResponses = [self responsesForIndexPath:i];
-  for (NSManagedObject *existingResponse in existingResponses) {
-    [[UIAppDelegate managedObjectContext] deleteObject:existingResponse];
-  }
-  
-  // Save the context
-  [UIAppDelegate saveContext:@"tableViewdidSelectRowAtIndexPath removing"];  
-}
-
 #pragma mark - Memory management
 - (void)dealloc
 {
@@ -175,6 +103,36 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 	return YES;
 }
 
+#pragma mark - Core Data
+- (NSDictionary *)idsForIndexPath:(NSIndexPath *)i{
+  if (i.section < [sections count] && i.row < [[[sections objectAtIndex:i.section] objectForKey:@"answers"] count]) {
+    NSString *qid = [[sections objectAtIndex:i.section] objectForKey:@"uuid"];
+    NSString *aid = [[[[sections objectAtIndex:i.section] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
+    //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
+    return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];
+  }else{
+    // this happens when the tableview is refreshed
+    // and self.tableView deleteSections is called
+    return [NSDictionary dictionaryWithObjectsAndKeys:nil, @"qid", nil, @"aid", nil];
+  }
+}
+
+- (NSArray *) responsesForIndexPath:(NSIndexPath *)i{
+  NSDictionary *ids = [self idsForIndexPath:i];
+  return [self.responseSet responsesForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"]];
+}
+- (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value{
+  NSDictionary *ids = [self idsForIndexPath:i];
+  return [self.responseSet newResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] Value:value];
+}
+- (NSManagedObject *) newResponseForIndexPath:i {
+  return [self newResponseForIndexPath:i Value:nil];
+}
+- (void) deleteResponseForIndexPath:(NSIndexPath *)i {
+  NSDictionary *ids = [self idsForIndexPath:i];
+  [self.responseSet deleteResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"]];
+}
+
 #pragma mark - PageViewController subclass
 /*
  When setting the detail item, update the view and dismiss the popover controller if it's showing.
@@ -228,9 +186,13 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
         [sections insertObject:questionOrGroup atIndex:i];
         if ([questionOrGroup objectForKey:@"text"] != nil) {
           [sectionTitles insertObject:[questionOrGroup objectForKey:@"text"] atIndex:i];
+        } else {
+          [sectionTitles insertObject:@"" atIndex:i];
         }
         if ([questionOrGroup objectForKey:@"help_text"]) {
           [sectionSubTitles insertObject:[questionOrGroup objectForKey:@"help_text"] atIndex:i];
+        } else {
+          [sectionSubTitles insertObject:@"" atIndex:i];
         }
         i++;
         for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
@@ -249,9 +211,13 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   [sections insertObject:question atIndex:i];
   if ([question objectForKey:@"text"] != nil) {
     [sectionTitles insertObject:[question objectForKey:@"text"] atIndex:i];
+  } else {
+    [sectionTitles insertObject:@"" atIndex:i];
   }
   if ([question objectForKey:@"help_text"]) {
     [sectionSubTitles insertObject:[question objectForKey:@"help_text"] atIndex:i];
+  } else {
+    [sectionSubTitles insertObject:@"" atIndex:i];
   }
   
   if ([(NSString *)[question objectForKey:@"type"] isEqualToString:@"dropdown"] || [(NSString *)[question objectForKey:@"type"] isEqualToString:@"slider"]){
@@ -356,6 +322,11 @@ subTitleForHeaderInSection:(NSInteger)section
   }
   
 }
+#pragma mark - Calculate dependencies
+
+
+#pragma mark - Show and hide dependencies
+
 
 #pragma mark - UITableViewDelegate
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NUSectionVC.h"
+#import "NUResponseSet.h"
 
 @interface NUSurveyVC : UITableViewController {
     
@@ -15,7 +16,7 @@
 
 @property (nonatomic, retain) IBOutlet NUSectionVC *sectionController;
 @property (nonatomic, retain) NSDictionary *dict;
-@property (nonatomic, retain) NSManagedObject *responseSet;
+@property (nonatomic, retain) NUResponseSet *responseSet;
 @property (nonatomic, assign) NSUInteger currentSection;
 
 - (void) nextSection;

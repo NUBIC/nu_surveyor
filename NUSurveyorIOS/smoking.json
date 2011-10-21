@@ -1,0 +1,42 @@
+{"survey":
+  {"sections":[
+    {"title":"Cigarettes","questions_and_groups":[
+      {"help_text":"NO means less than 20 packs of cigarettes or 12 oz. of tobacco in a lifetime or less than 1 cigarette a day for 1 year.","pick":"one","answers":[
+        {"text":"Yes","uuid":"394d6010-d704-012e-9ef3-00254bc472f4"},
+        {"text":"No","uuid":"394d79a0-d704-012e-9ef3-00254bc472f4"}],"reference":"smoking_1","text":"Have you ever smoked cigarettes?","uuid":"394c9400-d704-012e-9ef3-00254bc472f4"},
+      {"pick":"any","answers":[
+        {"text":"Home","uuid":"394e9ec0-d704-012e-9ef3-00254bc472f4"},
+        {"text":"Work","uuid":"394eb230-d704-012e-9ef3-00254bc472f4"},
+        {"text":"In the car","uuid":"394ec530-d704-012e-9ef3-00254bc472f4"},
+        {"text":"Social events","uuid":"394ed7d0-d704-012e-9ef3-00254bc472f4"}],"text":"Where do you smoke?","uuid":"394d93d0-d704-012e-9ef3-00254bc472f4"},
+      {"help_text":"age in years","answers":[
+      {"type":"integer","text":"","uuid":"394f2580-d704-012e-9ef3-00254bc472f4"}],"reference":"copd_sh_1a","text":"How old were you when you first started smoking cigarettes?","uuid":"394ef3f0-d704-012e-9ef3-00254bc472f4"},
+      {"answers":[
+        {"type":"date","text":"","uuid":"394f4f70-d704-012e-9ef3-00254bc472f4"}],"text":"When did you buy your current pack of cigarettes?","uuid":"394f3bf0-d704-012e-9ef3-00254bc472f4"},
+      {"answers":[
+        {"type":"time","text":"","uuid":"394f7730-d704-012e-9ef3-00254bc472f4"}],"text":"When do you take your first smoking break of the day?","uuid":"394f63a0-d704-012e-9ef3-00254bc472f4"},
+      {"answers":[
+        {"type":"datetime","text":"","uuid":"394fa200-d704-012e-9ef3-00254bc472f4"}],"text":"When do you think you will smoke your next cigarette?","uuid":"394f8d10-d704-012e-9ef3-00254bc472f4"}]},
+    {"title":"Bronchitis","questions_and_groups":[
+      {"type":"grid","questions":[
+        {"pick":"one","reference":"copd_mh_2","text":"Bronchitis Attack","uuid":"39506c60-d704-012e-9ef3-00254bc472f4"},
+        {"pick":"one","reference":"copd_mh_3","text":"Pneumonia","uuid":"3950c010-d704-012e-9ef3-00254bc472f4"},
+        {"pick":"one","reference":"copd_mh_4","text":"Hay Fever","uuid":"39511070-d704-012e-9ef3-00254bc472f4"},
+        {"pick":"one","reference":"copd_mh_5","text":"Chronic Bronchitis","uuid":"395162a0-d704-012e-9ef3-00254bc472f4"},
+        {"pick":"one","reference":"copd_mh_6","text":"Emphysema","uuid":"3951b060-d704-012e-9ef3-00254bc472f4"},
+        {"pick":"one","reference":"copd_mh_7","text":"Asthma","uuid":"39520060-d704-012e-9ef3-00254bc472f4"}],"answers":[
+        {"text":"Yes","uuid":"39503ff0-d704-012e-9ef3-00254bc472f4"},
+        {"text":"No","uuid":"39505170-d704-012e-9ef3-00254bc472f4"}],"text":"Have you ever had any of the following"},
+      {"pick":"one","answers":[
+        {"text":"Yes","uuid":"395285d0-d704-012e-9ef3-00254bc472f4"},
+        {"text":"No","uuid":"39529820-d704-012e-9ef3-00254bc472f4"}],"reference":"copd_mh_2a","text":"Was the bronchitis attack confirmed by a doctor?","uuid":"395253b0-d704-012e-9ef3-00254bc472f4"},
+      {"answers":[
+        {"type":"integer","text":"","uuid":"3952da20-d704-012e-9ef3-00254bc472f4"}],"reference":"copd_mh_2b","text":"At what age was your first bronchitis attack?","uuid":"3952ade0-d704-012e-9ef3-00254bc472f4"}]},
+    {"title":"Family history","questions_and_groups":[
+      {"answers":[
+        {"type":"date","text":"","uuid":"39531870-d704-012e-9ef3-00254bc472f4"}],"reference":"copd_fh_7","text":"Biological mother's date of birth","uuid":"395303d0-d704-012e-9ef3-00254bc472f4"},
+      {"pick":"one","answers":[
+        {"text":"Yes","uuid":"39533f40-d704-012e-9ef3-00254bc472f4"},
+        {"text":"No","uuid":"39535090-d704-012e-9ef3-00254bc472f4"}],"reference":"copd_fh_8","text":"Is your biological mother currently alive?","uuid":"39532d30-d704-012e-9ef3-00254bc472f4"},
+      {"answers":[
+        {"type":"integer","text":"","uuid":"39539350-d704-012e-9ef3-00254bc472f4"}],"reference":"cocpd_fh_8a","text":"Mother's age at death","uuid":"39536540-d704-012e-9ef3-00254bc472f4"}]}],"title":"Smoking","uuid":"394ae090-d704-012e-9ef3-00254bc472f4"}}

@@ -60,18 +60,13 @@
 
 	// JSON data
 	NSError *strError;
-	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"ks_with_uuid" ofType:@"json"];
+	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
   SBJsonParser *parser = [[SBJsonParser alloc] init];  
   dict = [[parser objectWithString:responseString] retain];
     
   // Create a new response set
-  NSManagedObject *rs = [NSEntityDescription insertNewObjectForEntityForName:@"ResponseSet" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
-  [rs setValue:[NSDate date] forKey:@"CreatedAt"];
-  [rs setValue:[[dict objectForKey:@"survey"] objectForKey:@"title"] forKey:@"UUID"];
-  [rs setValue:[UUID generateUuidString] forKey:@"UUID"];
-  [UIAppDelegate saveContext:@"NUSurveyVC viewDidLoad new response set"];
-  self.responseSet = rs;
+  self.responseSet = [NUResponseSet newResponseSetForSurvey:[[dict objectForKey:@"survey"] objectForKey:@"uuid"]];
   
 	// Setup sectionController
   sectionController.responseSet = responseSet;
