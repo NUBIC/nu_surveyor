@@ -14,15 +14,19 @@
 @synthesize dependencyGraph;
 
 // initializer
-+ (NUResponseSet *) newResponseSetForSurvey:(NSString *)survey {
++ (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey {
+//  DLog(@"survey: %@", survey);
+//  DLog(@"uuid: %@", [survey objectForKey:@"uuid"]);
   NSEntityDescription *entity =
   [[[UIAppDelegate managedObjectModel] entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc]
                           initWithEntity:entity insertIntoManagedObjectContext:[UIAppDelegate managedObjectContext]];
   [rs setValue:[NSDate date] forKey:@"CreatedAt"];
-  [rs setValue:survey forKey:@"Survey"];
+  [rs setValue:[survey objectForKey:@"uuid"] forKey:@"Survey"];
   [rs setValue:[UUID generateUuidString] forKey:@"UUID"];
   [UIAppDelegate saveContext:@"NUResponseSet newResponseSetForSurvey"];
+  
+  [rs generateDependencyGraph:survey];
   return [rs autorelease];
 }
 
@@ -99,7 +103,21 @@
 
 #pragma mark - Dependency Graph
 - (void) generateDependencyGraph:(NSDictionary *)survey {
-  
+  self.dependencyGraph = [[NSMutableDictionary alloc] init];
+  for (NSDictionary *section in [survey objectForKey:@"sections"]) {
+    for (NSDictionary *questionOrGroup in [section objectForKey:@"questions_and_groups"]) {
+      if ([questionOrGroup objectForKey:@"dependency"] && [questionOrGroup objectForKey:@"uuid"] && [[questionOrGroup objectForKey:@"dependency"] objectForKey:@"conditions"]) {
+        for (NSDictionary *condition in [[questionOrGroup objectForKey:@"dependency"] objectForKey:@"conditions"]) {
+          if ([dependencyGraph objectForKey:[condition objectForKey:@"question"]] && ![(NSMutableArray *)[dependencyGraph objectForKey:[condition objectForKey:@"question"]] containsObject:[questionOrGroup objectForKey:@"uuid"]]) {
+            [(NSMutableArray *)[dependencyGraph objectForKey:[condition objectForKey:@"question"]] addObject:[questionOrGroup objectForKey:@"uuid"]];
+          } else {
+            [dependencyGraph setObject:[NSMutableArray arrayWithObject:[questionOrGroup objectForKey:@"uuid"]] forKey:[condition objectForKey:@"question"]];
+          }
+        }
+      }
+    }
+  }
+  DLog(@"dg: %@", dependencyGraph);
 }
 - (NSDictionary *) dependenciesTriggeredBy:(NSString *)qid {
   NSMutableArray *show = [[NSMutableArray alloc] init];

@@ -16,4 +16,6 @@
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) NUSectionVC *delegate;
 @property (nonatomic, retain) NSDateFormatter *myDateFormatter;
+
+- (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
 @end

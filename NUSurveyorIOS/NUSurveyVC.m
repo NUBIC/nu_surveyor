@@ -66,7 +66,7 @@
   dict = [[parser objectWithString:responseString] retain];
     
   // Create a new response set
-  self.responseSet = [NUResponseSet newResponseSetForSurvey:[[dict objectForKey:@"survey"] objectForKey:@"uuid"]];
+  self.responseSet = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
   
 	// Setup sectionController
   sectionController.responseSet = responseSet;

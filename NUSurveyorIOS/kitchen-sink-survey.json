@@ -17,10 +17,10 @@
 {"answers":[
 {"type":"text","text":"explanation","uuid":"f09a6d80-d703-012e-9ef2-00254bc472f4"}],"dependency":
 {"conditions":[
-{"answer":"f099fa00-d703-012e-9ef2-00254bc472f4","operator":"==","value":4291,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"A"},
-{"answer":"f09a0bd0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4292,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"B"},
-{"answer":"f09a1db0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4293,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"C"},
-{"answer":"f09a2fa0-d703-012e-9ef2-00254bc472f4","operator":"==","value":4294,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"D"}],"rule":"A or B or C or D"},"reference":"2a","text":"Please explain why you don't like this color?","uuid":"f09a5a30-d703-012e-9ef2-00254bc472f4"},
+{"answer":"f099fa00-d703-012e-9ef2-00254bc472f4","operator":"==","value":null,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"A"},
+{"answer":"f09a0bd0-d703-012e-9ef2-00254bc472f4","operator":"==","value":null,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"B"},
+{"answer":"f09a1db0-d703-012e-9ef2-00254bc472f4","operator":"==","value":null,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"C"},
+{"answer":"f09a2fa0-d703-012e-9ef2-00254bc472f4","operator":"==","value":null,"question":"f099e5e0-d703-012e-9ef2-00254bc472f4","rule_key":"D"}],"rule":"A or B or C or D"},"reference":"2a","text":"Please explain why you don't like this color?","uuid":"f09a5a30-d703-012e-9ef2-00254bc472f4"},
 {"answers":[
 {"type":"text","text":"explanation","uuid":"f09b8a90-d703-012e-9ef2-00254bc472f4"}],"dependency":
 {"conditions":[

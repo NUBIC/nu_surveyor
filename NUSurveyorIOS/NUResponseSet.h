@@ -10,9 +10,9 @@
 
 @interface NUResponseSet : NSManagedObject
 
-@property (nonatomic, retain) NSDictionary *dependencyGraph;
+@property (nonatomic, retain) NSMutableDictionary *dependencyGraph;
 
-+ (NUResponseSet *) newResponseSetForSurvey:(NSString *)survey;
++ (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey;
 - (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid;
 - (NSManagedObject *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value;
 - (NSManagedObject *) newResponseForIndexQuestion:(NSString *)qid Answer:(NSString *)aid;
