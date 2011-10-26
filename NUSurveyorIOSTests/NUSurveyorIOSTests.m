@@ -97,16 +97,54 @@
 
   input = [rs.dependencyGraph objectForKey:@"f09bb800-d703-012e-9ef2-00254bc472f4"];
   output = [NSArray arrayWithObjects:@"f09be090-d703-012e-9ef2-00254bc472f4", nil];
-  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on disliked colors");
+  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on Arthur, King of the Britons");
 
   input = [rs.dependencyGraph objectForKey:@"f09be090-d703-012e-9ef2-00254bc472f4"];
   output = [NSArray arrayWithObjects:@"f09c23b0-d703-012e-9ef2-00254bc472f4", nil];
-  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on disliked colors");
+  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on quest");
   
   input = [rs.dependencyGraph objectForKey:@"f09c23b0-d703-012e-9ef2-00254bc472f4"];
   output = [NSArray arrayWithObjects:@"f09c6560-d703-012e-9ef2-00254bc472f4", nil];
-  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on disliked colors");
+  STAssertTrue([output isEqualToArray:input], @"NUResponseSet Dependency on airspeed of a swallow");
   
 }
-
+- (void) testAnswerDependency {
+  // JSON data
+	NSError *strError;
+	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [parser objectWithString:responseString];
+  
+  NUResponseSet *rs = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
+  [rs newResponseForIndexQuestion:@"f099e5e0-d703-012e-9ef2-00254bc472f4" Answer:@"f09a1db0-d703-012e-9ef2-00254bc472f4"]; // disliking green
+  NSDictionary *input = [rs dependenciesTriggeredBy:@"f099e5e0-d703-012e-9ef2-00254bc472f4"];
+	NSArray *outputHide = [[[NSArray alloc] initWithObjects:@"f09b76d0-d703-012e-9ef2-00254bc472f4", nil] autorelease];
+  NSArray *outputShow = [[[NSArray alloc] initWithObjects:@"f09a5a30-d703-012e-9ef2-00254bc472f4", nil] autorelease];
+  
+  STAssertTrue([[input valueForKey:@"hide"] isEqualToArray:outputHide], @"NUResponseSet Dependency on disliking green, why so many hidden");
+  NSLog(@"%@", input);
+  STAssertTrue([[input valueForKey:@"show"] isEqualToArray:outputShow], @"NUResponseSet Dependency on disliking green shows explanation");
+}
+- (void) testCountDependency {
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [[parser objectWithString:responseString] retain];
+  
+  NUResponseSet *rs = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
+	[rs newResponseForIndexQuestion:@"f099e5e0-d703-012e-9ef2-00254bc472f4" Answer:@"f099fa00-d703-012e-9ef2-00254bc472f4"]; // disliking red
+	[rs newResponseForIndexQuestion:@"f099e5e0-d703-012e-9ef2-00254bc472f4" Answer:@"f09a0bd0-d703-012e-9ef2-00254bc472f4"]; // disliking blue
+	[rs newResponseForIndexQuestion:@"f099e5e0-d703-012e-9ef2-00254bc472f4" Answer:@"f09a1db0-d703-012e-9ef2-00254bc472f4"]; // disliking green
+  NSDictionary *input = [rs dependenciesTriggeredBy:@"f099e5e0-d703-012e-9ef2-00254bc472f4"];
+	NSArray *outputHide = [[NSArray alloc] init];
+  NSArray *outputShow = [[NSArray alloc] initWithObjects:@"f09a5a30-d703-012e-9ef2-00254bc472f4", @"f09b76d0-d703-012e-9ef2-00254bc472f4", nil];
+  
+  STAssertTrue([[input valueForKey:@"hide"] isEqualToArray:outputHide], @"NUResponseSet Dependency on disliking rgb, why so many not hidden");
+  NSLog(@"%@", input);
+  STAssertTrue([[input valueForKey:@"show"] isEqualToArray:outputShow], @"NUResponseSet Dependency on disliking rgb shows explanation, why so many");
+}
+                
 @end
