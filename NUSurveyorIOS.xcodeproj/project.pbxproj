@@ -27,7 +27,6 @@
 		3B1CF8B71430E3850004600B /* NUSurveyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CF8B61430E3850004600B /* NUSurveyVC.m */; };
 		3B1CF8BA1430E3A90004600B /* NUSectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CF8B91430E3A90004600B /* NUSectionVC.m */; };
 		3B3B107614311D2D00C6EBEE /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3B3B107514311D2D00C6EBEE /* README */; };
-		3B8580CC143237C800EC7F1D /* ks_short.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8580CB143237C800EC7F1D /* ks_short.json */; };
 		3B94B09514311AC200B100F2 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B09414311AC200B100F2 /* UUID.m */; };
 		3B94B09814311ACE00B100F2 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B09714311ACE00B100F2 /* PageViewController.m */; };
 		3B94B0A514311AE800B100F2 /* SurveyorAnyAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B09A14311AE800B100F2 /* SurveyorAnyAnswerCell.m */; };
@@ -48,7 +47,6 @@
 		3B94B0C214311B1800B100F2 /* undotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0BA14311B1800B100F2 /* undotted.png */; };
 		3B94B0C314311B1800B100F2 /* undotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0BB14311B1800B100F2 /* undotted@2x.png */; };
 		3B94B0C614311B2B00B100F2 /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0C414311B2B00B100F2 /* kitchen_sink_survey.rb */; };
-		3B94B0C714311B2B00B100F2 /* ks_with_uuid.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0C514311B2B00B100F2 /* ks_with_uuid.json */; };
 		3BA95979144DD7DA00505FD0 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95978144DD7DA00505FD0 /* kitchen-sink-survey.json */; };
 		3BA9597C144DDB8900505FD0 /* NUResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9597B144DDB8900505FD0 /* NUResponseSet.m */; };
 		3BC0D0701430F3AD005BECCF /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC0D06F1430F3AD005BECCF /* libsbjson-ios.a */; };
@@ -134,7 +132,6 @@
 		3B1CF8B81430E3A90004600B /* NUSectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSectionVC.h; sourceTree = "<group>"; };
 		3B1CF8B91430E3A90004600B /* NUSectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSectionVC.m; sourceTree = "<group>"; };
 		3B3B107514311D2D00C6EBEE /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		3B8580CB143237C800EC7F1D /* ks_short.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_short.json; sourceTree = "<group>"; };
 		3B94B09314311AC200B100F2 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUID.h; sourceTree = "<group>"; };
 		3B94B09414311AC200B100F2 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		3B94B09614311ACE00B100F2 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		3B94B0BA14311B1800B100F2 /* undotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undotted.png; sourceTree = "<group>"; };
 		3B94B0BB14311B1800B100F2 /* undotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "undotted@2x.png"; sourceTree = "<group>"; };
 		3B94B0C414311B2B00B100F2 /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
-		3B94B0C514311B2B00B100F2 /* ks_with_uuid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ks_with_uuid.json; sourceTree = "<group>"; };
 		3BA95978144DD7DA00505FD0 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		3BA9597A144DDB8900505FD0 /* NUResponseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSet.h; sourceTree = "<group>"; };
 		3BA9597B144DDB8900505FD0 /* NUResponseSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSet.m; sourceTree = "<group>"; };
@@ -678,8 +674,6 @@
 			children = (
 				3B94B0C414311B2B00B100F2 /* kitchen_sink_survey.rb */,
 				3BA95978144DD7DA00505FD0 /* kitchen-sink-survey.json */,
-				3B94B0C514311B2B00B100F2 /* ks_with_uuid.json */,
-				3B8580CB143237C800EC7F1D /* ks_short.json */,
 				3B13C1201445D38B007AA1C7 /* smoking.json */,
 			);
 			name = Surveys;
@@ -2004,9 +1998,7 @@
 				3B94B0C214311B1800B100F2 /* undotted.png in Resources */,
 				3B94B0C314311B1800B100F2 /* undotted@2x.png in Resources */,
 				3B94B0C614311B2B00B100F2 /* kitchen_sink_survey.rb in Resources */,
-				3B94B0C714311B2B00B100F2 /* ks_with_uuid.json in Resources */,
 				3B3B107614311D2D00C6EBEE /* README in Resources */,
-				3B8580CC143237C800EC7F1D /* ks_short.json in Resources */,
 				3B13C1211445D38B007AA1C7 /* smoking.json in Resources */,
 				3BA95979144DD7DA00505FD0 /* kitchen-sink-survey.json in Resources */,
 			);
