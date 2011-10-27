@@ -21,7 +21,8 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 @end
 
 @implementation NUSectionVC
-@synthesize bar, pageControl, popoverController, detailItem, sectionTitles, sectionSubTitles, sections, responseSet;
+@synthesize bar, pageControl, popoverController, detailItem, responseSet, visibleSections, allSections;
+// sectionTitles, sectionSubTitles, sections, 
 
 #pragma mark - Utility class methods
 + (Class) classForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer {
@@ -54,9 +55,9 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   [pageControl release];
   [popoverController release];
   [detailItem release];
-  [sectionTitles release];
-  [sectionSubTitles release];
-  [sections release];
+//  [sectionTitles release];
+//  [sectionSubTitles release];
+//  [sections release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,9 +106,9 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 
 #pragma mark - Core Data
 - (NSDictionary *)idsForIndexPath:(NSIndexPath *)i{
-  if (i.section < [sections count] && i.row < [[[sections objectAtIndex:i.section] objectForKey:@"answers"] count]) {
-    NSString *qid = [[sections objectAtIndex:i.section] objectForKey:@"uuid"];
-    NSString *aid = [[[[sections objectAtIndex:i.section] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
+  if (i.section < [visibleSections count] && i.row < [[[self questionOrGroupWithUUID:[visibleSections objectAtIndex:i.section]] objectForKey:@"answers"] count]) {
+    NSString *qid = [[allSections objectAtIndex:i.section] objectForKey:@"uuid"];
+    NSString *aid = [[[[self questionOrGroupWithUUID:[visibleSections objectAtIndex:i.section]] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
     //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
     return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];
   }else{
@@ -159,66 +160,100 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 //
 - (void)createRows
 { 
-  self.sectionTitles = [[NSMutableArray alloc] init];
-  self.sectionSubTitles = [[NSMutableArray alloc] init];
-  self.sections = [[NSMutableArray alloc] init];
+//  self.sectionTitles = [[NSMutableArray alloc] init];
+//  self.sectionSubTitles = [[NSMutableArray alloc] init];
+//  self.sections = [[NSMutableArray alloc] init];
   
   [self createHeader];
-  NSInteger i = 0;
-  // Questions and groups
-	for(NSDictionary *questionOrGroup in [detailItem objectForKey:@"questions_and_groups"]){
-    if([questionOrGroup objectForKey:@"questions"] == nil){
-      // regular questions
-      if (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"]) {
-        [self createQuestionWithIndex:i dictionary:questionOrGroup];
-        i++;
+  
+  // generate a full listing of all questions, including labels, 
+  //   hidden questions, dependent questions, as well as separate 
+  //   sections for group titles and their grouped questions, etc.
+  self.allSections = [[NSMutableArray alloc] init];
+  for(NSDictionary *questionOrGroup in [detailItem objectForKey:@"questions_and_groups"]){
+    // regular questions, grids
+    [allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                            [questionOrGroup objectForKey:@"uuid"] == nil ? [UUID generateUuidString] : [questionOrGroup objectForKey:@"uuid"], @"uuid",
+                            questionOrGroup, @"question",
+                            (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] ) ? NS_YES : NS_NO, @"show", nil ]];
+    DLog(@"uuid: %@ questionOrGroup: %@", [questionOrGroup objectForKey:@"uuid"], questionOrGroup);
+    
+    if (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"grid"]) {
+      // inline, repeaters
+      for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
+        [allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                [question objectForKey:@"uuid"], @"uuid",
+                                question, @"question",
+                                (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"]) ? NS_YES : NS_NO, @"show", nil ]];
       }
-    } else{
-      // question groups
-      // grid
-      // repeater
-      if ([[questionOrGroup objectForKey:@"type"] isEqualToString:@"grid"]) {
-        [self createQuestionWithIndex:i dictionary:questionOrGroup];
-        i++;
-      } else {
-        // inline
-        [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];  
-        [sections insertObject:questionOrGroup atIndex:i];
-        if ([questionOrGroup objectForKey:@"text"] != nil) {
-          [sectionTitles insertObject:[questionOrGroup objectForKey:@"text"] atIndex:i];
-        } else {
-          [sectionTitles insertObject:@"" atIndex:i];
-        }
-        if ([questionOrGroup objectForKey:@"help_text"]) {
-          [sectionSubTitles insertObject:[questionOrGroup objectForKey:@"help_text"] atIndex:i];
-        } else {
-          [sectionSubTitles insertObject:@"" atIndex:i];
-        }
-        i++;
-        for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
-          [self createQuestionWithIndex:i dictionary:question];
-          [sections insertObject:question atIndex:i];
-          i++;
-        }
-      }
-      
     }
   }
+//  DLog(@"all sections: %@", allSections);
+  self.visibleSections = [[NSMutableArray alloc] init];
+  for (NSMutableDictionary *questionOrGroup in allSections) {
+    DLog(@"show: %@, question: %@, uuid: %@", [questionOrGroup objectForKey:@"show"], [[questionOrGroup objectForKey:@"question"] objectForKey:@"text"], [questionOrGroup objectForKey:@"uuid"] );
+    if ([questionOrGroup objectForKey:@"show"] == NS_YES) {
+      [self createQuestionWithIndex:visibleSections.count dictionary:[questionOrGroup objectForKey:@"question"]];
+      [visibleSections addObject:[questionOrGroup objectForKey:@"uuid"]];
+    }
+  }
+//  DLog(@"visible sections: %@", visibleSections);
+  
+//  NSInteger i = 0;
+//  // Questions and groups
+//	for(NSDictionary *questionOrGroup in [detailItem objectForKey:@"questions_and_groups"]){
+//    if([questionOrGroup objectForKey:@"questions"] == nil){
+//      // regular questions
+//      if (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"]) {
+//        [self createQuestionWithIndex:i dictionary:questionOrGroup];
+//        i++;
+//      }
+//    } else{
+//      // question groups
+//      // grid
+//      // repeater
+//      if ([[questionOrGroup objectForKey:@"type"] isEqualToString:@"grid"]) {
+//        [self createQuestionWithIndex:i dictionary:questionOrGroup];
+//        i++;
+//      } else {
+//        // inline
+//        [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];  
+//        [sections insertObject:questionOrGroup atIndex:i];
+//        if ([questionOrGroup objectForKey:@"text"] != nil) {
+//          [sectionTitles insertObject:[questionOrGroup objectForKey:@"text"] atIndex:i];
+//        } else {
+//          [sectionTitles insertObject:@"" atIndex:i];
+//        }
+//        if ([questionOrGroup objectForKey:@"help_text"]) {
+//          [sectionSubTitles insertObject:[questionOrGroup objectForKey:@"help_text"] atIndex:i];
+//        } else {
+//          [sectionSubTitles insertObject:@"" atIndex:i];
+//        }
+//        i++;
+//        for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
+//          [self createQuestionWithIndex:i dictionary:question];
+//          [sections insertObject:question atIndex:i];
+//          i++;
+//        }
+//      }
+//      
+//    }
+//  }
 	[self hideLoadingIndicator];
 }
 - (void) createQuestionWithIndex:(NSInteger)i dictionary:(NSDictionary *)question {
   [self addSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
-  [sections insertObject:question atIndex:i];
-  if ([question objectForKey:@"text"] != nil) {
-    [sectionTitles insertObject:[question objectForKey:@"text"] atIndex:i];
-  } else {
-    [sectionTitles insertObject:@"" atIndex:i];
-  }
-  if ([question objectForKey:@"help_text"]) {
-    [sectionSubTitles insertObject:[question objectForKey:@"help_text"] atIndex:i];
-  } else {
-    [sectionSubTitles insertObject:@"" atIndex:i];
-  }
+//  [sections insertObject:question atIndex:i];
+//  if ([question objectForKey:@"text"] != nil) {
+//    [sectionTitles insertObject:[question objectForKey:@"text"] atIndex:i];
+//  } else {
+//    [sectionTitles insertObject:@"" atIndex:i];
+//  }
+//  if ([question objectForKey:@"help_text"]) {
+//    [sectionSubTitles insertObject:[question objectForKey:@"help_text"] atIndex:i];
+//  } else {
+//    [sectionSubTitles insertObject:@"" atIndex:i];
+//  }
   
   if ([(NSString *)[question objectForKey:@"type"] isEqualToString:@"dropdown"] || [(NSString *)[question objectForKey:@"type"] isEqualToString:@"slider"]){
     [self
@@ -228,6 +263,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
      withAnimation: UITableViewRowAnimationFade];
   } else {
     for (NSDictionary *answer in [question objectForKey:@"answers"]){
+      DLog(@"answer");
       [self
        appendRowToSection:i
        cellClass: [[self class] classForQuestion:question answer:answer]
@@ -274,6 +310,16 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   self.tableView.tableHeaderView = headerView;  
 }
 
+- (NSMutableDictionary *)questionOrGroupWithUUID:(NSString *)uuid{
+//  ^int (int x) { return x*3; }
+  NSUInteger i = [allSections indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){ 
+    if ([[obj objectForKey:@"uuid"] isEqualToString:uuid]) {
+      return YES;
+    }
+    return NO;
+  }];
+  return [[allSections objectAtIndex:i] objectForKey:@"question"];
+}
 //
 // tableView:titleForHeaderInSection:
 //
@@ -288,11 +334,18 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 - (NSString *)tableView:(UITableView *)aTableView
 titleForHeaderInSection:(NSInteger)section
 { 
-  if(section > ((NSInteger)[sectionTitles count] -1)) {
+  if (section >= visibleSections.count) {
     return nil;
   } else {
-    return [sectionTitles objectAtIndex:section];
+    return [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"];
   }
+  
+//  if(section > ((NSInteger)[sectionTitles count] -1)) {
+//    return nil;
+//  } else {
+//    return [sectionTitles objectAtIndex:section];
+//  }
+
   //  if (section > [[detailItem valueForKey:@"questions_and_groups"] count] - 1 ) {
   //    return nil;
   //  }
@@ -310,16 +363,23 @@ titleForHeaderInSection:(NSInteger)section
 //
 - (NSString *)tableView:(UITableView *)aTableView
 subTitleForHeaderInSection:(NSInteger)section
-{
+{ 
+  if (section >= visibleSections.count) {
+    return nil;
+  } else {
+    return [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
+  }
+
+  
   //  if (section > [[detailItem valueForKey:@"questions_and_groups"] count] - 1 ) {
   //    return nil;
   //  }
   //  return [[[detailItem valueForKey:@"questions_and_groups"] objectAtIndex:section] objectForKey:@"help_text"];
-  if(section > ((NSInteger)[sectionSubTitles count] -1)) {
-    return nil;
-  } else {
-    return [sectionSubTitles objectAtIndex:section];
-  }
+//  if(section > ((NSInteger)[sectionSubTitles count] -1)) {
+//    return nil;
+//  } else {
+//    return [sectionSubTitles objectAtIndex:section];
+//  }
   
 }
 #pragma mark - Calculate dependencies

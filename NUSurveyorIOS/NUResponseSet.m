@@ -161,6 +161,9 @@
   return triggered;
 }
 - (BOOL) showDependency:(NSDictionary *)dependency {
+  if (dependency == nil) {
+    return NO;
+  }
   // thanks to hyperjeff for code below
   
   // * in the expression you need 1=1 and 1=0 for the true / false values
