@@ -119,6 +119,7 @@
   NSString *selectedDate = [myDateFormatter stringFromDate:[pickerController.datePicker date]]; 
   [delegate deleteResponseForIndexPath:[delegate.tableView indexPathForCell:self]];
   [delegate newResponseForIndexPath:[delegate.tableView indexPathForCell:self] Value:selectedDate];
+  [delegate showAndHideDependenciesTriggeredBy:[delegate.tableView indexPathForCell:self]];
   self.textLabel.text = selectedDate;
   self.textLabel.textColor = RGB(1, 113, 233);
 }

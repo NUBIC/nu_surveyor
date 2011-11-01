@@ -73,6 +73,7 @@
   if (selectedRow != -1) {
     [delegate deleteResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
     [delegate newResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    [delegate showAndHideDependenciesTriggeredBy:[self myIndexPathWithRow:selectedRow]];
     self.textLabel.text = [(NSDictionary *)[answers objectAtIndex:selectedRow] objectForKey:@"text"];
     self.textLabel.textColor = RGB(1, 113, 233);
   }

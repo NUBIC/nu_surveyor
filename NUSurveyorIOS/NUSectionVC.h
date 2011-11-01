@@ -18,12 +18,10 @@
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, retain) id detailItem;
-//@property (nonatomic, retain) NSMutableArray *sectionTitles;
-//@property (nonatomic, retain) NSMutableArray *sectionSubTitles;
-//@property (nonatomic, retain) NSMutableArray *sections;
 @property (nonatomic, retain) NUResponseSet *responseSet;
 @property (nonatomic, retain) NSMutableArray *visibleSections;
 @property (nonatomic, retain) NSMutableArray *allSections;
+@property (nonatomic, retain) NSMutableArray *visibleHeaders;
 
 - (void)createHeader;
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)anIndexPath;
@@ -33,7 +31,8 @@
 - (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i;
 - (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value;
 - (void) deleteResponseForIndexPath:(NSIndexPath *)i;
+- (void) showAndHideDependenciesTriggeredBy:(NSIndexPath *)i;
 
-- (NSMutableDictionary *)questionOrGroupWithUUID:(NSString *)uuid;
-
+- (UIView *)tableView:(UITableView *)aTableView viewForHeaderInSection:(NSInteger)section;
+- (CGFloat)tableView:(UITableView *)aTableView heightForHeaderInSection:(NSInteger)section;
 @end

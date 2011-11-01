@@ -162,7 +162,7 @@
 }
 - (BOOL) showDependency:(NSDictionary *)dependency {
   if (dependency == nil) {
-    return NO;
+    return NS_YES;
   }
   // thanks to hyperjeff for code below
   
@@ -208,27 +208,18 @@
 		NSRegularExpression *countsRegexp = [NSRegularExpression regularExpressionWithPattern:@"^count([<>=]{1,2})(\\d+)$" options:0 error:&error];
 		NSTextCheckingResult *countsMatch = [countsRegexp firstMatchInString:operator options:0 range:NSMakeRange(0, [operator length])];
 		
-		NSUInteger numberOfCountMatches = [countsRegexp numberOfMatchesInString:operator
-																												options:0
-																													range:NSMakeRange(0, [operator length])];
-	
-		DLog(@"count matches: %d", numberOfCountMatches);
-//		if (numberOfCountMatches > 0) {
-//			
-//			NSTextCheckingResult *match = [countsRegexp firstMatchInString:operator options:0 range:NSMakeRange(0, [operator length])];
-//			if(match){
-//				DLog(@"%@", [match rangeAtIndex:1]);
-//				DLog(@"%@", [match rangeAtIndex:2]);
-//			}
-//		}
+//		NSUInteger numberOfCountMatches = [countsRegexp numberOfMatchesInString:operator
+//																												options:0
+//																													range:NSMakeRange(0, [operator length])];	
+//		DLog(@"count matches: %d", numberOfCountMatches);
 		
 		NSRegularExpression *countNotRegexp = [NSRegularExpression regularExpressionWithPattern:@"^count!=(\\d+)$" options:0 error:&error];
 		NSTextCheckingResult *countNotMatch = [countNotRegexp firstMatchInString:operator options:0 range:NSMakeRange(0, [operator length])];
-		NSUInteger numberOfCountNotMatches = [countNotRegexp numberOfMatchesInString:operator
-																																		options:0
-																																			range:NSMakeRange(0, [operator length])];
 
-		DLog(@"count not matches: %d", numberOfCountNotMatches);
+//		NSUInteger numberOfCountNotMatches = [countNotRegexp numberOfMatchesInString:operator
+//																																		options:0
+//																																			range:NSMakeRange(0, [operator length])];
+//		DLog(@"count not matches: %d", numberOfCountNotMatches);
 		
 		if (countsMatch && [countsMatch numberOfRanges] > 2) {
 			// count==1, count>=2, count<4
