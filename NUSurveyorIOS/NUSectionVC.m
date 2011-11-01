@@ -162,6 +162,12 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 { 
   
   [self createHeader];
+  [visibleHeaders release];
+  visibleHeaders = nil;
+  [allSections release];
+  allSections = nil;
+  [visibleSections release];
+  visibleSections = nil;
   
   // generate a full listing of all questions, including labels, 
   //   hidden questions, dependent questions, as well as separate 
@@ -395,7 +401,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
   }
   frame.size.height = y;
   headerView.frame = frame;
-  DLog(@"height: %f", y);
+//  DLog(@"height: %f", y);
   return headerView;
 }
 
@@ -469,9 +475,9 @@ subTitleForHeaderInSection:(NSInteger)section
 }
 - (NSUInteger) indexForInsert:(NSString *)uuid {
   NSUInteger i = [self indexOfQuestionOrGroupWithUUID:uuid];
-  DLog(@"i: %d", i);
+//  DLog(@"i: %d", i);
   for (int n = i-1; n >= 0; n--) {
-    DLog(@"n: %d", n);
+//    DLog(@"n: %d", n);
     if ([[allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
       return [visibleSections indexOfObject:[[allSections objectAtIndex:n] objectForKey:@"uuid"]] + 1;
     }
