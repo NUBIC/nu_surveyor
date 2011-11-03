@@ -21,9 +21,9 @@
   [[[UIAppDelegate managedObjectModel] entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc]
                           initWithEntity:entity insertIntoManagedObjectContext:[UIAppDelegate managedObjectContext]];
-  [rs setValue:[NSDate date] forKey:@"CreatedAt"];
-  [rs setValue:[survey objectForKey:@"uuid"] forKey:@"Survey"];
-  [rs setValue:[UUID generateUuidString] forKey:@"UUID"];
+  [rs setValue:[NSDate date] forKey:@"createdAt"];
+  [rs setValue:[survey objectForKey:@"uuid"] forKey:@"survey"];
+  [rs setValue:[UUID generateUuidString] forKey:@"uuid"];
   [UIAppDelegate saveContext:@"NUResponseSet newResponseSetForSurvey"];
   
   [rs generateDependencyGraph:survey];
@@ -44,7 +44,7 @@
   
   // Set predicate
   NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                            @"(responseSet == %@) AND (Question == %@)", 
+                            @"(responseSet == %@) AND (question == %@)", 
                             self, qid];
   [request setPredicate:predicate];
   
@@ -73,7 +73,7 @@
   
   // Set predicate
   NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                            @"(responseSet == %@) AND (Question == %@) AND (Answer == %@)", 
+                            @"(responseSet == %@) AND (question == %@) AND (answer == %@)", 
                             self, qid, aid];
   [request setPredicate:predicate];
   
@@ -98,12 +98,12 @@
 
   NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:[UIAppDelegate managedObjectContext]];
   [newResponse setValue:self forKey:@"responseSet"];
-  [newResponse setValue:qid forKey:@"Question"];
-  [newResponse setValue:aid forKey:@"Answer"];
-  [newResponse setValue:value forKey:@"Value"];
+  [newResponse setValue:qid forKey:@"question"];
+  [newResponse setValue:aid forKey:@"answer"];
+  [newResponse setValue:value forKey:@"value"];
   
-  [newResponse setValue:[NSDate date] forKey:@"CreatedAt"];
-  [newResponse setValue:[UUID generateUuidString] forKey:@"UUID"];
+  [newResponse setValue:[NSDate date] forKey:@"createdAt"];
+  [newResponse setValue:[UUID generateUuidString] forKey:@"uuid"];
   
   // Save the context.
   [UIAppDelegate saveContext:@"ResponseSet newResponseForQuestionAnswerValue"];
