@@ -2,6 +2,10 @@
 
 This project is an iOS port of the Surveyor ruby gem (http://github.com/NUBIC/surveyor). It brings surveys to iPads and other iOS devices, with offline and sync capabilities.
 
+## Requirements
+
+SBJson Clone SBJson from http://stig.github.com/json-framework into the same parent directory as this project, e.g. ~/code/surveyor_ios ~/code/json-framework
+
 ## Special thanks
 
 * wakibbe (enabling this project)
