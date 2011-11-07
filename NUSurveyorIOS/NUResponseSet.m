@@ -162,7 +162,7 @@
 }
 - (BOOL) showDependency:(NSDictionary *)dependency {
   if (dependency == nil) {
-    return NS_YES;
+    return YES;
   }
   // thanks to hyperjeff for code below
   
@@ -233,7 +233,7 @@
 								 forKey:[condition objectForKey:@"rule_key"]];
 		}	else if ([operator isEqualToString:@"=="]) {
 			// ==
-			if (value == kCFNull) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
+			if (value == (id)kCFNull) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {
@@ -249,7 +249,7 @@
 
 		} else if ([operator isEqualToString:@"!="]) {
 			// !=
-			if (value == kCFNull) {
+			if (value == (id)kCFNull) {
 				[values setObject:responsesToAnswer.count > 0 ? NS_NO : NS_YES
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {
