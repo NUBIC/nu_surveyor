@@ -237,7 +237,7 @@
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {
-				[values setObject:responsesToAnswer.count > 0 && [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == value ? NS_YES : NS_NO
+				[values setObject:responsesToAnswer.count > 0 && [[[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] isEqualToString: value] ? NS_YES : NS_NO
 									 forKey:[condition objectForKey:@"rule_key"]];
 			}
 		} else if ([operator isEqualToString:@">"] || [operator isEqualToString:@"<"] || [operator isEqualToString:@">="] || [operator isEqualToString:@"<="]) {

@@ -108,7 +108,7 @@ static const double PageViewControllerTextAnimationDuration = 0.33;
 #pragma mark - Core Data
 - (NSDictionary *)idsForIndexPath:(NSIndexPath *)i{
   if (i.section < [visibleSections count] && i.row < [[[self questionOrGroupWithUUID:[visibleSections objectAtIndex:i.section]] objectForKey:@"answers"] count]) {
-    NSString *qid = [[allSections objectAtIndex:i.section] objectForKey:@"uuid"];
+    NSString *qid = [visibleSections objectAtIndex:i.section];
     NSString *aid = [[[[self questionOrGroupWithUUID:[visibleSections objectAtIndex:i.section]] objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
     //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
     return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];

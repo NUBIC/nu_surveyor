@@ -142,6 +142,24 @@
 //  NSLog(@"%@", input);
   STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency on disliking green shows explanation");
 }
+- (void) testStringDependency {
+  // JSON data
+	NSError *strError;
+	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [parser objectWithString:responseString];
+  
+  NUResponseSet *rs = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
+  [rs newResponseForQuestion:@"deef7b20-e5f8-012e-9f18-00254bc472f4" Answer:@"deef9280-e5f8-012e-9f18-00254bc472f4" Value:@"It is 'Arthur', King of the Britons"]; // Arthur
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"deef7b20-e5f8-012e-9f18-00254bc472f4"];
+	NSArray *expectHide = [[[NSArray alloc] initWithObjects: nil] autorelease];
+  NSArray *expectShow = [[[NSArray alloc] initWithObjects:@"deefaa40-e5f8-012e-9f18-00254bc472f4", nil] autorelease];
+  
+  STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency on Arthur, none hidden");
+  NSLog(@"%@", actual);
+  STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency on Arthur, asks quest");
+}
 - (void) testCountDependency {
   // JSON data
   NSError *strError;
