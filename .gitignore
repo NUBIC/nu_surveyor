@@ -1,4 +1,15 @@
 .DS_Store
-NUSurveyorIOS.xcodeproj/project.xcworkspace/xcuserdata/
-NUSurveyorIOS.xcodeproj/xcuserdata/
+*.swp
+*~.nib
 
+build/
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+
+*.mode1v3
+*.mode2v3
+
+xcuserdata
