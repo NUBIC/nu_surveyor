@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NUResponseSet *responseSet;
 @property (nonatomic, assign) NSUInteger currentSection;
+@property (nonatomic, retain) NSString* surveyJSONRepresentation;
 
 - (void) nextSection;
 - (void) prevSection;
