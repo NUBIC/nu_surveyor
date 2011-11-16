@@ -11,7 +11,7 @@
 #import "UUID.h"
 
 @implementation NUSurveyVC
-@synthesize sectionController, dict, responseSet, currentSection;
+@synthesize sectionController, dict, responseSet, currentSection, surveyJSONRepresentation;
 
 #pragma mark - Memory management
 - (void)didReceiveMemoryWarning {
@@ -59,9 +59,7 @@
 //	[[NSURLConnection alloc] initWithRequest:request delegate:self];
 
 	// JSON data
-	NSError *strError;
-	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
-  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  NSString *responseString = self.surveyJSONRepresentation;
   SBJsonParser *parser = [[SBJsonParser alloc] init];  
   dict = [[parser objectWithString:responseString] retain];
     
