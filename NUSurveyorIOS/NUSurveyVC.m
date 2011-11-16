@@ -10,8 +10,16 @@
 #import "SBJson.h"
 #import "UUID.h"
 
+@interface NUSurveyVC()
+// http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
+@property (nonatomic, retain) NSDictionary *dict;
+@property (nonatomic, assign) NSUInteger currentSection;
+- (NSInteger) numberOfSections;
+- (void) showSection:(NSUInteger) index;
+@end
+
 @implementation NUSurveyVC
-@synthesize sectionController, dict, responseSet, currentSection;
+@synthesize sectionController, dict, responseSet, currentSection, surveyJson;
 
 #pragma mark - Memory management
 - (void)didReceiveMemoryWarning {
@@ -52,18 +60,21 @@
   self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
 	self.navigationItem.title = @"Sections";
   
-  // Request JSON via HTTP
-//	NSURL *url = [NSURL URLWithString:@"http://sb/dsl.json"];
-//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-//	//NSLog(@"request");
-//	[[NSURLConnection alloc] initWithRequest:request delegate:self];
-
-	// JSON data
-	NSError *strError;
-	NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
-  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];  
-  dict = [[parser objectWithString:responseString] retain];
+	// Load survey
+	if(!self.surveyJson){
+		// Request JSON via HTTP
+		//	NSURL *url = [NSURL URLWithString:@"http://sb/dsl.json"];
+		//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+		//	//NSLog(@"request");
+		//	[[NSURLConnection alloc] initWithRequest:request delegate:self];
+		
+		// JSON data
+		NSError *strError;
+		NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
+		self.surveyJson = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+	}
+	SBJsonParser *parser = [[SBJsonParser alloc] init];  
+	self.dict = [[parser objectWithString:surveyJson] retain];
     
   // Create a new response set
   self.responseSet = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];

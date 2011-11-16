@@ -15,13 +15,10 @@
 }
 
 @property (nonatomic, retain) IBOutlet NUSectionVC *sectionController;
-@property (nonatomic, retain) NSDictionary *dict;
 @property (nonatomic, retain) NUResponseSet *responseSet;
-@property (nonatomic, assign) NSUInteger currentSection;
+@property (nonatomic, retain) NSString *surveyJson;
 
 - (void) nextSection;
 - (void) prevSection;
-- (NSInteger) numberOfSections;
-- (void) showSection:(NSUInteger) index;
 
 @end
