@@ -65,8 +65,10 @@
   SBJsonParser *parser = [[SBJsonParser alloc] init];  
   dict = [[parser objectWithString:responseString] retain];
     
-  // Create a new response set
-  self.responseSet = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
+  // Create a new response set if one doesn't exist
+  if (responseSet == NULL) {
+    self.responseSet = [NUResponseSet newResponseSetForSurvey:[dict objectForKey:@"survey"]];
+  }
   
 	// Setup sectionController
   sectionController.responseSet = responseSet;
