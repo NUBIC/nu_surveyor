@@ -13,4 +13,7 @@
     
 }
 
+- (void) check;
+- (void) uncheck;
+
 @end

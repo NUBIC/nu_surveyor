@@ -36,16 +36,7 @@
 		3B94B0A914311AE800B100F2 /* SurveyorOneAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B0A214311AE800B100F2 /* SurveyorOneAnswerCell.m */; };
 		3B94B0AA14311AE800B100F2 /* SurveyorPickerAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B0A414311AE800B100F2 /* SurveyorPickerAnswerCell.m */; };
 		3B94B0B114311B0100B100F2 /* PageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B0AC14311B0100B100F2 /* PageCell.m */; };
-		3B94B0B214311B0100B100F2 /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B0AE14311B0100B100F2 /* TextFieldCell.m */; };
 		3B94B0B314311B0100B100F2 /* UILabel+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B94B0B014311B0100B100F2 /* UILabel+Resize.m */; };
-		3B94B0BC14311B1800B100F2 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B414311B1800B100F2 /* checked.png */; };
-		3B94B0BD14311B1800B100F2 /* checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B514311B1800B100F2 /* checked@2x.png */; };
-		3B94B0BE14311B1800B100F2 /* dotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B614311B1800B100F2 /* dotted.png */; };
-		3B94B0BF14311B1800B100F2 /* dotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B714311B1800B100F2 /* dotted@2x.png */; };
-		3B94B0C014311B1800B100F2 /* unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B814311B1800B100F2 /* unchecked.png */; };
-		3B94B0C114311B1800B100F2 /* unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0B914311B1800B100F2 /* unchecked@2x.png */; };
-		3B94B0C214311B1800B100F2 /* undotted.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0BA14311B1800B100F2 /* undotted.png */; };
-		3B94B0C314311B1800B100F2 /* undotted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0BB14311B1800B100F2 /* undotted@2x.png */; };
 		3B94B0C614311B2B00B100F2 /* kitchen_sink_survey.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B94B0C414311B2B00B100F2 /* kitchen_sink_survey.rb */; };
 		3BA95979144DD7DA00505FD0 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA95978144DD7DA00505FD0 /* kitchen-sink-survey.json */; };
 		3BA9597C144DDB8900505FD0 /* NUResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA9597B144DDB8900505FD0 /* NUResponseSet.m */; };
@@ -150,18 +141,8 @@
 		3B94B0A414311AE800B100F2 /* SurveyorPickerAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyorPickerAnswerCell.m; sourceTree = "<group>"; };
 		3B94B0AB14311B0100B100F2 /* PageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageCell.h; sourceTree = "<group>"; };
 		3B94B0AC14311B0100B100F2 /* PageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageCell.m; sourceTree = "<group>"; };
-		3B94B0AD14311B0100B100F2 /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
-		3B94B0AE14311B0100B100F2 /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
 		3B94B0AF14311B0100B100F2 /* UILabel+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Resize.h"; sourceTree = "<group>"; };
 		3B94B0B014311B0100B100F2 /* UILabel+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Resize.m"; sourceTree = "<group>"; };
-		3B94B0B414311B1800B100F2 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
-		3B94B0B514311B1800B100F2 /* checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checked@2x.png"; sourceTree = "<group>"; };
-		3B94B0B614311B1800B100F2 /* dotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dotted.png; sourceTree = "<group>"; };
-		3B94B0B714311B1800B100F2 /* dotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotted@2x.png"; sourceTree = "<group>"; };
-		3B94B0B814311B1800B100F2 /* unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked.png; sourceTree = "<group>"; };
-		3B94B0B914311B1800B100F2 /* unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unchecked@2x.png"; sourceTree = "<group>"; };
-		3B94B0BA14311B1800B100F2 /* undotted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undotted.png; sourceTree = "<group>"; };
-		3B94B0BB14311B1800B100F2 /* undotted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "undotted@2x.png"; sourceTree = "<group>"; };
 		3B94B0C414311B2B00B100F2 /* kitchen_sink_survey.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = kitchen_sink_survey.rb; sourceTree = "<group>"; };
 		3BA95978144DD7DA00505FD0 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		3BA9597A144DDB8900505FD0 /* NUResponseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSet.h; sourceTree = "<group>"; };
@@ -620,7 +601,6 @@
 		3B1CF8B11430E2230004600B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3B7D486F1430EBD3002770E1 /* Images */,
 				3B1CF8BD1430E5100004600B /* Surveys */,
 				3B1CF87F1430E1C10004600B /* NUSurveyorIOS.xcdatamodeld */,
 				3B1CF8821430E1C10004600B /* MainWindow.xib */,
@@ -649,8 +629,6 @@
 			children = (
 				3B94B0AB14311B0100B100F2 /* PageCell.h */,
 				3B94B0AC14311B0100B100F2 /* PageCell.m */,
-				3B94B0AD14311B0100B100F2 /* TextFieldCell.h */,
-				3B94B0AE14311B0100B100F2 /* TextFieldCell.m */,
 				3B94B0AF14311B0100B100F2 /* UILabel+Resize.h */,
 				3B94B0B014311B0100B100F2 /* UILabel+Resize.m */,
 				3B94B09914311AE800B100F2 /* SurveyorAnyAnswerCell.h */,
@@ -688,21 +666,6 @@
 				3BA9597B144DDB8900505FD0 /* NUResponseSet.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		3B7D486F1430EBD3002770E1 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				3B94B0B414311B1800B100F2 /* checked.png */,
-				3B94B0B514311B1800B100F2 /* checked@2x.png */,
-				3B94B0B614311B1800B100F2 /* dotted.png */,
-				3B94B0B714311B1800B100F2 /* dotted@2x.png */,
-				3B94B0B814311B1800B100F2 /* unchecked.png */,
-				3B94B0B914311B1800B100F2 /* unchecked@2x.png */,
-				3B94B0BA14311B1800B100F2 /* undotted.png */,
-				3B94B0BB14311B1800B100F2 /* undotted@2x.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		3BC0CE721430F343005BECCF /* json-framework */ = {
@@ -1989,14 +1952,6 @@
 				3B1CF8781430E1C10004600B /* InfoPlist.strings in Resources */,
 				3B1CF8841430E1C10004600B /* MainWindow.xib in Resources */,
 				3BC0D0751430F3C5005BECCF /* NUPickerVC.xib in Resources */,
-				3B94B0BC14311B1800B100F2 /* checked.png in Resources */,
-				3B94B0BD14311B1800B100F2 /* checked@2x.png in Resources */,
-				3B94B0BE14311B1800B100F2 /* dotted.png in Resources */,
-				3B94B0BF14311B1800B100F2 /* dotted@2x.png in Resources */,
-				3B94B0C014311B1800B100F2 /* unchecked.png in Resources */,
-				3B94B0C114311B1800B100F2 /* unchecked@2x.png in Resources */,
-				3B94B0C214311B1800B100F2 /* undotted.png in Resources */,
-				3B94B0C314311B1800B100F2 /* undotted@2x.png in Resources */,
 				3B94B0C614311B2B00B100F2 /* kitchen_sink_survey.rb in Resources */,
 				3B13C1211445D38B007AA1C7 /* smoking.json in Resources */,
 				3BA95979144DD7DA00505FD0 /* kitchen-sink-survey.json in Resources */,
@@ -2051,7 +2006,6 @@
 				3B94B0A914311AE800B100F2 /* SurveyorOneAnswerCell.m in Sources */,
 				3B94B0AA14311AE800B100F2 /* SurveyorPickerAnswerCell.m in Sources */,
 				3B94B0B114311B0100B100F2 /* PageCell.m in Sources */,
-				3B94B0B214311B0100B100F2 /* TextFieldCell.m in Sources */,
 				3B94B0B314311B0100B100F2 /* UILabel+Resize.m in Sources */,
 				3BA9597C144DDB8900505FD0 /* NUResponseSet.m in Sources */,
 			);

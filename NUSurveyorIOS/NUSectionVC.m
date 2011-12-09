@@ -500,18 +500,17 @@ subTitleForHeaderInSection:(NSInteger)section
 	{
     if ([[self responsesForIndexPath:anIndexPath] lastObject]) {
       [self deleteResponseForIndexPath:anIndexPath];
-      [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = [UIImage imageNamed:@"unchecked"];
+      [[aTableView cellForRowAtIndexPath:anIndexPath] performSelector:@selector(uncheck)];
     } else {
       [self newResponseForIndexPath:anIndexPath];
-      [aTableView cellForRowAtIndexPath:anIndexPath].imageView.image = [UIImage imageNamed:@"checked"];
+      [[aTableView cellForRowAtIndexPath:anIndexPath] performSelector:@selector(check)];
     }
     [self showAndHideDependenciesTriggeredBy:anIndexPath];
 	} else if ([cell isKindOfClass:NSClassFromString(@"SurveyorOneAnswerCell")]) {
     for (int i = 0; i < [aTableView numberOfRowsInSection:anIndexPath.section]; i++) {
       NSIndexPath *j = [NSIndexPath indexPathForRow:i inSection:anIndexPath.section];
-      j == anIndexPath ? [self newResponseForIndexPath:j] : [self deleteResponseForIndexPath:j];
-      [aTableView cellForRowAtIndexPath:j].imageView.image = 
-        j == anIndexPath ? [UIImage imageNamed:@"dotted"] : [UIImage imageNamed:@"undotted"];
+      [j isEqual:anIndexPath] ? [self newResponseForIndexPath:j] : [self deleteResponseForIndexPath:j];
+      [[aTableView cellForRowAtIndexPath:j] performSelector: [j isEqual:anIndexPath] ? @selector(dot) : @selector(undot)];
     }
     [self showAndHideDependenciesTriggeredBy:anIndexPath];
   }	

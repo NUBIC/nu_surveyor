@@ -13,4 +13,7 @@
     
 }
 
+- (void) dot;
+- (void) undot;
+
 @end
