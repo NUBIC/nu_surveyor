@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *dependencyGraph;
 @property (nonatomic, retain) NSMutableDictionary *dependencies;
+@property (nonatomic, retain) NSString* uuid;
 
 
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey;

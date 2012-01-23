@@ -11,7 +11,7 @@
 
 @implementation NUResponseSet
 
-@synthesize dependencyGraph, dependencies;
+@synthesize dependencyGraph, dependencies, uuid;
 
 // initializer
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey {
