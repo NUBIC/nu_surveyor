@@ -84,7 +84,7 @@
   CGFloat groupedCellWidth = self.frame.size.width - 88.0;
   self.textLabel.frame = CGRectMake(44.0, 
                                     self.textLabel.frame.origin.y, 
-                                    groupedCellWidth - 44.0,
+                                    groupedCellWidth - 44.0 - 10.0, // -10.0 to miss right rounded edges
                                     self.textLabel.frame.size.height);  
 }
 - (void)dot {
