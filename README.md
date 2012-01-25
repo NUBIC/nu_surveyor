@@ -11,10 +11,6 @@ This project is an iOS port of the Surveyor ruby gem (http://github.com/NUBIC/su
 * Under the "Build Settings" tab, make sure "User Header Search Paths" is set to $(BUILT_PRODUCTS_DIR) and "Recursive" is checked
 * Under the "Build Settings" tab, make sure "Other linker flags" contains -all_load and -ObjC (capitalization matters)
 
-## Requirements
-
-SBJson Clone SBJson from http://stig.github.com/json-framework into the same parent directory as this project, e.g. ~/ios/nu_surveyor ~/ios/json-framework
-
 ## Special thanks
 
 * wakibbe (enabling this project)

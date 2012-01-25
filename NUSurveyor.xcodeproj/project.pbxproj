@@ -2282,6 +2282,7 @@
 				67DB49CE14D09454009CC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
