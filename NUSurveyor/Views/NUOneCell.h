@@ -13,6 +13,7 @@
 @interface NUOneCell : UITableViewCell <NUCell>
 
 @property (nonatomic, weak) NUSectionTVC *sectionTVC;
+@property (nonatomic, assign) BOOL dotted;
 
 - (void) dot;
 - (void) undot;

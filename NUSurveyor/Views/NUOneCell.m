@@ -15,7 +15,7 @@
 @end
 
 @implementation NUOneCell
-@synthesize sectionTVC = _sectionTVC, dotLayer = _dotLayer;
+@synthesize sectionTVC = _sectionTVC, dotLayer = _dotLayer, dotted = _dotted;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -37,6 +37,7 @@
         self.dotLayer.lineWidth = 2.0;
         [self.layer insertSublayer:self.dotLayer atIndex:0];
       }
+			self.dotted = YES;
     }
     return self;
 }
@@ -89,11 +90,13 @@
 - (void)dot {
   self.dotLayer.strokeColor = [[UIColor blackColor] CGColor];
   self.dotLayer.fillColor = [[UIColor blackColor] CGColor];
+	self.dotted = YES;
   [self.dotLayer setNeedsDisplay];
 }
 - (void)undot {
   self.dotLayer.strokeColor = [UIColor grayColor].CGColor;
   self.dotLayer.fillColor = [UIColor whiteColor].CGColor;
+	self.dotted = NO;
   [self.dotLayer setNeedsDisplay];
 }
 @end
