@@ -523,6 +523,7 @@
 		67DB49B514D09454009CC8C3 /* NUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NUAppDelegate.m; sourceTree = "<group>"; };
 		67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyorExample.xcdatamodel; sourceTree = "<group>"; };
+		67DB49D514D09713009CC8C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -578,6 +579,7 @@
 				67DB49AB14D09454009CC8C3 /* NUSurveyorExample */,
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
+				67DB49D514D09713009CC8C3 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
