@@ -68,7 +68,7 @@
 #pragma mark - NUCell
 
 - (NSString *)accessibilityLabel{
-  return [NSString stringWithFormat:@"%@", self.answers];
+  return [NSString stringWithFormat:@"NUGridOneCell %@", self.answers];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   // need this to prevent: [segments setSelectedSegmentIndex:i]

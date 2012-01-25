@@ -53,7 +53,7 @@
 
 - (NSString *)accessibilityLabel
 {
-	return [NSString stringWithFormat:@"%@", self.textLabel.text];
+	return [NSString stringWithFormat:@"NUOneCell %@", self.textLabel.text];
 }
 
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{

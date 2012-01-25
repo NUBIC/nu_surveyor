@@ -88,6 +88,24 @@
 		67DB49D114D0952E009CC8C3 /* libNUSurveyor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */; };
 		67DB49D214D0953A009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
 		67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */; };
+		67DB49F314D09E8C009CC8C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B114D09454009CC8C3 /* main.m */; };
+		67DB49F414D09E8C009CC8C3 /* NUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B514D09454009CC8C3 /* NUAppDelegate.m */; };
+		67DB49F514D09E8C009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */; };
+		67DB49F714D09E8C009CC8C3 /* libNUSurveyor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */; };
+		67DB49F814D09E8C009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
+		67DB49F914D09E8C009CC8C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
+		67DB49FA14D09E8C009CC8C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
+		67DB49FB14D09E8C009CC8C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
+		67DB49FC14D09E8C009CC8C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
+		67DB49FE14D09E8C009CC8C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49AE14D09454009CC8C3 /* InfoPlist.strings */; };
+		67DB49FF14D09E8C009CC8C3 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */; };
+		67DB4A1014D09EB6009CC8C3 /* my_first.feature in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0814D09EB6009CC8C3 /* my_first.feature */; };
+		67DB4A1114D09EB6009CC8C3 /* launch_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */; };
+		67DB4A1214D09EB6009CC8C3 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0C14D09EB6009CC8C3 /* env.rb */; };
+		67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0D14D09EB6009CC8C3 /* frank_static_resources.bundle */; };
+		67DB4A1414D09EB6009CC8C3 /* libFrank.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A0E14D09EB6009CC8C3 /* libFrank.a */; };
+		67DB4A1514D09EB6009CC8C3 /* libShelley.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A0F14D09EB6009CC8C3 /* libShelley.a */; };
+		67DB4A1714D09ED0009CC8C3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A1614D09ED0009CC8C3 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -524,6 +542,15 @@
 		67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyorExample.xcdatamodel; sourceTree = "<group>"; };
 		67DB49D514D09713009CC8C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NUSurveyorExample copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DB4A0514D09E8C009CC8C3 /* NUSurveyorExample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NUSurveyorExample copy-Info.plist"; path = "/Users/yoon/ios/nu_surveyor/NUSurveyorExample copy-Info.plist"; sourceTree = "<absolute>"; };
+		67DB4A0814D09EB6009CC8C3 /* my_first.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = my_first.feature; sourceTree = "<group>"; };
+		67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = launch_steps.rb; sourceTree = "<group>"; };
+		67DB4A0C14D09EB6009CC8C3 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
+		67DB4A0D14D09EB6009CC8C3 /* frank_static_resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = frank_static_resources.bundle; sourceTree = "<group>"; };
+		67DB4A0E14D09EB6009CC8C3 /* libFrank.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFrank.a; sourceTree = "<group>"; };
+		67DB4A0F14D09EB6009CC8C3 /* libShelley.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libShelley.a; sourceTree = "<group>"; };
+		67DB4A1614D09ED0009CC8C3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -568,6 +595,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		67DB49F614D09E8C009CC8C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67DB49F714D09E8C009CC8C3 /* libNUSurveyor.a in Frameworks */,
+				67DB49F814D09E8C009CC8C3 /* QuartzCore.framework in Frameworks */,
+				67DB4A1714D09ED0009CC8C3 /* CFNetwork.framework in Frameworks */,
+				67DB49F914D09E8C009CC8C3 /* UIKit.framework in Frameworks */,
+				67DB49FA14D09E8C009CC8C3 /* Foundation.framework in Frameworks */,
+				67DB49FB14D09E8C009CC8C3 /* CoreGraphics.framework in Frameworks */,
+				67DB49FC14D09E8C009CC8C3 /* CoreData.framework in Frameworks */,
+				67DB4A1414D09EB6009CC8C3 /* libFrank.a in Frameworks */,
+				67DB4A1514D09EB6009CC8C3 /* libShelley.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -577,9 +620,11 @@
 				3BD52AA614C8B43500AB61E8 /* NUSurveyor */,
 				3BD52ABA14C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49AB14D09454009CC8C3 /* NUSurveyorExample */,
+				67DB4A0614D09EB6009CC8C3 /* Frank */,
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
 				67DB49D514D09713009CC8C3 /* README.md */,
+				67DB4A0514D09E8C009CC8C3 /* NUSurveyorExample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -589,6 +634,7 @@
 				3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */,
 				3BD52AB114C8B43500AB61E8 /* NUSurveyorTests.octest */,
 				67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */,
+				67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -596,6 +642,7 @@
 		3BD52AA314C8B43500AB61E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67DB4A1614D09ED0009CC8C3 /* CFNetwork.framework */,
 				671F3C9C14C9C3BA00CEE042 /* json-framework */,
 				671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */,
 				3BE8672F14CDF145002D04BD /* QuartzCore.framework */,
@@ -1738,6 +1785,43 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		67DB4A0614D09EB6009CC8C3 /* Frank */ = {
+			isa = PBXGroup;
+			children = (
+				67DB4A0714D09EB6009CC8C3 /* features */,
+				67DB4A0D14D09EB6009CC8C3 /* frank_static_resources.bundle */,
+				67DB4A0E14D09EB6009CC8C3 /* libFrank.a */,
+				67DB4A0F14D09EB6009CC8C3 /* libShelley.a */,
+			);
+			path = Frank;
+			sourceTree = "<group>";
+		};
+		67DB4A0714D09EB6009CC8C3 /* features */ = {
+			isa = PBXGroup;
+			children = (
+				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
+				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
+				67DB4A0B14D09EB6009CC8C3 /* support */,
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		67DB4A0914D09EB6009CC8C3 /* step_definitions */ = {
+			isa = PBXGroup;
+			children = (
+				67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */,
+			);
+			path = step_definitions;
+			sourceTree = "<group>";
+		};
+		67DB4A0B14D09EB6009CC8C3 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				67DB4A0C14D09EB6009CC8C3 /* env.rb */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1822,6 +1906,23 @@
 			productReference = 67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		67DB49F114D09E8C009CC8C3 /* NUSurveyorExample Frankified */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample Frankified" */;
+			buildPhases = (
+				67DB49F214D09E8C009CC8C3 /* Sources */,
+				67DB49F614D09E8C009CC8C3 /* Frameworks */,
+				67DB49FD14D09E8C009CC8C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NUSurveyorExample Frankified";
+			productName = NUSurveyorExample;
+			productReference = 67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1859,6 +1960,7 @@
 				3BD52AA014C8B43500AB61E8 /* NUSurveyor */,
 				3BD52AB014C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49A414D09454009CC8C3 /* NUSurveyorExample */,
+				67DB49F114D09E8C009CC8C3 /* NUSurveyorExample Frankified */,
 			);
 		};
 /* End PBXProject section */
@@ -1925,6 +2027,19 @@
 			files = (
 				67DB49B014D09454009CC8C3 /* InfoPlist.strings in Resources */,
 				67DB49D014D094F2009CC8C3 /* kitchen-sink-survey.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67DB49FD14D09E8C009CC8C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67DB49FE14D09E8C009CC8C3 /* InfoPlist.strings in Resources */,
+				67DB49FF14D09E8C009CC8C3 /* kitchen-sink-survey.json in Resources */,
+				67DB4A1014D09EB6009CC8C3 /* my_first.feature in Resources */,
+				67DB4A1114D09EB6009CC8C3 /* launch_steps.rb in Resources */,
+				67DB4A1214D09EB6009CC8C3 /* env.rb in Resources */,
+				67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2003,6 +2118,16 @@
 				67DB49B214D09454009CC8C3 /* main.m in Sources */,
 				67DB49B614D09454009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67DB49F214D09E8C009CC8C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67DB49F314D09E8C009CC8C3 /* main.m in Sources */,
+				67DB49F414D09E8C009CC8C3 /* NUAppDelegate.m in Sources */,
+				67DB49F514D09E8C009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2245,6 +2370,51 @@
 			};
 			name = Release;
 		};
+		67DB4A0114D09E8C009CC8C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
+				INFOPLIST_FILE = "NUSurveyorExample copy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frank\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "NUSurveyorExample copy";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		67DB4A0214D09E8C009CC8C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
+				INFOPLIST_FILE = "NUSurveyorExample copy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frank\"",
+				);
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "NUSurveyorExample copy";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2280,6 +2450,15 @@
 			buildConfigurations = (
 				67DB49CD14D09454009CC8C3 /* Debug */,
 				67DB49CE14D09454009CC8C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample Frankified" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67DB4A0114D09E8C009CC8C3 /* Debug */,
+				67DB4A0214D09E8C009CC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

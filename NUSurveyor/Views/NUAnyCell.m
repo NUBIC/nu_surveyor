@@ -70,7 +70,7 @@
 
 #pragma mark - NUCell
 - (NSString *)accessibilityLabel{
-	return [NSString stringWithFormat:@"%@", self.textLabel.text];
+	return [NSString stringWithFormat:@"NUAnyCell %@", self.textLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	self.sectionTVC = (NUSectionTVC *)tableView.delegate;

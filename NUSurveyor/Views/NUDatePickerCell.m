@@ -34,7 +34,7 @@
 
 #pragma mark - NUCell
 - (NSString *)accessibilityLabel{
-	return [NSString stringWithFormat:@"%@", self.textLabel.text];
+	return [NSString stringWithFormat:@"NUDatePickerCell %@", self.textLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

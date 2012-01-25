@@ -69,7 +69,7 @@
 
 #pragma mark - NUCell
 - (NSString *)accessibilityLabel{
-	return [NSString stringWithFormat:@"%@ %@ %@", self.label.text, self.textField.text, self.postLabel.text];
+	return [NSString stringWithFormat:@"NUNoneCell %@ %@ %@", self.label.text, self.textField.text, self.postLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	[self resetContent];

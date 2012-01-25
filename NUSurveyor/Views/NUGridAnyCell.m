@@ -66,7 +66,7 @@
 #pragma mark - NUCell
 
 - (NSString *)accessibilityLabel{
-  return [NSString stringWithFormat:@"%@", self.answers];
+  return [NSString stringWithFormat:@"NUGridAnyCell %@", self.answers];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   [self resetContent];
