@@ -63,6 +63,7 @@
     self = [super initWithStyle:style];
     if (self) {
       // Custom initialization
+			self.pageControl = [[UIPageControl alloc] init];
     }
     return self;
 }
@@ -86,8 +87,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(130.0, 0.0, 442.0, 36.0)];
-  [self.navigationController.view addSubview:self.pageControl];
+  self.pageControl.frame = CGRectMake(0.0, 19.0, self.view.frame.size.width, 36.0);
+	self.pageControl.userInteractionEnabled = NO;
+	[self.navigationController.view addSubview:self.pageControl];
+	
 
   // Swipe gesture recognizers
   UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(prevSection)];
