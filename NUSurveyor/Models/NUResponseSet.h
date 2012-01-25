@@ -12,6 +12,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *dependencyGraph;
 @property (nonatomic, retain) NSMutableDictionary *dependencies;
+@property (nonatomic, strong) NSString *uuid;
 
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey withModel:(NSManagedObjectModel *)mom inContext:(NSManagedObjectContext *)moc;
 + (void) saveContext:(NSManagedObjectContext *)moc withMessage:(NSString *)message;

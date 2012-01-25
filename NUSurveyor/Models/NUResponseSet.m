@@ -11,6 +11,7 @@
 
 @implementation NUResponseSet
 @synthesize dependencyGraph, dependencies;
+@dynamic uuid;
 
 // initializer
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey withModel:(NSManagedObjectModel *)mom inContext:(NSManagedObjectContext *)moc {
