@@ -65,6 +65,14 @@
 		671F3C9B14C9C38100CEE042 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
 		671F3E6814C9C41000CEE042 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3E4814C9C3BB00CEE042 /* libsbjson-ios.a */; };
 		671F3E8914CA318100CEE042 /* NUCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 671F3E8814CA318100CEE042 /* NUCell.h */; };
+		67DB495B14D071FE009CC8C3 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3E4814C9C3BB00CEE042 /* libsbjson-ios.a */; };
+		67DB495C14D07203009CC8C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
+		67DB495D14D07207009CC8C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
+		67DB495E14D07210009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
+		67DB495F14D07217009CC8C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
+		67DB496F14D07E6C009CC8C3 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 67DB496E14D07E6C009CC8C3 /* kitchen-sink-survey.json */; };
+		67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 67DB497014D080AC009CC8C3 /* test-dependency-survey.json */; };
+		67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB499214D085CA009CC8C3 /* NUSurveyor.xcdatamodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -484,6 +492,9 @@
 		671F3E3A14C9C3BB00CEE042 /* StreamParserIntegrationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamParserIntegrationTest.m; sourceTree = "<group>"; };
 		671F3E3B14C9C3BB00CEE042 /* WriterTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WriterTest.m; sourceTree = "<group>"; };
 		671F3E8814CA318100CEE042 /* NUCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUCell.h; path = Views/NUCell.h; sourceTree = "<group>"; };
+		67DB496E14D07E6C009CC8C3 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
+		67DB497014D080AC009CC8C3 /* test-dependency-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-dependency-survey.json"; sourceTree = "<group>"; };
+		67DB499214D085CA009CC8C3 /* NUSurveyor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyor.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +515,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67DB495F14D07217009CC8C3 /* UIKit.framework in Frameworks */,
+				67DB495E14D07210009CC8C3 /* QuartzCore.framework in Frameworks */,
+				67DB495D14D07207009CC8C3 /* CoreGraphics.framework in Frameworks */,
+				67DB495C14D07203009CC8C3 /* CoreData.framework in Frameworks */,
+				67DB495B14D071FE009CC8C3 /* libsbjson-ios.a in Frameworks */,
 				3BD52AB314C8B43500AB61E8 /* SenTestingKit.framework in Frameworks */,
 				3BD52AB614C8B43500AB61E8 /* Foundation.framework in Frameworks */,
 				3BD52AB914C8B43500AB61E8 /* libNUSurveyor.a in Frameworks */,
@@ -580,6 +596,9 @@
 		3BD52ABB14C8B43500AB61E8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				67DB496E14D07E6C009CC8C3 /* kitchen-sink-survey.json */,
+				67DB497014D080AC009CC8C3 /* test-dependency-survey.json */,
+				67DB499214D085CA009CC8C3 /* NUSurveyor.xcdatamodel */,
 				3BD52ABC14C8B43500AB61E8 /* NUSurveyorTests-Info.plist */,
 				3BD52ABD14C8B43500AB61E8 /* InfoPlist.strings */,
 			);
@@ -1803,6 +1822,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BD52ABF14C8B43500AB61E8 /* InfoPlist.strings in Resources */,
+				67DB496F14D07E6C009CC8C3 /* kitchen-sink-survey.json in Resources */,
+				67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1868,6 +1889,7 @@
 				3BD52B1D14C8B7A200AB61E8 /* NUMultiButton.m in Sources */,
 				3BD52B2714C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */,
 				3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */,
+				67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

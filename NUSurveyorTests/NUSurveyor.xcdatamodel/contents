@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Response" representedClassName="NUResponseSet" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="modifiedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="responseSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ResponseSet" inverseName="responses" inverseEntity="ResponseSet" syncable="YES"/>
+    </entity>
+    <entity name="ResponseSet" representedClassName="NUResponseSet">
+        <attribute name="completedAt" optional="YES" attributeType="Date"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="survey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="responseSet" inverseEntity="Response" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Response" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="ResponseSet" positionX="261" positionY="189" width="128" height="120"/>
+    </elements>
+</model>

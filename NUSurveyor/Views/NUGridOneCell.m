@@ -175,7 +175,7 @@
       //      DLog(@"create");
     }
   }
-  //  [delegate showAndHideDependenciesTriggeredBy:[self myIndexPathWithAnswer:selectedSegment]];
+  [self.sectionTVC showAndHideDependenciesTriggeredBy:[self myIndexPathWithAnswer:selectedSegment]];
 }
 
 

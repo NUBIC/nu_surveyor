@@ -513,6 +513,7 @@
       [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
 			
       [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
+			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
 //      [self createQuestionWithIndex:i dictionary:[self questionOrGroupWithUUID:question]];
     }
   } 
@@ -524,6 +525,8 @@
 //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
       [self.visibleSections removeObjectAtIndex:i];
 			//      [self headerSectionsReordered];
+			[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+
     }
   } 	
 }

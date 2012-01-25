@@ -30,13 +30,14 @@
   if (self) {
     self.survey = survey;
     SBJsonParser *parser = [[SBJsonParser alloc] init];
-    self.surveyNSD = [parser objectWithString:self.survey.jsonString];
+    self.surveyNSD = [[parser objectWithString:self.survey.jsonString] objectForKey:@"survey"];
 
     self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.sectionTVC.responseSet = responseSet;
     self.sectionTVC.delegate = self;
     
     [self.sectionTVC.responseSet setValue:[self.surveyNSD objectForKey:@"uuid"] forKey:@"survey"];
+		[self.sectionTVC.responseSet generateDependencyGraph:self.surveyNSD];
     [NUResponseSet saveContext:self.sectionTVC.responseSet.managedObjectContext withMessage:@"NUSurveyTVC initWithSurvey"];
   }
   return self;
@@ -70,7 +71,7 @@
   self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
 	self.navigationItem.title = @"Sections";
 
-  self.sectionTVC.navigationItem.title = [[self.surveyNSD objectForKey:@"survey"] objectForKey:@"title"];  
+  self.sectionTVC.navigationItem.title = [self.surveyNSD objectForKey:@"title"];  
   self.sectionTVC.pageControl.numberOfPages = [self numberOfSections];
   
 //	// Load survey
@@ -89,7 +90,7 @@
 //	SBJsonParser *parser = [[SBJsonParser alloc] init];  
 //	self.surveyNSD = [parser objectWithString:self.surveyJson];
 	
-  if ([[[self.surveyNSD objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:0]) {
+  if ([[self.surveyNSD objectForKey:@"sections"] objectAtIndex:0]) {
     [self showSection:0];
   }
 }
@@ -154,7 +155,7 @@
   }
   
   // Configure the cell.
-	cell.textLabel.text = [[[[self.surveyNSD objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
+	cell.textLabel.text = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
 	return cell;
 }
 
@@ -213,16 +214,16 @@
 
 #pragma mark - Section navigation
 - (NSInteger) numberOfSections {
-  return [[[self.surveyNSD objectForKey:@"survey"] objectForKey:@"sections"] count];
+  return [[self.surveyNSD objectForKey:@"sections"] count];
 }
 - (void) showSection:(NSUInteger)index {
   self.currentSection = index;
-  [self.sectionTVC setDetailItem:[[[self.surveyNSD objectForKey:@"survey"] objectForKey:@"sections"] objectAtIndex:index]];
+  [self.sectionTVC setDetailItem:[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index]];
 //  [self.sectionTVC refresh:self];
   self.sectionTVC.pageControl.currentPage = index;
 }
 - (void) nextSection{
-  if (([self.tableView indexPathForSelectedRow].row + 1) < [[[self.surveyNSD objectForKey:@"survey"] objectForKey:@"sections"] count]) {
+  if (([self.tableView indexPathForSelectedRow].row + 1) < [[self.surveyNSD objectForKey:@"sections"] count]) {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:([self.tableView indexPathForSelectedRow].row + 1) inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self showSection:indexPath.row];

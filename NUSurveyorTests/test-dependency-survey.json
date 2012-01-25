@@ -1,0 +1,73 @@
+
+{
+  "survey":{
+    "title":"INS_QUE_PregVisit1_INT_EHPBHI_P2_V2.0",
+    "uuid":"1f7b92b0-2380-012f-7858-482a143dc94d",
+    "sections":[
+    {
+      "title":"Interview introduction",
+      "questions_and_groups":[
+      {
+        "reference":"name_confirm",
+        "uuid":"1f7f81d0-2380-012f-7858-482a143dc94d",
+        "pick":"one",
+        "text":"Is that your name? ",
+        "answers":[
+        {
+          "uuid":"1f7f9270-2380-012f-7858-482a143dc94d",
+          "text":"Yes"
+        },
+        {
+          "uuid":"1f7fa300-2380-012f-7858-482a143dc94d",
+          "text":"No"
+        }
+        ]
+      },
+      {
+        "questions":[
+        {
+          "help_text":"If participant refuses to provide information, re-state confidentiality protections, ask for initials or some other name she would like to be called. confirm spelling of first name if not previously collected and of last name for all participants.",
+          "uuid":"1f81ee40-2380-012f-7858-482a143dc94d",
+          "text":"What is your full name?",
+          "type":"label",
+          "dependency":{
+            "conditions":[
+            {
+              "operator":"==",
+              "rule_key":"A",
+              "value":null,
+              "question":"1f7f81d0-2380-012f-7858-482a143dc94d",
+              "answer":"1f7fa300-2380-012f-7858-482a143dc94d"
+            }
+            ],
+            "rule":"A"
+          },
+          "reference":"r_fname",
+          "pick":"one",
+          "uuid":"1f820160-2380-012f-7858-482a143dc94d",
+          "text":"First name",
+          "answers":[
+          {
+            "uuid":"1f8216c0-2380-012f-7858-482a143dc94d",
+            "text":"",
+            "type":"string"
+          },
+          {
+            "uuid":"1f822890-2380-012f-7858-482a143dc94d",
+            "text":"Refused"
+          },
+          {
+            "uuid":"1f823970-2380-012f-7858-482a143dc94d",
+            "text":"Don't know"
+          }
+          ]
+        }                     
+        ],
+        "text":"Participant information",
+        "type":"default"
+      }
+      ]
+    }
+    ]
+  }
+}
