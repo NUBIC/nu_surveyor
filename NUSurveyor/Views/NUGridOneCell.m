@@ -138,7 +138,7 @@
   
   CGFloat groupedCellWidth = self.frame.size.width - 88.0;
   CGFloat widthPadding = 8;
-  CGFloat heightPadding = 8;  
+  CGFloat heightPadding = 4;  
 	CGFloat height = self.contentView.frame.size.height - heightPadding * 2;
 	CGFloat width = groupedCellWidth - widthPadding * 2;
   
