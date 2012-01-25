@@ -315,10 +315,10 @@
   [[self tableView:tableView viewForHeaderInSection:section] bounds].size.height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//  NSDictionary *question = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:indexPath.section]];
-//	NSString *CellIdentifier = [self.class classNameForQuestion:question answer:[[question objectForKey:@"answers"] objectAtIndex:indexPath.row]];
-//  return [CellIdentifier isEqualToString:@"NUNoneTextCell"] ? 220.0 : 44.0;
-  return 44.0;
+  NSDictionary *question = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:indexPath.section]];
+	NSString *CellIdentifier = [self.class classNameForQuestion:question answer:[[question objectForKey:@"answers"] objectAtIndex:indexPath.row]];
+  return [CellIdentifier isEqualToString:@"NUNoneTextCell"] ? 220.0 : 44.0;
+//  return 44.0;
 }
 
 #pragma mark - Table and section headers (private)
