@@ -73,10 +73,7 @@
       [(NUOneCell *)[tableView cellForRowAtIndexPath:j] undot];
     }
 	}
-  [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1];
-}
-- (void)deselect{
-  [self setSelected:NO animated:YES];
+  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (void) layoutSubviews {
   [super layoutSubviews];

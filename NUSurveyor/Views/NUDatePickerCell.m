@@ -67,12 +67,8 @@
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	[self.popoverController presentPopoverFromRect:self.frame inView:tableView permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-  [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1];
+  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-- (void)deselect{
-  [self setSelected:NO animated:YES];
-}
-
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type {
   if ([type isEqualToString:@"datetime"]) {
     return UIDatePickerModeDateAndTime;

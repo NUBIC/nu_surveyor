@@ -12,6 +12,7 @@
 
 @interface NUSectionTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
+@property (nonatomic, retain) UIView *cursorView;
 // Table and section headers
 - (void)createHeader;
 - (UIView  *)headerViewWithTitle:(NSString *)title SubTitle:(NSString *)subTitle;
@@ -27,6 +28,7 @@
 @end
 
 @implementation NUSectionTVC
+@synthesize cursorView = _cursorView;
 @synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, delegate = _delegate;
 
 #pragma mark - Utility class methods
@@ -99,7 +101,6 @@
   l.direction = UISwipeGestureRecognizerDirectionLeft;
   [self.view addGestureRecognizer:r];
   [self.view addGestureRecognizer:l];
-
 
 }
 
@@ -283,6 +284,10 @@
 	UITableViewCell<NUCell> *cell = (UITableViewCell<NUCell> *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell selectedinTableView:tableView indexPath:indexPath];
 	[self showAndHideDependenciesTriggeredBy:indexPath];
+  if (self.cursorView && ![self.cursorView isDescendantOfView:cell]) {
+    [self.cursorView resignFirstResponder];
+    self.cursorView = nil;
+  }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	NSString *title = [self tableView:tableView titleForHeaderInSection:section];
@@ -535,6 +540,9 @@
 }
 
 #pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+  self.cursorView = textField;
+}
 - (void)textFieldDidEndEditing:(UITextField *)aTextField {
   NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextField.superview.superview];
   [self deleteResponseForIndexPath:idx];
@@ -542,9 +550,13 @@
     [self newResponseForIndexPath:idx Value:aTextField.text];
   }
   [self showAndHideDependenciesTriggeredBy:idx];
+  self.cursorView = nil;
 }
 
 #pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+  self.cursorView = textView;
+}
 - (void)textViewDidEndEditing:(UITextView *)aTextView {
   NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextView.superview.superview];
   [self deleteResponseForIndexPath:idx];
@@ -552,6 +564,7 @@
     [self newResponseForIndexPath:idx Value:aTextView.text];
   }
   [self showAndHideDependenciesTriggeredBy:idx];
+  self.cursorView = nil;
 }
 
 #pragma mark - Split view support

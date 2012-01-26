@@ -55,12 +55,8 @@
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	[self.popoverController presentPopoverFromRect:self.frame inView:tableView permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-  [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1];
+  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-- (void)deselect{
-  [self setSelected:NO animated:YES];
-}
-
 - (NSIndexPath *)myIndexPathWithRow:(NSUInteger)r {
   return [NSIndexPath indexPathForRow:r inSection:[(UITableView *)self.sectionTVC.tableView indexPathForCell:self].section];
 }
