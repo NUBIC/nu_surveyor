@@ -12,10 +12,11 @@
 @interface NUMultiButton()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 @property (nonatomic, retain) NSMutableArray *buttons;
+@property (nonatomic, retain) NSArray *titles;
 @end
 
 @implementation NUMultiButton
-@synthesize buttons;
+@synthesize buttons = _buttons, titles = _titles;
 
 #define _padding	4.0
 #define _spacing	1.0
@@ -31,14 +32,20 @@
 }
 
 - (void) setItems:(NSArray *)titles {
-	for(NSString *title in titles){
-    NUButton *button = [[NUButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 32.0)];
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-		[self addSubview:button];
-    [buttons addObject:button];
-	}
+  if (![self.titles isEqualToArray:titles]) {
+    self.titles = titles;
+    [self clearItems];
+    for(NSString *title in titles){
+      
+      NUButton *button = [[NUButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 32.0)];
+      [button setTitle:title forState:UIControlStateNormal];
+      
+      [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+      [self addSubview:button];
+      [self.buttons addObject:button];
+    }
+
+  }
 }
 - (void) clearItems {
   // removes UIButton and UIButton subclass subviews
@@ -54,7 +61,7 @@
 - (NSIndexSet *) selectedIndexes{
   // block syntax
   // ^int (int x) { return x*3; }
-  return [buttons indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){ 
+  return [self.buttons indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop){ 
     return ((UIButton *)obj).selected;
   }];
 }
@@ -62,9 +69,9 @@
   // block syntax
   // ^int (int x) { return x*3; }
   [indexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-    if (idx < buttons.count) {
-      ((UIButton *)[buttons objectAtIndex:idx]).selected = YES;
-      [self performSelector:@selector(highlightButton:) withObject:(UIButton *)[buttons objectAtIndex:idx] afterDelay:0];
+    if (idx < self.buttons.count) {
+      ((UIButton *)[self.buttons objectAtIndex:idx]).selected = YES;
+      [self performSelector:@selector(highlightButton:) withObject:(UIButton *)[self.buttons objectAtIndex:idx] afterDelay:0];
     }
   }];
 }

@@ -10,10 +10,13 @@
 #import "UILabel+NUResize.h"
 
 @interface NUGridAnyCell()
+@property (nonatomic, strong) NSMutableIndexSet *selectedIndexes;
+@property (nonatomic, assign) BOOL configuringButtons;
 - (void)resetContent;
+- (NSIndexPath *)myIndexPathWithQuestion:(NSIndexPath *)q Answer:(NSUInteger)a;
 @end
 @implementation NUGridAnyCell
-@synthesize sectionTVC = _sectionTVC, label = _label, postLabel = _postLabel, buttons = _buttons, answers = _answers;
+@synthesize sectionTVC = _sectionTVC, label = _label, postLabel = _postLabel, buttons = _buttons, answers = _answers, selectedIndexes = _selectedIndexes, configuringButtons = _configuringButtons;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -69,8 +72,11 @@
   return [NSString stringWithFormat:@"NUGridAnyCell %@", self.answers];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
+
+  self.configuringButtons = YES;
   [self resetContent];
   
+  self.selectedIndexes = [[NSMutableIndexSet alloc] init];
   self.answers = [dataObject objectForKey:@"answers"];
   self.sectionTVC = (NUSectionTVC *)[tableView delegate];  
   
@@ -83,7 +89,14 @@
   
   // input
   [self.buttons setItems:[self.answers valueForKey:@"text"]];
-//  [self.buttons selectIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 3)]];
+  
+  // look up existing response, select corresponding segment
+  for (int i = 0; i < [self.answers count]; i++) {
+    if ([[self.sectionTVC responsesForIndexPath:[self myIndexPathWithQuestion:indexPath Answer:i]] lastObject]) {
+      [self.selectedIndexes addIndex:i];
+    }
+  }
+  [self.buttons selectIndexes:self.selectedIndexes];
   // (post) text
   if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
     [self.postLabel setHidden:YES];
@@ -91,24 +104,38 @@
     self.postLabel.text = [dataObject objectForKey:@"post_text"];
   }
   
-  // look up existing response
-//  NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:indexPath] lastObject];
-//  if (existingResponse) {
-//    self.textLabel.text = [existingResponse valueForKey:@"value"];
-//    self.textLabel.textColor = RGB(1, 113, 233);
-//    self.pickerVC.datePicker.date = [self.dateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
-//  } else {
-//    self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
-//    self.textLabel.textColor = [UIColor blackColor];
-//  }
-  
-  [self layoutSubviews];
+  self.configuringButtons = NO;
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   
 }
 
+- (NSIndexPath *)myIndexPathWithQuestion:(NSIndexPath *)q Answer:(NSUInteger)a {
+  NSUInteger indexArr[] = {[q indexAtPosition:0],[q indexAtPosition:1],a};
+  //  DLog(@"myIndexPathWithQuestion: %@", [NSIndexPath indexPathWithIndexes:indexArr length:3]);
+  return [NSIndexPath indexPathWithIndexes:indexArr length:3];
+}
+- (NSIndexPath *)myIndexPathWithAnswer:(NSUInteger)a {
+  NSUInteger indexArr[] = {[(UITableView *)self.sectionTVC.tableView indexPathForCell:self].section,[(UITableView *)self.sectionTVC.tableView indexPathForCell:self].row,a};
+  //  DLog(@"myIndexPathWithAnswer: %@", [NSIndexPath indexPathWithIndexes:indexArr length:3]);
+  return [NSIndexPath indexPathWithIndexes:indexArr length:3];
+}
+
 - (void) buttonsChanged{
+  if (self.configuringButtons) {
+    return;
+  }
+  NSIndexSet *selectedIndexes = self.buttons.selectedIndexes;
+  for (int i = 0; i < [self.answers count]; i++) {
+    NSIndexPath *j = [self myIndexPathWithAnswer:i];
+    [self.sectionTVC deleteResponseForIndexPath:j];
+    //    DLog(@"delete");
+    if ([selectedIndexes containsIndex:i]) {
+      [self.sectionTVC newResponseForIndexPath:j];
+      //      DLog(@"create");
+    }
+    [self.sectionTVC showAndHideDependenciesTriggeredBy:[self myIndexPathWithAnswer:i]];
+  }
   //  DLog(@"buttonsChanged");
   //  DLog(@"indexes: %@", [buttons selectedIndexes]);
 }
@@ -117,8 +144,9 @@
   [self.postLabel setHidden:NO];
   
   self.label.text = nil;
-  [self.buttons clearItems];
   self.postLabel.text = nil;
+  
+  self.selectedIndexes = nil;
   
 }
 - (void) layoutSubviews {

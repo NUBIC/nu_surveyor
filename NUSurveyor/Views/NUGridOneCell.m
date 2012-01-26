@@ -10,6 +10,7 @@
 #import "UILabel+NUResize.h"
 
 @interface NUGridOneCell()
+@property (nonatomic, assign) BOOL configuringSegments;
 - (void) resetContent;
 - (NSIndexPath *)myIndexPathWithQuestion:(NSIndexPath *)q Answer:(NSUInteger)a;
 @end
@@ -90,14 +91,12 @@
   for (NSDictionary *answer in self.answers) {
     [self.segments insertSegmentWithTitle:[answer objectForKey:@"text"] atIndex:[self.segments numberOfSegments] animated:NO];
   }
-  //  segments.momentary = YES;
   // look up existing response, select corresponding segment
   for (int i = 0; i < [self.answers count]; i++) {
     if ([[self.sectionTVC responsesForIndexPath:[self myIndexPathWithQuestion:indexPath Answer:i]] lastObject]) {
       [self.segments setSelectedSegmentIndex:i];
     }
   }
-  //  segments.momentary = NO;
   // (post) text
   if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
     [self.postLabel setHidden:YES];

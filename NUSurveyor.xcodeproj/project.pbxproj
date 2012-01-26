@@ -543,7 +543,6 @@
 		67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyorExample.xcdatamodel; sourceTree = "<group>"; };
 		67DB49D514D09713009CC8C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NUSurveyorExample copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		67DB4A0514D09E8C009CC8C3 /* NUSurveyorExample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NUSurveyorExample copy-Info.plist"; path = "/Users/yoon/ios/nu_surveyor/NUSurveyorExample copy-Info.plist"; sourceTree = "<absolute>"; };
 		67DB4A0814D09EB6009CC8C3 /* my_first.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = my_first.feature; sourceTree = "<group>"; };
 		67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = launch_steps.rb; sourceTree = "<group>"; };
 		67DB4A0C14D09EB6009CC8C3 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
@@ -624,7 +623,6 @@
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
 				67DB49D514D09713009CC8C3 /* README.md */,
-				67DB4A0514D09E8C009CC8C3 /* NUSurveyorExample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};

@@ -17,6 +17,5 @@
 @property (nonatomic, strong) UILabel *postLabel;
 @property (nonatomic, strong) UISegmentedControl *segments;
 @property (nonatomic, strong) NSArray *answers;
-@property (nonatomic, assign) BOOL configuringSegments;
 
 @end
