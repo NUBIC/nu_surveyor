@@ -480,13 +480,16 @@
 }
 - (NSUInteger) indexForInsert:(NSString *)uuid {
   NSUInteger i = [self indexOfQuestionOrGroupWithUUID:uuid];
-	//  DLog(@"i: %d", i);
-  for (int n = i-1; n >= 0; n--) {
-		//    DLog(@"n: %d", n);
-    if ([[self.allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
-      return [self.visibleSections indexOfObject:[[self.allSections objectAtIndex:n] objectForKey:@"uuid"]] + 1;
+  if (i != NSNotFound) {
+    for (int n = i-1; n >= 0; n--) {
+      //    DLog(@"n: %d", n);
+      if ([[self.allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
+        return [self.visibleSections indexOfObject:[[self.allSections objectAtIndex:n] objectForKey:@"uuid"]] + 1;
+      }
     }
   }
+	//  DLog(@"i: %d", i);
+
   return 0;
 }
 
@@ -516,13 +519,15 @@
     // show the question and insert it in the right place
     if ([self.visibleSections indexOfObject:question] == NSNotFound) {
       NSUInteger i = [self indexForInsert:question];
-      [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
-      // insert into visibleSections before createQuestionWithIndex to get title right
-      [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
-			
-      [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
-			[self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
-//      [self createQuestionWithIndex:i dictionary:[self questionOrGroupWithUUID:question]];
+      if (i != 0U) {
+        [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
+        // insert into visibleSections before createQuestionWithIndex to get title right
+        [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
+                
+        [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+    //      [self createQuestionWithIndex:i dictionary:[self questionOrGroupWithUUID:question]];
+      }
     }
   } 
   for (NSString *question in [showHide objectForKey:@"hide"]) {
