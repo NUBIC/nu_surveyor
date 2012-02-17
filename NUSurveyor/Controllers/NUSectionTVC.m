@@ -519,7 +519,7 @@
     // show the question and insert it in the right place
     if ([self.visibleSections indexOfObject:question] == NSNotFound) {
       NSUInteger i = [self indexForInsert:question];
-      if (i != 0U) {
+      if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
         // insert into visibleSections before createQuestionWithIndex to get title right
         [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
