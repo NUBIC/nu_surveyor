@@ -92,6 +92,7 @@
   self.pageControl.frame = CGRectMake(0.0, 19.0, self.view.frame.size.width, 36.0);
 	self.pageControl.userInteractionEnabled = NO;
 	[self.navigationController.view addSubview:self.pageControl];
+  self.tableView.accessibilityLabel = @"sectionTableView"; 
 	
 
   // Swipe gesture recognizers

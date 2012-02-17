@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
+		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
 		3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
@@ -161,6 +163,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
+		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
 		3BA2E94914CDCD0F0057D05C /* NUSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurvey.m; path = Models/NUSurvey.m; sourceTree = "<group>"; };
 		3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNUSurveyor.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1797,6 +1801,7 @@
 		67DB4A0714D09EB6009CC8C3 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
 				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
 				67DB4A0B14D09EB6009CC8C3 /* support */,
@@ -1807,6 +1812,7 @@
 		67DB4A0914D09EB6009CC8C3 /* step_definitions */ = {
 			isa = PBXGroup;
 			children = (
+				3B24DED614EEEABF00E7D04C /* response_set_steps.rb */,
 				67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */,
 			);
 			path = step_definitions;
@@ -2038,6 +2044,8 @@
 				67DB4A1114D09EB6009CC8C3 /* launch_steps.rb in Resources */,
 				67DB4A1214D09EB6009CC8C3 /* env.rb in Resources */,
 				67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */,
+				3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */,
+				3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

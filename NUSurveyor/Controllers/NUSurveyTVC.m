@@ -73,6 +73,7 @@
 
   self.sectionTVC.navigationItem.title = [self.surveyNSD objectForKey:@"title"];  
   self.sectionTVC.pageControl.numberOfPages = [self numberOfSections];
+  self.tableView.accessibilityLabel = @"surveyTableView";
   
 //	// Load survey
 //	if(!self.surveyJson){
@@ -156,6 +157,7 @@
   
   // Configure the cell.
 	cell.textLabel.text = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
+  cell.accessibilityLabel = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
 	return cell;
 }
 
@@ -218,8 +220,9 @@
 }
 - (void) showSection:(NSUInteger)index {
   self.currentSection = index;
+  
   [self.sectionTVC setDetailItem:[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index]];
-//  [self.sectionTVC refresh:self];
+  [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
   self.sectionTVC.pageControl.currentPage = index;
 }
 - (void) nextSection{
