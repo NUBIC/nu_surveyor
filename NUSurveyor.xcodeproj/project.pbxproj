@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0083A90C14F746F5005C1D94 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* Constants.h */; };
+		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
 		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
@@ -164,7 +164,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0083A90B14F746F5005C1D94 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
@@ -667,7 +667,7 @@
 				3BD52AA914C8B43500AB61E8 /* NUSurveyor.h */,
 				3BD52AAA14C8B43500AB61E8 /* NUSurveyor.m */,
 				3BD52AA714C8B43500AB61E8 /* Supporting Files */,
-				0083A90B14F746F5005C1D94 /* Constants.h */,
+				0083A90B14F746F5005C1D94 /* NUConstants.h */,
 			);
 			path = NUSurveyor;
 			sourceTree = "<group>";
@@ -1854,7 +1854,7 @@
 				3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */,
 				67DB499814D0933E009CC8C3 /* NUGridAnyCell.h in Headers */,
 				67DB499A14D0933E009CC8C3 /* NUGridOneCell.h in Headers */,
-				0083A90C14F746F5005C1D94 /* Constants.h in Headers */,
+				0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
