@@ -177,7 +177,7 @@
 			}
     }
   }
-	//  DLog(@"dg: %@", dependencyGraph);
+//  NSLog(@"dg: %@", self.dependencyGraph);
 }
 - (NSDictionary *) dependenciesTriggeredBy:(NSString *)qid {
   NSMutableArray *show = [[NSMutableArray alloc] init];
@@ -261,7 +261,7 @@
 								 forKey:[condition objectForKey:@"rule_key"]];
 		}	else if ([operator isEqualToString:@"=="]) {
 			// ==
-			if (value == (id)kCFNull) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
+			if (value == (id)kCFNull || value == nil) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {

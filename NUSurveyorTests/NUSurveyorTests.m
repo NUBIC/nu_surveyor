@@ -114,20 +114,20 @@
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
 	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
 	 
-  NSArray *actual = [rs.dependencyGraph objectForKey:@"deec7160-e5f8-012e-9f18-00254bc472f4"];
-  NSArray *expect = [NSArray arrayWithObjects:@"deecf720-e5f8-012e-9f18-00254bc472f4", @"deef2410-e5f8-012e-9f18-00254bc472f4", nil];
+  NSArray *actual = [rs.dependencyGraph objectForKey:@"765351b0-4540-012f-9ea4-00254bc472f4"];
+  NSArray *expect = [NSArray arrayWithObjects:@"765430d0-4540-012f-9ea4-00254bc472f4", @"765812f0-4540-012f-9ea4-00254bc472f4", nil];
   STAssertTrue([expect isEqualToArray:actual], @"NUResponseSet Dependency on disliked colors");
   
-  actual = [rs.dependencyGraph objectForKey:@"deef7b20-e5f8-012e-9f18-00254bc472f4"];
-  expect = [NSArray arrayWithObjects:@"deefaa40-e5f8-012e-9f18-00254bc472f4", nil];
+  actual = [rs.dependencyGraph objectForKey:@"7658ad20-4540-012f-9ea4-00254bc472f4"];
+  expect = [NSArray arrayWithObjects:@"7658fe10-4540-012f-9ea4-00254bc472f4", nil];
   STAssertTrue([expect isEqualToArray:actual], @"NUResponseSet Dependency on Arthur, King of the Britons");
   
-  actual = [rs.dependencyGraph objectForKey:@"deefaa40-e5f8-012e-9f18-00254bc472f4"];
-  expect = [NSArray arrayWithObjects:@"deeff7b0-e5f8-012e-9f18-00254bc472f4", nil];
+  actual = [rs.dependencyGraph objectForKey:@"7658fe10-4540-012f-9ea4-00254bc472f4"];
+  expect = [NSArray arrayWithObjects:@"76598d90-4540-012f-9ea4-00254bc472f4", nil];
   STAssertTrue([expect isEqualToArray:actual], @"NUResponseSet Dependency on quest");
   
-  actual = [rs.dependencyGraph objectForKey:@"deeff7b0-e5f8-012e-9f18-00254bc472f4"];
-  expect = [NSArray arrayWithObjects:@"def04360-e5f8-012e-9f18-00254bc472f4", nil];
+  actual = [rs.dependencyGraph objectForKey:@"76598d90-4540-012f-9ea4-00254bc472f4"];
+  expect = [NSArray arrayWithObjects:@"765a19a0-4540-012f-9ea4-00254bc472f4", nil];
   STAssertTrue([expect isEqualToArray:actual], @"NUResponseSet Dependency on airspeed of a swallow");
   
 }
@@ -161,10 +161,10 @@
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
 	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
 
-  [rs newResponseForIndexQuestion:@"deec7160-e5f8-012e-9f18-00254bc472f4" Answer:@"deecb340-e5f8-012e-9f18-00254bc472f4"]; // disliking green
-  NSDictionary *actual = [rs dependenciesTriggeredBy:@"deec7160-e5f8-012e-9f18-00254bc472f4"];
-	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"deef2410-e5f8-012e-9f18-00254bc472f4", nil];
-  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"deecf720-e5f8-012e-9f18-00254bc472f4", nil];
+  [rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"7653c2d0-4540-012f-9ea4-00254bc472f4"]; // disliking green
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"765351b0-4540-012f-9ea4-00254bc472f4"];
+	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"765812f0-4540-012f-9ea4-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"765430d0-4540-012f-9ea4-00254bc472f4", nil];
   
   STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency on disliking green, why so many hidden");
   STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency on disliking green shows explanation");
@@ -181,10 +181,10 @@
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
 	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
 
-  [rs newResponseForQuestion:@"deef7b20-e5f8-012e-9f18-00254bc472f4" Answer:@"deef9280-e5f8-012e-9f18-00254bc472f4" Value:@"It is 'Arthur', King of the Britons"]; // Arthur
-  NSDictionary *actual = [rs dependenciesTriggeredBy:@"deef7b20-e5f8-012e-9f18-00254bc472f4"];
+  [rs newResponseForQuestion:@"7658ad20-4540-012f-9ea4-00254bc472f4" Answer:@"7658d830-4540-012f-9ea4-00254bc472f4" Value:@"It is 'Arthur', King of the Britons"]; // Arthur
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"7658ad20-4540-012f-9ea4-00254bc472f4"];
 	NSArray *expectHide = [[NSArray alloc] initWithObjects: nil];
-  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"deefaa40-e5f8-012e-9f18-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"7658fe10-4540-012f-9ea4-00254bc472f4", nil];
   
   STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency on Arthur, none hidden");
 //  NSLog(@"%@", actual);
@@ -202,12 +202,12 @@
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
 	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
 
-	[rs newResponseForIndexQuestion:@"deec7160-e5f8-012e-9f18-00254bc472f4" Answer:@"deec8930-e5f8-012e-9f18-00254bc472f4"]; // disliking red
-	[rs newResponseForIndexQuestion:@"deec7160-e5f8-012e-9f18-00254bc472f4" Answer:@"deec9e70-e5f8-012e-9f18-00254bc472f4"]; // disliking blue
-	[rs newResponseForIndexQuestion:@"deec7160-e5f8-012e-9f18-00254bc472f4" Answer:@"deecb340-e5f8-012e-9f18-00254bc472f4"]; // disliking green
-  NSDictionary *actual = [rs dependenciesTriggeredBy:@"deec7160-e5f8-012e-9f18-00254bc472f4"];
+	[rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"76537bc0-4540-012f-9ea4-00254bc472f4"]; // disliking red
+	[rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"76539f60-4540-012f-9ea4-00254bc472f4"]; // disliking blue
+	[rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"7653c2d0-4540-012f-9ea4-00254bc472f4"]; // disliking green
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"765351b0-4540-012f-9ea4-00254bc472f4"];
 	NSArray *expectHide = [[NSArray alloc] init];
-  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"deecf720-e5f8-012e-9f18-00254bc472f4", @"deef2410-e5f8-012e-9f18-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"765430d0-4540-012f-9ea4-00254bc472f4", @"765812f0-4540-012f-9ea4-00254bc472f4", nil];
   
   STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency on disliking rgb, why so many not hidden");
   STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency on disliking rgb shows explanation, why so many");

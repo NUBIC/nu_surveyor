@@ -165,6 +165,7 @@
 
 /* Begin PBXFileReference section */
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
+		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
@@ -1808,6 +1809,7 @@
 				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
 				67DB4A0B14D09EB6009CC8C3 /* support */,
+				3B08678E14FED8C100D43E02 /* group_dependency.feature */,
 			);
 			path = features;
 			sourceTree = "<group>";

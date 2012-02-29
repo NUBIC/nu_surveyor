@@ -177,7 +177,7 @@
         [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
 																		 [question objectForKey:@"uuid"], @"uuid",
 																		 question, @"question",
-																		 (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
+																		 (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
       }
     }
   }
@@ -512,6 +512,7 @@
 }
 
 #pragma mark - Dependencies
+// We show first, then hide second, so hide always "wins"
 - (void) showAndHideDependenciesTriggeredBy:(NSIndexPath *)idx {
 	//  DLog(@"showAndHideDependenciesTriggeredBy: %@", idx);
   NSDictionary *showHide = [self.responseSet dependenciesTriggeredBy:[[self idsForIndexPath:idx] objectForKey:@"qid"]];
@@ -522,16 +523,37 @@
       NSUInteger i = [self indexForInsert:question];
       if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
-        // insert into visibleSections before createQuestionWithIndex to get title right
+        // insert into visibleSections before insertSections to get title right
         [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
-                
         [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
-    //      [self createQuestionWithIndex:i dictionary:[self questionOrGroupWithUUID:question]];
+      }
+    }
+    // show question group's questions
+    for (NSDictionary *q in [[[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] objectForKey:@"question"] objectForKey:@"questions"]) {
+      NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
+      if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
+        [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
+        // insert into visibleSections before insertSections to get title right
+        [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
+        [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
+        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
       }
     }
   } 
   for (NSString *question in [showHide objectForKey:@"hide"]) {
+    // hide question group's questions
+    for (NSDictionary *q in [[[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] objectForKey:@"question"] objectForKey:@"questions"]) {
+      NSUInteger i = [self.visibleSections indexOfObject:[q objectForKey:@"uuid"]];
+      if (i != NSNotFound) {
+        [self.visibleHeaders removeObjectAtIndex:i];
+        //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
+        [self.visibleSections removeObjectAtIndex:i];
+        //      [self headerSectionsReordered];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+      }
+    }
+
     // hide the question
     NSUInteger i = [self.visibleSections indexOfObject:question];
     if (i != NSNotFound) {
