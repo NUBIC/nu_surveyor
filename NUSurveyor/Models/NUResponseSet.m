@@ -277,11 +277,11 @@
 			
 		} else if ([operator isEqualToString:@"!="]) {
 			// !=
-			if (value == (id)kCFNull) {
+			if (value == (id)kCFNull || value == nil) {
 				[values setObject:responsesToAnswer.count > 0 ? NS_NO : NS_YES
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {
-				[values setObject:[[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == value ? NS_NO : NS_YES
+				[values setObject:responsesToAnswer.count > 0 && [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == value ? NS_NO : NS_YES
 									 forKey:[condition objectForKey:@"rule_key"]];
 			}
 		} else {
