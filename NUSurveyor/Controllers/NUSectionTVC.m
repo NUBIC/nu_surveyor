@@ -530,27 +530,33 @@
       }
     }
     // show question group's questions
-    for (NSDictionary *q in [[[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] objectForKey:@"question"] objectForKey:@"questions"]) {
-      NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
-      if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
-        [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
-        // insert into visibleSections before insertSections to get title right
-        [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
-        [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
-        [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+    NSUInteger qIdx = [self indexOfQuestionOrGroupWithUUID:question];
+    if (qIdx != NSNotFound) {
+      for (NSDictionary *q in [[[self.allSections objectAtIndex:qIdx] objectForKey:@"question"] objectForKey:@"questions"]) {
+        NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
+        if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
+          [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
+          // insert into visibleSections before insertSections to get title right
+          [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
+          [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
+          [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+        }
       }
     }
   } 
   for (NSString *question in [showHide objectForKey:@"hide"]) {
     // hide question group's questions
-    for (NSDictionary *q in [[[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] objectForKey:@"question"] objectForKey:@"questions"]) {
-      NSUInteger i = [self.visibleSections indexOfObject:[q objectForKey:@"uuid"]];
-      if (i != NSNotFound) {
-        [self.visibleHeaders removeObjectAtIndex:i];
-        //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
-        [self.visibleSections removeObjectAtIndex:i];
-        //      [self headerSectionsReordered];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+    NSUInteger gIdx = [self indexOfQuestionOrGroupWithUUID:question];
+    if (gIdx != NSNotFound) {
+      for (NSDictionary *q in [[[self.allSections objectAtIndex:gIdx] objectForKey:@"question"] objectForKey:@"questions"]) {
+        NSUInteger i = [self.visibleSections indexOfObject:[q objectForKey:@"uuid"]];
+        if (i != NSNotFound) {
+          [self.visibleHeaders removeObjectAtIndex:i];
+          //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
+          [self.visibleSections removeObjectAtIndex:i];
+          //      [self headerSectionsReordered];
+          [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+        }
       }
     }
 
