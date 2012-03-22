@@ -155,8 +155,10 @@
 			if ([questionOrGroup objectForKey:@"dependency"] && [questionOrGroup objectForKey:@"uuid"] && [[questionOrGroup objectForKey:@"dependency"] objectForKey:@"conditions"]) {
 				[self.dependencies setObject:[questionOrGroup objectForKey:@"dependency"] forKey:[questionOrGroup objectForKey:@"uuid"]];
 				for (NSDictionary *condition in [[questionOrGroup objectForKey:@"dependency"] objectForKey:@"conditions"]) {
-					if ([self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] && ![(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] containsObject:[questionOrGroup objectForKey:@"uuid"]]) {
-						[(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] addObject:[questionOrGroup objectForKey:@"uuid"]];
+					if ([self.dependencyGraph objectForKey:[condition objectForKey:@"question"]]) {
+            if (![(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] containsObject:[questionOrGroup objectForKey:@"uuid"]]) {
+              [(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] addObject:[questionOrGroup objectForKey:@"uuid"]];
+            }
 					} else {
 						[self.dependencyGraph setObject:[NSMutableArray arrayWithObject:[questionOrGroup objectForKey:@"uuid"]] forKey:[condition objectForKey:@"question"]];
 					}

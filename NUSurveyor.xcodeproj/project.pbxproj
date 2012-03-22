@@ -10,6 +10,7 @@
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
 		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
+		3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
 		3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
@@ -168,6 +169,7 @@
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
+		3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-birth-date-survey.json"; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
 		3BA2E94914CDCD0F0057D05C /* NUSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurvey.m; path = Models/NUSurvey.m; sourceTree = "<group>"; };
 		3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNUSurveyor.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -699,6 +701,7 @@
 				67DB497014D080AC009CC8C3 /* test-dependency-survey.json */,
 				3BD52ABC14C8B43500AB61E8 /* NUSurveyorTests-Info.plist */,
 				3BD52ABD14C8B43500AB61E8 /* InfoPlist.strings */,
+				3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2028,6 +2031,7 @@
 				3BD52ABF14C8B43500AB61E8 /* InfoPlist.strings in Resources */,
 				67DB496F14D07E6C009CC8C3 /* kitchen-sink-survey.json in Resources */,
 				67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */,
+				3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -233,6 +233,70 @@
   STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency starting hidden");
   STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency starting hidden");
 }
-
+- (void) testBirthDateDependenciesBlank {
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [parser objectWithString:responseString];
+  
+	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+  NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+  
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
+	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", @"505ee040-566d-012f-9ede-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] init];
+  
+  //	NSLog(@"%@", rs.dependencyGraph);
+  //  NSLog(@"%@", actual);
+  STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency birth date dependencies");
+  STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency birth date dependencies");
+}
+- (void) testBirthDateDependenciesNo {
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [parser objectWithString:responseString];
+  
+	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+  NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+  [rs newResponseForIndexQuestion:@"504ad9a0-566d-012f-9ede-00254bc472f4" Answer:@"504dd3a0-566d-012f-9ede-00254bc472f4"]; // no
+  
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
+	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"505ee040-566d-012f-9ede-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", nil];
+  
+  //	NSLog(@"%@", rs.dependencyGraph);
+  //  NSLog(@"%@", actual);
+  STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency birth date dependencies");
+  STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency birth date dependencies");
+}
+- (void) testBirthDateDependenciesRefused {
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  SBJsonParser *parser = [[SBJsonParser alloc] init];
+  NSDictionary *dict = [parser objectWithString:responseString];
+  
+	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+  NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+  [rs newResponseForIndexQuestion:@"504ad9a0-566d-012f-9ede-00254bc472f4" Answer:@"504df680-566d-012f-9ede-00254bc472f4"]; // refused
+  
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
+	NSArray *expectHide = [[NSArray alloc] init];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", @"505ee040-566d-012f-9ede-00254bc472f4", nil];
+  
+  //	NSLog(@"%@", rs.dependencyGraph);
+  //  NSLog(@"%@", actual);
+  STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency birth date dependencies");
+  STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency birth date dependencies");
+}
 
 @end
