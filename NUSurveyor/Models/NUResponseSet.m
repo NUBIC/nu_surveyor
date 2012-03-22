@@ -259,7 +259,11 @@
 			// count!=2
 			[values setObject:[[operator substringWithRange:[countNotMatch rangeAtIndex:1]] intValue] == responsesToQuestion.count ? NS_NO : NS_YES
 								 forKey:[condition objectForKey:@"rule_key"]];
-		}	else if ([operator isEqualToString:@"=="]) {
+		}	else if (responsesToQuestion.count == 0){
+      // no responses to question
+      [values setObject:NS_NO
+                 forKey:[condition objectForKey:@"rule_key"]];
+    } else if ([operator isEqualToString:@"=="]) {
 			// ==
 			if (value == (id)kCFNull || value == nil) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
