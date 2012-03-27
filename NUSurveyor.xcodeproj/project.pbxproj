@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		005AA64B1521F04B00E67C10 /* NUResponeSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006CE3B815214DB400DD32A2 /* NUResponeSetTest.m */; };
+		005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */; };
 		005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA6491521676300E67C10 /* NUResponseTest.m */; };
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005AA650152208DE00E67C10 /* NUResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA64E152208DE00E67C10 /* NUResponse.m */; };
@@ -173,8 +173,8 @@
 		005AA6491521676300E67C10 /* NUResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseTest.m; sourceTree = "<group>"; };
 		005AA64D152208DE00E67C10 /* NUResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponse.h; path = Models/NUResponse.h; sourceTree = "<group>"; };
 		005AA64E152208DE00E67C10 /* NUResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUResponse.m; path = Models/NUResponse.m; sourceTree = "<group>"; };
-		006CE3B715214DB400DD32A2 /* NUResponeSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponeSetTest.h; sourceTree = "<group>"; };
-		006CE3B815214DB400DD32A2 /* NUResponeSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponeSetTest.m; sourceTree = "<group>"; };
+		006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NUResponseSetTest.h; sourceTree = "<group>"; };
+		006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSetTest.m; sourceTree = "<group>"; };
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
@@ -696,8 +696,8 @@
 		3BD52ABA14C8B43500AB61E8 /* NUSurveyorTests */ = {
 			isa = PBXGroup;
 			children = (
-				006CE3B715214DB400DD32A2 /* NUResponeSetTest.h */,
-				006CE3B815214DB400DD32A2 /* NUResponeSetTest.m */,
+				006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */,
+				006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */,
 				3BD52AC014C8B43500AB61E8 /* NUSurveyorTests.h */,
 				3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */,
 				3BD52ABB14C8B43500AB61E8 /* Supporting Files */,
@@ -2126,7 +2126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005AA64B1521F04B00E67C10 /* NUResponeSetTest.m in Sources */,
+				005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */,
 				005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */,
 				3BD52AC214C8B43500AB61E8 /* NUSurveyorTests.m in Sources */,
 				3BD52AD214C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */,

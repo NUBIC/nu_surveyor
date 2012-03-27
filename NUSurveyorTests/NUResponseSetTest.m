@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "NUResponeSetTest.h"
+#import "NUResponseSetTest.h"
 #import "NUResponseSet.h"
 #import "NUSurvey.h"
 
-@implementation NUResponeSetTest
+@implementation NUResponseSetTest
 
 @synthesize bundle = _bundle, coord = _coord, ctx = _ctx, model = _model, store = _store;
 
