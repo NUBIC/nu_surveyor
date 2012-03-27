@@ -11,5 +11,6 @@
 @interface NUResponse : NSManagedObject
 
 - (NSDictionary*) toDict;
+- (NSString*) toJson;
 
 @end

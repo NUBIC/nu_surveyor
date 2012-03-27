@@ -7,15 +7,21 @@
 //
 
 #import "NUResponse.h"
+#import "SBJson.h"
 
 @implementation NUResponse
 
 - (NSDictionary*) toDict {
     return [[NSDictionary alloc] initWithObjectsAndKeys:
-            [self valueForKey:@"uuid"], @"response_id",
+            [self valueForKey:@"uuid"], @"uuid",
             [self valueForKey:@"answer"], @"answer_id",
             [self valueForKey:@"question"], @"question_id",
             [self valueForKey:@"value"], @"value", nil];
+}
+
+- (NSString*) toJson {
+    SBJsonWriter* w = [[SBJsonWriter alloc] init];
+    return [w stringWithObject:[self toDict]];
 }
 
 @end

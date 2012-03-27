@@ -14,6 +14,8 @@
 
 @synthesize bundle = _bundle, coord = _coord, ctx = _ctx, model = _model, store = _store;
 
+NUResponse* response;
+
 - (void)setUp
 {
     [super setUp];
@@ -29,6 +31,12 @@
                                                   error: NULL];
 	self.ctx = [[NSManagedObjectContext alloc] init];
 	[self.ctx setPersistentStoreCoordinator: self.coord];
+    
+    /* Test Data */
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    response = [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
+    [response setValue:@"OCT" forKey:@"uuid"];
 }
 
 
@@ -47,6 +55,9 @@
     [super tearDown];
 }
 
+- (void)testThatEnvironmentWorks {
+	STAssertNotNil(self.store, @"no persistent store");
+}
 
 - (void)testSanity {
     NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:[NSDictionary dictionary] withModel:self.model inContext:self.ctx];
@@ -57,17 +68,19 @@
 }
 
 - (void)testToDict {
-    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
-    NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    NUResponse* one = [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
-    [one setValue:@"OCT" forKey:@"uuid"];
-    
-    NSDictionary* actual = [one toDict];
-
+    NSDictionary* actual = [response toDict];
     STAssertEqualObjects([actual objectForKey:@"value"], @"foo", @"Wrong value");    
     STAssertEqualObjects([actual objectForKey:@"answer_id"], @"123", @"Wrong value");
     STAssertEqualObjects([actual objectForKey:@"question_id"], @"abc", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"response_id"], @"OCT", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"uuid"], @"OCT", @"Wrong value");
+}
+
+- (void)testToJson {
+    NSString* actual = [response toJson];
+    STAssertTrue([actual rangeOfString:@"\"value\":\"foo\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"answer_id\":\"123\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"question_id\":\"abc\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"uuid\":\"OCT\""].location != NSNotFound, @"Should exist");
 }
 
 @end
