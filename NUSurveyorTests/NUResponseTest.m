@@ -1,16 +1,16 @@
 //
-//  NUResponsetSetTest.m
+//  NUResponseTest.m
 //  NUSurveyor
 //
 //  Created by John Dzak on 3/26/12.
 //  Copyright (c) 2012 Northwestern University. All rights reserved.
 //
 
-#import "NUResponeSetTest.h"
+#import "NUResponseTest.h"
 #import "NUResponseSet.h"
-#import "NUSurvey.h"
+#import "NUResponse.h"
 
-@implementation NUResponeSetTest
+@implementation NUResponseTest
 
 @synthesize bundle = _bundle, coord = _coord, ctx = _ctx, model = _model, store = _store;
 
@@ -31,6 +31,7 @@
 	[self.ctx setPersistentStoreCoordinator: self.coord];
 }
 
+
 - (void)tearDown
 {
     // Tear-down code here.
@@ -46,6 +47,7 @@
     [super tearDown];
 }
 
+
 - (void)testSanity {
     NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:[NSDictionary dictionary] withModel:self.model inContext:self.ctx];
     [rs newResponseForIndexQuestion:@"abc" Answer:@"123"];
@@ -57,14 +59,14 @@
 - (void)testToDict {
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    rs.uuid = @"OVAL";
     [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
-    [rs newResponseForQuestion:@"xyz" Answer:@"456" Value:@"bar"];
-
-    NSDictionary* actual = [rs toDict];
-    STAssertEqualObjects([actual objectForKey:@"uuid"],      @"OVAL", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"survey_id"], @"RECT", @"Wrong value");
-    STAssertEquals([[actual objectForKey:@"responses"] count], 2U, @"Wrong size");
+    NUResponse* one = [[[rs responses] objectEnumerator] nextObject];
+    
+    NSDictionary* actual = [one toDict];
+    
+    STAssertNotNil(actual, @"Should not be nil");
+//    STAssertEqualObjects([actual objectForKey:@"survey_id"], @"RECT", @"Wrong value");
+//    STAssertEquals([[actual objectForKey:@"responses"] count], 2U, @"Wrong size");
 }
 
 @end

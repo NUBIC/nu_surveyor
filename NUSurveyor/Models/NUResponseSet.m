@@ -8,10 +8,11 @@
 
 #import "NUResponseSet.h"
 #import "UUID.h"
+#import "NUResponse.h"
 
 @implementation NUResponseSet
 @synthesize dependencyGraph = _dependencyGraph, dependencies = _dependencies;
-@dynamic uuid;
+@dynamic uuid, responses;
 
 // initializer
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey withModel:(NSManagedObjectModel *)mom inContext:(NSManagedObjectContext *)moc {
@@ -108,9 +109,10 @@
 //
 // Create a response with value
 //
-- (NSManagedObject *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
-	
-  NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:self.managedObjectContext];
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
+  NSDictionary* entities = [[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName];
+  NSEntityDescription *entity = [entities objectForKey:@"Response"];
+  NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
   [newResponse setValue:self forKey:@"responseSet"];
   [newResponse setValue:qid forKey:@"question"];
   [newResponse setValue:aid forKey:@"answer"];
