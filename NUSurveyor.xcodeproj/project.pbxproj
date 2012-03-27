@@ -12,6 +12,7 @@
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005AA650152208DE00E67C10 /* NUResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA64E152208DE00E67C10 /* NUResponse.m */; };
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
+		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
 		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
 		3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */; };
@@ -173,9 +174,11 @@
 		005AA6491521676300E67C10 /* NUResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseTest.m; sourceTree = "<group>"; };
 		005AA64D152208DE00E67C10 /* NUResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponse.h; path = Models/NUResponse.h; sourceTree = "<group>"; };
 		005AA64E152208DE00E67C10 /* NUResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUResponse.m; path = Models/NUResponse.m; sourceTree = "<group>"; };
-		006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; path = NUResponseSetTest.h; sourceTree = "<group>"; };
+		006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSetTest.h; sourceTree = "<group>"; };
 		006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSetTest.m; sourceTree = "<group>"; };
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
+		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
@@ -701,6 +704,8 @@
 				3BD52AC014C8B43500AB61E8 /* NUSurveyorTests.h */,
 				3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */,
 				3BD52ABB14C8B43500AB61E8 /* Supporting Files */,
+				008AE62515224CE000F4F14C /* NUDatabaseTest.h */,
+				008AE62615224CE000F4F14C /* NUDatabaseTest.m */,
 				005AA6481521676300E67C10 /* NUResponseTest.h */,
 				005AA6491521676300E67C10 /* NUResponseTest.m */,
 			);
@@ -2145,6 +2150,7 @@
 				3BD52B2714C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */,
 				3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */,
 				67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */,
+				008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
