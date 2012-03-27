@@ -26,5 +26,7 @@
 - (NSDictionary *) dependenciesTriggeredBy:(NSString *)qid;
 - (BOOL) showDependency:(NSDictionary *)q;
 - (NSMutableDictionary *) evaluateConditions:(NSArray *)conditions;
+- (NSDictionary*) toDict;
+
 
 @end

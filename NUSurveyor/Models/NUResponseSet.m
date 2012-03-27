@@ -323,4 +323,13 @@
 	return values;
 }
 
+- (NSDictionary*) toDict {
+    NSArray* responses = [[NSArray alloc] initWithObjects:
+        @"foo", @"bar", nil];
+    return [[NSDictionary alloc]initWithObjectsAndKeys:
+            [self valueForKey:@"uuid"], @"uuid",
+            [self valueForKey:@"survey"], @"survey_id",
+            responses, @"responses", nil];
+}
+
 @end
