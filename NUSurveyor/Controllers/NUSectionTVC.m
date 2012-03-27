@@ -43,6 +43,16 @@
     
   } else if([(NSString *)[questionOrGroup objectForKey:@"pick"] isEqualToString:@"any"]){
     className = @"NUAnyCell";
+    if ([[answer objectForKey:@"type"] isEqualToString:@"string"] ||
+        [[answer objectForKey:@"type"] isEqualToString:@"integer"] ||
+        [[answer objectForKey:@"type"] isEqualToString:@"float"] ) {
+      className = @"NUAnyStringOrNumberCell";
+    } else if ([[answer objectForKey:@"type"] isEqualToString:@"date"] ||
+               [[answer objectForKey:@"type"] isEqualToString:@"time"] ||
+               [[answer objectForKey:@"type"] isEqualToString:@"datetime"] ) {
+      className = @"NUAnyDatePickerCell";
+    }
+
   } else {
     className = @"NUNoneCell";
     if ([[answer objectForKey:@"type"] isEqualToString:@"date"] ||
@@ -227,7 +237,11 @@
     
 	UITableViewCell<NUCell> *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-			cell = [(UITableViewCell<NUCell> *)[NSClassFromString(CellIdentifier) alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([CellIdentifier isEqualToString:@"NUAnyDatePickerCell"]) {
+      cell = [(UITableViewCell<NUCell> *)[NSClassFromString(CellIdentifier) alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    } else {
+      cell = [(UITableViewCell<NUCell> *)[NSClassFromString(CellIdentifier) alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
 	}
 	if ([(NSString *)[question objectForKey:@"type"] isEqualToString:@"dropdown"] || [(NSString *)[question objectForKey:@"type"] isEqualToString:@"slider"]) {
 		[cell configureForData:[question objectForKey:@"answers"] tableView:tableView indexPath:indexPath];
@@ -576,12 +590,23 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
   self.cursorView = textField;
+  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
+  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"]) {
+    [cell performSelector:@selector(check)];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
 }
-- (void)textFieldDidEndEditing:(UITextField *)aTextField {
-  NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextField.superview.superview];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
+  NSIndexPath *idx = [self.tableView indexPathForCell:cell];
   [self deleteResponseForIndexPath:idx];
-  if (aTextField.text != nil && ![aTextField.text isEqualToString:@""]) {
-    [self newResponseForIndexPath:idx Value:aTextField.text];
+  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"] || (textField.text != nil && ![textField.text isEqualToString:@""])) {
+    [self newResponseForIndexPath:idx Value:textField.text];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
   }
   [self showAndHideDependenciesTriggeredBy:idx];
   self.cursorView = nil;

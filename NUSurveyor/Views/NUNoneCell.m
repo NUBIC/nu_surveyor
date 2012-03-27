@@ -92,11 +92,13 @@
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
     self.textField.delegate = self.sectionTVC;
+    self.textField.placeholder = [dataObject objectForKey:@"help_text"];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
     // number
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.textField.delegate = self.sectionTVC;
+    self.textField.placeholder = [dataObject objectForKey:@"help_text"];
   } else {
     [self.textField setHidden:YES];
   }
@@ -122,6 +124,7 @@
 	
   self.label.text = nil;
   self.textField.text = nil;
+  self.textField.placeholder = nil;
   self.postLabel.text = nil;
   
   self.textField.keyboardType = UIKeyboardTypeDefault;

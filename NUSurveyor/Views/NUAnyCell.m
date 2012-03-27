@@ -15,50 +15,52 @@
 @end
 
 @implementation NUAnyCell
-@synthesize sectionTVC = _sectionTVC, checkLayer = _checkLayer;
+@synthesize sectionTVC = _sectionTVC, checked = _checked;
+@synthesize checkLayer = _checkLayer;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-      self.textLabel.text = nil;
-      CAShapeLayer *boxLayer = [[CAShapeLayer alloc] init];
-      boxLayer.backgroundColor = [[UIColor clearColor] CGColor];
-      boxLayer.frame = CGRectMake(44.0, 0.0, 44.0, 44.0);
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    self.textLabel.text = nil;
+    CAShapeLayer *boxLayer = [[CAShapeLayer alloc] init];
+    boxLayer.backgroundColor = [[UIColor clearColor] CGColor];
+    boxLayer.frame = CGRectMake(44.0, 0.0, 44.0, 44.0);
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, CGRectMake(14.0, 14.0, 16.0, 16.0));
+    boxLayer.path = path;
+    CGPathRelease(path);
+    
+    boxLayer.strokeColor = [UIColor lightGrayColor].CGColor;
+    boxLayer.fillColor = [UIColor whiteColor].CGColor;
+    boxLayer.lineWidth = 2.0;
+    
+    [self.layer insertSublayer:boxLayer atIndex:0];
+    
+    if (!self.checkLayer) {
+      self.checkLayer = [[CAShapeLayer alloc] init];
+      self.checkLayer.backgroundColor = [[UIColor clearColor] CGColor];
+      self.checkLayer.frame = CGRectMake(44.0, 0.0, 44.0, 44.0);
       
       CGMutablePathRef path = CGPathCreateMutable();
-      CGPathAddRect(path, NULL, CGRectMake(14.0, 14.0, 16.0, 16.0));
-      boxLayer.path = path;
+      CGPathMoveToPoint(path, Nil, 12.0, 20.0);
+      CGPathAddLineToPoint(path, Nil, 21.0, 27.0);
+      CGPathAddArcToPoint(path, Nil, 26.0, 15.0, 33.0, 8.0, 40.0);
+      
+      self.checkLayer.path = path;
       CGPathRelease(path);
       
-      boxLayer.strokeColor = [UIColor lightGrayColor].CGColor;
-      boxLayer.fillColor = [UIColor whiteColor].CGColor;
-      boxLayer.lineWidth = 2.0;
-      
-      [self.layer insertSublayer:boxLayer atIndex:0];
-      
-      if (!self.checkLayer) {
-        self.checkLayer = [[CAShapeLayer alloc] init];
-        self.checkLayer.backgroundColor = [[UIColor clearColor] CGColor];
-        self.checkLayer.frame = CGRectMake(44.0, 0.0, 44.0, 44.0);
-        
-        CGMutablePathRef path = CGPathCreateMutable();
-        CGPathMoveToPoint(path, Nil, 12.0, 20.0);
-        CGPathAddLineToPoint(path, Nil, 21.0, 27.0);
-        CGPathAddArcToPoint(path, Nil, 26.0, 15.0, 33.0, 8.0, 40.0);
-        
-        self.checkLayer.path = path;
-        CGPathRelease(path);
-        
-        self.checkLayer.strokeColor = [UIColor blackColor].CGColor;
-        self.checkLayer.fillColor = [UIColor clearColor].CGColor;
-        self.checkLayer.lineCap = kCALineCapRound;
-        self.checkLayer.lineWidth = 3.0;
-        [self.layer insertSublayer:self.checkLayer atIndex:1];
-      }
-
+      self.checkLayer.strokeColor = [UIColor blackColor].CGColor;
+      self.checkLayer.fillColor = [UIColor clearColor].CGColor;
+      self.checkLayer.lineCap = kCALineCapRound;
+      self.checkLayer.lineWidth = 3.0;
+      [self.layer insertSublayer:self.checkLayer atIndex:1];
     }
-    return self;
+
+  }
+  self.checked = YES;
+  return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -98,8 +100,10 @@
 }
 - (void)check {
   [self.checkLayer setHidden:NO];
+  self.checked = YES;
 }
 - (void)uncheck {
   [self.checkLayer setHidden:YES];
+  self.checked = NO;
 }
 @end

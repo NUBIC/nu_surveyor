@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NUSpyVC.h"
 
-@interface NUAppDelegate : UIResponder <UIApplicationDelegate>
+@interface NUAppDelegate : UIResponder <UIApplicationDelegate, NUSpyVCDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -18,9 +19,12 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)inspect;
+- (void) loadSurvey:(NSString *)pathforResource;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 
 @property (strong, nonatomic) UISplitViewController *splitViewController;
+@property (strong, nonatomic) NUSpyVC *spyVC;
 
 @end

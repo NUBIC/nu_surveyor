@@ -19,6 +19,16 @@
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
 		3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
+		3BC61A7E1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BC61A7C1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h */; };
+		3BC61A7F1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A7D1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m */; };
+		3BC61A841520F75000A8C20C /* NUAnyDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BC61A821520F74F00A8C20C /* NUAnyDatePickerCell.h */; };
+		3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A831520F75000A8C20C /* NUAnyDatePickerCell.m */; };
+		3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A8B15210AB400A8C20C /* NUSpyVC.m */; };
+		3BC61A8D15210AB400A8C20C /* NUSpyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A8B15210AB400A8C20C /* NUSpyVC.m */; };
+		3BC61A9415211EC900A8C20C /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
+		3BC61A9515211EC900A8C20C /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
+		3BC61A9715211EF000A8C20C /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
+		3BC61A9815211EF000A8C20C /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
 		3BD52AA514C8B43500AB61E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
 		3BD52AAB14C8B43500AB61E8 /* NUSurveyor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AAA14C8B43500AB61E8 /* NUSurveyor.m */; };
 		3BD52AB314C8B43500AB61E8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AB214C8B43500AB61E8 /* SenTestingKit.framework */; };
@@ -185,6 +195,14 @@
 		3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-birth-date-survey.json"; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
 		3BA2E94914CDCD0F0057D05C /* NUSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurvey.m; path = Models/NUSurvey.m; sourceTree = "<group>"; };
+		3BC61A7C1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUAnyStringOrNumberCell.h; path = Views/NUAnyStringOrNumberCell.h; sourceTree = "<group>"; };
+		3BC61A7D1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUAnyStringOrNumberCell.m; path = Views/NUAnyStringOrNumberCell.m; sourceTree = "<group>"; };
+		3BC61A821520F74F00A8C20C /* NUAnyDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUAnyDatePickerCell.h; path = Views/NUAnyDatePickerCell.h; sourceTree = "<group>"; };
+		3BC61A831520F75000A8C20C /* NUAnyDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUAnyDatePickerCell.m; path = Views/NUAnyDatePickerCell.m; sourceTree = "<group>"; };
+		3BC61A8A15210AB400A8C20C /* NUSpyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSpyVC.h; sourceTree = "<group>"; };
+		3BC61A8B15210AB400A8C20C /* NUSpyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSpyVC.m; sourceTree = "<group>"; };
+		3BC61A9315211EC900A8C20C /* complex-responses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "complex-responses.json"; sourceTree = "<group>"; };
+		3BC61A9615211EF000A8C20C /* complex_responses.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_responses.feature; sourceTree = "<group>"; };
 		3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNUSurveyor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD52AA414C8B43500AB61E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3BD52AA814C8B43500AB61E8 /* NUSurveyor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NUSurveyor-Prefix.pch"; sourceTree = "<group>"; };
@@ -729,22 +747,26 @@
 			isa = PBXGroup;
 			children = (
 				671F3E8814CA318100CEE042 /* NUCell.h */,
+				3BD52B0514C8B70500AB61E8 /* NUOneCell.h */,
+				3BD52B0614C8B70500AB61E8 /* NUOneCell.m */,
 				3BD52AE714C8B6A400AB61E8 /* NUAnyCell.h */,
 				3BD52AE814C8B6A400AB61E8 /* NUAnyCell.m */,
-				3BD52AEC14C8B6B900AB61E8 /* NUDatePickerCell.h */,
-				3BD52AED14C8B6B900AB61E8 /* NUDatePickerCell.m */,
-				67DB499414D0933E009CC8C3 /* NUGridAnyCell.h */,
-				67DB499514D0933E009CC8C3 /* NUGridAnyCell.m */,
-				67DB499614D0933E009CC8C3 /* NUGridOneCell.h */,
-				67DB499714D0933E009CC8C3 /* NUGridOneCell.m */,
+				3BC61A7C1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h */,
+				3BC61A7D1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m */,
+				3BC61A821520F74F00A8C20C /* NUAnyDatePickerCell.h */,
+				3BC61A831520F75000A8C20C /* NUAnyDatePickerCell.m */,
 				3BD52AFB14C8B6E800AB61E8 /* NUNoneCell.h */,
 				3BD52AFC14C8B6E800AB61E8 /* NUNoneCell.m */,
 				3BD52B0014C8B6F600AB61E8 /* NUNoneTextCell.h */,
 				3BD52B0114C8B6F600AB61E8 /* NUNoneTextCell.m */,
+				3BD52AEC14C8B6B900AB61E8 /* NUDatePickerCell.h */,
+				3BD52AED14C8B6B900AB61E8 /* NUDatePickerCell.m */,
 				3BD52B1414C8B76E00AB61E8 /* NUPickerCell.h */,
 				3BD52B1514C8B76E00AB61E8 /* NUPickerCell.m */,
-				3BD52B0514C8B70500AB61E8 /* NUOneCell.h */,
-				3BD52B0614C8B70500AB61E8 /* NUOneCell.m */,
+				67DB499414D0933E009CC8C3 /* NUGridAnyCell.h */,
+				67DB499514D0933E009CC8C3 /* NUGridAnyCell.m */,
+				67DB499614D0933E009CC8C3 /* NUGridOneCell.h */,
+				67DB499714D0933E009CC8C3 /* NUGridOneCell.m */,
 				3BD52B0F14C8B74800AB61E8 /* NUButton.h */,
 				3BD52B1014C8B74800AB61E8 /* NUButton.m */,
 				3BD52B1914C8B7A200AB61E8 /* NUMultiButton.h */,
@@ -1797,6 +1819,8 @@
 			children = (
 				67DB49B414D09454009CC8C3 /* NUAppDelegate.h */,
 				67DB49B514D09454009CC8C3 /* NUAppDelegate.m */,
+				3BC61A8A15210AB400A8C20C /* NUSpyVC.h */,
+				3BC61A8B15210AB400A8C20C /* NUSpyVC.m */,
 				67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */,
 				67DB49AC14D09454009CC8C3 /* Supporting Files */,
 			);
@@ -1807,6 +1831,7 @@
 			isa = PBXGroup;
 			children = (
 				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
+				3BC61A9315211EC900A8C20C /* complex-responses.json */,
 				67DB49AD14D09454009CC8C3 /* NUSurveyorExample-Info.plist */,
 				67DB49AE14D09454009CC8C3 /* InfoPlist.strings */,
 				67DB49B114D09454009CC8C3 /* main.m */,
@@ -1829,11 +1854,12 @@
 		67DB4A0714D09EB6009CC8C3 /* features */ = {
 			isa = PBXGroup;
 			children = (
-				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
 				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
+				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
+				3B08678E14FED8C100D43E02 /* group_dependency.feature */,
+				3BC61A9615211EF000A8C20C /* complex_responses.feature */,
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
 				67DB4A0B14D09EB6009CC8C3 /* support */,
-				3B08678E14FED8C100D43E02 /* group_dependency.feature */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -1882,6 +1908,8 @@
 				67DB499814D0933E009CC8C3 /* NUGridAnyCell.h in Headers */,
 				67DB499A14D0933E009CC8C3 /* NUGridOneCell.h in Headers */,
 				0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */,
+				3BC61A7E1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h in Headers */,
+				3BC61A841520F75000A8C20C /* NUAnyDatePickerCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2064,6 +2092,8 @@
 			files = (
 				67DB49B014D09454009CC8C3 /* InfoPlist.strings in Resources */,
 				67DB49D014D094F2009CC8C3 /* kitchen-sink-survey.json in Resources */,
+				3BC61A9415211EC900A8C20C /* complex-responses.json in Resources */,
+				3BC61A9715211EF000A8C20C /* complex_responses.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2079,6 +2109,8 @@
 				67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */,
 				3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */,
 				3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */,
+				3BC61A9515211EC900A8C20C /* complex-responses.json in Resources */,
+				3BC61A9815211EF000A8C20C /* complex_responses.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2124,6 +2156,8 @@
 				67DB499914D0933E009CC8C3 /* NUGridAnyCell.m in Sources */,
 				67DB499B14D0933E009CC8C3 /* NUGridOneCell.m in Sources */,
 				005AA650152208DE00E67C10 /* NUResponse.m in Sources */,
+				3BC61A7F1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m in Sources */,
+				3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2161,6 +2195,7 @@
 				67DB49B214D09454009CC8C3 /* main.m in Sources */,
 				67DB49B614D09454009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
+				3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2171,6 +2206,7 @@
 				67DB49F314D09E8C009CC8C3 /* main.m in Sources */,
 				67DB49F414D09E8C009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49F514D09E8C009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
+				3BC61A8D15210AB400A8C20C /* NUSpyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
