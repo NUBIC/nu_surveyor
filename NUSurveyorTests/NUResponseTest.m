@@ -9,18 +9,26 @@
 #import "NUResponseTest.h"
 #import "NUResponseSet.h"
 #import "NUResponse.h"
+#import "NSDateFormatter+Additions.h"
 
 @implementation NUResponseTest
 
 NUResponse* response;
+NSDate* createdAt;
+NSDate* modifiedAt;
 
 - (void)setUp {
     [super setUp];
+    
+    createdAt = [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1970-02-04T05:15:30Z"];
+    modifiedAt = [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1990-03-06T07:21:42Z"];
 
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
     response = [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
     [response setValue:@"OCT" forKey:@"uuid"];
+    [response setValue:createdAt forKey:@"createdAt"];
+    [response setValue:modifiedAt forKey:@"modifiedAt"];
 }
 
 - (void)testSanity {
@@ -36,6 +44,8 @@ NUResponse* response;
     STAssertEqualObjects([actual objectForKey:@"answer_id"], @"123", @"Wrong value");
     STAssertEqualObjects([actual objectForKey:@"question_id"], @"abc", @"Wrong value");
     STAssertEqualObjects([actual objectForKey:@"uuid"], @"OCT", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"created_at"], @"1970-02-04T05:15:30Z", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"modified_at"], @"1990-03-06T07:21:42Z", @"Wrong value");
 }
 
 - (void)testToJson {
@@ -44,6 +54,8 @@ NUResponse* response;
     STAssertTrue([actual rangeOfString:@"\"answer_id\":\"123\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"question_id\":\"abc\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"uuid\":\"OCT\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"created_at\":\"1970-02-04T05:15:30Z\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"modified_at\":\"1990-03-06T07:21:42Z\""].location != NSNotFound, @"Should exist");
 }
 
 @end
