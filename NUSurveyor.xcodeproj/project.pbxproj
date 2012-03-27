@@ -13,12 +13,13 @@
 		005AA650152208DE00E67C10 /* NUResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA64E152208DE00E67C10 /* NUResponse.m */; };
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
+		00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
 		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
 		3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
-		3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
 		3BC61A7E1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BC61A7C1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h */; };
 		3BC61A7F1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A7D1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m */; };
 		3BC61A841520F75000A8C20C /* NUAnyDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BC61A821520F74F00A8C20C /* NUAnyDatePickerCell.h */; };
@@ -38,53 +39,38 @@
 		3BD52AC214C8B43500AB61E8 /* NUSurveyorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */; };
 		3BD52AD014C8B5A200AB61E8 /* NUSurveyTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52ACE14C8B5A200AB61E8 /* NUSurveyTVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AD114C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ACF14C8B5A200AB61E8 /* NUSurveyTVC.m */; };
-		3BD52AD214C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ACF14C8B5A200AB61E8 /* NUSurveyTVC.m */; };
 		3BD52AD514C8B5B600AB61E8 /* NUSectionTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AD314C8B5B600AB61E8 /* NUSectionTVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AD614C8B5B600AB61E8 /* NUSectionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD414C8B5B600AB61E8 /* NUSectionTVC.m */; };
-		3BD52AD714C8B5B600AB61E8 /* NUSectionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD414C8B5B600AB61E8 /* NUSectionTVC.m */; };
 		3BD52ADA14C8B5FE00AB61E8 /* UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AD814C8B5FE00AB61E8 /* UUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52ADB14C8B5FE00AB61E8 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD914C8B5FE00AB61E8 /* UUID.m */; };
-		3BD52ADC14C8B5FE00AB61E8 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD914C8B5FE00AB61E8 /* UUID.m */; };
 		3BD52ADF14C8B62600AB61E8 /* NUPickerVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52ADD14C8B62600AB61E8 /* NUPickerVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AE014C8B62600AB61E8 /* NUPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ADE14C8B62600AB61E8 /* NUPickerVC.m */; };
-		3BD52AE114C8B62600AB61E8 /* NUPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ADE14C8B62600AB61E8 /* NUPickerVC.m */; };
 		3BD52AE414C8B65400AB61E8 /* NUResponseSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AE214C8B65400AB61E8 /* NUResponseSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AE514C8B65400AB61E8 /* NUResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AE314C8B65400AB61E8 /* NUResponseSet.m */; };
-		3BD52AE614C8B65400AB61E8 /* NUResponseSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AE314C8B65400AB61E8 /* NUResponseSet.m */; };
 		3BD52AE914C8B6A400AB61E8 /* NUAnyCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AE714C8B6A400AB61E8 /* NUAnyCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AEA14C8B6A400AB61E8 /* NUAnyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AE814C8B6A400AB61E8 /* NUAnyCell.m */; };
-		3BD52AEB14C8B6A400AB61E8 /* NUAnyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AE814C8B6A400AB61E8 /* NUAnyCell.m */; };
 		3BD52AEE14C8B6B900AB61E8 /* NUDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AEC14C8B6B900AB61E8 /* NUDatePickerCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AEF14C8B6B900AB61E8 /* NUDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AED14C8B6B900AB61E8 /* NUDatePickerCell.m */; };
-		3BD52AF014C8B6B900AB61E8 /* NUDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AED14C8B6B900AB61E8 /* NUDatePickerCell.m */; };
 		3BD52AFD14C8B6E900AB61E8 /* NUNoneCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AFB14C8B6E800AB61E8 /* NUNoneCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AFE14C8B6E900AB61E8 /* NUNoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AFC14C8B6E800AB61E8 /* NUNoneCell.m */; };
-		3BD52AFF14C8B6E900AB61E8 /* NUNoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AFC14C8B6E800AB61E8 /* NUNoneCell.m */; };
 		3BD52B0214C8B6F700AB61E8 /* NUNoneTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B0014C8B6F600AB61E8 /* NUNoneTextCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B0314C8B6F700AB61E8 /* NUNoneTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B0114C8B6F600AB61E8 /* NUNoneTextCell.m */; };
-		3BD52B0414C8B6F700AB61E8 /* NUNoneTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B0114C8B6F600AB61E8 /* NUNoneTextCell.m */; };
 		3BD52B0714C8B70500AB61E8 /* NUOneCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B0514C8B70500AB61E8 /* NUOneCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B0814C8B70500AB61E8 /* NUOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B0614C8B70500AB61E8 /* NUOneCell.m */; };
-		3BD52B0914C8B70500AB61E8 /* NUOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B0614C8B70500AB61E8 /* NUOneCell.m */; };
 		3BD52B1114C8B74800AB61E8 /* NUButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B0F14C8B74800AB61E8 /* NUButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B1214C8B74800AB61E8 /* NUButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1014C8B74800AB61E8 /* NUButton.m */; };
-		3BD52B1314C8B74800AB61E8 /* NUButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1014C8B74800AB61E8 /* NUButton.m */; };
 		3BD52B1614C8B76E00AB61E8 /* NUPickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B1414C8B76E00AB61E8 /* NUPickerCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B1714C8B76E00AB61E8 /* NUPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1514C8B76E00AB61E8 /* NUPickerCell.m */; };
-		3BD52B1814C8B76E00AB61E8 /* NUPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1514C8B76E00AB61E8 /* NUPickerCell.m */; };
 		3BD52B1B14C8B7A200AB61E8 /* NUMultiButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B1914C8B7A200AB61E8 /* NUMultiButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B1C14C8B7A200AB61E8 /* NUMultiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1A14C8B7A200AB61E8 /* NUMultiButton.m */; };
-		3BD52B1D14C8B7A200AB61E8 /* NUMultiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1A14C8B7A200AB61E8 /* NUMultiButton.m */; };
 		3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B2614C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */; };
-		3BD52B2714C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */; };
 		3BE8673014CDF145002D04BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
 		671F3C9614C9C36D00CEE042 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
 		671F3C9914C9C37500CEE042 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
 		671F3C9B14C9C38100CEE042 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
 		671F3E6814C9C41000CEE042 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3E4814C9C3BB00CEE042 /* libsbjson-ios.a */; };
 		671F3E8914CA318100CEE042 /* NUCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 671F3E8814CA318100CEE042 /* NUCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		67DB495B14D071FE009CC8C3 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3E4814C9C3BB00CEE042 /* libsbjson-ios.a */; };
 		67DB495C14D07203009CC8C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
 		67DB495D14D07207009CC8C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
 		67DB495E14D07210009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
@@ -189,6 +175,8 @@
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+Additions.h"; path = "Models/NSDateFormatter+Additions.h"; sourceTree = "<group>"; };
+		00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+Additions.m"; path = "Models/NSDateFormatter+Additions.m"; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
@@ -614,7 +602,6 @@
 				67DB495E14D07210009CC8C3 /* QuartzCore.framework in Frameworks */,
 				67DB495D14D07207009CC8C3 /* CoreGraphics.framework in Frameworks */,
 				67DB495C14D07203009CC8C3 /* CoreData.framework in Frameworks */,
-				67DB495B14D071FE009CC8C3 /* libsbjson-ios.a in Frameworks */,
 				3BD52AB314C8B43500AB61E8 /* SenTestingKit.framework in Frameworks */,
 				3BD52AB614C8B43500AB61E8 /* Foundation.framework in Frameworks */,
 				3BD52AB914C8B43500AB61E8 /* libNUSurveyor.a in Frameworks */,
@@ -788,6 +775,8 @@
 				3BA2E94914CDCD0F0057D05C /* NUSurvey.m */,
 				005AA64D152208DE00E67C10 /* NUResponse.h */,
 				005AA64E152208DE00E67C10 /* NUResponse.m */,
+				00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */,
+				00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1905,6 +1894,7 @@
 				3BD52B1B14C8B7A200AB61E8 /* NUMultiButton.h in Headers */,
 				3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */,
 				005AA64F152208DE00E67C10 /* NUResponse.h in Headers */,
+				00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */,
 				67DB499814D0933E009CC8C3 /* NUGridAnyCell.h in Headers */,
 				67DB499A14D0933E009CC8C3 /* NUGridOneCell.h in Headers */,
 				0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */,
@@ -2158,6 +2148,7 @@
 				005AA650152208DE00E67C10 /* NUResponse.m in Sources */,
 				3BC61A7F1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m in Sources */,
 				3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */,
+				00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2168,21 +2159,6 @@
 				005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */,
 				005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */,
 				3BD52AC214C8B43500AB61E8 /* NUSurveyorTests.m in Sources */,
-				3BD52AD214C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */,
-				3BD52AD714C8B5B600AB61E8 /* NUSectionTVC.m in Sources */,
-				3BD52ADC14C8B5FE00AB61E8 /* UUID.m in Sources */,
-				3BD52AE114C8B62600AB61E8 /* NUPickerVC.m in Sources */,
-				3BD52AE614C8B65400AB61E8 /* NUResponseSet.m in Sources */,
-				3BD52AEB14C8B6A400AB61E8 /* NUAnyCell.m in Sources */,
-				3BD52AF014C8B6B900AB61E8 /* NUDatePickerCell.m in Sources */,
-				3BD52AFF14C8B6E900AB61E8 /* NUNoneCell.m in Sources */,
-				3BD52B0414C8B6F700AB61E8 /* NUNoneTextCell.m in Sources */,
-				3BD52B0914C8B70500AB61E8 /* NUOneCell.m in Sources */,
-				3BD52B1314C8B74800AB61E8 /* NUButton.m in Sources */,
-				3BD52B1814C8B76E00AB61E8 /* NUPickerCell.m in Sources */,
-				3BD52B1D14C8B7A200AB61E8 /* NUMultiButton.m in Sources */,
-				3BD52B2714C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */,
-				3BA2E94C14CDCD0F0057D05C /* NUSurvey.m in Sources */,
 				67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */,
 				008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */,
 			);
@@ -2392,6 +2368,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NUSurveyor/NUSurveyor-Prefix.pch";
 				INFOPLIST_FILE = "NUSurveyorTests/NUSurveyorTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -2407,6 +2384,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NUSurveyor/NUSurveyor-Prefix.pch";
 				INFOPLIST_FILE = "NUSurveyorTests/NUSurveyorTests-Info.plist";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};

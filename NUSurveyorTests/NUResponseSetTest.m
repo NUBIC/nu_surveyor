@@ -9,17 +9,25 @@
 #import "NUResponseSetTest.h"
 #import "NUResponseSet.h"
 #import "NUSurvey.h"
+#import "NSDateFormatter+Additions.h"
 
 @implementation NUResponseSetTest
 
 NUResponseSet* rs;
+NSDate* createdAt;
+NSDate* completedAt;
 
 - (void)setUp {
     [super setUp];
-	
+    createdAt = [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1970-02-04T05:15:30Z"];
+    completedAt = [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1990-03-06T07:21:42Z"];
+    
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    rs.uuid = @"OVAL";
+    [rs setValue:@"OVAL" forKey:@"uuid"];
+    [rs setValue:createdAt forKey:@"createdAt"];
+    [rs setValue:completedAt forKey:@"completedAt"];
+    
     [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
     [rs newResponseForQuestion:@"xyz" Answer:@"456" Value:@"bar"];
 }
@@ -35,6 +43,8 @@ NUResponseSet* rs;
     NSDictionary* actual = [rs toDict];
     STAssertEqualObjects([actual objectForKey:@"uuid"], @"OVAL", @"Wrong value");
     STAssertEqualObjects([actual objectForKey:@"survey_id"], @"RECT", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"created_at"], @"1970-02-04T05:15:30Z", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"completed_at"], @"1990-03-06T07:21:42Z", @"Wrong value");
     STAssertEquals([[actual objectForKey:@"responses"] count], 2U, @"Wrong size");
 }
 
@@ -42,6 +52,8 @@ NUResponseSet* rs;
     NSString* actual = [rs toJson];
     STAssertTrue([actual rangeOfString:@"\"uuid\":\"OVAL\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"survey_id\":\"RECT\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"created_at\":\"1970-02-04T05:15:30Z\""].location != NSNotFound, @"Should exist");
+    STAssertTrue([actual rangeOfString:@"\"completed_at\":\"1990-03-06T07:21:42Z\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"responses\":["].location != NSNotFound, @"Should exist");
 }
 

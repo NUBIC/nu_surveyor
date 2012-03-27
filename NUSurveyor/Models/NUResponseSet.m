@@ -10,6 +10,7 @@
 #import "UUID.h"
 #import "NUResponse.h"
 #import "SBJson.h"
+#import "NSDateFormatter+Additions.h"
 
 @implementation NUResponseSet
 @synthesize dependencyGraph = _dependencyGraph, dependencies = _dependencies;
@@ -349,9 +350,14 @@
     for (NUResponse* r in [self responses]) {
         [responseDictionaries addObject:[r toDict]];
     }
+    NSString* createdAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"createdAt"]];
+    NSString* completedAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"completedAt"]];
     return [[NSDictionary alloc]initWithObjectsAndKeys:
             [self valueForKey:@"uuid"], @"uuid",
             [self valueForKey:@"survey"], @"survey_id",
+            createdAt, @"created_at",
+            completedAt, @"completed_at",
+            [self valueForKey:@"completedAt"], @"created_at",
             responseDictionaries, @"responses", nil];
 }
 
