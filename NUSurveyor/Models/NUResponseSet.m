@@ -9,6 +9,7 @@
 #import "NUResponseSet.h"
 #import "UUID.h"
 #import "NUResponse.h"
+#import "SBJson.h"
 
 @implementation NUResponseSet
 @synthesize dependencyGraph = _dependencyGraph, dependencies = _dependencies;
@@ -334,6 +335,11 @@
             [self valueForKey:@"uuid"], @"uuid",
             [self valueForKey:@"survey"], @"survey_id",
             responseDictionaries, @"responses", nil];
+}
+
+- (NSString*) toJson {
+    SBJsonWriter* w = [[SBJsonWriter alloc] init];
+    return [w stringWithObject:[self toDict]];
 }
 
 @end

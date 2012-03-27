@@ -30,6 +30,6 @@
 - (BOOL) showDependency:(NSDictionary *)q;
 - (NSMutableDictionary *) evaluateConditions:(NSArray *)conditions;
 - (NSDictionary*) toDict;
-
+- (NSString*) toJson;
 
 @end
