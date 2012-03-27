@@ -16,6 +16,7 @@
 
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey withModel:(NSManagedObjectModel *)mom inContext:(NSManagedObjectContext *)moc;
 + (void) saveContext:(NSManagedObjectContext *)moc withMessage:(NSString *)message;
+- (NSUInteger) responseCount;
 - (NSArray *) responsesForQuestion:(NSString *)qid;
 - (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid;
 - (NSManagedObject *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value;

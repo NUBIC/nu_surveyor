@@ -45,6 +45,24 @@
 }
 
 #pragma mark - CRUD
+// Count responses
+- (NSUInteger) responseCount {
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:[NSEntityDescription entityForName:@"Response" inManagedObjectContext:self.managedObjectContext]];
+  [request setIncludesSubentities:NO]; // Omit subentities. Default is YES (i.e. include subentities)
+
+  // Set predicate
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"responseSet == %@", self];
+  [request setPredicate:predicate];
+  
+  NSError *err;
+  NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&err];
+  if(count == NSNotFound) {
+    //Handle error
+  }
+  return count;
+}
+
 //
 // Look up responses
 //

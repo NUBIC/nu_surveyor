@@ -20,6 +20,7 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize navigationController = _navigationController;
 @synthesize splitViewController = _splitViewController;
+@synthesize spyVC = _spyVC;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -31,35 +32,49 @@
 		//      self.window.rootViewController = self.navigationController;
 		//      masterViewController.managedObjectContext = self.managedObjectContext;
   } else {
-    // Load survey
-    // JSON data
-    NSError *strError;
-    NSString *strPath = [[NSBundle mainBundle] pathForResource:@"kitchen-sink-survey" ofType:@"json"];
-    NSString *surveyJson = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-		
-    NUSurvey* survey = [NUSurvey new];
-    survey.jsonString = surveyJson;
-		
-    NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *responseSet = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    [responseSet setValue:[NSDate date] forKey:@"createdAt"];
-    [responseSet setValue:[UUID generateUuidString] forKey:@"uuid"];
-    [self saveContext];
-		
-		NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:responseSet];
-    
-		UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-		NUSectionTVC *detailViewController = masterViewController.sectionTVC;
-		UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-  	
-		self.splitViewController = [[UISplitViewController alloc] init];
-		self.splitViewController.delegate = detailViewController;
-		self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, detailNavigationController, nil];
-		
-		self.window.rootViewController = self.splitViewController;
+    self.spyVC = [[NUSpyVC alloc] init];
+    self.spyVC.delegate = self;
+    [self loadSurvey:@"kitchen-sink-survey"];
   }
 	[self.window makeKeyAndVisible];
 	return YES;
+}
+
+- (void)inspect {
+  [(UINavigationController *)[self.splitViewController.viewControllers objectAtIndex:1] pushViewController:self.spyVC animated:NO];
+}
+- (void) loadSurvey:(NSString *)pathforResource {
+  // Load survey
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [[NSBundle mainBundle] pathForResource:pathforResource ofType:@"json"];
+  NSString *surveyJson = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  
+  NUSurvey* survey = [NUSurvey new];
+  survey.jsonString = surveyJson;
+  
+  NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] objectForKey:@"ResponseSet"];
+  NUResponseSet *responseSet = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+  [responseSet setValue:[NSDate date] forKey:@"createdAt"];
+  [responseSet setValue:[UUID generateUuidString] forKey:@"uuid"];
+  [self saveContext];
+  
+  NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:responseSet];
+  
+  UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
+  NUSectionTVC *detailViewController = masterViewController.sectionTVC;
+  UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+  UIBarButtonItem *inspect = [[UIBarButtonItem alloc] initWithTitle:@"Inspect" style:UIBarButtonItemStyleDone target:self action:@selector(inspect)];
+  [detailViewController.navigationItem setRightBarButtonItem:inspect];
+
+  self.spyVC.surveyTVC = masterViewController;
+  self.spyVC.sectionTVC = detailViewController;
+
+  self.splitViewController = [[UISplitViewController alloc] init];
+  self.splitViewController.delegate = detailViewController;
+  self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, detailNavigationController, nil];
+  
+  self.window.rootViewController = self.splitViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
