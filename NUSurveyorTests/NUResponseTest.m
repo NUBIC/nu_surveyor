@@ -59,14 +59,15 @@
 - (void)testToDict {
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     NUResponseSet* rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
-    NUResponse* one = [[[rs responses] objectEnumerator] nextObject];
+    NUResponse* one = [rs newResponseForQuestion:@"abc" Answer:@"123" Value:@"foo"];
+    [one setValue:@"OCT" forKey:@"uuid"];
     
     NSDictionary* actual = [one toDict];
-    
-    STAssertNotNil(actual, @"Should not be nil");
-//    STAssertEqualObjects([actual objectForKey:@"survey_id"], @"RECT", @"Wrong value");
-//    STAssertEquals([[actual objectForKey:@"responses"] count], 2U, @"Wrong size");
+
+    STAssertEqualObjects([actual objectForKey:@"value"], @"foo", @"Wrong value");    
+    STAssertEqualObjects([actual objectForKey:@"answer_id"], @"123", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"question_id"], @"abc", @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"response_id"], @"OCT", @"Wrong value");
 }
 
 @end

@@ -326,12 +326,14 @@
 }
 
 - (NSDictionary*) toDict {
-    NSArray* responses = [[NSArray alloc] initWithObjects:
-        @"foo", @"bar", nil];
+    NSMutableArray* responseDictionaries = [NSMutableArray new];
+    for (NUResponse* r in [self responses]) {
+        [responseDictionaries addObject:[r toDict]];
+    }
     return [[NSDictionary alloc]initWithObjectsAndKeys:
             [self valueForKey:@"uuid"], @"uuid",
             [self valueForKey:@"survey"], @"survey_id",
-            responses, @"responses", nil];
+            responseDictionaries, @"responses", nil];
 }
 
 @end

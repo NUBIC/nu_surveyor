@@ -11,7 +11,11 @@
 @implementation NUResponse
 
 - (NSDictionary*) toDict {
-    return [NSDictionary dictionary];
+    return [[NSDictionary alloc] initWithObjectsAndKeys:
+            [self valueForKey:@"uuid"], @"response_id",
+            [self valueForKey:@"answer"], @"answer_id",
+            [self valueForKey:@"question"], @"question_id",
+            [self valueForKey:@"value"], @"value", nil];
 }
 
 @end
