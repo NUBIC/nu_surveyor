@@ -1,18 +1,19 @@
 //
-//  NUAnyStringOrNumberCell.m
+//  NUOneStringOrNumberCell.m
 //  NUSurveyor
 //
-//  Created by Mark Yoon on 3/26/2012.
-//  Copyright (c) 2011-2012 Northwestern University. All rights reserved.
+//  Created by Mark Yoon on 3/27/2012.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NUAnyStringOrNumberCell.h"
+#import "NUOneStringOrNumberCell.h"
+#import "NUOneDatePickerCell.h"
 #import "UILabel+NUResize.h"
 
-@interface NUAnyStringOrNumberCell()
+@interface NUOneStringOrNumberCell()
 - (void) resetContent;
 @end
-@implementation NUAnyStringOrNumberCell
+@implementation NUOneStringOrNumberCell
 
 @synthesize textField = _textField, label = _label, postLabel = _postLabel;
 
@@ -25,7 +26,7 @@
     
     CGFloat fontSize = [UIFont labelFontSize] - 2;
     UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
-//    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    //    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.label = [[UILabel alloc] init];
     self.textField = [[UITextField alloc] init];
@@ -70,7 +71,7 @@
 
 #pragma mark - NUCell
 - (NSString *)accessibilityLabel{
-	return [NSString stringWithFormat:@"NUAnyStringOrNumberCell %@ %@ %@", self.label.text, self.textField.text, self.postLabel.text];
+	return [NSString stringWithFormat:@"NUOneStringOrNumberCell %@ %@ %@", self.label.text, self.textField.text, self.postLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	[self resetContent];
@@ -80,11 +81,11 @@
   NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:indexPath] lastObject];
   if (existingResponse) {
     self.textField.text = [existingResponse valueForKey:@"value"];
-    [self check];
+    [self dot];
   } else {
-    [self uncheck];
+    [self undot];
   }
-
+  
   // (pre) text
   if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
     [self.label setHidden:YES];
@@ -114,22 +115,34 @@
     self.postLabel.text = [dataObject objectForKey:@"post_text"];
   }
   
-  self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUAnyStringOrNumberCell %@ %@ textField", self.label.text, self.postLabel.text];
-
+  self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUOneStringOrNumberCell %@ %@ textField", self.label.text, self.postLabel.text];
+  
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
-  if ([[self.sectionTVC responsesForIndexPath:indexPath] lastObject]) {
-    [self.sectionTVC deleteResponseForIndexPath:indexPath];
-    self.textField.text = nil;
-    [(NUAnyCell *)[tableView cellForRowAtIndexPath:indexPath] uncheck];
-  } else {
-    [(NUAnyCell *)[tableView cellForRowAtIndexPath:indexPath] check];
-    if (self.textField.hidden == NO) {
-      [self.textField becomeFirstResponder];
+	for (int i = 0; i < [tableView numberOfRowsInSection:indexPath.section]; i++) {
+		NSIndexPath *j = [NSIndexPath indexPathForRow:i inSection:indexPath.section];
+		if (![j isEqual:indexPath]) {
+      [self.sectionTVC deleteResponseForIndexPath:j];
+      NUOneCell *cell = (NUOneCell *)[tableView cellForRowAtIndexPath:j];
+      [cell undot];
+
+      if ([[[tableView cellForRowAtIndexPath:j] reuseIdentifier] isEqualToString:@"NUOneStringOrNumberCell"]) {
+        ((NUOneStringOrNumberCell *)cell).textField.text = nil;
+        [((NUOneStringOrNumberCell *)cell).textField resignFirstResponder]; // doing this will create a response, which needs to be deleted
+        [self.sectionTVC deleteResponseForIndexPath:j];
+      } else if([[[tableView cellForRowAtIndexPath:j] reuseIdentifier] isEqualToString:@"NUOneDatePickerCell"]){
+        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), ((NUOneDatePickerCell *)cell).type];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+      }
     }
-    [self.sectionTVC newResponseForIndexPath:indexPath];
+	}
+  [(NUOneCell *)[tableView cellForRowAtIndexPath:indexPath] dot];
+  if (self.textField.hidden == NO) {
+    [self.textField becomeFirstResponder];
+    // let the text field delegate (NUSectionTVC) handle the response creation
   }
-  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];  
+	[self.sectionTVC newResponseForIndexPath:indexPath];
+  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (void) resetContent {
   [self.label setHidden:NO];
@@ -173,6 +186,5 @@
   }
   
 }
-
 
 @end

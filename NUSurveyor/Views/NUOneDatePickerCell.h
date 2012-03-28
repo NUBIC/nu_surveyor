@@ -1,19 +1,20 @@
 //
-//  NUAnyDatePickerCell.h
+//  NUOneDatePickerCell.h
 //  NUSurveyor
 //
-//  Created by Mark Yoon on 3/26/2012.
-//  Copyright (c) 2011-2012 Northwestern University. All rights reserved.
+//  Created by Mark Yoon on 3/27/2012.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NUAnyCell.h"
+#import "NUOneCell.h"
 #import "NUPickerVC.h"
 
-@interface NUAnyDatePickerCell : NUAnyCell <UIPopoverControllerDelegate>
+@interface NUOneDatePickerCell : NUOneCell <UIPopoverControllerDelegate>
 
 @property (nonatomic, strong) NUPickerVC *pickerVC;
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSString *type;
 
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
 

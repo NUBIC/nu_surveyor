@@ -3,9 +3,9 @@
 {"questions_and_groups":[
 {"pick":"one","text":"When did you last take your medication?","uuid":"fb43c3b0-59bc-012f-9eec-00254bc472f4","answers":[
 {"uuid":"fb46b980-59bc-012f-9eec-00254bc472f4","text":"Today at","type":"time"},
-{"uuid":"fb46e760-59bc-012f-9eec-00254bc472f4","text":"On this day","type":"date"},
+{"uuid":"fb46e760-59bc-012f-9eec-00254bc472f4","text":"On this very day","type":"date"},
 {"uuid":"fb470cd0-59bc-012f-9eec-00254bc472f4","text":"On this day, at","type":"datetime"},
-{"uuid":"fb473290-59bc-012f-9eec-00254bc472f4","text":"I can't tell you because","type":"string"}]}],"display_order":0,"title":"One"},
+{"uuid":"fb473290-59bc-012f-9eec-00254bc472f4","text":"I cannot tell you because","type":"string"}]}],"display_order":0,"title":"One"},
 {"questions_and_groups":[
 {"pick":"any","text":"Which pain medications are you taking (please list the names)","uuid":"fb479180-59bc-012f-9eec-00254bc472f4","answers":[
 {"uuid":"fb47bef0-59bc-012f-9eec-00254bc472f4","text":"NSAIDs","type":"string"},

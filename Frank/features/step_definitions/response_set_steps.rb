@@ -10,18 +10,11 @@ Then /^the cell marked "([^"]*)" should be dotted$/ do |cell_mark|
   dotted.should == [true]
 end
 
-When /^the (\d*)(?:st|nd|rd|th)? cell should be checked$/ do |ordinal|
+When /^the (\d*)(?:st|nd|rd|th)? cell should be (un)?(checked|dotted)$/ do |ordinal, negator, type|
   cell_selector = ("tableViewCell index:#{ordinal.to_i - 1}")
   check_element_exists( cell_selector )
-  checked = frankly_map( cell_selector, 'checked' )
-  checked.should == [true]
-end
-
-When /^the (\d*)(?:st|nd|rd|th)? cell should be unchecked$/ do |ordinal|
-  cell_selector = ("tableViewCell index:#{ordinal.to_i - 1}")
-  check_element_exists( cell_selector )
-  checked = frankly_map( cell_selector, 'checked' )
-  checked.should == [false]
+  checked = frankly_map( cell_selector, type )
+	checked.should == (negator == "un" ? [false] : [true])
 end
 
 When /^I press done on the keyboard$/ do

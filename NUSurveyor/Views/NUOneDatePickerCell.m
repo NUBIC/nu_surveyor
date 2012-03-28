@@ -1,22 +1,20 @@
 //
-//  NUAnyDatePickerCell.m
+//  NUOneDatePickerCell.m
 //  NUSurveyor
 //
-//  Created by Mark Yoon on 3/26/2012.
+//  Created by Mark Yoon on 3/27/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NUAnyDatePickerCell.h"
+#import "NUOneDatePickerCell.h"
+#import "NUOneStringOrNumberCell.h"
 
-@interface NUAnyDatePickerCell()
-@property (nonatomic, strong) NSString *type;
+@interface NUOneDatePickerCell()
 - (void) pickerDone;
 - (NSDateFormatter *) dateFormatterFromType:(NSString *)type;
 @end
-
-@implementation NUAnyDatePickerCell
-@synthesize pickerVC = _pickerVC, popoverController = _popoverController, dateFormatter = _dateFormatter;
-@synthesize type = _type;
+@implementation NUOneDatePickerCell
+@synthesize pickerVC = _pickerVC, popoverController = _popoverController, dateFormatter = _dateFormatter, type = _type;
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -27,13 +25,13 @@
 
 #pragma mark - NUCell
 - (NSString *)accessibilityLabel{
-	return [NSString stringWithFormat:@"NUAnyDatePickerCell %@", self.textLabel.text];
+	return [NSString stringWithFormat:@"NUOneDatePickerCell %@", self.textLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   self.dateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
   self.textLabel.text = [dataObject objectForKey:@"text"];
-
+  
   self.type = [dataObject objectForKey:@"type"];
   
   // set up popover with datepicker
@@ -52,28 +50,40 @@
 	self.sectionTVC = (NUSectionTVC *)tableView.delegate;
   NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:indexPath] lastObject];
   if (existingResponse) {
-    [self check];
+    [self dot];
     self.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", [dataObject objectForKey:@"text"], [existingResponse valueForKey:@"value"]];
     self.detailTextLabel.textColor = RGB(1, 113, 233);
     self.pickerVC.datePicker.date = [self.dateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
   } else {
-    [self uncheck];
+    [self undot];
     self.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
     self.detailTextLabel.textColor = [UIColor blackColor];
   }
   
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
-  if ([[self.sectionTVC responsesForIndexPath:indexPath] lastObject]) {
-		[self.sectionTVC deleteResponseForIndexPath:indexPath];
-    self.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), self.type];
-    self.detailTextLabel.textColor = [UIColor blackColor];
-		[(NUAnyCell *)[tableView cellForRowAtIndexPath:indexPath] uncheck];
-	} else {
-		[self.sectionTVC newResponseForIndexPath:indexPath];
-    [self.popoverController presentPopoverFromRect:self.frame inView:tableView permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-		[(NUAnyCell *)[tableView cellForRowAtIndexPath:indexPath] check];
+  for (int i = 0; i < [tableView numberOfRowsInSection:indexPath.section]; i++) {
+		NSIndexPath *j = [NSIndexPath indexPathForRow:i inSection:indexPath.section];
+		if (![j isEqual:indexPath]) {
+      [self.sectionTVC deleteResponseForIndexPath:j];
+      NUOneCell *cell = (NUOneCell *)[tableView cellForRowAtIndexPath:j];
+      [cell undot];
+      if ([[[tableView cellForRowAtIndexPath:j] reuseIdentifier] isEqualToString:@"NUOneStringOrNumberCell"]) {
+        ((NUOneStringOrNumberCell *)cell).textField.text = nil;
+        [((NUOneStringOrNumberCell *)cell).textField resignFirstResponder]; // doing this will create a response, which needs to be deleted
+        [self.sectionTVC deleteResponseForIndexPath:j];
+      } else if([[[tableView cellForRowAtIndexPath:j] reuseIdentifier] isEqualToString:@"NUOneDatePickerCell"]){
+        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), ((NUOneDatePickerCell *)cell).type];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+      }
+      
+    }
 	}
+  if (![[self.sectionTVC responsesForIndexPath:indexPath] lastObject]) {
+		[self.sectionTVC newResponseForIndexPath:indexPath];
+	}
+  [self.popoverController presentPopoverFromRect:self.frame inView:tableView permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+  [(NUOneCell *)[tableView cellForRowAtIndexPath:indexPath] dot];
   [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type {

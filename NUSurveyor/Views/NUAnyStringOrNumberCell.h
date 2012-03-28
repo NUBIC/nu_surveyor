@@ -10,7 +10,6 @@
 
 @interface NUAnyStringOrNumberCell : NUAnyCell
 
-@property (nonatomic, weak) NUSectionTVC *sectionTVC;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *postLabel;

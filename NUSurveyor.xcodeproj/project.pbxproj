@@ -10,6 +10,10 @@
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
 		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
+		3B2AB06E1522429E00525F25 /* NUOneStringOrNumberCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2AB06C1522429E00525F25 /* NUOneStringOrNumberCell.h */; };
+		3B2AB06F1522429E00525F25 /* NUOneStringOrNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */; };
+		3B2AB0721522483E00525F25 /* NUOneDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */; };
+		3B2AB0731522483E00525F25 /* NUOneDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB0711522483E00525F25 /* NUOneDatePickerCell.m */; };
 		3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
@@ -179,6 +183,10 @@
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
 		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
+		3B2AB06C1522429E00525F25 /* NUOneStringOrNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUOneStringOrNumberCell.h; path = Views/NUOneStringOrNumberCell.h; sourceTree = "<group>"; };
+		3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUOneStringOrNumberCell.m; path = Views/NUOneStringOrNumberCell.m; sourceTree = "<group>"; };
+		3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUOneDatePickerCell.h; path = Views/NUOneDatePickerCell.h; sourceTree = "<group>"; };
+		3B2AB0711522483E00525F25 /* NUOneDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUOneDatePickerCell.m; path = Views/NUOneDatePickerCell.m; sourceTree = "<group>"; };
 		3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-birth-date-survey.json"; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
 		3BA2E94914CDCD0F0057D05C /* NUSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurvey.m; path = Models/NUSurvey.m; sourceTree = "<group>"; };
@@ -730,6 +738,10 @@
 				671F3E8814CA318100CEE042 /* NUCell.h */,
 				3BD52B0514C8B70500AB61E8 /* NUOneCell.h */,
 				3BD52B0614C8B70500AB61E8 /* NUOneCell.m */,
+				3B2AB06C1522429E00525F25 /* NUOneStringOrNumberCell.h */,
+				3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */,
+				3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */,
+				3B2AB0711522483E00525F25 /* NUOneDatePickerCell.m */,
 				3BD52AE714C8B6A400AB61E8 /* NUAnyCell.h */,
 				3BD52AE814C8B6A400AB61E8 /* NUAnyCell.m */,
 				3BC61A7C1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h */,
@@ -1888,6 +1900,8 @@
 				0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */,
 				3BC61A7E1520CBDB00A8C20C /* NUAnyStringOrNumberCell.h in Headers */,
 				3BC61A841520F75000A8C20C /* NUAnyDatePickerCell.h in Headers */,
+				3B2AB06E1522429E00525F25 /* NUOneStringOrNumberCell.h in Headers */,
+				3B2AB0721522483E00525F25 /* NUOneDatePickerCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2134,6 +2148,8 @@
 				67DB499B14D0933E009CC8C3 /* NUGridOneCell.m in Sources */,
 				3BC61A7F1520CBDB00A8C20C /* NUAnyStringOrNumberCell.m in Sources */,
 				3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */,
+				3B2AB06F1522429E00525F25 /* NUOneStringOrNumberCell.m in Sources */,
+				3B2AB0731522483E00525F25 /* NUOneDatePickerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

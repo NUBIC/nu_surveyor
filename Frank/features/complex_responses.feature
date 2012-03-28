@@ -4,7 +4,7 @@ Feature:
   So I can tell you about my medications
 
   Scenario: 
-    Medications
+    Medications Pick Any
   Given I launch the app using iOS 5.0 and the ipad simulator
   Given the device is in portrait orientation
   And I touch the button marked "Inspect"
@@ -57,3 +57,41 @@ Feature:
   Then the 6th cell should be checked
   And I touch the button marked "Inspect"
   Then I should see "5 responses"
+  
+  Scenario: 
+    Medications Pick One
+  Given I launch the app using iOS 5.0 and the ipad simulator
+  Given the device is in portrait orientation
+  And I touch the button marked "Inspect"
+  And I touch the button marked "loadComplexResponses"
+  And I touch the button marked "Sections"
+  When I touch the table cell marked "One"
+  And I should see "When did you last take your medication?"
+  And I touch the upper left of the table cell marked "NUOneDatePickerCell Today at"
+  And I touch the button marked "Now"
+  Then the 1st cell should be dotted
+  And I touch the button marked "Inspect"
+  Then I should see "1 response"
+
+  When I navigate back
+  And I touch the upper left of the table cell marked "NUOneDatePickerCell On this very day"
+  And I touch the button marked "Done"
+  Then the 2nd cell should be dotted
+	And the 1st cell should be undotted
+  And I touch the button marked "Inspect"
+  Then I should see "1 response"
+
+  When I navigate back
+  And I touch the upper left of the table cell marked "NUOneStringOrNumberCell I cannot tell you because (null) (null)"
+  Then the 4th cell should be dotted
+	And the 2nd cell should be undotted
+  And I touch the button marked "Inspect"
+	Then I should see "1 response"
+
+  When I navigate back
+  And I touch the upper left of the table cell marked "NUOneStringOrNumberCell I cannot tell you because (null) (null)"
+  Then the 4th cell should be dotted
+	And I touch the upper left of the table cell marked "NUOneDatePickerCell On this day, at"
+	And I touch the button marked "Cancel"
+  And I touch the button marked "Inspect"
+	Then I should see "1 response"
