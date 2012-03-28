@@ -8,10 +8,13 @@
 
 #import "NUResponseSet.h"
 #import "UUID.h"
+#import "NUResponse.h"
+#import "SBJson.h"
+#import "NSDateFormatter+Additions.h"
 
 @implementation NUResponseSet
 @synthesize dependencyGraph = _dependencyGraph, dependencies = _dependencies;
-@dynamic uuid;
+@dynamic uuid, responses;
 
 // initializer
 + (NUResponseSet *) newResponseSetForSurvey:(NSDictionary *)survey withModel:(NSManagedObjectModel *)mom inContext:(NSManagedObjectContext *)moc {
@@ -126,9 +129,10 @@
 //
 // Create a response with value
 //
-- (NSManagedObject *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
-	
-  NSManagedObject *newResponse = [NSEntityDescription insertNewObjectForEntityForName:@"Response" inManagedObjectContext:self.managedObjectContext];
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
+  NSDictionary* entities = [[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName];
+  NSEntityDescription *entity = [entities objectForKey:@"Response"];
+  NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
   [newResponse setValue:self forKey:@"responseSet"];
   [newResponse setValue:qid forKey:@"question"];
   [newResponse setValue:aid forKey:@"answer"];
@@ -339,6 +343,27 @@
 	}
 	//	DLog(@"values: %@", values);
 	return values;
+}
+
+- (NSDictionary*) toDict {
+    NSMutableArray* responseDictionaries = [NSMutableArray new];
+    for (NUResponse* r in [self responses]) {
+        [responseDictionaries addObject:[r toDict]];
+    }
+    NSString* createdAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"createdAt"]];
+    NSString* completedAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"completedAt"]];
+    return [[NSDictionary alloc]initWithObjectsAndKeys:
+            [self valueForKey:@"uuid"], @"uuid",
+            [self valueForKey:@"survey"], @"survey_id",
+            createdAt, @"created_at",
+            completedAt, @"completed_at",
+            [self valueForKey:@"completedAt"], @"created_at",
+            responseDictionaries, @"responses", nil];
+}
+
+- (NSString*) toJson {
+    SBJsonWriter* w = [[SBJsonWriter alloc] init];
+    return [w stringWithObject:[self toDict]];
 }
 
 @end
