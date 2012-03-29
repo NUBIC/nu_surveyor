@@ -7,7 +7,6 @@
 //
 
 #import "NUResponse.h"
-//#import "SBJson.h"
 #import "JSONKit.h"
 #import "NSDateFormatter+Additions.h"
 
@@ -27,8 +26,6 @@
 }
 
 - (NSString*) toJson {
-//    SBJsonWriter* w = [[SBJsonWriter alloc] init];
-//    return [w stringWithObject:[self toDict]];
   return [self.toDict JSONString];
 }
 

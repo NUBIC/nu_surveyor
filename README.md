@@ -4,7 +4,6 @@ This project is an iOS port of the Surveyor ruby gem (http://github.com/NUBIC/su
 
 ## Installation
 
-* Clone SBJson from http://stig.github.com/json-framework into the same parent directory as this project, e.g. ~/ios/json-framework 
 * Clone nu_surveyor from http://github.com/NUBIC/nu_surveyor into the same parent directory as this project, e.g. ~/ios/nu_surveyor
 * Click your project, your target and the "Build Phases" tab, "Link Binary With Libraries", click the "+", and add the entire nu_surveyor directory
 * Click the "+" again and add "libNUSurveyor.a"

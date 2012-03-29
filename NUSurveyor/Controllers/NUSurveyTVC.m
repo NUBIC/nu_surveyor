@@ -7,7 +7,6 @@
 //
 
 #import "NUSurveyTVC.h"
-//#import "SBJson.h"
 #import "JSONKit.h"
 #import "UUID.h"
 
@@ -30,8 +29,6 @@
   self = [super initWithStyle:UITableViewStylePlain];
   if (self) {
     self.survey = survey;
-//    SBJsonParser *parser = [[SBJsonParser alloc] init];
-//    self.surveyNSD = [[parser objectWithString:self.survey.jsonString] objectForKey:@"survey"];
     self.surveyNSD = [[self.survey.jsonString objectFromJSONString] objectForKey:@"survey"];
     
     self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];

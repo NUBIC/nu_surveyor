@@ -9,7 +9,6 @@
 #import "NUResponseSet.h"
 #import "UUID.h"
 #import "NUResponse.h"
-//#import "SBJson.h"
 #import "JSONKit.h"
 #import "NSDateFormatter+Additions.h"
 
@@ -290,7 +289,7 @@
                  forKey:[condition objectForKey:@"rule_key"]];
     } else if ([operator isEqualToString:@"=="]) {
 			// ==
-			if (value == (id)kCFNull || value == nil) { // http://www.enavigo.com/2011/02/08/sbjson-testing-for-nil-null-value/
+			if (value == (id)[NSNull null] || value == nil) {
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
 									 forKey:[condition objectForKey:@"rule_key"]];
 			} else {
@@ -363,8 +362,6 @@
 }
 
 - (NSString*) toJson {
-//    SBJsonWriter* w = [[SBJsonWriter alloc] init];
-//    return [w stringWithObject:[self toDict]];
   return [self.toDict JSONString];
 }
 
