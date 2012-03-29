@@ -10,7 +10,8 @@
 #import "UUID.h"
 #import "NUSectionTVC.h"
 #import "NUDatePickerCell.h"
-#import "SBJson.h"
+//#import "SBJson.h"
+#import "JSONKit.h"
 
 @implementation NUSurveyorTests
 
@@ -71,9 +72,10 @@
 	NSError *strError;
 	NSString *strPath = [self.bundle pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
-
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
+  
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
 	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
@@ -100,8 +102,9 @@
 	NSError *strError;
 	NSString *strPath = [self.bundle pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -118,8 +121,9 @@
 	NSError *strError;
 	NSString *strPath = [self.bundle pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -138,8 +142,9 @@
 	NSError *strError;
 	NSString *strPath = [self.bundle pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -159,8 +164,9 @@
   NSError *strError;
   NSString *strPath = [self.bundle pathForResource:@"kitchen-sink-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -181,8 +187,9 @@
   NSError *strError;
   NSString *strPath = [self.bundle pathForResource:@"test-dependency-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -202,8 +209,9 @@
   NSError *strError;
   NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -223,8 +231,9 @@
   NSError *strError;
   NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
@@ -245,8 +254,9 @@
   NSError *strError;
   NSString *strPath = [self.bundle pathForResource:@"test-birth-date-survey" ofType:@"json"];
   NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
-  SBJsonParser *parser = [[SBJsonParser alloc] init];
-  NSDictionary *dict = [parser objectWithString:responseString];
+//  SBJsonParser *parser = [[SBJsonParser alloc] init];
+//  NSDictionary *dict = [parser objectWithString:responseString];
+  NSDictionary *dict = [responseString objectFromJSONString];
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];

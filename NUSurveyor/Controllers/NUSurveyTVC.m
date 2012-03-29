@@ -7,7 +7,8 @@
 //
 
 #import "NUSurveyTVC.h"
-#import "SBJson.h"
+//#import "SBJson.h"
+#import "JSONKit.h"
 #import "UUID.h"
 
 @interface NUSurveyTVC()
@@ -29,9 +30,10 @@
   self = [super initWithStyle:UITableViewStylePlain];
   if (self) {
     self.survey = survey;
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    self.surveyNSD = [[parser objectWithString:self.survey.jsonString] objectForKey:@"survey"];
-
+//    SBJsonParser *parser = [[SBJsonParser alloc] init];
+//    self.surveyNSD = [[parser objectWithString:self.survey.jsonString] objectForKey:@"survey"];
+    self.surveyNSD = [[self.survey.jsonString objectFromJSONString] objectForKey:@"survey"];
+    
     self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.sectionTVC.responseSet = responseSet;
     self.sectionTVC.delegate = self;

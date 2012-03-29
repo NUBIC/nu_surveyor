@@ -9,7 +9,8 @@
 #import "NUResponseSet.h"
 #import "UUID.h"
 #import "NUResponse.h"
-#import "SBJson.h"
+//#import "SBJson.h"
+#import "JSONKit.h"
 #import "NSDateFormatter+Additions.h"
 
 @implementation NUResponseSet
@@ -362,8 +363,9 @@
 }
 
 - (NSString*) toJson {
-    SBJsonWriter* w = [[SBJsonWriter alloc] init];
-    return [w stringWithObject:[self toDict]];
+//    SBJsonWriter* w = [[SBJsonWriter alloc] init];
+//    return [w stringWithObject:[self toDict]];
+  return [self.toDict JSONString];
 }
 
 @end

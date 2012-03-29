@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import "NUDatabaseTest.h"
+#import "JSONKit.h"
 
 @interface NUSurveyorTests : NUDatabaseTest
 
