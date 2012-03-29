@@ -84,7 +84,9 @@
   if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
     [self.label setHidden:YES];
   } else {
-    self.label.text = [dataObject objectForKey:@"text"];
+    self.label.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                            fromString:[dataObject objectForKey:@"text"]
+                                                 error:NULL];
   }
   
   // input
@@ -101,7 +103,9 @@
   if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
     [self.postLabel setHidden:YES];
   } else {
-    self.postLabel.text = [dataObject objectForKey:@"post_text"];
+    self.postLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                                fromString:[dataObject objectForKey:@"post_text"]
+                                                     error:NULL];
   }
   
   self.configuringButtons = NO;

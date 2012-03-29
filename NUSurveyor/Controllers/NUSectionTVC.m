@@ -29,7 +29,7 @@
 
 @implementation NUSectionTVC
 @synthesize cursorView = _cursorView;
-@synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, delegate = _delegate;
+@synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, delegate = _delegate, renderContext = _renderContext;
 
 #pragma mark - Utility class methods
 + (NSString *) classNameForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer {
@@ -446,16 +446,23 @@
   if (section >= self.visibleSections.count) {
     return nil;
   } else {
-		//    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"]);
-    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"];
+//    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"]);
+//    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"];
+    return [GRMustacheTemplate renderObject:self.renderContext
+                                 fromString:[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"]
+                                      error:NULL];
+
   }
 }
 - (NSString *)tableView:(UITableView *)tableView subTitleForHeaderInSection:(NSInteger)section{ 
   if (section >= self.visibleSections.count) {
     return nil;
   } else {
-		//    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"]);
-    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
+//    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"]);
+//    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
+    return [GRMustacheTemplate renderObject:self.renderContext
+                                 fromString:[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"]
+                                      error:NULL];
   }
 }
 

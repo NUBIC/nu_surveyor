@@ -28,9 +28,13 @@
 	return [NSString stringWithFormat:@"NUOneDatePickerCell %@", self.textLabel.text];
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
+	self.sectionTVC = (NUSectionTVC *)tableView.delegate;
+  
   self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   self.dateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
-  self.textLabel.text = [dataObject objectForKey:@"text"];
+  self.textLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                              fromString:[dataObject objectForKey:@"text"]
+                                                   error:NULL];
   
   self.type = [dataObject objectForKey:@"type"];
   
@@ -47,7 +51,6 @@
   }
   
   // look up existing response, fill in text and set datepicker
-	self.sectionTVC = (NUSectionTVC *)tableView.delegate;
   NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:indexPath] lastObject];
   if (existingResponse) {
     [self dot];

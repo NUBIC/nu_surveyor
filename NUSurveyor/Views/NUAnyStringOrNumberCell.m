@@ -89,20 +89,26 @@
   if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
     [self.label setHidden:YES];
   } else {
-    self.label.text = [dataObject objectForKey:@"text"];
+    self.label.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                            fromString:[dataObject objectForKey:@"text"]
+                                                 error:NULL];
   }
   
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
     self.textField.delegate = self.sectionTVC;
-    self.textField.placeholder = [dataObject objectForKey:@"help_text"];
+    self.textField.placeholder = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                                       fromString:[dataObject objectForKey:@"help_text"]
+                                                            error:NULL];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
     // number
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.textField.delegate = self.sectionTVC;
-    self.textField.placeholder = [dataObject objectForKey:@"help_text"];
+    self.textField.placeholder = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                                       fromString:[dataObject objectForKey:@"help_text"]
+                                                            error:NULL];
   } else {
     [self.textField setHidden:YES];
   }
@@ -111,7 +117,9 @@
   if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
     [self.postLabel setHidden:YES];
   } else {
-    self.postLabel.text = [dataObject objectForKey:@"post_text"];
+    self.postLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
+                                                fromString:[dataObject objectForKey:@"post_text"]
+                                                     error:NULL];
   }
   
   self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUAnyStringOrNumberCell %@ %@ textField", self.label.text, self.postLabel.text];

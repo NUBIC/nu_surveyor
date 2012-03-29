@@ -13,6 +13,7 @@
 
 @protocol NUSpyVCDelegate
 - (void) loadSurvey:(NSString *)pathforResource;
+- (void) loadSurvey:(NSString *)pathforResource renderContext:(id)renderContext;
 @end
 
 @interface NUSpyVC : UIViewController

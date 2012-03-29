@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "NUCell.h"
-#import "NUSectionTVC.h"
 #import "NUPickerVC.h"
 
 @interface NUDatePickerCell : UITableViewCell <UIPopoverControllerDelegate, NUCell>

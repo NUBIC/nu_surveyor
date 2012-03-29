@@ -44,6 +44,9 @@
   [(UINavigationController *)[self.splitViewController.viewControllers objectAtIndex:1] pushViewController:self.spyVC animated:NO];
 }
 - (void) loadSurvey:(NSString *)pathforResource {
+  [self loadSurvey:pathforResource renderContext:[NSDictionary dictionary]];
+}
+- (void) loadSurvey:(NSString *)pathforResource renderContext:(id)renderContext {
   // Load survey
   // JSON data
   NSError *strError;
@@ -59,17 +62,17 @@
   [responseSet setValue:[UUID generateUuidString] forKey:@"uuid"];
   [self saveContext];
   
-  NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:responseSet];
+  NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:responseSet renderContext:renderContext];
   
   UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
   NUSectionTVC *detailViewController = masterViewController.sectionTVC;
   UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
   UIBarButtonItem *inspect = [[UIBarButtonItem alloc] initWithTitle:@"Inspect" style:UIBarButtonItemStyleDone target:self action:@selector(inspect)];
   [detailViewController.navigationItem setRightBarButtonItem:inspect];
-
+  
   self.spyVC.surveyTVC = masterViewController;
   self.spyVC.sectionTVC = detailViewController;
-
+  
   self.splitViewController = [[UISplitViewController alloc] init];
   self.splitViewController.delegate = detailViewController;
   self.splitViewController.viewControllers = [NSArray arrayWithObjects:masterNavigationController, detailNavigationController, nil];
