@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NUCell.h"
 #import "NUMultiButton.h"
-#import "NUSectionTVC.h"
 
 @interface NUGridAnyCell : UITableViewCell <NUCell>
 

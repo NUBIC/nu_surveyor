@@ -24,16 +24,20 @@
 #pragma mark - Memory management
 
 - (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet{
+  return [self initWithSurvey:survey responseSet:responseSet renderContext:[NSDictionary dictionary]];
+}
+- (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet renderContext:(id)renderContext{
   // TODO trigger an error if survey or survey.jsonString or responseSet is blank
   
   self = [super initWithStyle:UITableViewStylePlain];
   if (self) {
     self.survey = survey;
-    self.surveyNSD = [[self.survey.jsonString objectFromJSONString] objectForKey:@"survey"];
+    self.surveyNSD = [self.survey.jsonString objectFromJSONString];
     
     self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.sectionTVC.responseSet = responseSet;
     self.sectionTVC.delegate = self;
+    self.sectionTVC.renderContext = renderContext;
     
     [self.sectionTVC.responseSet setValue:[self.surveyNSD objectForKey:@"uuid"] forKey:@"survey"];
 		[self.sectionTVC.responseSet generateDependencyGraph:self.surveyNSD];

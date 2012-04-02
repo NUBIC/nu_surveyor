@@ -1,4 +1,3 @@
-{"survey":
 {"sections":[
 {"questions_and_groups":[
 {"pick":"one","text":"When did you last take your medication?","uuid":"fb43c3b0-59bc-012f-9eec-00254bc472f4","answers":[
@@ -16,4 +15,4 @@
 {"pick":"any","text":"Do you remember when you","uuid":"fb488170-59bc-012f-9eec-00254bc472f4","answers":[
 {"uuid":"fb48b170-59bc-012f-9eec-00254bc472f4","text":"Woke up today","type":"time","help_text":"The time you woke up"},
 {"uuid":"fb574680-59bc-012f-9eec-00254bc472f4","text":"Woke up feeling refreshed","type":"date","help_text":"The date of the morning you woke up refreshed"},
-{"uuid":"fb5774f0-59bc-012f-9eec-00254bc472f4","text":"Took a sleeping pill","type":"datetime","help_text":"The date and time you took your last sleeping pill"}]}],"display_order":1,"title":"Any"}],"title":"Complex responses"}}
+{"uuid":"fb5774f0-59bc-012f-9eec-00254bc472f4","text":"Took a sleeping pill","type":"datetime","help_text":"The date and time you took your last sleeping pill"}]}],"display_order":1,"title":"Any"}],"title":"Complex responses"}

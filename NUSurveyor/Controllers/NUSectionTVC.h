@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSMutableArray *allSections;
 @property (nonatomic, strong) NSMutableArray *visibleHeaders;
 @property (nonatomic, weak) id <NUSectionTVCDelegate> delegate;
+@property (nonatomic, strong) id renderContext;
 
 // Utility class methods
 + (NSString *) classNameForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer;

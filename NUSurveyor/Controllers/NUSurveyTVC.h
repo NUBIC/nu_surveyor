@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NUSurvey *survey;
 
 - (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet;
+- (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet renderContext:(id)renderContext;
 - (void) nextSection;
 - (void) prevSection;
 

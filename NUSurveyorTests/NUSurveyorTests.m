@@ -75,7 +75,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
 	 
   NSArray *actual = [rs.dependencyGraph objectForKey:@"765351b0-4540-012f-9ea4-00254bc472f4"];
   NSArray *expect = [NSArray arrayWithObjects:@"765430d0-4540-012f-9ea4-00254bc472f4", @"765812f0-4540-012f-9ea4-00254bc472f4", nil];
@@ -103,7 +103,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
   
   NSDictionary *actual = [rs dependenciesTriggeredBy:nil];
   //  NSLog(@"%@", actual);
@@ -120,7 +120,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
 
   [rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"7653c2d0-4540-012f-9ea4-00254bc472f4"]; // disliking green
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"765351b0-4540-012f-9ea4-00254bc472f4"];
@@ -139,7 +139,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
 
   [rs newResponseForQuestion:@"7658ad20-4540-012f-9ea4-00254bc472f4" Answer:@"7658d830-4540-012f-9ea4-00254bc472f4" Value:@"It is 'Arthur', King of the Britons"]; // Arthur
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"7658ad20-4540-012f-9ea4-00254bc472f4"];
@@ -159,7 +159,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
 
 	[rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"76537bc0-4540-012f-9ea4-00254bc472f4"]; // disliking red
 	[rs newResponseForIndexQuestion:@"765351b0-4540-012f-9ea4-00254bc472f4" Answer:@"76539f60-4540-012f-9ea4-00254bc472f4"]; // disliking blue
@@ -180,7 +180,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
 
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"1f7f81d0-2380-012f-7858-482a143dc94d"];
 	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"1f820160-2380-012f-7858-482a143dc94d", nil];
@@ -200,7 +200,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
   
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
 	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", @"505ee040-566d-012f-9ede-00254bc472f4", nil];
@@ -220,7 +220,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
   [rs newResponseForIndexQuestion:@"504ad9a0-566d-012f-9ede-00254bc472f4" Answer:@"504dd3a0-566d-012f-9ede-00254bc472f4"]; // no
   
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
@@ -241,7 +241,7 @@
   
 	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
-	[rs generateDependencyGraph:[dict objectForKey:@"survey"]];
+	[rs generateDependencyGraph:dict];
   [rs newResponseForIndexQuestion:@"504ad9a0-566d-012f-9ede-00254bc472f4" Answer:@"504df680-566d-012f-9ede-00254bc472f4"]; // refused
   
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];

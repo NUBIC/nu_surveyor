@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "NUCell.h"
 #import "NUPickerVC.h"
-#import "NUSectionTVC.h"
 
 @interface NUPickerCell : UITableViewCell <UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 

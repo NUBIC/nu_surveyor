@@ -1,0 +1,30 @@
+{"sections":[{
+"questions_and_groups":[{
+"pick":"one","text":"What does {{name}} wear these days?","uuid":"17a942d0-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17ac3800-5c09-012f-9ef2-00254bc472f4","text":"The handlebar"},{
+"uuid":"17ac6240-5c09-012f-9ef2-00254bc472f4","text":"The chevron"},{
+"uuid":"17ac8610-5c09-012f-9ef2-00254bc472f4","text":"The imperial {{site}}"}]},{
+"pick":"one","text":"How would {{name}} score these styles?","uuid":"17acb540-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17ace140-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} horseshoe: 1-5 (1 best)","type":"integer"},{
+"uuid":"17ad0770-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} lampshade: 1.0-9.9 (9.9 best)","type":"float"},{
+"uuid":"17ad2b40-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} pencil: comment","type":"string"}]},{
+"pick":"one","text":"Where and when did {{name}} change their mustache style?","uuid":"17ad5540-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17ad8250-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, today, at","type":"time"},{
+"uuid":"17ada890-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, on this day","type":"date"},{
+"uuid":"17adcd80-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, at this time on this day","type":"datetime"}]},{
+"pick":"any","text":"What would {{name}} wear in the future?","uuid":"17adf6b0-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17ae26f0-5c09-012f-9ef2-00254bc472f4","text":"The pyramidal"},{
+"uuid":"17bc10a0-5c09-012f-9ef2-00254bc472f4","text":"The toothbrush"},{
+"uuid":"17bc40f0-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} walrus"}]},{
+"pick":"any","text":"How many does {{name}} see?","uuid":"17bc6fa0-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17bc9eb0-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} horseshoe, today","type":"integer","help_text":"e.g. 2"},{
+"uuid":"17bcc200-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} lampshade, on average","type":"float","help_text":"e.g. 1.5"},{
+"uuid":"17bce5d0-5c09-012f-9ef2-00254bc472f4","text":"The {{site}} pencil, qualitatively","type":"string","help_text":"e.g. none, a few, many"}]},{
+"pick":"any","text":"Where and when does {{name}} trim their mustache?","uuid":"17bd13f0-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17bd3e10-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, daily, at","type":"time"},{
+"uuid":"17bd6140-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, last on this day","type":"date"},{
+"uuid":"17bd85a0-5c09-012f-9ef2-00254bc472f4","text":"At {{site}}, last at this time on this day","type":"datetime"}]},{
+"text":"What is the best kind of facial hair for {{name}}?","uuid":"17bdac90-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17bdd9d0-5c09-012f-9ef2-00254bc472f4","text":"The {{site}}","post_text":"of course","type":"string"}]},{
+"text":"Why did you choose this for {{name}}?","uuid":"17be0060-5c09-012f-9ef2-00254bc472f4","answers":[{
+"uuid":"17be2fc0-5c09-012f-9ef2-00254bc472f4","text":"Given the realities of {{site}}, I believe","type":"text"}]}],"display_order":0,"title":"Styles"}],"title":"Mustache"}
