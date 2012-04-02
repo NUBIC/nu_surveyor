@@ -1,4 +1,3 @@
-{"survey":
 {"sections":[
 {"questions_and_groups":[
 {"text":"These questions are examples of the basic supported input types","uuid":"764f9400-4540-012f-9ea4-00254bc472f4","type":"label"},
@@ -307,4 +306,4 @@
 {"questions":[
 {"uuid":"76a919e0-4540-012f-9ea4-00254bc472f4","text":"Sibling","answers":[
 {"text":"Name","uuid":"76a945f0-4540-012f-9ea4-00254bc472f4","type":"string"},
-{"text":"Age","uuid":"76a966f0-4540-012f-9ea4-00254bc472f4","post_text":"years","type":"integer"}]}],"text":"Tell us the name and age of your siblings","uuid":"76a8f680-4540-012f-9ea4-00254bc472f4","type":"repeater"}],"display_order":0,"title":"Complicated questions"}],"title":"Kitchen Sink survey"}}
+{"text":"Age","uuid":"76a966f0-4540-012f-9ea4-00254bc472f4","post_text":"years","type":"integer"}]}],"text":"Tell us the name and age of your siblings","uuid":"76a8f680-4540-012f-9ea4-00254bc472f4","type":"repeater"}],"display_order":0,"title":"Complicated questions"}],"title":"Kitchen Sink survey"}

@@ -32,7 +32,7 @@
   self = [super initWithStyle:UITableViewStylePlain];
   if (self) {
     self.survey = survey;
-    self.surveyNSD = [[self.survey.jsonString objectFromJSONString] objectForKey:@"survey"];
+    self.surveyNSD = [self.survey.jsonString objectFromJSONString];
     
     self.sectionTVC = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.sectionTVC.responseSet = responseSet;

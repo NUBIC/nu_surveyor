@@ -1,6 +1,4 @@
-{
-"survey":{
-"sections":[{
+{"sections":[{
 "questions_and_groups":[{
 "pick":"one","text":"What does {{name}} wear these days?","uuid":"17a942d0-5c09-012f-9ef2-00254bc472f4","answers":[{
 "uuid":"17ac3800-5c09-012f-9ef2-00254bc472f4","text":"The handlebar"},{
@@ -29,4 +27,4 @@
 "text":"What is the best kind of facial hair for {{name}}?","uuid":"17bdac90-5c09-012f-9ef2-00254bc472f4","answers":[{
 "uuid":"17bdd9d0-5c09-012f-9ef2-00254bc472f4","text":"The {{site}}","post_text":"of course","type":"string"}]},{
 "text":"Why did you choose this for {{name}}?","uuid":"17be0060-5c09-012f-9ef2-00254bc472f4","answers":[{
-"uuid":"17be2fc0-5c09-012f-9ef2-00254bc472f4","text":"Given the realities of {{site}}, I believe","type":"text"}]}],"display_order":0,"title":"Styles"}],"title":"Mustache"}}
+"uuid":"17be2fc0-5c09-012f-9ef2-00254bc472f4","text":"Given the realities of {{site}}, I believe","type":"text"}]}],"display_order":0,"title":"Styles"}],"title":"Mustache"}

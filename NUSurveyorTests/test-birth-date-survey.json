@@ -1,4 +1,3 @@
-{"survey":
 {"sections":[
 {"questions_and_groups":[
 {"pick":"one","text":"Is this your birth date?","uuid":"504ad9a0-566d-012f-9ede-00254bc472f4","answers":[
@@ -15,4 +14,4 @@
 {"text":"Review","uuid":"505ee040-566d-012f-9ede-00254bc472f4","type":"label","dependency":
 {"conditions":[
 {"operator":"==","answer":"504df680-566d-012f-9ede-00254bc472f4","question":"504ad9a0-566d-012f-9ede-00254bc472f4","rule_key":"A"},
-{"operator":"==","answer":"504e1a90-566d-012f-9ede-00254bc472f4","question":"504ad9a0-566d-012f-9ede-00254bc472f4","rule_key":"B"}],"rule":"A or B"}}],"display_order":0,"title":"One"}],"title":"Birth date"}}
+{"operator":"==","answer":"504e1a90-566d-012f-9ede-00254bc472f4","question":"504ad9a0-566d-012f-9ede-00254bc472f4","rule_key":"B"}],"rule":"A or B"}}],"display_order":0,"title":"One"}],"title":"Birth date"}
