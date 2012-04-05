@@ -41,11 +41,13 @@ NSDate* completedAt;
 
 - (void)testToDict {
     NSDictionary* actual = [rs toDict];
-    STAssertEqualObjects([actual objectForKey:@"uuid"], @"OVAL", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"survey_id"], @"RECT", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"created_at"], @"1970-02-04T05:15:30Z", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"completed_at"], @"1990-03-06T07:21:42Z", @"Wrong value");
-    STAssertEquals([[actual objectForKey:@"responses"] count], 2U, @"Wrong size");
+    [self assertResponseSet:actual uuid:@"OVAL"  surveyId:@"RECT" createdAt:@"1970-02-04T05:15:30Z" completedAt:@"1990-03-06T07:21:42Z" responses:2];
+}
+
+- (void)testToDictWithNullUUID {
+    rs.uuid = NULL;
+    NSDictionary* actual = [rs toDict];
+    [self assertResponseSet:actual uuid:NULL  surveyId:@"RECT" createdAt:@"1970-02-04T05:15:30Z" completedAt:@"1990-03-06T07:21:42Z" responses:2];
 }
 
 - (void) testToJson {
@@ -55,6 +57,16 @@ NSDate* completedAt;
     STAssertTrue([actual rangeOfString:@"\"created_at\":\"1970-02-04T05:15:30Z\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"completed_at\":\"1990-03-06T07:21:42Z\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"responses\":["].location != NSNotFound, @"Should exist");
+}
+
+#pragma mark Helper Methods
+
+- (void)assertResponseSet:(NSDictionary *)actual uuid:(NSString*)uuid surveyId:(NSString*)surveyId createdAt:(NSString*)createdAt completedAt:(NSString*)completedAt responses:(NSInteger)responses {
+    STAssertEqualObjects([actual objectForKey:@"uuid"], uuid, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"survey_id"], surveyId, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"created_at"], createdAt, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"completed_at"], completedAt, @"Wrong value");
+    STAssertEquals(((NSInteger)[[actual objectForKey:@"responses"] count]), responses, @"Wrong size");
 }
 
 @end

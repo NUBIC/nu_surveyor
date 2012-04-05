@@ -11,4 +11,7 @@
 
 @interface NUResponseSetTest : NUDatabaseTest
 
+- (void)assertResponseSet:(NSDictionary *)actual uuid:(NSString*)uuid surveyId:(NSString*)surveyId createdAt:(NSString*)createdAt completedAt:(NSString*)completedAt responses:(NSInteger)responses;
+
+    
 @end
