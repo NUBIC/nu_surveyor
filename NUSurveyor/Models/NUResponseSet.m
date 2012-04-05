@@ -366,4 +366,23 @@
   return [self.toDict JSONString];
 }
 
+- (void) fromJson:(NSString *)jsonString {
+  NSDictionary *jsonData = [jsonString objectFromJSONString];
+  [self setValue:[jsonData objectForKey:@"uuid"] forKey:@"uuid"];
+  [self setValue:[jsonData objectForKey:@"survey_id"] forKey:@"survey"];
+  [self setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[jsonData objectForKey:@"created_at"]] forKey:@"createdAt"];
+  [self setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[jsonData objectForKey:@"completed_at"]] forKey:@"completedAt"];
+  
+  for (NSDictionary *response in [jsonData objectForKey:@"responses"]) {
+    NSEntityDescription *entity = [[[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName] objectForKey:@"Response"];
+    NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    [newResponse setValue:self forKey:@"responseSet"];
+    [newResponse setValue:[response objectForKey:@"question_id"] forKey:@"question"];
+    [newResponse setValue:[response objectForKey:@"answer_id"] forKey:@"answer"];
+    [newResponse setValue:[response objectForKey:@"value"] forKey:@"value"];
+    [newResponse setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[response objectForKey:@"created_at"]] forKey:@"createdAt"];
+    [newResponse setValue:[response objectForKey:@"uuid"] forKey:@"uuid"];
+  }
+}
+
 @end

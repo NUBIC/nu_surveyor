@@ -32,5 +32,5 @@
 - (NSMutableDictionary *) evaluateConditions:(NSArray *)conditions;
 - (NSDictionary*) toDict;
 - (NSString*) toJson;
-
+- (void) fromJson:(NSString *)jsonString;
 @end
