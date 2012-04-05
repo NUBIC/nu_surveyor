@@ -40,12 +40,13 @@ NSDate* modifiedAt;
 
 - (void)testToDict {
     NSDictionary* actual = [response toDict];
-    STAssertEqualObjects([actual objectForKey:@"value"], @"foo", @"Wrong value");    
-    STAssertEqualObjects([actual objectForKey:@"answer_id"], @"123", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"question_id"], @"abc", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"uuid"], @"OCT", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"created_at"], @"1970-02-04T05:15:30Z", @"Wrong value");
-    STAssertEqualObjects([actual objectForKey:@"modified_at"], @"1990-03-06T07:21:42Z", @"Wrong value");
+    [self assertResponse:actual uuid:@"OCT" answerId:@"123" questionId:@"abc" value:@"foo" createdAt:@"1970-02-04T05:15:30Z" modifiedAt:@"1990-03-06T07:21:42Z"];
+}
+
+- (void)testToDictWithNullValue {
+    [response setValue:NULL forKey:@"value"];
+    NSDictionary* actual = [response toDict];
+    [self assertResponse:actual uuid:@"OCT" answerId:@"123" questionId:@"abc" value:NULL createdAt:@"1970-02-04T05:15:30Z" modifiedAt:@"1990-03-06T07:21:42Z"];
 }
 
 - (void)testToJson {
@@ -56,6 +57,16 @@ NSDate* modifiedAt;
     STAssertTrue([actual rangeOfString:@"\"uuid\":\"OCT\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"created_at\":\"1970-02-04T05:15:30Z\""].location != NSNotFound, @"Should exist");
     STAssertTrue([actual rangeOfString:@"\"modified_at\":\"1990-03-06T07:21:42Z\""].location != NSNotFound, @"Should exist");
+}
+
+#pragma mark Helper Methods
+- (void)assertResponse:(NSDictionary*)actual uuid:(NSString*)uuid answerId:(NSString*)answerId questionId:(NSString*)questionId value:(NSString*)value createdAt:(NSString*)createdAt modifiedAt:(NSString*)modifiedAt {
+    STAssertEqualObjects([actual objectForKey:@"uuid"], uuid, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"value"], value, @"Wrong value");    
+    STAssertEqualObjects([actual objectForKey:@"answer_id"], answerId, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"question_id"], questionId, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"created_at"], createdAt, @"Wrong value");
+    STAssertEqualObjects([actual objectForKey:@"modified_at"], modifiedAt, @"Wrong value");
 }
 
 @end

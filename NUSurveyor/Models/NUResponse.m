@@ -16,13 +16,15 @@
     NSString* createdAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"createdAt"]];
     NSString* modifiedAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"modifiedAt"]];
     
-    return [[NSDictionary alloc] initWithObjectsAndKeys:
-            [self valueForKey:@"uuid"], @"uuid",
-            [self valueForKey:@"answer"], @"answer_id",
-            [self valueForKey:@"question"], @"question_id",
-            [self valueForKey:@"value"], @"value",
-            createdAt, @"created_at",
-            modifiedAt, @"modified_at", nil];
+    NSMutableDictionary* d = [NSMutableDictionary new];
+    [d setValue:[self valueForKey:@"uuid"] forKey:@"uuid"];
+    [d setValue:[self valueForKey:@"answer"] forKey:@"answer_id"];
+    [d setValue:[self valueForKey:@"question"] forKey:@"question_id"];
+    [d setValue:[self valueForKey:@"value"] forKey:@"value"];
+    [d setValue:createdAt forKey:@"created_at"];
+    [d setValue:modifiedAt forKey:@"modified_at"];
+    
+    return d;
 }
 
 - (NSString*) toJson {

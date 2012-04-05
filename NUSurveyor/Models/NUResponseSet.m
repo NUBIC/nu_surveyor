@@ -352,13 +352,14 @@
     }
     NSString* createdAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"createdAt"]];
     NSString* completedAt = [[NSDateFormatter rfc3339DateFormatter] stringFromDate:[self valueForKey:@"completedAt"]];
-    return [[NSDictionary alloc]initWithObjectsAndKeys:
-            [self valueForKey:@"uuid"], @"uuid",
-            [self valueForKey:@"survey"], @"survey_id",
-            createdAt, @"created_at",
-            completedAt, @"completed_at",
-            [self valueForKey:@"completedAt"], @"created_at",
-            responseDictionaries, @"responses", nil];
+
+    NSMutableDictionary* d = [NSMutableDictionary new];
+    [d setValue:[self valueForKey:@"uuid"] forKey:@"uuid"];
+    [d setValue:[self valueForKey:@"survey"] forKey:@"survey_id"];
+    [d setValue:createdAt forKey:@"created_at"];
+    [d setValue:completedAt forKey:@"completed_at"];
+    [d setValue:responseDictionaries forKey:@"responses"];
+    return d;
 }
 
 - (NSString*) toJson {
