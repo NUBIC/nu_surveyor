@@ -19,7 +19,8 @@
 @end
 
 @implementation NUSurveyTVC
-@synthesize sectionTVC = _sectionTVC, survey = _survey, surveyNSD = _surveyNSD, currentSection = _currentSection;
+@synthesize sectionTVC = _sectionTVC, survey = _survey, delegate = _delegate;
+@synthesize surveyNSD = _surveyNSD, currentSection = _currentSection;
 
 #pragma mark - Memory management
 
@@ -223,7 +224,8 @@
 }
 - (void) showSection:(NSUInteger)index {
   self.currentSection = index;
-  
+  self.sectionTVC.prevSectionTitle = (index == 0 ? nil : [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index-1] objectForKey:@"title"]);
+  self.sectionTVC.nextSectionTitle = (index == [[self.surveyNSD objectForKey:@"sections"] count] - 1 ? nil : [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index+1] objectForKey:@"title"]);
   [self.sectionTVC setDetailItem:[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index]];
   [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
   self.sectionTVC.pageControl.currentPage = index;
@@ -241,6 +243,9 @@
     [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     [self showSection:indexPath.row];
   }
+}
+- (void) surveyDone{
+  [self.delegate surveyDone];
 }
 
 @end

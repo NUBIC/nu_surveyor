@@ -86,10 +86,12 @@
   self.titleLabel.font = [UIFont boldSystemFontOfSize:16.0];
   [self setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self setTitleShadowColor:RGB(46.0, 100.0, 189.0) forState:UIControlStateSelected|UIControlStateHighlighted];
+  [self setTitleShadowColor:RGB(46.0, 100.0, 189.0) forState:UIControlStateHighlighted];
   self.titleLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
   
   [self setTitleColor:RGB(122.0, 122.0, 122.0) forState:UIControlStateNormal];
   [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected|UIControlStateHighlighted];
+  [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
   [self setContentEdgeInsets:UIEdgeInsetsMake(7.0, 4.0, 7.0, 4.0)];
   
   [self sizeToFit];

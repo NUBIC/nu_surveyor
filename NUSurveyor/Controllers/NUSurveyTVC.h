@@ -11,14 +11,21 @@
 #import "NUSurvey.h"
 #import "NUResponseSet.h"
 
+@class NUSurveyTVC;
+
+@protocol NUSurveyTVCDelegate
+- (void)surveyDone;
+@end
+
 @interface NUSurveyTVC : UITableViewController <NUSectionTVCDelegate>
 
 @property (nonatomic, strong) NUSectionTVC *sectionTVC;
 @property (nonatomic, strong) NUSurvey *survey;
+@property (nonatomic, weak) id <NUSurveyTVCDelegate> delegate;
 
 - (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet;
 - (id)initWithSurvey:(NUSurvey *)survey responseSet:(NUResponseSet *)responseSet renderContext:(id)renderContext;
 - (void) nextSection;
 - (void) prevSection;
-
+- (void) surveyDone;
 @end

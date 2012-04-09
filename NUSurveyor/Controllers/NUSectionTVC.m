@@ -9,12 +9,14 @@
 #import "NUSectionTVC.h"
 #import "UUID.h"
 #import "UILabel+NUResize.h"
+#import "NUButton.h"
 
 @interface NUSectionTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 @property (nonatomic, retain) UIView *cursorView;
 // Table and section headers
 - (void)createHeader;
+- (void)createFooter;
 - (UIView  *)headerViewWithTitle:(NSString *)title SubTitle:(NSString *)subTitle;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
 - (NSString *)tableView:(UITableView *)tableView subTitleForHeaderInSection:(NSInteger)section;
@@ -29,7 +31,7 @@
 
 @implementation NUSectionTVC
 @synthesize cursorView = _cursorView;
-@synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, delegate = _delegate, renderContext = _renderContext;
+@synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, prevSectionTitle = _prevSectionTitle, nextSectionTitle = _nextSectionTitle, delegate = _delegate, renderContext = _renderContext;
 
 #pragma mark - Utility class methods
 + (NSString *) classNameForQuestion:(NSDictionary *)questionOrGroup answer:(NSDictionary *)answer {
@@ -175,6 +177,7 @@
 { 
   
   [self createHeader];
+  [self createFooter];
   self.visibleHeaders = nil;
   self.allSections = nil;
   self.visibleSections = nil;
@@ -361,18 +364,45 @@
   BOOL isGrouped = self.tableView.style == UITableViewStyleGrouped;
   const CGFloat HorizontalMargin = isGrouped ? 20.0 : 5.0;
   const CGFloat VerticalMargin = 10.0;
+  CGFloat y = VerticalMargin;
   
   UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
-  UILabel *section_title = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, VerticalMargin, self.tableView.bounds.size.width - (2 * HorizontalMargin), 22.0)];
+  if (self.prevSectionTitle) {
+    CGFloat height = 32.0;
+    NUButton *prevSectionButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, y, 100.0, height)];
+    [prevSectionButton setTitle:[NSString stringWithFormat:@"Previous: %@", self.prevSectionTitle] forState:UIControlStateNormal];    
+    [prevSectionButton addTarget:self.delegate action:@selector(prevSection) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:prevSectionButton];
+    y+= height + VerticalMargin;
+  }
+  UILabel *section_title = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, y, self.tableView.bounds.size.width - (2 * HorizontalMargin), 22.0)];
   section_title.text = [self.detailItem valueForKey:@"title"];
   [section_title setUpMultiLineVerticalResizeWithFontSize:22.0];
-  section_title.backgroundColor = isGrouped ?
-  [UIColor clearColor] :
-  [UIColor colorWithRed:0.46 green:0.52 blue:0.56 alpha:0.5];
-  headerView.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, section_title.frame.size.height + (2 * VerticalMargin));
+  section_title.backgroundColor = isGrouped ? [UIColor clearColor] : [UIColor colorWithRed:0.46 green:0.52 blue:0.56 alpha:0.5];
+  y += section_title.frame.size.height + VerticalMargin;
+  headerView.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, y);
   [headerView addSubview:section_title];
-  self.tableView.tableHeaderView = headerView;  
+  self.tableView.tableHeaderView = headerView;
 }
+- (void)createFooter{
+  // Section title
+  BOOL isGrouped = self.tableView.style == UITableViewStyleGrouped;
+  const CGFloat HorizontalMargin = isGrouped ? 20.0 : 5.0;
+  const CGFloat VerticalMargin = 10.0;
+  CGFloat y = VerticalMargin;
+  CGFloat height = 32.0;
+  
+  UIView *footerView = [[UIView alloc] initWithFrame:CGRectZero];
+  NUButton *nextSectionOrDoneButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, y, 100.0, height)];
+  [nextSectionOrDoneButton setTitle:(self.nextSectionTitle ? [NSString stringWithFormat:@"Next: %@", self.nextSectionTitle] : @"Done") forState:UIControlStateNormal];    
+  nextSectionOrDoneButton.frame = CGRectMake(self.tableView.frame.size.width - nextSectionOrDoneButton.frame.size.width - HorizontalMargin, y, nextSectionOrDoneButton.frame.size.width, height);
+  [nextSectionOrDoneButton addTarget:self.delegate action:(self.nextSectionTitle ? @selector(nextSection) : @selector(surveyDone)) forControlEvents:UIControlEventTouchUpInside];
+  [footerView addSubview:nextSectionOrDoneButton];
+  y+= height + VerticalMargin*4;
+  footerView.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, y);
+  self.tableView.tableFooterView = footerView;
+}
+
 - (UIView  *)headerViewWithTitle:(NSString *)title SubTitle:(NSString *)subTitle {
   
   BOOL isGrouped = self.tableView.style == UITableViewStyleGrouped;

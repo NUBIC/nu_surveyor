@@ -16,6 +16,7 @@
 @protocol NUSectionTVCDelegate
 - (void)prevSection;
 - (void)nextSection;
+- (void)surveyDone;
 @end
 
 @interface NUSectionTVC : UITableViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) NSMutableArray *visibleSections;
 @property (nonatomic, strong) NSMutableArray *allSections;
 @property (nonatomic, strong) NSMutableArray *visibleHeaders;
+@property (nonatomic, strong) NSString *prevSectionTitle;
+@property (nonatomic, strong) NSString *nextSectionTitle;
 @property (nonatomic, weak) id <NUSectionTVCDelegate> delegate;
 @property (nonatomic, strong) id renderContext;
 
