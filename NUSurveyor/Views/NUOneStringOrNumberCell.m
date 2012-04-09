@@ -26,7 +26,7 @@
     
     CGFloat fontSize = [UIFont labelFontSize] - 2;
     UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
-    //    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.label = [[UILabel alloc] init];
     self.textField = [[UITextField alloc] init];
@@ -50,6 +50,7 @@
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     self.textField.autoresizingMask = UIViewAutoresizingNone;
+    self.textField.userInteractionEnabled = NO;
     [self.contentView addSubview:self.textField];
     
     // (post) text
@@ -146,11 +147,12 @@
 	}
   [(NUOneCell *)[tableView cellForRowAtIndexPath:indexPath] dot];
   if (self.textField.hidden == NO) {
+    self.textField.userInteractionEnabled = YES;
     [self.textField becomeFirstResponder];
     // let the text field delegate (NUSectionTVC) handle the response creation
   }
 	[self.sectionTVC newResponseForIndexPath:indexPath];
-  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//  [self.sectionTVC.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (void) resetContent {
   [self.label setHidden:NO];

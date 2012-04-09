@@ -608,14 +608,12 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
   self.cursorView = textField;
-  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
-  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"]) {
-    [cell performSelector:@selector(check)];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  } else if ([cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"]) {
-    [cell performSelector:@selector(dot)];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  }
+//  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
+//  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"]) {
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//  } else if ([cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"]) {
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//  }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
@@ -625,10 +623,13 @@
   UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
   NSIndexPath *idx = [self.tableView indexPathForCell:cell];
   [self deleteResponseForIndexPath:idx];
-  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"] || [cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"] || (textField.text != nil && ![textField.text isEqualToString:@""])) {
+  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"] || [cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"]) {
     [self newResponseForIndexPath:idx Value:textField.text];
-    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    textField.userInteractionEnabled = NO;
+  } else if((textField.text != nil && ![textField.text isEqualToString:@""])){
+    [self newResponseForIndexPath:idx Value:textField.text];    
   }
+  
   [self showAndHideDependenciesTriggeredBy:idx];
   self.cursorView = nil;
 }
