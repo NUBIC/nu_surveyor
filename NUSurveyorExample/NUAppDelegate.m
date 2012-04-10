@@ -12,6 +12,8 @@
 #import "NUSectionTVC.h"
 #import "UUID.h"
 
+#import "SectionTVCTest.h"
+
 @implementation NUAppDelegate
 
 @synthesize window = _window;
@@ -37,6 +39,14 @@
     [self loadSurvey:@"kitchen-sink-survey"];
   }
 	[self.window makeKeyAndVisible];
+  
+#if RUN_KIF_TESTS
+  [[SectionTVCTest sharedInstance] startTestingWithCompletionBlock:^{
+    // Exit after the tests complete so that CI knows we're done
+    exit([[SectionTVCTest sharedInstance] failureCount]);
+  }];
+#endif
+  
 	return YES;
 }
 

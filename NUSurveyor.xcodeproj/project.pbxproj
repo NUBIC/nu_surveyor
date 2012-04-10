@@ -70,6 +70,25 @@
 		3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B2614C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */; };
 		3BE8673014CDF145002D04BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
+		3BF20CFD15339792008227B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B114D09454009CC8C3 /* main.m */; };
+		3BF20CFE15339792008227B2 /* NUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B514D09454009CC8C3 /* NUAppDelegate.m */; };
+		3BF20CFF15339792008227B2 /* NUSurveyorExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */; };
+		3BF20D0015339792008227B2 /* NUSpyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A8B15210AB400A8C20C /* NUSpyVC.m */; };
+		3BF20D0215339792008227B2 /* libNUSurveyor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */; };
+		3BF20D0315339792008227B2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
+		3BF20D0415339792008227B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
+		3BF20D0515339792008227B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
+		3BF20D0615339792008227B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
+		3BF20D0715339792008227B2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
+		3BF20D0915339792008227B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49AE14D09454009CC8C3 /* InfoPlist.strings */; };
+		3BF20D0A15339792008227B2 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */; };
+		3BF20D0B15339792008227B2 /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
+		3BF20D0C15339792008227B2 /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
+		3BF20D0D15339792008227B2 /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
+		3BF20D2015339930008227B2 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
+		3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
+		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; };
+		3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF20E9B1533A041008227B2 /* libKIF.a */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E21524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E51524FA07008D3A9A /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970E31524FA07008D3A9A /* JSONKit.h */; };
@@ -148,6 +167,34 @@
 			remoteGlobalIDString = 3BD52AA014C8B43500AB61E8;
 			remoteInfo = NUSurveyor;
 		};
+		3BF20E9A1533A041008227B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BF20E371533A040008227B2 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAB07268139719AC008AF393;
+			remoteInfo = KIF;
+		};
+		3BF20E9D1533A041008227B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BF20E5F1533A040008227B2 /* KIF.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAB07268139719AC008AF393;
+			remoteInfo = KIF;
+		};
+		3BF20EA11533A041008227B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BF20E511533A040008227B2 /* Testable.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAB073A8139861C0008AF393;
+			remoteInfo = Testable;
+		};
+		3BF20EA31533A041008227B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BF20E511533A040008227B2 /* Testable.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AAB073DF13994E20008AF393;
+			remoteInfo = "Integration Tests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +267,96 @@
 		3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+NUResize.h"; path = "Views/UILabel+NUResize.h"; sourceTree = "<group>"; };
 		3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+NUResize.m"; path = "Views/UILabel+NUResize.m"; sourceTree = "<group>"; };
 		3BE8672F14CDF145002D04BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KIF NUSurveyorExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BF20D1515339792008227B2 /* NUSurveyorExample copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NUSurveyorExample copy2-Info.plist"; path = "/Users/markyoon/ios/nu_surveyor/NUSurveyorExample copy2-Info.plist"; sourceTree = "<absolute>"; };
+		3BF20D1E15339930008227B2 /* SectionTVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionTVCTest.h; path = KIF/SectionTVCTest.h; sourceTree = "<group>"; };
+		3BF20D1F15339930008227B2 /* SectionTVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionTVCTest.m; path = KIF/SectionTVCTest.m; sourceTree = "<group>"; };
+		3BF20D24153399DA008227B2 /* KIFTestScenario+SectionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFTestScenario+SectionAdditions.h"; path = "KIF/KIFTestScenario+SectionAdditions.h"; sourceTree = "<group>"; };
+		3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KIFTestScenario+SectionAdditions.m"; path = "KIF/KIFTestScenario+SectionAdditions.m"; sourceTree = "<group>"; };
+		3BF20D2715339A6F008227B2 /* KIFTestStep+SectionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFTestStep+SectionAdditions.h"; path = "KIF/KIFTestStep+SectionAdditions.h"; sourceTree = "<group>"; };
+		3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KIFTestStep+SectionAdditions.m"; path = "KIF/KIFTestStep+SectionAdditions.m"; sourceTree = "<group>"; };
+		3BF20DFD1533A040008227B2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3BF20DFF1533A040008227B2 /* CGGeometry-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E001533A040008227B2 /* CGGeometry-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E011533A040008227B2 /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableCategory.h; sourceTree = "<group>"; };
+		3BF20E021533A040008227B2 /* NSFileManager-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E031533A040008227B2 /* NSFileManager-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E041533A040008227B2 /* UIAccessibilityElement-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAccessibilityElement-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E051533A040008227B2 /* UIAccessibilityElement-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAccessibilityElement-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E061533A040008227B2 /* UIApplication-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E071533A040008227B2 /* UIApplication-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E081533A040008227B2 /* UIScrollView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E091533A040008227B2 /* UIScrollView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E0A1533A040008227B2 /* UITouch-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E0B1533A040008227B2 /* UITouch-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E0C1533A040008227B2 /* UIView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E0D1533A040008227B2 /* UIView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E0E1533A040008227B2 /* UIWindow-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E0F1533A040008227B2 /* UIWindow-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E111533A040008227B2 /* KIF-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIF-Prefix.pch"; sourceTree = "<group>"; };
+		3BF20E121533A040008227B2 /* KIFTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestController.h; sourceTree = "<group>"; };
+		3BF20E131533A040008227B2 /* KIFTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestController.m; sourceTree = "<group>"; };
+		3BF20E141533A040008227B2 /* KIFTestScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestScenario.h; sourceTree = "<group>"; };
+		3BF20E151533A040008227B2 /* KIFTestScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestScenario.m; sourceTree = "<group>"; };
+		3BF20E161533A040008227B2 /* KIFTestStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestStep.h; sourceTree = "<group>"; };
+		3BF20E171533A040008227B2 /* KIFTestStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestStep.m; sourceTree = "<group>"; };
+		3BF20E1E1533A040008227B2 /* CGGeometry-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E1F1533A040008227B2 /* CGGeometry-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E201533A040008227B2 /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableCategory.h; sourceTree = "<group>"; };
+		3BF20E211533A040008227B2 /* NSFileManager-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E221533A040008227B2 /* NSFileManager-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E231533A040008227B2 /* UIAccessibilityElement-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAccessibilityElement-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E241533A040008227B2 /* UIAccessibilityElement-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAccessibilityElement-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E251533A040008227B2 /* UIApplication-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E261533A040008227B2 /* UIApplication-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E271533A040008227B2 /* UIScrollView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E281533A040008227B2 /* UIScrollView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E291533A040008227B2 /* UITouch-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E2A1533A040008227B2 /* UITouch-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E2B1533A040008227B2 /* UIView-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E2C1533A040008227B2 /* UIView-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E2D1533A040008227B2 /* UIWindow-KIFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow-KIFAdditions.h"; sourceTree = "<group>"; };
+		3BF20E2E1533A040008227B2 /* UIWindow-KIFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow-KIFAdditions.m"; sourceTree = "<group>"; };
+		3BF20E301533A040008227B2 /* KIF-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIF-Prefix.pch"; sourceTree = "<group>"; };
+		3BF20E311533A040008227B2 /* KIFTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestController.h; sourceTree = "<group>"; };
+		3BF20E321533A040008227B2 /* KIFTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestController.m; sourceTree = "<group>"; };
+		3BF20E331533A040008227B2 /* KIFTestScenario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestScenario.h; sourceTree = "<group>"; };
+		3BF20E341533A040008227B2 /* KIFTestScenario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestScenario.m; sourceTree = "<group>"; };
+		3BF20E351533A040008227B2 /* KIFTestStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KIFTestStep.h; sourceTree = "<group>"; };
+		3BF20E361533A040008227B2 /* KIFTestStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KIFTestStep.m; sourceTree = "<group>"; };
+		3BF20E371533A040008227B2 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KIF.xcodeproj; sourceTree = "<group>"; };
+		3BF20E3A1533A040008227B2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3BF20E3B1533A040008227B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3BF20E3E1533A040008227B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3BF20E401533A040008227B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		3BF20E421533A040008227B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		3BF20E431533A040008227B2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3BF20E441533A040008227B2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		3BF20E451533A040008227B2 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		3BF20E461533A040008227B2 /* Testable-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Testable-Info.plist"; sourceTree = "<group>"; };
+		3BF20E471533A040008227B2 /* Testable-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Testable-Prefix.pch"; sourceTree = "<group>"; };
+		3BF20E481533A040008227B2 /* TestableAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestableAppDelegate.h; sourceTree = "<group>"; };
+		3BF20E491533A040008227B2 /* TestableAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestableAppDelegate.m; sourceTree = "<group>"; };
+		3BF20E4B1533A040008227B2 /* EXTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTestController.h; sourceTree = "<group>"; };
+		3BF20E4C1533A040008227B2 /* EXTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXTestController.m; sourceTree = "<group>"; };
+		3BF20E4D1533A040008227B2 /* KIFTestScenario+EXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestScenario+EXAdditions.h"; sourceTree = "<group>"; };
+		3BF20E4E1533A040008227B2 /* KIFTestScenario+EXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestScenario+EXAdditions.m"; sourceTree = "<group>"; };
+		3BF20E4F1533A040008227B2 /* KIFTestStep+EXAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KIFTestStep+EXAdditions.h"; sourceTree = "<group>"; };
+		3BF20E501533A040008227B2 /* KIFTestStep+EXAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KIFTestStep+EXAdditions.m"; sourceTree = "<group>"; };
+		3BF20E511533A040008227B2 /* Testable.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Testable.xcodeproj; sourceTree = "<group>"; };
+		3BF20E551533A040008227B2 /* Add Category Linker Flags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add Category Linker Flags.png"; sourceTree = "<group>"; };
+		3BF20E561533A040008227B2 /* Add Header Search Paths.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add Header Search Paths.png"; sourceTree = "<group>"; };
+		3BF20E571533A040008227B2 /* Add KIF Preprocessor Macro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add KIF Preprocessor Macro.png"; sourceTree = "<group>"; };
+		3BF20E581533A040008227B2 /* Add Library Sheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add Library Sheet.png"; sourceTree = "<group>"; };
+		3BF20E591533A040008227B2 /* Add Library.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add Library.png"; sourceTree = "<group>"; };
+		3BF20E5A1533A040008227B2 /* Create Workspace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Create Workspace.png"; sourceTree = "<group>"; };
+		3BF20E5B1533A040008227B2 /* Duplicate Target Confirmation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Duplicate Target Confirmation.png"; sourceTree = "<group>"; };
+		3BF20E5C1533A040008227B2 /* Duplicate Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Duplicate Target.png"; sourceTree = "<group>"; };
+		3BF20E5D1533A040008227B2 /* Rename Product.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rename Product.png"; sourceTree = "<group>"; };
+		3BF20E5E1533A040008227B2 /* Rename Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rename Target.png"; sourceTree = "<group>"; };
+		3BF20E5F1533A040008227B2 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KIF.xcodeproj; sourceTree = "<group>"; };
+		3BF20E621533A040008227B2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3BF20E631533A040008227B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		3BF970E01524F9DC008D3A9A /* mustache.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mustache.json; sourceTree = "<group>"; };
 		3BF970E31524FA07008D3A9A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		3BF970E41524FA07008D3A9A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = "<group>"; };
@@ -264,7 +401,7 @@
 		67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyorExample.xcdatamodel; sourceTree = "<group>"; };
 		67DB49D514D09713009CC8C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
-		67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NUSurveyorExample copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frank NUSurveyorExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67DB4A0814D09EB6009CC8C3 /* my_first.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = my_first.feature; sourceTree = "<group>"; };
 		67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = launch_steps.rb; sourceTree = "<group>"; };
 		67DB4A0C14D09EB6009CC8C3 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
@@ -299,6 +436,20 @@
 				3BD52AB314C8B43500AB61E8 /* SenTestingKit.framework in Frameworks */,
 				3BD52AB614C8B43500AB61E8 /* Foundation.framework in Frameworks */,
 				3BD52AB914C8B43500AB61E8 /* libNUSurveyor.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BF20D0115339792008227B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */,
+				3BF20D0215339792008227B2 /* libNUSurveyor.a in Frameworks */,
+				3BF20D0315339792008227B2 /* QuartzCore.framework in Frameworks */,
+				3BF20D0415339792008227B2 /* UIKit.framework in Frameworks */,
+				3BF20D0515339792008227B2 /* Foundation.framework in Frameworks */,
+				3BF20D0615339792008227B2 /* CoreGraphics.framework in Frameworks */,
+				3BF20D0715339792008227B2 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,9 +527,11 @@
 				3BD52ABA14C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49AB14D09454009CC8C3 /* NUSurveyorExample */,
 				67DB4A0614D09EB6009CC8C3 /* Frank */,
+				3BF20D1D153398E6008227B2 /* KIF */,
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
 				67DB49D514D09713009CC8C3 /* README.md */,
+				3BF20D1515339792008227B2 /* NUSurveyorExample copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -388,7 +541,8 @@
 				3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */,
 				3BD52AB114C8B43500AB61E8 /* NUSurveyorTests.octest */,
 				67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */,
-				67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */,
+				67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */,
+				3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,6 +552,7 @@
 			children = (
 				3B6588521524DFD2007DCAEB /* GRMustache */,
 				3B44F2DB1524C4CA0060B41F /* JSONKit */,
+				3BF20DFC1533A040008227B2 /* KIF */,
 				67DB4A1614D09ED0009CC8C3 /* CFNetwork.framework */,
 				671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */,
 				3BE8672F14CDF145002D04BD /* QuartzCore.framework */,
@@ -526,6 +681,230 @@
 				3BD52ADE14C8B62600AB61E8 /* NUPickerVC.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3BF20D1D153398E6008227B2 /* KIF */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20D1E15339930008227B2 /* SectionTVCTest.h */,
+				3BF20D1F15339930008227B2 /* SectionTVCTest.m */,
+				3BF20D24153399DA008227B2 /* KIFTestScenario+SectionAdditions.h */,
+				3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */,
+				3BF20D2715339A6F008227B2 /* KIFTestStep+SectionAdditions.h */,
+				3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */,
+			);
+			name = KIF;
+			sourceTree = "<group>";
+		};
+		3BF20DFC1533A040008227B2 /* KIF */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20DFD1533A040008227B2 /* .gitignore */,
+				3BF20DFE1533A040008227B2 /* Additions */,
+				3BF20E101533A040008227B2 /* Classes */,
+				3BF20E181533A040008227B2 /* Documentation */,
+				3BF20E5F1533A040008227B2 /* KIF.xcodeproj */,
+				3BF20E621533A040008227B2 /* LICENSE */,
+				3BF20E631533A040008227B2 /* README.md */,
+			);
+			name = KIF;
+			path = ../KIF;
+			sourceTree = "<group>";
+		};
+		3BF20DFE1533A040008227B2 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20DFF1533A040008227B2 /* CGGeometry-KIFAdditions.h */,
+				3BF20E001533A040008227B2 /* CGGeometry-KIFAdditions.m */,
+				3BF20E011533A040008227B2 /* LoadableCategory.h */,
+				3BF20E021533A040008227B2 /* NSFileManager-KIFAdditions.h */,
+				3BF20E031533A040008227B2 /* NSFileManager-KIFAdditions.m */,
+				3BF20E041533A040008227B2 /* UIAccessibilityElement-KIFAdditions.h */,
+				3BF20E051533A040008227B2 /* UIAccessibilityElement-KIFAdditions.m */,
+				3BF20E061533A040008227B2 /* UIApplication-KIFAdditions.h */,
+				3BF20E071533A040008227B2 /* UIApplication-KIFAdditions.m */,
+				3BF20E081533A040008227B2 /* UIScrollView-KIFAdditions.h */,
+				3BF20E091533A040008227B2 /* UIScrollView-KIFAdditions.m */,
+				3BF20E0A1533A040008227B2 /* UITouch-KIFAdditions.h */,
+				3BF20E0B1533A040008227B2 /* UITouch-KIFAdditions.m */,
+				3BF20E0C1533A040008227B2 /* UIView-KIFAdditions.h */,
+				3BF20E0D1533A040008227B2 /* UIView-KIFAdditions.m */,
+				3BF20E0E1533A040008227B2 /* UIWindow-KIFAdditions.h */,
+				3BF20E0F1533A040008227B2 /* UIWindow-KIFAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		3BF20E101533A040008227B2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E111533A040008227B2 /* KIF-Prefix.pch */,
+				3BF20E121533A040008227B2 /* KIFTestController.h */,
+				3BF20E131533A040008227B2 /* KIFTestController.m */,
+				3BF20E141533A040008227B2 /* KIFTestScenario.h */,
+				3BF20E151533A040008227B2 /* KIFTestScenario.m */,
+				3BF20E161533A040008227B2 /* KIFTestStep.h */,
+				3BF20E171533A040008227B2 /* KIFTestStep.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3BF20E181533A040008227B2 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E191533A040008227B2 /* Examples */,
+				3BF20E541533A040008227B2 /* Images */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
+		3BF20E191533A040008227B2 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E1A1533A040008227B2 /* Testable */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
+		3BF20E1A1533A040008227B2 /* Testable */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E1B1533A040008227B2 /* Frameworks */,
+				3BF20E3C1533A040008227B2 /* Testable */,
+				3BF20E511533A040008227B2 /* Testable.xcodeproj */,
+			);
+			path = Testable;
+			sourceTree = "<group>";
+		};
+		3BF20E1B1533A040008227B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E1C1533A040008227B2 /* KIF */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BF20E1C1533A040008227B2 /* KIF */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E1D1533A040008227B2 /* Additions */,
+				3BF20E2F1533A040008227B2 /* Classes */,
+				3BF20E371533A040008227B2 /* KIF.xcodeproj */,
+				3BF20E3A1533A040008227B2 /* LICENSE */,
+				3BF20E3B1533A040008227B2 /* README.md */,
+			);
+			path = KIF;
+			sourceTree = "<group>";
+		};
+		3BF20E1D1533A040008227B2 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E1E1533A040008227B2 /* CGGeometry-KIFAdditions.h */,
+				3BF20E1F1533A040008227B2 /* CGGeometry-KIFAdditions.m */,
+				3BF20E201533A040008227B2 /* LoadableCategory.h */,
+				3BF20E211533A040008227B2 /* NSFileManager-KIFAdditions.h */,
+				3BF20E221533A040008227B2 /* NSFileManager-KIFAdditions.m */,
+				3BF20E231533A040008227B2 /* UIAccessibilityElement-KIFAdditions.h */,
+				3BF20E241533A040008227B2 /* UIAccessibilityElement-KIFAdditions.m */,
+				3BF20E251533A040008227B2 /* UIApplication-KIFAdditions.h */,
+				3BF20E261533A040008227B2 /* UIApplication-KIFAdditions.m */,
+				3BF20E271533A040008227B2 /* UIScrollView-KIFAdditions.h */,
+				3BF20E281533A040008227B2 /* UIScrollView-KIFAdditions.m */,
+				3BF20E291533A040008227B2 /* UITouch-KIFAdditions.h */,
+				3BF20E2A1533A040008227B2 /* UITouch-KIFAdditions.m */,
+				3BF20E2B1533A040008227B2 /* UIView-KIFAdditions.h */,
+				3BF20E2C1533A040008227B2 /* UIView-KIFAdditions.m */,
+				3BF20E2D1533A040008227B2 /* UIWindow-KIFAdditions.h */,
+				3BF20E2E1533A040008227B2 /* UIWindow-KIFAdditions.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		3BF20E2F1533A040008227B2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E301533A040008227B2 /* KIF-Prefix.pch */,
+				3BF20E311533A040008227B2 /* KIFTestController.h */,
+				3BF20E321533A040008227B2 /* KIFTestController.m */,
+				3BF20E331533A040008227B2 /* KIFTestScenario.h */,
+				3BF20E341533A040008227B2 /* KIFTestScenario.m */,
+				3BF20E351533A040008227B2 /* KIFTestStep.h */,
+				3BF20E361533A040008227B2 /* KIFTestStep.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3BF20E381533A040008227B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E9B1533A041008227B2 /* libKIF.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BF20E3C1533A040008227B2 /* Testable */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E3D1533A040008227B2 /* InfoPlist.strings */,
+				3BF20E3F1533A040008227B2 /* MainWindow.xib */,
+				3BF20E411533A040008227B2 /* RootViewController.xib */,
+				3BF20E431533A040008227B2 /* main.m */,
+				3BF20E441533A040008227B2 /* RootViewController.h */,
+				3BF20E451533A040008227B2 /* RootViewController.m */,
+				3BF20E461533A040008227B2 /* Testable-Info.plist */,
+				3BF20E471533A040008227B2 /* Testable-Prefix.pch */,
+				3BF20E481533A040008227B2 /* TestableAppDelegate.h */,
+				3BF20E491533A040008227B2 /* TestableAppDelegate.m */,
+				3BF20E4A1533A040008227B2 /* Testing */,
+			);
+			path = Testable;
+			sourceTree = "<group>";
+		};
+		3BF20E4A1533A040008227B2 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E4B1533A040008227B2 /* EXTestController.h */,
+				3BF20E4C1533A040008227B2 /* EXTestController.m */,
+				3BF20E4D1533A040008227B2 /* KIFTestScenario+EXAdditions.h */,
+				3BF20E4E1533A040008227B2 /* KIFTestScenario+EXAdditions.m */,
+				3BF20E4F1533A040008227B2 /* KIFTestStep+EXAdditions.h */,
+				3BF20E501533A040008227B2 /* KIFTestStep+EXAdditions.m */,
+			);
+			path = Testing;
+			sourceTree = "<group>";
+		};
+		3BF20E521533A040008227B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20EA21533A041008227B2 /* Testable.app */,
+				3BF20EA41533A041008227B2 /* Testable (Integration Tests).app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BF20E541533A040008227B2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E551533A040008227B2 /* Add Category Linker Flags.png */,
+				3BF20E561533A040008227B2 /* Add Header Search Paths.png */,
+				3BF20E571533A040008227B2 /* Add KIF Preprocessor Macro.png */,
+				3BF20E581533A040008227B2 /* Add Library Sheet.png */,
+				3BF20E591533A040008227B2 /* Add Library.png */,
+				3BF20E5A1533A040008227B2 /* Create Workspace.png */,
+				3BF20E5B1533A040008227B2 /* Duplicate Target Confirmation.png */,
+				3BF20E5C1533A040008227B2 /* Duplicate Target.png */,
+				3BF20E5D1533A040008227B2 /* Rename Product.png */,
+				3BF20E5E1533A040008227B2 /* Rename Target.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		3BF20E601533A040008227B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BF20E9E1533A041008227B2 /* libKIF.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		67DB49AB14D09454009CC8C3 /* NUSurveyorExample */ = {
@@ -690,6 +1069,23 @@
 			productReference = 3BD52AB114C8B43500AB61E8 /* NUSurveyorTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		3BF20CFB15339792008227B2 /* KIF NUSurveyorExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BF20D0F15339792008227B2 /* Build configuration list for PBXNativeTarget "KIF NUSurveyorExample" */;
+			buildPhases = (
+				3BF20CFC15339792008227B2 /* Sources */,
+				3BF20D0115339792008227B2 /* Frameworks */,
+				3BF20D0815339792008227B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KIF NUSurveyorExample";
+			productName = NUSurveyorExample;
+			productReference = 3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		67DB49A414D09454009CC8C3 /* NUSurveyorExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67DB49CC14D09454009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample" */;
@@ -707,9 +1103,9 @@
 			productReference = 67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		67DB49F114D09E8C009CC8C3 /* NUSurveyorExample Frankified */ = {
+		67DB49F114D09E8C009CC8C3 /* Frank NUSurveyorExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample Frankified" */;
+			buildConfigurationList = 67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "Frank NUSurveyorExample" */;
 			buildPhases = (
 				67DB49F214D09E8C009CC8C3 /* Sources */,
 				67DB49F614D09E8C009CC8C3 /* Frameworks */,
@@ -719,9 +1115,9 @@
 			);
 			dependencies = (
 			);
-			name = "NUSurveyorExample Frankified";
+			name = "Frank NUSurveyorExample";
 			productName = NUSurveyorExample;
-			productReference = 67DB4A0314D09E8C009CC8C3 /* NUSurveyorExample copy.app */;
+			productReference = 67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -743,15 +1139,61 @@
 			mainGroup = 3BD52A9614C8B43400AB61E8;
 			productRefGroup = 3BD52AA214C8B43500AB61E8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3BF20E381533A040008227B2 /* Products */;
+					ProjectRef = 3BF20E371533A040008227B2 /* KIF.xcodeproj */;
+				},
+				{
+					ProductGroup = 3BF20E601533A040008227B2 /* Products */;
+					ProjectRef = 3BF20E5F1533A040008227B2 /* KIF.xcodeproj */;
+				},
+				{
+					ProductGroup = 3BF20E521533A040008227B2 /* Products */;
+					ProjectRef = 3BF20E511533A040008227B2 /* Testable.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3BD52AA014C8B43500AB61E8 /* NUSurveyor */,
 				3BD52AB014C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49A414D09454009CC8C3 /* NUSurveyorExample */,
-				67DB49F114D09E8C009CC8C3 /* NUSurveyorExample Frankified */,
+				67DB49F114D09E8C009CC8C3 /* Frank NUSurveyorExample */,
+				3BF20CFB15339792008227B2 /* KIF NUSurveyorExample */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3BF20E9B1533A041008227B2 /* libKIF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKIF.a;
+			remoteRef = 3BF20E9A1533A041008227B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BF20E9E1533A041008227B2 /* libKIF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libKIF.a;
+			remoteRef = 3BF20E9D1533A041008227B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BF20EA21533A041008227B2 /* Testable.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Testable.app;
+			remoteRef = 3BF20EA11533A041008227B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BF20EA41533A041008227B2 /* Testable (Integration Tests).app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Testable (Integration Tests).app";
+			remoteRef = 3BF20EA31533A041008227B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3BD52AAE14C8B43500AB61E8 /* Resources */ = {
@@ -762,6 +1204,18 @@
 				67DB496F14D07E6C009CC8C3 /* kitchen-sink-survey.json in Resources */,
 				67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */,
 				3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BF20D0815339792008227B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BF20D0915339792008227B2 /* InfoPlist.strings in Resources */,
+				3BF20D0A15339792008227B2 /* kitchen-sink-survey.json in Resources */,
+				3BF20D0B15339792008227B2 /* complex-responses.json in Resources */,
+				3BF20D0C15339792008227B2 /* complex_responses.feature in Resources */,
+				3BF20D0D15339792008227B2 /* mustache.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +1313,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BF20CFC15339792008227B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BF20CFD15339792008227B2 /* main.m in Sources */,
+				3BF20CFE15339792008227B2 /* NUAppDelegate.m in Sources */,
+				3BF20CFF15339792008227B2 /* NUSurveyorExample.xcdatamodel in Sources */,
+				3BF20D0015339792008227B2 /* NUSpyVC.m in Sources */,
+				3BF20D2015339930008227B2 /* SectionTVCTest.m in Sources */,
+				3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */,
+				3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		67DB49A114D09454009CC8C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -898,6 +1366,30 @@
 				3BD52ABE14C8B43500AB61E8 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3BF20E3D1533A040008227B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BF20E3E1533A040008227B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3BF20E3F1533A040008227B2 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BF20E401533A040008227B2 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		3BF20E411533A040008227B2 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BF20E421533A040008227B2 /* en */,
+			);
+			name = RootViewController.xib;
 			sourceTree = "<group>";
 		};
 		67DB49AE14D09454009CC8C3 /* InfoPlist.strings */ = {
@@ -1035,6 +1527,53 @@
 			};
 			name = Release;
 		};
+		3BF20D1015339792008227B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"RUN_KIF_TESTS=1",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "NUSurveyorExample copy2-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "KIF NUSurveyorExample";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3BF20D1115339792008227B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"RUN_KIF_TESTS=1",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "NUSurveyorExample copy2-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "KIF NUSurveyorExample";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		67DB49CD14D09454009CC8C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1087,7 +1626,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "NUSurveyorExample copy";
+				PRODUCT_NAME = "Frank NUSurveyorExample";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
@@ -1110,7 +1649,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "NUSurveyorExample copy";
+				PRODUCT_NAME = "Frank NUSurveyorExample";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
@@ -1147,6 +1686,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		3BF20D0F15339792008227B2 /* Build configuration list for PBXNativeTarget "KIF NUSurveyorExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BF20D1015339792008227B2 /* Debug */,
+				3BF20D1115339792008227B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		67DB49CC14D09454009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1156,7 +1704,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "NUSurveyorExample Frankified" */ = {
+		67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "Frank NUSurveyorExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				67DB4A0114D09E8C009CC8C3 /* Debug */,
