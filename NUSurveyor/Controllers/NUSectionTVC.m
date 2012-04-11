@@ -597,11 +597,13 @@
       for (NSDictionary *q in [[[self.allSections objectAtIndex:qIdx] objectForKey:@"question"] objectForKey:@"questions"]) {
         NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
         if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
-          [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
-          // insert into visibleSections before insertSections to get title right
-          [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
-          [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
-          [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+          if ([self.visibleSections indexOfObject:[q objectForKey:@"uuid"]] == NSNotFound){
+            [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
+            // insert into visibleSections before insertSections to get title right
+            [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
+            [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
+          }
         }
       }
     }

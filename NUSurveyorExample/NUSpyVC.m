@@ -13,14 +13,16 @@
 @property (nonatomic, strong) UIButton *kitchenSink;
 @property (nonatomic, strong) UIButton *complexResponses;
 @property (nonatomic, strong) UIButton *mustache;
+@property (nonatomic, strong) UIButton *pbj;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
+- (void) loadPbj;
 @end
 
 @implementation NUSpyVC
 @synthesize delegate = _delegate, surveyTVC = _surveyTVC, sectionTVC = _sectionTVC;
-@synthesize responseSetCount = _responseSetCount, kitchenSink = _kitchenSink, complexResponses = _complexResponses, mustache = _mustache;
+@synthesize responseSetCount = _responseSetCount, kitchenSink = _kitchenSink, complexResponses = _complexResponses, mustache = _mustache, pbj = _pbj;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,6 +80,14 @@
   [self.mustache addTarget:self action:@selector(loadMustache) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.mustache];
 
+  self.pbj = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.pbj.frame = CGRectMake(10, 10.0 + 4*36.0 + 4*10.0, 400.0, 36.0);
+  self.pbj.accessibilityLabel = @"loadPbj";
+  [self.pbj setTitle:@"Load PBJ" forState:UIControlStateNormal];
+  [self.pbj addTarget:self action:@selector(loadPbj) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.pbj];
+
+  
 }
 - (void) loadKitchenSink{
   [self.delegate loadSurvey:@"kitchen-sink-survey"];
@@ -88,6 +98,9 @@
 - (void) loadMustache{
   // thanks to http://www.americanmustacheinstitute.org/mustache-information/styles/
   [self.delegate loadSurvey:@"mustache" renderContext:[NSDictionary dictionaryWithObjectsAndKeys:@"Jake", @"name", @"Northwestern", @"site", nil]];
+}
+- (void) loadPbj{
+  [self.delegate loadSurvey:@"pbj"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -10,6 +10,6 @@
 
 @interface KIFTestScenario (SectionAdditions)
 
-+ (id)scenarioToLogIn;
++ (id)scenarioDuplicateDependencies;
 
 @end

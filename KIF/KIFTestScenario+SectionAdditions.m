@@ -12,12 +12,19 @@
 
 @implementation KIFTestScenario (SectionAdditions)
 
-+ (id)scenarioToLogIn {
++ (id)scenarioDuplicateDependencies {
   
-  KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test that a user can successfully log in."];
-  [scenario addStep:[KIFTestStep stepToReset]];
-  [scenario addStep:[KIFTestStep stepToWaitForTappableViewWithAccessibilityLabel:@"Welcome"]];
-  
+  KIFTestScenario *scenario = [KIFTestScenario scenarioWithDescription:@"Test group dependencies for showing more than once"];
+  [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"Inspect"]];
+  [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"loadPbj"]];
+  [scenario addStep:[KIFTestStep stepToVerifyNumberOfSections:1 inTableViewWithAccessibilityLabel:@"sectionTableView"]];
+  [scenario addStep:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:@"sectionTableView" atIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]];
+  [scenario addStep:[KIFTestStep stepToVerifyNumberOfSections:3 inTableViewWithAccessibilityLabel:@"sectionTableView"]];
+  [scenario addStep:[KIFTestStep stepToWaitForTimeInterval:1 description:@"wait for dependenices to show"]];
+  [scenario addStep:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:@"sectionTableView" atIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]];
+  [scenario addStep:[KIFTestStep stepToWaitForTimeInterval:1 description:@"wait for dependenices to show"]];
+  [scenario addStep:[KIFTestStep stepToTapRowInTableViewWithAccessibilityLabel:@"sectionTableView" atIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]];
+  [scenario addStep:[KIFTestStep stepToVerifyNumberOfSections:3 inTableViewWithAccessibilityLabel:@"sectionTableView"]];
   return scenario;
 }
 

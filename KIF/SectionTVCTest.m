@@ -12,7 +12,7 @@
 @implementation SectionTVCTest
 
 - (void)initializeScenarios{
-  [self addScenario:[KIFTestScenario scenarioToLogIn]];
+  [self addScenario:[KIFTestScenario scenarioDuplicateDependencies]];
   // Add additional scenarios you want to test here
 }
 

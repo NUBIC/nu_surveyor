@@ -1,0 +1,47 @@
+{
+    "uuid": "ded83f10-e5f8-012e-9f18-00254bc472f4",
+    "title": "Peanut butter jelly",
+    "sections": [
+    {
+        "title": "Section A",
+        "questions_and_groups": [
+        {
+            "pick": "one",
+            "uuid": "2aad88c0-4b75-012f-785f-482a143dc94d",
+            "text": "Do you know what time it is?",
+            "answers": [
+            {
+                "uuid": "2aada950-4b75-012f-785f-482a143dc94d",
+                "text": "No"
+            },
+            {
+                "uuid": "2aadc2a0-4b75-012f-785f-482a143dc94d",
+                "text": "Yes, it's..."
+            }
+            ]
+        },
+        {
+            "uuid": "2ab64530-4b75-012f-785f-482a143dc94d",
+            "text": "PBJ",
+            "dependency": {
+                "conditions": [
+                {
+                    "operator": "!=",
+                    "rule_key": "A",
+                    "question": "2aad88c0-4b75-012f-785f-482a143dc94d",
+                    "answer": "2aada950-4b75-012f-785f-482a143dc94d"
+                }
+                ],
+                "rule": "A"
+            },
+            "questions": [
+            {
+                "uuid": "2ab90dc0-4b75-012f-785f-482a143dc94d",
+                "type": "label",
+                "text": "Peanut butter jelly time"
+            }
+            ]
+        }]
+    }
+    ]
+}

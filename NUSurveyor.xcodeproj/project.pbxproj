@@ -69,6 +69,9 @@
 		3BD52B1C14C8B7A200AB61E8 /* NUMultiButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B1A14C8B7A200AB61E8 /* NUMultiButton.m */; };
 		3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B2614C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */; };
+		3BDB4BD51536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
+		3BDB4BD61536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
+		3BDB4BD71536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
 		3BE8673014CDF145002D04BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
 		3BF20CFD15339792008227B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B114D09454009CC8C3 /* main.m */; };
 		3BF20CFE15339792008227B2 /* NUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B514D09454009CC8C3 /* NUAppDelegate.m */; };
@@ -87,7 +90,7 @@
 		3BF20D0D15339792008227B2 /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF20D2015339930008227B2 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
 		3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
-		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; };
+		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF20E9B1533A041008227B2 /* libKIF.a */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E21524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
@@ -266,6 +269,7 @@
 		3BD52B1A14C8B7A200AB61E8 /* NUMultiButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUMultiButton.m; path = Views/NUMultiButton.m; sourceTree = "<group>"; };
 		3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+NUResize.h"; path = "Views/UILabel+NUResize.h"; sourceTree = "<group>"; };
 		3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+NUResize.m"; path = "Views/UILabel+NUResize.m"; sourceTree = "<group>"; };
+		3BDB4BD41536123A00868F97 /* pbj.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pbj.json; sourceTree = "<group>"; };
 		3BE8672F14CDF145002D04BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KIF NUSurveyorExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BF20D1515339792008227B2 /* NUSurveyorExample copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NUSurveyorExample copy2-Info.plist"; path = "/Users/markyoon/ios/nu_surveyor/NUSurveyorExample copy2-Info.plist"; sourceTree = "<absolute>"; };
@@ -923,12 +927,13 @@
 		67DB49AC14D09454009CC8C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
 				3BC61A9315211EC900A8C20C /* complex-responses.json */,
+				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
+				3BF970E01524F9DC008D3A9A /* mustache.json */,
+				3BDB4BD41536123A00868F97 /* pbj.json */,
 				67DB49AD14D09454009CC8C3 /* NUSurveyorExample-Info.plist */,
 				67DB49AE14D09454009CC8C3 /* InfoPlist.strings */,
 				67DB49B114D09454009CC8C3 /* main.m */,
-				3BF970E01524F9DC008D3A9A /* mustache.json */,
 				67DB49B314D09454009CC8C3 /* NUSurveyorExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -1216,6 +1221,7 @@
 				3BF20D0B15339792008227B2 /* complex-responses.json in Resources */,
 				3BF20D0C15339792008227B2 /* complex_responses.feature in Resources */,
 				3BF20D0D15339792008227B2 /* mustache.json in Resources */,
+				3BDB4BD71536123A00868F97 /* pbj.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,6 +1234,7 @@
 				3BC61A9415211EC900A8C20C /* complex-responses.json in Resources */,
 				3BC61A9715211EF000A8C20C /* complex_responses.feature in Resources */,
 				3BF970E11524F9DC008D3A9A /* mustache.json in Resources */,
+				3BDB4BD51536123A00868F97 /* pbj.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,6 +1254,7 @@
 				3BC61A9815211EF000A8C20C /* complex_responses.feature in Resources */,
 				3BF970E21524F9DC008D3A9A /* mustache.json in Resources */,
 				3BF9710E1524FE08008D3A9A /* mustache.feature in Resources */,
+				3BDB4BD61536123A00868F97 /* pbj.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
