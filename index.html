@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>nu_surveyor by NUBIC</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>nu_surveyor</h1>
+        <p>an iOS port of surveyor, designed for secure offline use</p>
+        <p class="view"><a href="https://github.com/NUBIC/nu_surveyor">View the Project on GitHub <small>NUBIC/nu_surveyor</small></a></p>
+        <ul>
+          <li><a href="https://github.com/NUBIC/nu_surveyor/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/NUBIC/nu_surveyor/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/NUBIC/nu_surveyor">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Surveyor on iOS</h1>
+
+<p>This project is an iOS port of the Surveyor ruby gem (<a href="http://github.com/NUBIC/surveyor">http://github.com/NUBIC/surveyor</a>). It brings surveys to iPads and other iOS devices, with offline and sync capabilities. It is implemented as a Cocoa Touch static library (NUSurveyor), but also has an example target (NUSurveyorExample). See the NUAppDelegate for an example of how to use the NUSurveyor library in your application.</p>
+
+<h2>Installation</h2>
+
+<ul>
+<li>Clone nu_surveyor from <a href="http://github.com/NUBIC/nu_surveyor">http://github.com/NUBIC/nu_surveyor</a> into the same parent directory as this project, e.g. ~/ios/nu_surveyor</li>
+<li>Click your project, your target and the "Build Phases" tab, "Link Binary With Libraries", click the "+", and add the entire nu_surveyor directory</li>
+<li>Click the "+" again and add "libNUSurveyor.a"</li>
+<li>Under the "Build Settings" tab, make sure "User Header Search Paths" is set to $(BUILT_PRODUCTS_DIR) and "Recursive" is checked</li>
+<li>Under the "Build Settings" tab, make sure "Other linker flags" contains -all_load and -ObjC (capitalization matters)</li>
+</ul><h2>Special thanks</h2>
+
+<ul>
+<li>wakibbe (enabling this project)</li>
+<li>abby c-b (managing finances)</li>
+<li>seanvolution (managing expectations)</li>
+<li>rsutphin (guidance)</li>
+<li>jdzak (commiseration)</li>
+<li>Nataliya (stretching the functionality of surveyor)</li>
+<li>ybushmanova (stretching the functionality of surveyor)</li>
+<li>yipdw (dependency graph)</li>
+<li>hyperjeff (dependency evaluation)</li>
+<li>l wy (ethnography, ux)</li>
+<li>The American Mustache Institute (<a href="http://www.americanmustacheinstitute.org/mustache-information/styles">http://www.americanmustacheinstitute.org/mustache-information/styles</a>)</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/NUBIC">NUBIC</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
