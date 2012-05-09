@@ -379,7 +379,8 @@
     [newResponse setValue:self forKey:@"responseSet"];
     [newResponse setValue:[response objectForKey:@"question_id"] forKey:@"question"];
     [newResponse setValue:[response objectForKey:@"answer_id"] forKey:@"answer"];
-    [newResponse setValue:[response objectForKey:@"value"] forKey:@"value"];
+    NSString* value = [response objectForKey:@"value"] == [NSNull null] ? nil : [response objectForKey:@"value"];
+    [newResponse setValue:value forKey:@"value"];
     [newResponse setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[response objectForKey:@"created_at"]] forKey:@"createdAt"];
     [newResponse setValue:[response objectForKey:@"uuid"] forKey:@"uuid"];
   }
