@@ -371,7 +371,8 @@
   [self setValue:[jsonData objectForKey:@"uuid"] forKey:@"uuid"];
   [self setValue:[jsonData objectForKey:@"survey_id"] forKey:@"survey"];
   [self setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[jsonData objectForKey:@"created_at"]] forKey:@"createdAt"];
-  [self setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[jsonData objectForKey:@"completed_at"]] forKey:@"completedAt"];
+  NSDate* completedAt = [jsonData objectForKey:@"completed_at"] == [NSNull null] ? nil : [[NSDateFormatter rfc3339DateFormatter] dateFromString:[jsonData objectForKey:@"completed_at"]];
+  [self setValue:completedAt forKey:@"completedAt"];
   
   for (NSDictionary *response in [jsonData objectForKey:@"responses"]) {
     NSEntityDescription *entity = [[[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName] objectForKey:@"Response"];
