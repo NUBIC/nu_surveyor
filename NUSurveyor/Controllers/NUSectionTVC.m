@@ -10,6 +10,7 @@
 #import "UUID.h"
 #import "UILabel+NUResize.h"
 #import "NUButton.h"
+#import "NSString+Additions.h"
 
 @interface NUSectionTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
@@ -478,8 +479,9 @@
   } else {
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"];
+    NSString* text = [[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"] normalizeWhitespace];
     return [GRMustacheTemplate renderObject:self.renderContext
-                                 fromString:[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"]
+                                 fromString:text
                                       error:NULL];
 
   }
@@ -490,8 +492,9 @@
   } else {
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
+    NSString* helpText = [[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"] normalizeWhitespace];
     return [GRMustacheTemplate renderObject:self.renderContext
-                                 fromString:[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"]
+                                 fromString:helpText
                                       error:NULL];
   }
 }
