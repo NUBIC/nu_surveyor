@@ -13,6 +13,9 @@
 		005AA650152208DE00E67C10 /* NUResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA64E152208DE00E67C10 /* NUResponse.m */; };
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
+		00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FA159104B500FAA14C /* NSStringTest.m */; };
+		00BF07FF15910C8A00FAA14C /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF07FD15910C8A00FAA14C /* NSString+Additions.h */; };
+		00BF080015910C8A00FAA14C /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+Additions.m */; };
 		00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */; };
 		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
@@ -210,6 +213,9 @@
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		00BF07FA159104B500FAA14C /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
+		00BF07FD15910C8A00FAA14C /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		00BF07FE15910C8A00FAA14C /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+Additions.h"; path = "Models/NSDateFormatter+Additions.h"; sourceTree = "<group>"; };
 		00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+Additions.m"; path = "Models/NSDateFormatter+Additions.m"; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
@@ -602,6 +608,7 @@
 				008AE62615224CE000F4F14C /* NUDatabaseTest.m */,
 				005AA6481521676300E67C10 /* NUResponseTest.h */,
 				005AA6491521676300E67C10 /* NUResponseTest.m */,
+				00BF07FA159104B500FAA14C /* NSStringTest.m */,
 			);
 			path = NUSurveyorTests;
 			sourceTree = "<group>";
@@ -670,6 +677,8 @@
 				005AA64E152208DE00E67C10 /* NUResponse.m */,
 				00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */,
 				00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */,
+				00BF07FD15910C8A00FAA14C /* NSString+Additions.h */,
+				00BF07FE15910C8A00FAA14C /* NSString+Additions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1032,6 +1041,7 @@
 				3BF971091524FA28008D3A9A /* GRMustacheTemplateRepository.h in Headers */,
 				3BF9710A1524FA28008D3A9A /* GRMustacheUtils.h in Headers */,
 				3BF9710B1524FA28008D3A9A /* GRMustacheVersion.h in Headers */,
+				00BF07FF15910C8A00FAA14C /* NSString+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1306,6 +1316,7 @@
 				3B2AB0731522483E00525F25 /* NUOneDatePickerCell.m in Sources */,
 				00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */,
 				3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */,
+				00BF080015910C8A00FAA14C /* NSString+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1329,7 @@
 				3BD52AC214C8B43500AB61E8 /* NUSurveyorTests.m in Sources */,
 				67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */,
 				008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */,
+				00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
