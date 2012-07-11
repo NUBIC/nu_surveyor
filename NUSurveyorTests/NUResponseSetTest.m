@@ -104,12 +104,6 @@ NSDate* completedAt;
     NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
     [rs fromJson:jsonString];
     
-    STAssertEquals([rs responseCount], 2U, @"Number of responses");
-    STAssertEqualObjects([rs valueForKey:@"uuid"], @"9af6d142-7fac-4ccb-9bca-58a05308a5a7", @"uuid");
-    STAssertEqualObjects([rs valueForKey:@"survey"], @"94b3d750-fb63-4540-a1e2-dd7f88be9b4f", @"survey id");
-    STAssertEqualObjects([rs valueForKey:@"createdAt"], [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1970-02-04T05:15:30Z"], @"created at");
-    STAssertEqualObjects([rs valueForKey:@"completedAt"], [[NSDateFormatter rfc3339DateFormatter] dateFromString:@"1990-03-06T07:21:42Z"], @"completed at");
-    STAssertEquals([[rs valueForKey:@"responses"] count], 2U, @"2 responses");
     STAssertEqualObjects([[[[rs valueForKey:@"responses"] objectEnumerator] nextObject] valueForKey:@"value"], @"7", @"Should be nil");
     
 }
