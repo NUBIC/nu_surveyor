@@ -9,18 +9,18 @@
 #import "UILabel+NUResize.h"
 
 @implementation UILabel (NUResize)
--(void)setUpMultiLineVerticalResizeWithFontSize:(CGFloat)fontSize
+-(void)setUpMultiLineVerticalResizeWithFont:(UIFont*)font
 {
 	self.lineBreakMode = UILineBreakModeWordWrap;
 	self.numberOfLines = 0; //instructs the label to contain any number of lines
-  self.font = [UIFont systemFontOfSize:fontSize];
+  self.font = font;
   self.textColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
   self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, MAX(self.frame.size.height, [self.text sizeWithFont:self.font constrainedToSize:CGSizeMake(self.frame.size.width, 9999) lineBreakMode:UILineBreakModeWordWrap].height));
 }
 
 -(void)setUpCellLabelWithFontSize:(CGFloat)fontSize
 {
-  [self setUpMultiLineVerticalResizeWithFontSize:fontSize];
+  [self setUpMultiLineVerticalResizeWithFont:[UIFont boldSystemFontOfSize:fontSize]];
   self.font = [UIFont boldSystemFontOfSize:fontSize];
 	self.textAlignment = UITextAlignmentLeft;
 	self.backgroundColor = [UIColor whiteColor];
