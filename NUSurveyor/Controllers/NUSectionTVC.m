@@ -378,7 +378,7 @@
   }
   UILabel *section_title = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, y, self.tableView.bounds.size.width - (2 * HorizontalMargin), 22.0)];
   section_title.text = [self.detailItem valueForKey:@"title"];
-  [section_title setUpMultiLineVerticalResizeWithFontSize:22.0];
+  [section_title setUpMultiLineVerticalResizeWithFont:[UIFont systemFontOfSize:22.0]];
   section_title.backgroundColor = isGrouped ? [UIColor clearColor] : [UIColor colorWithRed:0.46 green:0.52 blue:0.56 alpha:0.5];
   y += section_title.frame.size.height + VerticalMargin;
   headerView.frame = CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, y);
@@ -432,7 +432,7 @@
     // Title label wraps and expands height to fit
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, y, frame.size.width, 10.0)];
     label.text = title;
-    [label setUpMultiLineVerticalResizeWithFontSize:([UIFont labelFontSize] + (isGrouped ? 0 : 1))];
+    [label setUpMultiLineVerticalResizeWithFont:([UIFont boldSystemFontOfSize:[UIFont labelFontSize] + (isGrouped ? 0 : 1)])];
     label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize] + (isGrouped ? 0 : 1)];
     
     label.backgroundColor = [UIColor clearColor];
@@ -452,7 +452,7 @@
     // Subtitle label wraps and expands height to fit
     UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.origin.x, y, frame.size.width, 10.0)];
     subTitleLabel.text = subTitle;
-    [subTitleLabel setUpMultiLineVerticalResizeWithFontSize:([UIFont labelFontSize] - (isGrouped ? 3 : 2))];
+    [subTitleLabel setUpMultiLineVerticalResizeWithFont:([UIFont italicSystemFontOfSize:[UIFont labelFontSize] - (isGrouped ? 3 : 2)])];
     subTitleLabel.font = [UIFont italicSystemFontOfSize:[UIFont labelFontSize] - (isGrouped ? 3 : 2)];
     
     subTitleLabel.backgroundColor = [UIColor clearColor];

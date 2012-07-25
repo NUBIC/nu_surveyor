@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (NUResize)
--(void)setUpMultiLineVerticalResizeWithFontSize:(CGFloat)fontSize;
+-(void)setUpMultiLineVerticalResizeWithFont:(UIFont*)font;
 -(void)setUpCellLabelWithFontSize:(CGFloat)fontSize;
 @end
