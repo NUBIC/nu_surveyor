@@ -11,6 +11,11 @@
 		005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA6491521676300E67C10 /* NUResponseTest.m */; };
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		005AA650152208DE00E67C10 /* NUResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA64E152208DE00E67C10 /* NUResponse.m */; };
+		0071907A15C33A2B008CB666 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AB214C8B43500AB61E8 /* SenTestingKit.framework */; };
+		0071907B15C33A2B008CB666 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
+		0071907C15C33A2B008CB666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
+		0071908215C33A2B008CB666 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0071908015C33A2B008CB666 /* InfoPlist.strings */; };
+		0071908C15C33A64008CB666 /* NUSectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0071908B15C33A64008CB666 /* NUSectionTVCTest.m */; };
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
 		00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FA159104B500FAA14C /* NSStringTest.m */; };
@@ -166,6 +171,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0071908D15C33AC0008CB666 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BD52A9814C8B43400AB61E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67DB49A414D09454009CC8C3;
+			remoteInfo = NUSurveyorExample;
+		};
 		3BD52AB714C8B43500AB61E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BD52A9814C8B43400AB61E8 /* Project object */;
@@ -210,6 +222,12 @@
 		005AA64E152208DE00E67C10 /* NUResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUResponse.m; path = Models/NUResponse.m; sourceTree = "<group>"; };
 		006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseSetTest.h; sourceTree = "<group>"; };
 		006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseSetTest.m; sourceTree = "<group>"; };
+		0071907915C33A2B008CB666 /* NUSurveyorAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NUSurveyorAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0071907F15C33A2B008CB666 /* NUSurveyorAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NUSurveyorAppTests-Info.plist"; sourceTree = "<group>"; };
+		0071908115C33A2B008CB666 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0071908615C33A2B008CB666 /* NUSurveyorAppTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NUSurveyorAppTests-Prefix.pch"; sourceTree = "<group>"; };
+		0071908A15C33A64008CB666 /* NUSectionTVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUSectionTVCTest.h; sourceTree = "<group>"; };
+		0071908B15C33A64008CB666 /* NUSectionTVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUSectionTVCTest.m; sourceTree = "<group>"; };
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
@@ -422,6 +440,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0071907515C33A2B008CB666 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0071907A15C33A2B008CB666 /* SenTestingKit.framework in Frameworks */,
+				0071907B15C33A2B008CB666 /* UIKit.framework in Frameworks */,
+				0071907C15C33A2B008CB666 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD52A9E14C8B43500AB61E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +523,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0071907D15C33A2B008CB666 /* NUSurveyorAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				0071907E15C33A2B008CB666 /* Supporting Files */,
+				0071908A15C33A64008CB666 /* NUSectionTVCTest.h */,
+				0071908B15C33A64008CB666 /* NUSectionTVCTest.m */,
+			);
+			path = NUSurveyorAppTests;
+			sourceTree = "<group>";
+		};
+		0071907E15C33A2B008CB666 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0071907F15C33A2B008CB666 /* NUSurveyorAppTests-Info.plist */,
+				0071908015C33A2B008CB666 /* InfoPlist.strings */,
+				0071908615C33A2B008CB666 /* NUSurveyorAppTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3B44F2DB1524C4CA0060B41F /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +586,7 @@
 				67DB49AB14D09454009CC8C3 /* NUSurveyorExample */,
 				67DB4A0614D09EB6009CC8C3 /* Frank */,
 				3BF20D1D153398E6008227B2 /* KIF */,
+				0071907D15C33A2B008CB666 /* NUSurveyorAppTests */,
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
 				67DB49D514D09713009CC8C3 /* README.md */,
@@ -553,6 +602,7 @@
 				67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */,
 				67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */,
 				3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */,
+				0071907915C33A2B008CB666 /* NUSurveyorAppTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1048,6 +1098,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0071907815C33A2B008CB666 /* NUSurveyorAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0071908715C33A2B008CB666 /* Build configuration list for PBXNativeTarget "NUSurveyorAppTests" */;
+			buildPhases = (
+				0071907415C33A2B008CB666 /* Sources */,
+				0071907515C33A2B008CB666 /* Frameworks */,
+				0071907615C33A2B008CB666 /* Resources */,
+				0071907715C33A2B008CB666 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0071908E15C33AC0008CB666 /* PBXTargetDependency */,
+			);
+			name = NUSurveyorAppTests;
+			productName = NUSurveyorAppTests;
+			productReference = 0071907915C33A2B008CB666 /* NUSurveyorAppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		3BD52AA014C8B43500AB61E8 /* NUSurveyor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BD52AC514C8B43500AB61E8 /* Build configuration list for PBXNativeTarget "NUSurveyor" */;
@@ -1175,6 +1244,7 @@
 				67DB49A414D09454009CC8C3 /* NUSurveyorExample */,
 				67DB49F114D09E8C009CC8C3 /* Frank NUSurveyorExample */,
 				3BF20CFB15339792008227B2 /* KIF NUSurveyorExample */,
+				0071907815C33A2B008CB666 /* NUSurveyorAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1211,6 +1281,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0071907615C33A2B008CB666 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0071908215C33A2B008CB666 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD52AAE14C8B43500AB61E8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1271,6 +1349,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0071907715C33A2B008CB666 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		3BD52AAF14C8B43500AB61E8 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1287,6 +1378,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0071907415C33A2B008CB666 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0071908C15C33A64008CB666 /* NUSectionTVCTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BD52A9D14C8B43500AB61E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1372,6 +1471,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0071908E15C33AC0008CB666 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67DB49A414D09454009CC8C3 /* NUSurveyorExample */;
+			targetProxy = 0071908D15C33AC0008CB666 /* PBXContainerItemProxy */;
+		};
 		3BD52AB814C8B43500AB61E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3BD52AA014C8B43500AB61E8 /* NUSurveyor */;
@@ -1380,6 +1484,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0071908015C33A2B008CB666 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0071908115C33A2B008CB666 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		3BD52ABD14C8B43500AB61E8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1423,6 +1535,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0071908815C33A2B008CB666 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NUSurveyorExample.app/NUSurveyorExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorAppTests/NUSurveyorAppTests-Prefix.pch";
+				INFOPLIST_FILE = "NUSurveyorAppTests/NUSurveyorAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		0071908915C33A2B008CB666 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NUSurveyorExample.app/NUSurveyorExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NUSurveyorAppTests/NUSurveyorAppTests-Prefix.pch";
+				INFOPLIST_FILE = "NUSurveyorAppTests/NUSurveyorAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		3BD52AC314C8B43500AB61E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1679,6 +1825,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0071908715C33A2B008CB666 /* Build configuration list for PBXNativeTarget "NUSurveyorAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0071908815C33A2B008CB666 /* Debug */,
+				0071908915C33A2B008CB666 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3BD52A9B14C8B43400AB61E8 /* Build configuration list for PBXProject "NUSurveyor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
