@@ -15,8 +15,7 @@
 @implementation NUSectionTVCTest
 
 // All code under test is in the iOS Application
-- (void)testAppDelegate
-{
+- (void)testAppDelegate {
     id yourApplicationDelegate = [[UIApplication sharedApplication] delegate];
     STAssertNotNil(yourApplicationDelegate, @"UIApplication failed to find the AppDelegate");
 }
@@ -30,9 +29,6 @@
 
 - (void)testOneRow {
     NUSectionTVC* t = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
-    t.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 750, 1000)];
-    t.tableView = [UITableView new];
-    t.tableView.bounds = CGRectMake(0, 0, 200, 200);
     NSString* q = @"{\"questions_and_groups\":[{\"text\":\"These questions are examples of the basic supported input types\",\"uuid\":\"764f9400-4540-012f-9ea4-00254bc472f4\",\"type\":\"label\"}]}";
     t.detailItem = [q objectFromJSONStringWithParseOptions:JKParseOptionStrict];
     STAssertEquals(1U, [t.allSections count], @"Should have one row");
