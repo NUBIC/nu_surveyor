@@ -20,12 +20,12 @@ static NUSectionTVC* t;
 
 - (void) setUp {
     t = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
+    
     NUAppDelegate* delegate = ((NUAppDelegate *)[[UIApplication sharedApplication] delegate]);
     
-    NSEntityDescription *entity =
-    [[[delegate managedObjectModel] entitiesByName] objectForKey:@"ResponseSet"];
-    NUResponseSet *rs = [[NUResponseSet alloc]
-                         initWithEntity:entity insertIntoManagedObjectContext:[delegate managedObjectContext]];
+    NSEntityDescription *entity = [[[delegate managedObjectModel] entitiesByName] objectForKey:@"ResponseSet"];
+
+    NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:[delegate managedObjectContext]];
     
     t.responseSet = rs;
 }
@@ -53,11 +53,19 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 0U, @"Should have 0 rows");
 }
 
-- (void)testRowAttributes {
+- (void)testRowAttributesForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     NSDictionary* r = [t.allSections objectAtIndex:0];
     STAssertEqualObjects([r objectForKey:@"uuid"], @"xyz", @"Wrong uuid");
     STAssertEqualObjects([r objectForKey:@"show"], NS_YES, @"Should show");
+    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+}
+
+- (void)testRowAttributesForHidden {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
+    NSDictionary* r = [t.allSections objectAtIndex:0];
+    STAssertEqualObjects([r objectForKey:@"uuid"], @"xyz", @"Wrong uuid");
+    STAssertEqualObjects([r objectForKey:@"show"], NS_NO, @"Should show");
     STAssertNotNil([r objectForKey:@"question"], @"Should have question");
 }
 
