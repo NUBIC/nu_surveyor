@@ -42,15 +42,18 @@ static NUSectionTVC* t;
 
 - (void)testOneRow {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
-    STAssertEquals(1U, [t.allSections count], @"Should have one row");
-    STAssertEquals(1U, [t.visibleSections count], @"Should have one row");
+    STAssertEquals(1U, [t.allSections count], @"Should have 1 row");
+    STAssertEquals(1U, [t.visibleSections count], @"Should have 1 row");
 }
 
 - (void)testOneRowIsHidden {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
-    STAssertEquals(1U, [t.allSections count], @"Should have one row");
-    STAssertEquals(0U, [t.visibleSections count], @"Should have zero rows");
+    STAssertEquals(1U, [t.allSections count], @"Should have 1 row");
+    STAssertEquals(0U, [t.visibleSections count], @"Should have 0 rows");
 }
+
+
+#pragma mark - Helper methods
      
 - (void)useQuestion:(NSString*)question {
     t.detailItem = (question == nil) ? nil : [self builder:[NSArray arrayWithObject:question]];
