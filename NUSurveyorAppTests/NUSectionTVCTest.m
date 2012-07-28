@@ -56,17 +56,17 @@ static NUSectionTVC* t;
 - (void)testRowAttributesForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     NSDictionary* r = [t.allSections objectAtIndex:0];
-    STAssertEqualObjects([r objectForKey:@"uuid"], @"xyz", @"Wrong uuid");
-    STAssertEqualObjects([r objectForKey:@"show"], NS_YES, @"Should show");
-    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+    [self assertRow:r hasUUID:@"xyz" show:YES];
 }
 
 - (void)testRowAttributesForHidden {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
     NSDictionary* r = [t.allSections objectAtIndex:0];
-    STAssertEqualObjects([r objectForKey:@"uuid"], @"xyz", @"Wrong uuid");
-    STAssertEqualObjects([r objectForKey:@"show"], NS_NO, @"Should show");
-    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+    [self assertRow:r hasUUID:@"xyz" show:NO];
+}
+
+- (void)testRowAttributesForRepeater {
+    STAssertTrue(FALSE, @"Complete me");
 }
 
 #pragma mark - Helper methods
@@ -89,6 +89,13 @@ static NUSectionTVC* t;
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"%@\"}", text, uuid, type];
 }
 
+- (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show {
+    STAssertEquals([[r allKeys] count], 3U, @"Wrong number of attributes");
+    STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
+    STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Should show");
+    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+}
+
 /*
  
  1. generate response group id in create rows (take max id + 1)
@@ -97,7 +104,7 @@ static NUSectionTVC* t;
  4. Modify create to accept response set group id
  5. Update did endEdit text methods
  6. Update didSelect on cell classes
-
+ 7. Interactive rebase and add issue # these are a part of
 */
 
 @end
