@@ -76,11 +76,11 @@ static NUSectionTVC* t;
 }
 
 - (NSDictionary*)builder:(NSArray*)questions {
-    NSString* section = [self createQuestions:questions];
+    NSString* section = [self createQuestionsAndGroups:questions];
     return [section objectFromJSONStringWithParseOptions:JKParseOptionStrict];
 }
 
-- (NSString*)createQuestions:(NSArray*)questions {
+- (NSString*)createQuestionsAndGroups:(NSArray*)questions {
     NSString* combined = [questions componentsJoinedByString:@", "];
     return [NSString stringWithFormat:@"{\"questions_and_groups\":[%@]}", combined];
 }

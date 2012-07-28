@@ -14,7 +14,7 @@
     
 - (NSDictionary*)builder:(NSArray*)questions;
 
-- (NSString*)createQuestions:(NSArray*)questions;
+- (NSString*)createQuestionsAndGroups:(NSArray*)questions;
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type;
 
