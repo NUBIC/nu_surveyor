@@ -35,17 +35,50 @@ static NUSectionTVC* t;
 }
 
 - (void)testNoRows {
-    t.detailItem = nil;
+    [self useQuestion:nil];
     STAssertNil(t.allSections, @"Should be nil");
     STAssertNil(t.visibleSections, @"Should be nil");
 }
 
 - (void)testOneRow {
-    NSString* q = @"{\"questions_and_groups\":[{\"text\":\"These questions are examples of the basic supported input types\",\"uuid\":\"764f9400-4540-012f-9ea4-00254bc472f4\",\"type\":\"label\"}]}";
-    t.detailItem = [q objectFromJSONStringWithParseOptions:JKParseOptionStrict];
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     STAssertEquals(1U, [t.allSections count], @"Should have one row");
     STAssertEquals(1U, [t.visibleSections count], @"Should have one row");
 }
 
+- (void)testOneRowIsHidden {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
+    STAssertEquals(1U, [t.allSections count], @"Should have one row");
+    STAssertEquals(0U, [t.visibleSections count], @"Should have zero rows");
+}
+     
+- (void)useQuestion:(NSString*)question {
+    t.detailItem = (question == nil) ? nil : [self builder:[NSArray arrayWithObject:question]];
+}
+
+- (NSDictionary*)builder:(NSArray*)questions {
+    NSString* section = [self createQuestions:questions];
+    return [section objectFromJSONStringWithParseOptions:JKParseOptionStrict];
+}
+
+- (NSString*)createQuestions:(NSArray*)questions {
+    NSString* combined = [questions componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"{\"questions_and_groups\":[%@]}", combined];
+}
+
+- (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type {
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"%@\"}", text, uuid, type];
+}
+
+/*
+ 
+ 1. generate response group id in create rows (take max id + 1)
+ 2. update generated ids to return response group id
+ 3. modify delete response to accept response group id
+ 4. Modify create to accept response set group id
+ 5. Update did endEdit text methods
+ 6. Update didSelect on cell classes
+
+*/
 
 @end
