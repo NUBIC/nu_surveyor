@@ -12,6 +12,7 @@
 #import "NUSectionTVC.h"
 #import "JSONKit.h"
 #import "NUSurvey.h"
+#import "NUConstants.h"
 
 @implementation NUSectionTVCTest
 
@@ -42,16 +43,23 @@ static NUSectionTVC* t;
 
 - (void)testOneRow {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
-    STAssertEquals(1U, [t.allSections count], @"Should have 1 row");
-    STAssertEquals(1U, [t.visibleSections count], @"Should have 1 row");
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
 - (void)testOneRowIsHidden {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
-    STAssertEquals(1U, [t.allSections count], @"Should have 1 row");
-    STAssertEquals(0U, [t.visibleSections count], @"Should have 0 rows");
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 0U, @"Should have 0 rows");
 }
 
+- (void)testRowAttributes {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
+    NSDictionary* r = [t.allSections objectAtIndex:0];
+    STAssertEqualObjects([r objectForKey:@"uuid"], @"xyz", @"Wrong uuid");
+    STAssertEqualObjects([r objectForKey:@"show"], NS_YES, @"Should show");
+    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+}
 
 #pragma mark - Helper methods
      
