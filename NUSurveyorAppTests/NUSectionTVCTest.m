@@ -86,8 +86,7 @@ static NUSectionTVC* t;
 
 - (void)testIdsForIndexPathForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
-    NSUInteger indexArr[] = {0,0};
-    NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathWithIndexes:indexArr length:2]];
+    NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     STAssertEquals([[r allKeys] count], 0U, @"Wrong number of attributes");
 }
 
