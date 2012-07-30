@@ -13,7 +13,7 @@
 #import "JSONKit.h"
 #import "NUSurvey.h"
 #import "NUConstants.h"
-
+    
 @implementation NUSectionTVCTest
 
 static NUSectionTVC* t;
@@ -41,10 +41,17 @@ static NUSectionTVC* t;
     STAssertNil(t.visibleSections, @"Should be nil");
 }
 
-- (void)testOneRow {
+- (void)testRowForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
+}
+
+- (void)testRowsForRepeater {
+    NSString* q = [self createQuestionWithText:@"Car" uuid:@"abc" type:@"text"];
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"" question:q]];
+    STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
+    STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
 
 - (void)testOneRowIsHidden {
@@ -66,7 +73,32 @@ static NUSectionTVC* t;
 }
 
 - (void)testRowAttributesForRepeater {
-    STAssertTrue(FALSE, @"Complete me");
+    NSString* q = [self createQuestionWithText:@"Car" uuid:@"abc" type:@"text"];
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:q]];
+    NSDictionary* r = [t.allSections objectAtIndex:1];
+    [self assertRow:r hasUUID:@"abc" show:YES];
+}
+
+- (void)testIndexOfQuestionOrGroupWithUUID {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
+    STAssertEquals((NSUInteger)[t performSelector:@selector(indexOfQuestionOrGroupWithUUID:) withObject:@"xyz"], 0U, @"Wrong index");
+}
+
+- (void)testIdsForIndexPathForLabel {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
+    NSUInteger indexArr[] = {0,0};
+    NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathWithIndexes:indexArr length:2]];
+    STAssertEquals([[r allKeys] count], 0U, @"Wrong number of attributes");
+}
+
+- (void)testIdsForIndexPathForStringAnswer {
+    NSString* q = [self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" answer:
+                   [self createAnswerWithText:@"Location" uuid:@"abc" type:@"string"]];
+    [self useQuestion:q];
+    NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+    STAssertEquals([[r allKeys] count], 2U, @"Wrong number of attributes");
+    STAssertEqualObjects([r objectForKey:@"qid"], @"xyz", @"Wrong qid");
+    STAssertEqualObjects([r objectForKey:@"aid"], @"abc", @"Wrong aid");
 }
 
 #pragma mark - Helper methods
@@ -86,6 +118,18 @@ static NUSectionTVC* t;
 }
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type {
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"%@\"}", text, uuid, type];
+}
+
+- (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answer:(NSString*)answer {
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"answers\": [%@]}", text, uuid, answer];
+}
+
+- (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question {
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"repeater\", \"questions\": [%@]}", text, uuid, question];
+}
+
+- (NSString*)createAnswerWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type {
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"%@\"}", text, uuid, type];
 }
 

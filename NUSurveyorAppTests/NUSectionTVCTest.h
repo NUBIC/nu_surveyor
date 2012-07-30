@@ -18,6 +18,12 @@
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type;
 
+- (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answer:(NSString*)answer;
+
+- (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question;
+
+- (NSString*)createAnswerWithText:(NSString*)text uuid:(NSString*)uuid type:(NSString*)type;
+
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show;
 
 @end

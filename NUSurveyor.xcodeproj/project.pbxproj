@@ -1832,6 +1832,7 @@
 				0071908915C33A2B008CB666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3BD52A9B14C8B43400AB61E8 /* Build configuration list for PBXProject "NUSurveyor" */ = {
 			isa = XCConfigurationList;
