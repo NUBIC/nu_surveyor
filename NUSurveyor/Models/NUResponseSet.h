@@ -24,12 +24,15 @@
 - (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid;
 - (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value;
 - (NUResponse *) newResponseForIndexQuestion:(NSString *)qid Answer:(NSString *)aid;
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value responseGroup:(NSNumber*)rg;
 - (void) deleteResponseForQuestion:(NSString *)qid Answer:(NSString *)aid;
 
 - (void) generateDependencyGraph:(NSDictionary *)survey;
 - (NSDictionary *) dependenciesTriggeredBy:(NSString *)qid;
 - (BOOL) showDependency:(NSDictionary *)q;
 - (NSMutableDictionary *) evaluateConditions:(NSArray *)conditions;
+- (NSUInteger)countGroupResponsesForQuestionIds:(NSArray*)qids;
+- (NSDictionary*)groupByResponseGroupWithResponses:(NSArray*)responses;
 - (NSDictionary*) toDict;
 - (NSString*) toJson;
 - (void) fromJson:(NSString *)jsonString;

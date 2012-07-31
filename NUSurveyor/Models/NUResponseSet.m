@@ -130,22 +130,28 @@
 // Create a response with value
 //
 - (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
-  NSDictionary* entities = [[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName];
-  NSEntityDescription *entity = [entities objectForKey:@"Response"];
-  NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-  [newResponse setValue:self forKey:@"responseSet"];
-  [newResponse setValue:qid forKey:@"question"];
-  [newResponse setValue:aid forKey:@"answer"];
-  [newResponse setValue:value forKey:@"value"];
-  
-  [newResponse setValue:[NSDate date] forKey:@"createdAt"];
-  [newResponse setValue:[UUID generateUuidString] forKey:@"uuid"];
-  
-  // Save the context.
-  [self.class saveContext:self.managedObjectContext withMessage:@"ResponseSet newResponseForQuestionAnswerValue"];
-  
-  return newResponse;
+  return [self newResponseForQuestion:qid Answer:aid Value:value responseGroup:NULL];
 }
+
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value responseGroup:(NSNumber*)rg {
+    NSDictionary* entities = [[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName];
+    NSEntityDescription *entity = [entities objectForKey:@"Response"];
+    NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    [newResponse setValue:self forKey:@"responseSet"];
+    [newResponse setValue:qid forKey:@"question"];
+    [newResponse setValue:aid forKey:@"answer"];
+    [newResponse setValue:value forKey:@"value"];
+    [newResponse setValue:rg forKey:@"responseGroup"];
+     
+    [newResponse setValue:[NSDate date] forKey:@"createdAt"];
+    [newResponse setValue:[UUID generateUuidString] forKey:@"uuid"];
+    
+    // Save the context.
+    [self.class saveContext:self.managedObjectContext withMessage:@"ResponseSet newResponseForQuestionAnswerValue"];
+    
+    return newResponse;
+}
+
 //
 // Create an answer
 //
@@ -344,6 +350,28 @@
 	//	DLog(@"values: %@", values);
 	return values;
 }
+
+- (NSUInteger)countGroupResponsesForQuestionIds:(NSArray*)qids {
+    NSPredicate *p = [NSPredicate predicateWithFormat:@"(responseSet == %@) AND (question IN %@)", self, qids];
+    NSArray* r = [NUResponse findAllWithPredicate:p managedObjectContext:self.managedObjectContext];
+    NSDictionary* g = [self groupByResponseGroupWithResponses:r];
+    return [[g allKeys] count];
+}
+
+- (NSDictionary*)groupByResponseGroupWithResponses:(NSArray*)responses {
+    NSMutableDictionary* result = [NSMutableDictionary new];
+    for (NUResponse* r in responses) {
+        NSMutableArray* b = [result objectForKey:[r valueForKey:@"responseGroup"]];
+        if (!b) {
+            b = [NSMutableArray new];
+        }
+        [b addObject:[r valueForKey:@"uuid"]];
+        [result setObject:b forKey:[r valueForKey:@"responseGroup"]];
+    }
+    return result;
+}
+
+#pragma mark - Serialization/Deserialization
 
 - (NSDictionary*) toDict {
     NSMutableArray* responseDictionaries = [NSMutableArray new];
