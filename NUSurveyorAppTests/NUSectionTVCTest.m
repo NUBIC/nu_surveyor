@@ -43,20 +43,20 @@ static NUSectionTVC* t;
     STAssertNil(t.visibleSections, @"Should be nil");
 }
 
-- (void)testRowForLabel {
+- (void)testCreateRowsForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
-- (void)testRowsForRepeater {
+- (void)testCreateRowsForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" type:@"string"]]];
     STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
     STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
 
-- (void)testRowsForStringField {
+- (void)testCreateRowsForStringField {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
@@ -64,7 +64,7 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
-- (void)testRowsForGrid {
+- (void)testCreateRowsForGrid {
     [self useQuestion:[self createQuestionGridWithText:@"Preferences?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
                           [self createQuestionWithText:@"City?" uuid:@"abc" pick:@"one" answers:[NSArray arrayWithObjects:
                              [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
@@ -77,7 +77,7 @@ static NUSectionTVC* t;
 
 }
 
-- (void)testOneRowIsHidden {
+- (void)testCreateRowsForHidden {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
     STAssertEquals([t.visibleSections count], 0U, @"Should have 0 rows");
@@ -120,7 +120,7 @@ static NUSectionTVC* t;
 - (void)testIdsForIndexPathForStringField {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" answer:
                             [self createAnswerWithText:@"Location" uuid:@"abc" type:@"string"]]];
-    NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSDictionary* r = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     STAssertEquals([[r allKeys] count], 2U, @"Wrong number of attributes");
     STAssertEqualObjects([r objectForKey:@"qid"], @"xyz", @"Wrong qid");
     STAssertEqualObjects([r objectForKey:@"aid"], @"abc", @"Wrong aid");
