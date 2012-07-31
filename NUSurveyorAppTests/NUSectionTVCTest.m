@@ -51,7 +51,8 @@ static NUSectionTVC* t;
 
 - (void)testCreateRowsForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
-                       [self createQuestionWithText:@"Car" uuid:@"abc" type:@"string"]]];
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
     STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
     STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
@@ -97,7 +98,8 @@ static NUSectionTVC* t;
 
 - (void)testRowAttributesForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
-                        [self createQuestionWithText:@"Car" uuid:@"abc" type:@"string"]]];
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
