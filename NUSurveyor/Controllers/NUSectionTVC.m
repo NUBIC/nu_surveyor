@@ -191,18 +191,31 @@
   for(NSDictionary *questionOrGroup in [self.detailItem objectForKey:@"questions_and_groups"]){
     // regular questions, grids
     [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-																 [questionOrGroup objectForKey:@"uuid"] == nil ? [UUID generateUuidString] : [questionOrGroup objectForKey:@"uuid"], @"uuid",
-																 questionOrGroup, @"question",
-																 (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
-		//    DLog(@"uuid: %@ questionOrGroup: %@", [questionOrGroup objectForKey:@"uuid"], questionOrGroup);
+                                [questionOrGroup objectForKey:@"uuid"] == nil ? [UUID generateUuidString] : [questionOrGroup objectForKey:@"uuid"], @"uuid",
+                                 questionOrGroup, @"question",
+                                 (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
+    //    DLog(@"uuid: %@ questionOrGroup: %@", [questionOrGroup objectForKey:@"uuid"], questionOrGroup);
     
-    if (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"grid"]) {
-      // inline, repeaters
+    NSString* type = [questionOrGroup objectForKey:@"type"];
+    if (![type isEqualToString:@"grid"]) {
+      NSMutableArray* groupQuestionIds = [NSMutableArray new];
+      for (NSDictionary* q in [questionOrGroup objectForKey:@"questions"]) {
+        [groupQuestionIds addObject:[q objectForKey:@"uuid"]];
+      }
       for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
-        [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-																		 [question objectForKey:@"uuid"], @"uuid",
-																		 question, @"question",
-																		 (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
+        // inline, repeaters
+        NSMutableDictionary* attrs = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                        [question objectForKey:@"uuid"], @"uuid",
+                                        question, @"question",
+                                        (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil];
+          
+          
+
+        if ([type isEqualToString:@"repeater"]) {
+          [attrs setObject:groupQuestionIds forKey:@"repeaterQuestionIds"];
+        }
+          
+        [self.allSections addObject:attrs];
       }
     }
   }

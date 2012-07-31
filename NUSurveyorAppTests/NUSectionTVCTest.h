@@ -44,6 +44,8 @@
 
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show;
 
+- (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show repeaterQuestionIds:(NSArray*)qids;
+
 - (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid;
 
 @end

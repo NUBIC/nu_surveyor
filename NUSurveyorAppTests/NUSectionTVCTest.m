@@ -61,8 +61,8 @@ static NUSectionTVC* t;
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
                         [self createQuestionWithText:@"Car" uuid:@"abc" answer:
                             [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
-                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
-                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
+                        [self createQuestionWithText:@"Car" uuid:@"cbs" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"bbb" type:@"string"]], nil]]];
     STAssertEquals([t.allSections count], 3U, @"Should have 3 rows");
     STAssertEquals([t.visibleSections count], 3U, @"Should have 3 rows");
 }
@@ -113,7 +113,19 @@ static NUSectionTVC* t;
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
-    [self assertRow:r1 hasUUID:@"abc" show:YES];
+    [self assertRow:r1 hasUUID:@"abc" show:YES repeaterQuestionIds:[NSArray arrayWithObject:@"abc"]];
+}
+
+- (void)testRowAttributesForRepeaterWithTwoQuestions {
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
+                       [self createQuestionWithText:@"Car" uuid:@"cbs" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
+    NSDictionary* r0 = [t.allSections objectAtIndex:0];
+    NSDictionary* r1 = [t.allSections objectAtIndex:1];
+    [self assertRow:r0 hasUUID:@"xyz" show:YES];
+    [self assertRow:r1 hasUUID:@"abc" show:YES repeaterQuestionIds:[NSArray arrayWithObjects:@"abc", @"cbs", nil]];
 }
 
 #pragma mark - #indexOfQuestionOrGroupWithUUID
@@ -239,7 +251,6 @@ static NUSectionTVC* t;
 - (NSIndexPath*)createGridIndexPathForGroup:(NSUInteger)g question:(NSUInteger)q answer:(NSUInteger)a {
     NSUInteger idx[] = {g, q, a};
     return [NSIndexPath indexPathWithIndexes:idx length:3];
-
 }
 
 - (NSDictionary*) idsForIndexPath:(NSIndexPath*)i {
@@ -251,9 +262,18 @@ static NUSectionTVC* t;
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show {
     STAssertEquals([[r allKeys] count], 3U, @"Wrong number of attributes");
     STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
-    STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Should show");
+    STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Wrong show");
     STAssertNotNil([r objectForKey:@"question"], @"Should have question");
 }
+
+- (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show repeaterQuestionIds:(NSArray*)qids {
+    STAssertEquals([[r allKeys] count], 4U, @"Wrong number of attributes");
+    STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
+    STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Wrong show");
+    STAssertEqualObjects([r objectForKey:@"repeaterQuestionIds"], qids, @"Repeater question ids differ");
+    STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+}
+
 
 - (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid {
     STAssertEquals([[i allKeys] count], 2U, @"Wrong number of attributes");
