@@ -49,9 +49,9 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
-- (void)testRowsForRepeaterWithTextArea {
+- (void)testRowsForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
-                       [self createQuestionWithText:@"Car" uuid:@"abc" type:@"text"]]];
+                       [self createQuestionWithText:@"Car" uuid:@"abc" type:@"string"]]];
     STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
     STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
@@ -97,7 +97,7 @@ static NUSectionTVC* t;
 
 - (void)testRowAttributesForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
-                        [self createQuestionWithText:@"Car" uuid:@"abc" type:@"text"]]];
+                        [self createQuestionWithText:@"Car" uuid:@"abc" type:@"string"]]];
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
@@ -130,14 +130,14 @@ static NUSectionTVC* t;
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
-    NSDictionary* r0 = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-    NSDictionary* r1 = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:1 inSection:0]];
-    STAssertEquals([[r0 allKeys] count], 2U, @"Wrong number of attributes");
-    STAssertEquals([[r1 allKeys] count], 2U, @"Wrong number of attributes");
-    STAssertEqualObjects([r0 objectForKey:@"qid"], @"xyz", @"Wrong qid");
-    STAssertEqualObjects([r0 objectForKey:@"aid"], @"aaa", @"Wrong aid");
-    STAssertEqualObjects([r1 objectForKey:@"qid"], @"xyz", @"Wrong qid");
-    STAssertEqualObjects([r1 objectForKey:@"aid"], @"bbb", @"Wrong aid");
+    NSDictionary* chi = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    NSDictionary* moo = [self idsForIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    STAssertEquals([[chi allKeys] count], 2U, @"Wrong number of attributes");
+    STAssertEquals([[moo allKeys] count], 2U, @"Wrong number of attributes");
+    STAssertEqualObjects([chi objectForKey:@"qid"], @"xyz", @"Wrong qid");
+    STAssertEqualObjects([chi objectForKey:@"aid"], @"aaa", @"Wrong aid");
+    STAssertEqualObjects([moo objectForKey:@"qid"], @"xyz", @"Wrong qid");
+    STAssertEqualObjects([moo objectForKey:@"aid"], @"bbb", @"Wrong aid");
 }
 
 - (void)testIdsForIndexPathForGridWithPickOne {
