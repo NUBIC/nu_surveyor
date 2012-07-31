@@ -58,12 +58,13 @@ static NUSectionTVC* t;
 }
 
 - (void)testCreateRowsForRepeaterWithTwoQuestions {
-    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
-                       [self createQuestionWithText:@"Car" uuid:@"abc" answers:[NSArray arrayWithObjects:
-                          [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"],
-                          [self createAnswerWithText:@"Color" uuid:@"bbb" type:@"string"], nil]]]];
-    STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
-    STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
+                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
+    STAssertEquals([t.allSections count], 3U, @"Should have 3 rows");
+    STAssertEquals([t.visibleSections count], 3U, @"Should have 3 rows");
 }
 
 - (void)testCreateRowsForPickOne {
@@ -216,7 +217,12 @@ static NUSectionTVC* t;
 - (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question {
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"repeater\", \"questions\": [%@]}", text, uuid, question];
 }
-     
+
+- (NSString*)createQuestionRepeaterWithText:text uuid:uuid questions:questions {
+    NSString* combined = [questions componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"repeater\", \"questions\": [%@]}", text, uuid, combined];
+}
+
 - (NSString*)createQuestionGridWithText:(NSString*)text uuid:(NSString*)uuid questions:(NSArray*)questions {
     NSString* combined = [questions componentsJoinedByString:@", "];
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"grid\", \"questions\": [%@]}", text, uuid, combined];

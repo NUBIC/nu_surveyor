@@ -26,8 +26,10 @@
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid pick:(NSString*)pick answers:(NSArray*)answers;
 
-- (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question;
+- (NSString*)createQuestionRepeaterWithText:(NSString*)text uuid:(NSString*)uuid question:(NSString*)question;
 
+- (NSString*)createQuestionRepeaterWithText:(NSString*)text uuid:(NSString*)uuid questions:(NSArray*)questions;
+    
 - (NSString*)createQuestionGridWithText:(NSString*)text uuid:(NSString*)uuid questions:(NSArray*)questions;
 
 - (NSString*)createAnswerWithText:(NSString*)text uuid:(NSString*)uuid;
