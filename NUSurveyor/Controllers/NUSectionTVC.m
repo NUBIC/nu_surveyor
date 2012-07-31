@@ -566,7 +566,7 @@
 }
 - (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value{
   NSDictionary *ids = [self idsForIndexPath:i];
-  return [self.responseSet newResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] Value:value];
+  return (NSManagedObject *) [self.responseSet newResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] Value:value];
 }
 - (NSManagedObject *) newResponseForIndexPath:i {
   return [self newResponseForIndexPath:i Value:nil];
