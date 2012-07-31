@@ -1,7 +1,7 @@
 History for nu_surveyor
 =======================
 
-1.0.2 (Unreleased)
+1.0.2
 -----
 
 ### Fixes
