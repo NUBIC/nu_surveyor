@@ -296,7 +296,6 @@
 		3BDB4BD41536123A00868F97 /* pbj.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pbj.json; sourceTree = "<group>"; };
 		3BE8672F14CDF145002D04BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KIF NUSurveyorExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BF20D1515339792008227B2 /* NUSurveyorExample copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "NUSurveyorExample copy2-Info.plist"; path = "/Users/markyoon/ios/nu_surveyor/NUSurveyorExample copy2-Info.plist"; sourceTree = "<absolute>"; };
 		3BF20D1E15339930008227B2 /* SectionTVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionTVCTest.h; path = KIF/SectionTVCTest.h; sourceTree = "<group>"; };
 		3BF20D1F15339930008227B2 /* SectionTVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionTVCTest.m; path = KIF/SectionTVCTest.m; sourceTree = "<group>"; };
 		3BF20D24153399DA008227B2 /* KIFTestScenario+SectionAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFTestScenario+SectionAdditions.h"; path = "KIF/KIFTestScenario+SectionAdditions.h"; sourceTree = "<group>"; };
@@ -590,7 +589,6 @@
 				3BD52AA314C8B43500AB61E8 /* Frameworks */,
 				3BD52AA214C8B43500AB61E8 /* Products */,
 				67DB49D514D09713009CC8C3 /* README.md */,
-				3BF20D1515339792008227B2 /* NUSurveyorExample copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
