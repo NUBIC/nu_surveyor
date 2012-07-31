@@ -64,6 +64,19 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
+- (void)testRowsForGrid {
+    [self useQuestion:[self createQuestionGridWithText:@"Preferences?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                          [self createQuestionWithText:@"City?" uuid:@"abc" pick:@"one" answers:[NSArray arrayWithObjects:
+                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
+                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]],
+                          [self createQuestionWithText:@"Color?" uuid:@"cbs" pick:@"one" answers:[NSArray arrayWithObjects:
+                              [self createAnswerWithText:@"Blue" uuid:@"zzz"],
+                              [self createAnswerWithText:@"Red" uuid:@"yyy"], nil]], nil]]];
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
+
+}
+
 - (void)testOneRowIsHidden {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
@@ -114,15 +127,37 @@ static NUSectionTVC* t;
 }
 
 - (void)testIdsForIndexPathForPickOne {
-    [self useQuestion: [self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
     NSDictionary* r0 = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     NSDictionary* r1 = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+    STAssertEquals([[r0 allKeys] count], 2U, @"Wrong number of attributes");
+    STAssertEquals([[r1 allKeys] count], 2U, @"Wrong number of attributes");
     STAssertEqualObjects([r0 objectForKey:@"qid"], @"xyz", @"Wrong qid");
     STAssertEqualObjects([r0 objectForKey:@"aid"], @"aaa", @"Wrong aid");
     STAssertEqualObjects([r1 objectForKey:@"qid"], @"xyz", @"Wrong qid");
     STAssertEqualObjects([r1 objectForKey:@"aid"], @"bbb", @"Wrong aid");
+}
+
+- (void)testIdsForIndexPathForGridWithPickOne {
+    [self useQuestion:[self createQuestionGridWithText:@"Preferences?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                        [self createQuestionWithText:@"City?" uuid:@"abc" pick:@"one" answers:[NSArray arrayWithObjects:
+                            [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
+                            [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]],
+                        [self createQuestionWithText:@"Color?" uuid:@"cbs" pick:@"one" answers:[NSArray arrayWithObjects:
+                            [self createAnswerWithText:@"Blue" uuid:@"zzz"],
+                            [self createAnswerWithText:@"Red" uuid:@"yyy"], nil]], nil]]];
+
+    NSDictionary* chi = [self idsForIndexPath:[self createGridIndexPathForGroup:0 question:0 answer:0]];
+    NSDictionary* moo = [self idsForIndexPath:[self createGridIndexPathForGroup:0 question:0 answer:1]];
+    NSDictionary* blu = [self idsForIndexPath:[self createGridIndexPathForGroup:0 question:1 answer:0]];
+    NSDictionary* red = [self idsForIndexPath:[self createGridIndexPathForGroup:0 question:1 answer:1]];
+    
+    [self assertId:chi qid:@"abc" aid:@"aaa"];
+    [self assertId:moo qid:@"abc" aid:@"bbb"];
+    [self assertId:blu qid:@"cbs" aid:@"zzz"];
+    [self assertId:red qid:@"cbs" aid:@"yyy"];
 }
 
 #pragma mark - JSON Builder Methods
@@ -157,6 +192,11 @@ static NUSectionTVC* t;
 - (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question {
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"repeater\", \"questions\": [%@]}", text, uuid, question];
 }
+     
+- (NSString*)createQuestionGridWithText:(NSString*)text uuid:(NSString*)uuid questions:(NSArray*)questions {
+    NSString* combined = [questions componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"grid\", \"questions\": [%@]}", text, uuid, combined];
+}
 
 - (NSString*)createAnswerWithText:(NSString*)text uuid:(NSString*)uuid {
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\"}", text, uuid];
@@ -166,6 +206,16 @@ static NUSectionTVC* t;
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"type\": \"%@\"}", text, uuid, type];
 }
 
+- (NSIndexPath*)createGridIndexPathForGroup:(NSUInteger)g question:(NSUInteger)q answer:(NSUInteger)a {
+    NSUInteger idx[] = {g, q, a};
+    return [NSIndexPath indexPathWithIndexes:idx length:3];
+
+}
+
+- (NSDictionary*) idsForIndexPath:(NSIndexPath*)i {
+    return (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:i];
+}
+
 #pragma mark - Assertion Helper Methods
 
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show {
@@ -173,6 +223,12 @@ static NUSectionTVC* t;
     STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
     STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Should show");
     STAssertNotNil([r objectForKey:@"question"], @"Should have question");
+}
+
+- (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid {
+    STAssertEquals([[i allKeys] count], 2U, @"Wrong number of attributes");
+    STAssertEqualObjects([i objectForKey:@"qid"], qid, @"Wrong qid");
+    STAssertEqualObjects([i objectForKey:@"aid"], aid, @"Wrong aid");
 }
 
 /*
