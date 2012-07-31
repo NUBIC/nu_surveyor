@@ -56,7 +56,7 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
 
-- (void)testCreateRowsForStringField {
+- (void)testCreateRowsForPickOne {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
@@ -158,6 +158,14 @@ static NUSectionTVC* t;
     [self assertId:moo qid:@"abc" aid:@"bbb"];
     [self assertId:blu qid:@"cbs" aid:@"zzz"];
     [self assertId:red qid:@"cbs" aid:@"yyy"];
+}
+
+- (void)testIdsForIndexPathForRepeater {
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
+    NSDictionary* r = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    [self assertId:r qid:@"abc" aid:@"aaa"];
 }
 
 #pragma mark - JSON Builder Methods
