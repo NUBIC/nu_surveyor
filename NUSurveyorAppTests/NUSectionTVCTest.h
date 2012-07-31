@@ -22,6 +22,8 @@
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answer:(NSString*)answer;
 
+- (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answers:(NSArray*)answers;
+
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid pick:(NSString*)pick answers:(NSArray*)answers;
 
 - (NSString*)createQuestionRepeaterWithText:text uuid:uuid question:question;

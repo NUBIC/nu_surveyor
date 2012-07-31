@@ -57,6 +57,15 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
 }
 
+- (void)testCreateRowsForRepeaterWithTwoQuestions {
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answers:[NSArray arrayWithObjects:
+                          [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"],
+                          [self createAnswerWithText:@"Color" uuid:@"bbb" type:@"string"], nil]]]];
+    STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
+    STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
+}
+
 - (void)testCreateRowsForPickOne {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
@@ -192,6 +201,11 @@ static NUSectionTVC* t;
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answer:(NSString*)answer {
     return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"answers\": [%@]}", text, uuid, answer];
+}
+
+- (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid answers:(NSArray*)answers {
+    NSString* combined = [answers componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"{\"text\": \"%@\", \"uuid\": \"%@\", \"answers\": [%@]}", text, uuid, combined];
 }
 
 - (NSString*)createQuestionWithText:(NSString*)text uuid:(NSString*)uuid pick:(NSString*)pick answers:(NSArray*)answers {
