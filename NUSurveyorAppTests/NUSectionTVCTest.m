@@ -282,9 +282,8 @@ static NUSectionTVC* t;
 }
 
 /*
- 
- 1. generate response group id in create rows (take max id + 1)
- 2. update generated ids to return response group id
+ 1. collect all question ids for repeaters in create rows (take max id + 1)
+ 2. update generated ids to return response group id (ResponseGroup#countGroupResponsesForQuestionIds(qids))
  3. modify delete response to accept response group id
  4. Modify create to accept response set group id
  5. Update did endEdit text methods
