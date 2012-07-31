@@ -289,6 +289,7 @@ static NUSectionTVC* t;
  5. Update did endEdit text methods
  6. Update didSelect on cell classes
  7. Interactive rebase and add issue # these are a part of
+ 8. Update CHANGELOG.md
 */
 
 @end
