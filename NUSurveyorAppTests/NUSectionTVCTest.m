@@ -36,7 +36,7 @@ static NUResponseSet* rs;
     STAssertNotNil(yourApplicationDelegate, @"UIApplication failed to find the AppDelegate");
 }
 
-#pragma mark - #createRows
+#pragma mark - #createRows (Generic)
 
 - (void)testNoRows {
     [self useQuestion:nil];
@@ -49,6 +49,8 @@ static NUResponseSet* rs;
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
+
+#pragma mark - #createRows (Repeaters)
 
 - (void)testCreateRowsForRepeaterWithNoResponse {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
@@ -77,44 +79,6 @@ static NUResponseSet* rs;
     STAssertEquals([t.visibleSections count], 3U, @"Should have 3 rows");
 }
 
-- (void)testCreateRowsForPickOne {
-    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
-                            [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
-                            [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
-    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
-    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
-}
-
-- (void)testCreateRowsForGrid {
-    [self useQuestion:[self createQuestionGridWithText:@"Preferences?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
-                          [self createQuestionWithText:@"City?" uuid:@"abc" pick:@"one" answers:[NSArray arrayWithObjects:
-                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
-                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]],
-                          [self createQuestionWithText:@"Color?" uuid:@"cbs" pick:@"one" answers:[NSArray arrayWithObjects:
-                              [self createAnswerWithText:@"Blue" uuid:@"zzz"],
-                              [self createAnswerWithText:@"Red" uuid:@"yyy"], nil]], nil]]];
-    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
-    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
-}
-
-- (void)testCreateRowsForHidden {
-    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
-    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
-    STAssertEquals([t.visibleSections count], 0U, @"Should have 0 rows");
-}
-
-- (void)testRowAttributesForLabel {
-    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
-    NSDictionary* r = [t.allSections objectAtIndex:0];
-    [self assertRow:r hasUUID:@"xyz" show:YES];
-}
-
-- (void)testRowAttributesForHidden {
-    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
-    NSDictionary* r = [t.allSections objectAtIndex:0];
-    [self assertRow:r hasUUID:@"xyz" show:NO];
-}
-
 - (void)testRowAttributesForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
@@ -127,10 +91,10 @@ static NUResponseSet* rs;
 
 - (void)testRowAttributesForRepeaterWithTwoQuestions {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
-                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
-                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
-                       [self createQuestionWithText:@"Car" uuid:@"cbs" answer:
-                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
+                           [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                                [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
+                           [self createQuestionWithText:@"Car" uuid:@"cbs" answer:
+                                [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     NSDictionary* r2 = [t.allSections objectAtIndex:2];
@@ -158,6 +122,53 @@ static NUResponseSet* rs;
     [self assertRow:r4 hasUUID:@"cbs" show:YES rgid:1];
 }
 
+#pragma mark - #createRows (Pick One)
+
+- (void)testCreateRowsForPickOne {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
+                            [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
+                            [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]]];
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
+}
+
+#pragma mark - #createRows (Grid)
+
+- (void)testCreateRowsForGrid {
+    [self useQuestion:[self createQuestionGridWithText:@"Preferences?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                          [self createQuestionWithText:@"City?" uuid:@"abc" pick:@"one" answers:[NSArray arrayWithObjects:
+                             [self createAnswerWithText:@"Chicago" uuid:@"aaa"],
+                             [self createAnswerWithText:@"Mooooon" uuid:@"bbb"], nil]],
+                          [self createQuestionWithText:@"Color?" uuid:@"cbs" pick:@"one" answers:[NSArray arrayWithObjects:
+                              [self createAnswerWithText:@"Blue" uuid:@"zzz"],
+                              [self createAnswerWithText:@"Red" uuid:@"yyy"], nil]], nil]]];
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
+}
+
+#pragma mark - #createRows (Hidden)
+
+- (void)testCreateRowsForHidden {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
+    STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
+    STAssertEquals([t.visibleSections count], 0U, @"Should have 0 rows");
+}
+
+- (void)testRowAttributesForHidden {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"hidden"]];
+    NSDictionary* r = [t.allSections objectAtIndex:0];
+    [self assertRow:r hasUUID:@"xyz" show:NO];
+}
+
+#pragma mark - #createRows (Label)
+
+- (void)testRowAttributesForLabel {
+    [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
+    NSDictionary* r = [t.allSections objectAtIndex:0];
+    [self assertRow:r hasUUID:@"xyz" show:YES];
+}
+
+
 #pragma mark - #indexOfQuestionOrGroupWithUUID
 
 - (void)testIndexOfQuestionOrGroupWithUUID {
@@ -165,11 +176,15 @@ static NUResponseSet* rs;
     STAssertEquals((NSUInteger)[t performSelector:@selector(indexOfQuestionOrGroupWithUUID:) withObject:@"xyz"], 0U, @"Wrong index");
 }
 
+#pragma mark - #idsForIndexPath (Label)
+
 - (void)testIdsForIndexPathForLabel {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" type:@"label"]];
     NSDictionary* r = (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:[NSIndexPath indexPathForRow:0 inSection:0]];
     STAssertEquals([[r allKeys] count], 0U, @"Wrong number of attributes");
 }
+
+#pragma mark - #idsForIndexPath (String)
 
 - (void)testIdsForIndexPathForStringField {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" answer:
@@ -179,6 +194,8 @@ static NUResponseSet* rs;
     STAssertEqualObjects([r objectForKey:@"qid"], @"xyz", @"Wrong qid");
     STAssertEqualObjects([r objectForKey:@"aid"], @"abc", @"Wrong aid");
 }
+
+#pragma mark - #idsForIndexPath (Pick One)
 
 - (void)testIdsForIndexPathForPickOne {
     [self useQuestion:[self createQuestionWithText:@"Where is Waldo?" uuid:@"xyz" pick:@"one" answers:[NSArray arrayWithObjects:
@@ -214,6 +231,8 @@ static NUResponseSet* rs;
     [self assertId:red qid:@"cbs" aid:@"yyy"];
 }
 
+#pragma mark - #idsForIndexPath (Repeater)
+
 - (void)testIdsForIndexPathForRepeater {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
@@ -222,7 +241,7 @@ static NUResponseSet* rs;
     [self assertId:r qid:@"abc" aid:@"aaa"];
 }
 
-#pragma mark - JSON Builder Methods
+#pragma mark - JSON Builder Helper Methods
      
 - (void)useQuestion:(NSString*)question {
     t.detailItem = (question == nil) ? nil : [self builder:[NSArray arrayWithObject:question]];
