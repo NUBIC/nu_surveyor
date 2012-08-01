@@ -17,6 +17,7 @@
 @implementation NUSectionTVCTest
 
 static NUSectionTVC* t;
+static NUResponseSet* rs;
 
 - (void) setUp {
     t = [[NUSectionTVC alloc] initWithStyle:UITableViewStyleGrouped];
@@ -25,7 +26,7 @@ static NUSectionTVC* t;
     
     NSEntityDescription *entity = [[[delegate managedObjectModel] entitiesByName] objectForKey:@"ResponseSet"];
 
-    NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:[delegate managedObjectContext]];
+    rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:[delegate managedObjectContext]];
     
     t.responseSet = rs;
 }
@@ -49,12 +50,21 @@ static NUSectionTVC* t;
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
 }
 
-- (void)testCreateRowsForRepeater {
+- (void)testCreateRowsForRepeaterWithNoResponse {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
                         [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
     STAssertEquals([t.allSections count], 2U, @"Should have 2 rows");
-    STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");
+    STAssertEquals([t.visibleSections count], 2U, @"Should have 2 rows");    
+}
+
+- (void)testCreateRowsForRepeaterWithOneResponses {
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" Value:@"Ford" responseGroup:[NSNumber numberWithInteger:0]];
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
+    STAssertEquals([t.allSections count], 3U, @"Should have 3 rows");
+    STAssertEquals([t.visibleSections count], 3U, @"Should have 3 rows");
 }
 
 - (void)testCreateRowsForRepeaterWithTwoQuestions {
@@ -85,7 +95,6 @@ static NUSectionTVC* t;
                               [self createAnswerWithText:@"Red" uuid:@"yyy"], nil]], nil]]];
     STAssertEquals([t.allSections count], 1U, @"Should have 1 row");
     STAssertEquals([t.visibleSections count], 1U, @"Should have 1 row");
-
 }
 
 - (void)testCreateRowsForHidden {
@@ -124,8 +133,29 @@ static NUSectionTVC* t;
                             [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
+    NSDictionary* r2 = [t.allSections objectAtIndex:2];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
     [self assertRow:r1 hasUUID:@"abc" show:YES rgid:0];
+    [self assertRow:r2 hasUUID:@"cbs" show:YES rgid:0];
+}
+
+- (void)testRowAttributesForRepeaterWithTwoQuestionsAndOneResponse {
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" Value:@"Ford" responseGroup:[NSNumber numberWithInteger:0]];
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                           [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                                [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
+                           [self createQuestionWithText:@"Car" uuid:@"cbs" answer:
+                                [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]], nil]]];
+    NSDictionary* r0 = [t.allSections objectAtIndex:0];
+    NSDictionary* r1 = [t.allSections objectAtIndex:1];
+    NSDictionary* r2 = [t.allSections objectAtIndex:2];
+    NSDictionary* r3 = [t.allSections objectAtIndex:3];
+    NSDictionary* r4 = [t.allSections objectAtIndex:4];
+    [self assertRow:r0 hasUUID:@"xyz" show:YES];
+    [self assertRow:r1 hasUUID:@"abc" show:YES rgid:0];
+    [self assertRow:r2 hasUUID:@"cbs" show:YES rgid:0];
+    [self assertRow:r3 hasUUID:@"abc" show:YES rgid:1];
+    [self assertRow:r4 hasUUID:@"cbs" show:YES rgid:1];
 }
 
 #pragma mark - #indexOfQuestionOrGroupWithUUID
