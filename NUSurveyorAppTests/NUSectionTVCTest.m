@@ -113,7 +113,7 @@ static NUSectionTVC* t;
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
-    [self assertRow:r1 hasUUID:@"abc" show:YES repeaterQuestionIds:[NSArray arrayWithObject:@"abc"]];
+    [self assertRow:r1 hasUUID:@"abc" show:YES rgid:0];
 }
 
 - (void)testRowAttributesForRepeaterWithTwoQuestions {
@@ -125,7 +125,7 @@ static NUSectionTVC* t;
     NSDictionary* r0 = [t.allSections objectAtIndex:0];
     NSDictionary* r1 = [t.allSections objectAtIndex:1];
     [self assertRow:r0 hasUUID:@"xyz" show:YES];
-    [self assertRow:r1 hasUUID:@"abc" show:YES repeaterQuestionIds:[NSArray arrayWithObjects:@"abc", @"cbs", nil]];
+    [self assertRow:r1 hasUUID:@"abc" show:YES rgid:0];
 }
 
 #pragma mark - #indexOfQuestionOrGroupWithUUID
@@ -266,14 +266,13 @@ static NUSectionTVC* t;
     STAssertNotNil([r objectForKey:@"question"], @"Should have question");
 }
 
-- (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show repeaterQuestionIds:(NSArray*)qids {
+- (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show rgid:(NSInteger)rgid {
     STAssertEquals([[r allKeys] count], 4U, @"Wrong number of attributes");
     STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
     STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Wrong show");
-    STAssertEqualObjects([r objectForKey:@"repeaterQuestionIds"], qids, @"Repeater question ids differ");
+    STAssertEqualObjects([r objectForKey:@"rgid"],[NSNumber numberWithInteger:rgid], @"Wrong rgid");
     STAssertNotNil([r objectForKey:@"question"], @"Should have question");
 }
-
 
 - (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid {
     STAssertEquals([[i allKeys] count], 2U, @"Wrong number of attributes");
@@ -282,8 +281,8 @@ static NUSectionTVC* t;
 }
 
 /*
- 1. collect all question ids for repeaters in create rows (take max id + 1)
- 2. update generated ids to return response group id (ResponseGroup#countGroupResponsesForQuestionIds(qids))
+ 1. collect all question ids for repeaters in create rows and use in  (ResponseGroup#countGroupResponsesForQuestionIds(qids)) (take max id + 1)
+ 2. update generated ids to return response group id
  3. modify delete response to accept response group id
  4. Modify create to accept response set group id
  5. Update did endEdit text methods

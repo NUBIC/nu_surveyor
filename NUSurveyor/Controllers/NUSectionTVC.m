@@ -198,25 +198,34 @@
     
     NSString* type = [questionOrGroup objectForKey:@"type"];
     if (![type isEqualToString:@"grid"]) {
-      NSMutableArray* groupQuestionIds = [NSMutableArray new];
-      for (NSDictionary* q in [questionOrGroup objectForKey:@"questions"]) {
-        [groupQuestionIds addObject:[q objectForKey:@"uuid"]];
-      }
-      for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
-        // inline, repeaters
-        NSMutableDictionary* attrs = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        [question objectForKey:@"uuid"], @"uuid",
-                                        question, @"question",
-                                        (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil];
-          
-          
-
         if ([type isEqualToString:@"repeater"]) {
-          [attrs setObject:groupQuestionIds forKey:@"repeaterQuestionIds"];
+            NSMutableArray* groupQuestionIds = [NSMutableArray new];
+            for (NSDictionary* q in [questionOrGroup objectForKey:@"questions"]) {
+                [groupQuestionIds addObject:[q objectForKey:@"uuid"]];
+            }
+            
+            NSInteger count = [self.responseSet countGroupResponsesForQuestionIds:groupQuestionIds] + 1; // +1 for new section
+            for (int i=0; i < count; i++) {
+                for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
+                    // repeaters
+                    NSNumber* show = ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO);
+                    [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                 [question objectForKey:@"uuid"], @"uuid",
+                                                 question, @"question",
+                                                 [NSNumber numberWithInt:i], @"rgid",
+                                                 show, @"show", nil]];
+
+                }                    
+            }
+        } else {
+            for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
+                // inline
+                [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      [question objectForKey:@"uuid"], @"uuid",
+                                      question, @"question",
+                                      ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO), @"show", nil]];
+            }
         }
-          
-        [self.allSections addObject:attrs];
-      }
     }
   }
 	//  DLog(@"all sections: %@", allSections);
