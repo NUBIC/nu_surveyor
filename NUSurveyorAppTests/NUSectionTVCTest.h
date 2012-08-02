@@ -48,4 +48,6 @@
 
 - (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid;
 
+- (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid rgid:(NSInteger)rgid;
+
 @end

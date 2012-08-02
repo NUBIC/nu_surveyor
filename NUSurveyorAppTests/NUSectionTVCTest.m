@@ -238,7 +238,7 @@ static NUResponseSet* rs;
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
                             [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
     NSDictionary* r = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-    [self assertId:r qid:@"abc" aid:@"aaa"];
+    [self assertId:r qid:@"abc" aid:@"aaa" rgid:0];
 }
 
 #pragma mark - JSON Builder Helper Methods
@@ -327,6 +327,13 @@ static NUResponseSet* rs;
     STAssertEquals([[i allKeys] count], 2U, @"Wrong number of attributes");
     STAssertEqualObjects([i objectForKey:@"qid"], qid, @"Wrong qid");
     STAssertEqualObjects([i objectForKey:@"aid"], aid, @"Wrong aid");
+}
+
+- (void)assertId:(NSDictionary*)i qid:(NSString*)qid aid:(NSString*)aid rgid:(NSInteger)rgid {
+    STAssertEquals([[i allKeys] count], 3U, @"Wrong number of attributes");
+    STAssertEqualObjects([i objectForKey:@"qid"], qid, @"Wrong qid");
+    STAssertEqualObjects([i objectForKey:@"aid"], aid, @"Wrong aid");
+    STAssertEqualObjects([i objectForKey:@"rgid"], [NSNumber numberWithInteger:rgid], @"Wrong rgid");
 }
 
 /*

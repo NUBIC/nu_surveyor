@@ -525,6 +525,7 @@
 - (NSMutableDictionary *)questionOrGroupWithUUID:(NSString *)uuid{
   return [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:uuid]] objectForKey:@"question"];
 }
+
 - (NSUInteger)indexOfQuestionOrGroupWithUUID:(NSString *)uuid{
   // block syntax
   // ^int (int x) { return x*3; }
@@ -540,7 +541,8 @@
   if ([i indexAtPosition:0] > self.visibleSections.count) {
     return [NSDictionary dictionaryWithObjectsAndKeys:nil, @"qid", nil, @"aid", nil];
   }
-  NSDictionary *qOrG = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:[i indexAtPosition:0]]];
+  NSString* uuid = [self.visibleSections objectAtIndex:[i indexAtPosition:0]];
+  NSDictionary *qOrG = [self questionOrGroupWithUUID:uuid];
   if ([[qOrG objectForKey:@"type"] isEqualToString:@"grid"]) {
     if ([i indexAtPosition:0] < [self.visibleSections count] && [i indexAtPosition:1] < [[qOrG objectForKey:@"questions"] count] && [i indexAtPosition:2] < [[[[qOrG objectForKey:@"questions"] objectAtIndex:[i indexAtPosition:1]] objectForKey:@"answers"] count]) {
       NSDictionary *q = [[qOrG objectForKey:@"questions"] objectAtIndex:[i indexAtPosition:1]];
@@ -555,10 +557,12 @@
     }
   } else {
     if (i.section < [self.visibleSections count] && i.row < [[qOrG objectForKey:@"answers"] count]) {
+      NSDictionary* section = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:uuid]];
       NSString *qid = [self.visibleSections objectAtIndex:i.section];
       NSString *aid = [[[qOrG objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
+      NSString *rgid = [section objectForKey:@"rgid"];
       //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
-      return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", nil];
+      return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", rgid, @"rgid", nil];
     }else{
       // this happens when the tableview is refreshed
       // and self.tableView deleteSections is called
