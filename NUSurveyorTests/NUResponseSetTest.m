@@ -127,7 +127,7 @@ NSDate* completedAt;
 - (void)testCountGroupResponsesForQuestionIdsWithNoUsefulResponses {
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    [rs newResponseForQuestion:@"xyz" Answer:@"456" Value:@"bar" responseGroup:[NSNumber numberWithInteger:0]];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
     NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObject:@"abc"]];
     STAssertEquals(count, 0U, @"Wrong response group count");
 }
@@ -135,7 +135,7 @@ NSDate* completedAt;
 - (void)testCountGroupResponsesForQuestionIdsWithOneResponses {
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    [rs newResponseForQuestion:@"xyz" Answer:@"456" Value:@"bar" responseGroup:[NSNumber numberWithInteger:0]];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
     NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObject:@"xyz"]];
     STAssertEquals(count, 1U, @"Wrong response group count");
 }
@@ -143,8 +143,8 @@ NSDate* completedAt;
 - (void)testCountGroupResponsesForQuestionIdsWithTwoResponses {
     NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
     rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
-    [rs newResponseForQuestion:@"xyz" Answer:@"456" Value:@"bar" responseGroup:[NSNumber numberWithInteger:0]];
-    [rs newResponseForQuestion:@"abc" Answer:@"789" Value:@"foo" responseGroup:[NSNumber numberWithInteger:1]];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
+    [rs newResponseForQuestion:@"abc" Answer:@"789" responseGroup:[NSNumber numberWithInteger:1] Value:@"foo"];
     NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObjects:@"xyz", @"abc", nil]];
     STAssertEquals(count, 2U, @"Wrong response group count");
 }

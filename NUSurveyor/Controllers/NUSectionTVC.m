@@ -588,18 +588,18 @@
 #pragma mark - Core Data
 - (NSArray *) responsesForIndexPath:(NSIndexPath *)i{
   NSDictionary *ids = [self idsForIndexPath:i];
-  return [self.responseSet responsesForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"]];
+  return [self.responseSet responsesForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] Response:[ids objectForKey:@"rgid"]];
 }
 - (NSManagedObject *) newResponseForIndexPath:(NSIndexPath *)i Value:(NSString *)value{
   NSDictionary *ids = [self idsForIndexPath:i];
-  return (NSManagedObject *) [self.responseSet newResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] Value:value];
+  return (NSManagedObject *) [self.responseSet newResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] responseGroup:[ids objectForKey:@"rgid"] Value:value];
 }
 - (NSManagedObject *) newResponseForIndexPath:i {
   return [self newResponseForIndexPath:i Value:nil];
 }
 - (void) deleteResponseForIndexPath:(NSIndexPath *)i {
   NSDictionary *ids = [self idsForIndexPath:i];
-  [self.responseSet deleteResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"]];
+  [self.responseSet deleteResponseForQuestion:[ids objectForKey:@"qid"] Answer:[ids objectForKey:@"aid"] ResponseGroup:[ids objectForKey:@"rgid"]];
 }
 
 #pragma mark - Dependencies

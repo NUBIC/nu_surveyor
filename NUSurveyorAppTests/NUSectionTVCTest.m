@@ -61,7 +61,7 @@ static NUResponseSet* rs;
 }
 
 - (void)testCreateRowsForRepeaterWithOneResponses {
-    [rs newResponseForQuestion:@"abc" Answer:@"aaa" Value:@"Ford" responseGroup:[NSNumber numberWithInteger:0]];
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" responseGroup:[NSNumber numberWithInteger:0] Value:@"Ford"];
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
                         [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
@@ -104,7 +104,7 @@ static NUResponseSet* rs;
 }
 
 - (void)testRowAttributesForRepeaterWithTwoQuestionsAndOneResponse {
-    [rs newResponseForQuestion:@"abc" Answer:@"aaa" Value:@"Ford" responseGroup:[NSNumber numberWithInteger:0]];
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" responseGroup:[NSNumber numberWithInteger:0] Value:@"Ford"];
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
                            [self createQuestionWithText:@"Car" uuid:@"abc" answer:
                                 [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
@@ -345,6 +345,8 @@ static NUResponseSet* rs;
  6. Update didSelect on cell classes
  7. Interactive rebase and add issue # these are a part of
  8. Update CHANGELOG.md
+ 9. Do we need change NUResponseSet#evaluateConditions?
+ 10. Can we remove NUResponseSet#responseForQuestion,newResponseForQuestion,deleteResponseForQuestion without rgid?
 */
 
 @end

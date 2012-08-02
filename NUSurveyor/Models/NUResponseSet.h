@@ -22,10 +22,12 @@
 - (NSUInteger) responseCount;
 - (NSArray *) responsesForQuestion:(NSString *)qid;
 - (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid;
+- (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid Response:(NSNumber*)rgid;
 - (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value;
 - (NUResponse *) newResponseForIndexQuestion:(NSString *)qid Answer:(NSString *)aid;
-- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value responseGroup:(NSNumber*)rg;
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid responseGroup:(NSNumber*)rg Value:(NSString *)value;
 - (void) deleteResponseForQuestion:(NSString *)qid Answer:(NSString *)aid;
+- (void) deleteResponseForQuestion:(NSString *)qid Answer:(NSString *)aid ResponseGroup:(NSNumber*)rgid;
 
 - (void) generateDependencyGraph:(NSDictionary *)survey;
 - (NSDictionary *) dependenciesTriggeredBy:(NSString *)qid;

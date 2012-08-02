@@ -98,7 +98,12 @@
 //
 // Look up responses
 //
+
 - (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid {
+    return [self responsesForQuestion:qid Answer:aid Response:NULL];  
+}
+
+- (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid Response:(NSNumber*)rgid {
   //  DLog(@"responsesForQuestion %@ answer %@", qid, aid);
   // setup fetch request
 	NSError *error = nil;
@@ -108,8 +113,8 @@
   
   // Set predicate
   NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                            @"(responseSet == %@) AND (question == %@) AND (answer == %@)", 
-                            self, qid, aid];
+                            @"(responseSet == %@) AND (question == %@) AND (answer == %@) AND (responseGroup == %@)", 
+                            self, qid, aid, rgid];
   [request setPredicate:predicate];
   
   NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -130,10 +135,10 @@
 // Create a response with value
 //
 - (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value{
-  return [self newResponseForQuestion:qid Answer:aid Value:value responseGroup:NULL];
+  return [self newResponseForQuestion:qid Answer:aid responseGroup:NULL Value:value];
 }
 
-- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid Value:(NSString *)value responseGroup:(NSNumber*)rg {
+- (NUResponse *) newResponseForQuestion:(NSString *)qid Answer:(NSString *)aid responseGroup:(NSNumber*)rg Value:(NSString *)value {
     NSDictionary* entities = [[[self.managedObjectContext persistentStoreCoordinator] managedObjectModel] entitiesByName];
     NSEntityDescription *entity = [entities objectForKey:@"Response"];
     NUResponse* newResponse = [[NUResponse alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
@@ -163,7 +168,11 @@
 //
 
 - (void) deleteResponseForQuestion:(NSString *)qid Answer:(NSString *)aid {
-  NSArray *existingResponses = [self responsesForQuestion:qid Answer:aid];
+    [self deleteResponseForQuestion:qid Answer:aid ResponseGroup:NULL];
+}
+
+- (void) deleteResponseForQuestion:(NSString *)qid Answer:(NSString *)aid ResponseGroup:(NSNumber*)rgid {
+  NSArray *existingResponses = [self responsesForQuestion:qid Answer:aid Response:rgid];
   for (NSManagedObject *existingResponse in existingResponses) {
     [self.managedObjectContext deleteObject:existingResponse];
   }
