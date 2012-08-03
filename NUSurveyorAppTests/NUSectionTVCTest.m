@@ -233,18 +233,46 @@ static NUResponseSet* rs;
 
 #pragma mark - #idsForIndexPath (Repeater)
 
-- (void)testIdsForIndexPathForRepeater {
+- (void)testIdsForIndexPathForRepeaterWithNoResponses {
     [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
-                            [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
     NSDictionary* r = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
     [self assertId:r qid:@"abc" aid:@"aaa" rgid:0];
+}
+
+- (void)testIdsForIndexPathForRepeaterWithOneResponse {
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" responseGroup:[NSNumber numberWithInteger:0] Value:@"Ford"];
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]]];
+    NSDictionary* r0 = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    NSDictionary* r1 = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+    [self assertId:r0 qid:@"abc" aid:@"aaa" rgid:0];
+    [self assertId:r1 qid:@"abc" aid:@"aaa" rgid:1];
+}
+
+- (void)testIdsForIndexPathForRepeaterWithHiddenQuestionAndOneResponse {
+    [rs newResponseForQuestion:@"abc" Answer:@"aaa" responseGroup:[NSNumber numberWithInteger:0] Value:@"Ford"];
+    [self useQuestions:[NSArray arrayWithObjects:
+                       [self createQuestionWithText:@"I'm Hidden" uuid:@"ooo" type:@"hidden"],
+                       [self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" question:
+                        [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                         [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]]], nil]];
+    NSDictionary* r0 = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+    NSDictionary* r1 = [self idsForIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
+    [self assertId:r0 qid:@"abc" aid:@"aaa" rgid:0];
+    [self assertId:r1 qid:@"abc" aid:@"aaa" rgid:1];
 }
 
 #pragma mark - JSON Builder Helper Methods
      
 - (void)useQuestion:(NSString*)question {
     t.detailItem = (question == nil) ? nil : [self builder:[NSArray arrayWithObject:question]];
+}
+
+- (void)useQuestions:(NSArray*)questions {
+    t.detailItem = (questions == nil) ? nil : [self builder:questions];
 }
 
 - (NSDictionary*)builder:(NSArray*)questions {

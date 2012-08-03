@@ -14,6 +14,8 @@
 
 - (void)useQuestion:(NSString*)question;
     
+- (void)useQuestions:(NSArray*)questions;
+
 - (NSDictionary*)builder:(NSArray*)questions;
 
 - (NSString*)createQuestionsAndGroups:(NSArray*)questions;

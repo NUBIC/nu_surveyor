@@ -12,6 +12,30 @@
 #import "NUButton.h"
 #import "NSString+Additions.h"
 
+@interface VisibleSection : NSObject {
+    NSString* _uuid;
+    NSNumber* _rgid;
+}
+@property(nonatomic,retain)NSString* uuid;
+@property(nonatomic,retain)NSNumber* rgid;
+@end
+
+@implementation VisibleSection
+
+@synthesize uuid = _uuid;
+@synthesize rgid = _rgid;
+
+- (id)initWithUUID:(NSString*)uuid rgid:(NSNumber*)rgid {
+    self = [super init];
+    if (self) {
+        _uuid = uuid;
+        _rgid = rgid;
+    }
+    return self;
+}
+
+@end
+
 @interface NUSectionTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 @property (nonatomic, retain) UIView *cursorView;
@@ -235,7 +259,8 @@
   for (NSMutableDictionary *questionOrGroup in self.allSections) {
 		//    DLog(@"show: %@, question: %@, uuid: %@", [questionOrGroup objectForKey:@"show"], [[questionOrGroup objectForKey:@"question"] objectForKey:@"text"], [questionOrGroup objectForKey:@"uuid"] );
     if ([questionOrGroup objectForKey:@"show"] == NS_YES) {
-      [self.visibleSections addObject:[questionOrGroup objectForKey:@"uuid"]];
+      VisibleSection* v = [[VisibleSection alloc] initWithUUID:[questionOrGroup objectForKey:@"uuid"] rgid:[questionOrGroup objectForKey:@"rgid"]];
+      [self.visibleSections addObject:v];
       //      [self createQuestionWithIndex:self.visibleSections.count dictionary:[questionOrGroup objectForKey:@"question"]];
     }
   }
@@ -245,6 +270,10 @@
 	[self.tableView reloadData];
 }
 
+- (NSString*) visibleSectionUUIDForSection:(NSInteger)section {
+    VisibleSection* v = [self.visibleSections objectAtIndex:section];
+    return v.uuid;
+}
 
 #pragma mark - Table view data source
 
@@ -257,7 +286,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	// Return the number of rows in the section.
-	NSDictionary *question = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]];
+	NSDictionary *question = [self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:section]];
 	if ([(NSString *)[question objectForKey:@"type"] isEqualToString:@"dropdown"] || [(NSString *)[question objectForKey:@"type"] isEqualToString:@"slider"]) {
 		return 1;
 	} else if([(NSString *)[question objectForKey:@"type"] isEqualToString:@"grid"]) { 
@@ -269,7 +298,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *question = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:indexPath.section]];
+	NSDictionary *question = [self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:indexPath.section]];
   NSString *CellIdentifier = [self.class classNameForQuestion:question answer:[[question objectForKey:([(NSString *)[question objectForKey:@"type"] isEqualToString:@"grid"] ? @"questions" : @"answers")] objectAtIndex:indexPath.row]];
     
 	UITableViewCell<NUCell> *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -375,7 +404,7 @@
   [[self tableView:tableView viewForHeaderInSection:section] bounds].size.height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  NSDictionary *question = [self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:indexPath.section]];
+  NSDictionary *question = [self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:indexPath.section]];
 	NSString *CellIdentifier = [self.class classNameForQuestion:question answer:[[question objectForKey:@"answers"] objectAtIndex:indexPath.row]];
   return [CellIdentifier isEqualToString:@"NUNoneTextCell"] ? 220.0 : 44.0;
 //  return 44.0;
@@ -501,7 +530,7 @@
   } else {
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"];
-    NSString* text = [[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"] normalizeWhitespace];
+    NSString* text = [[[self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:section]] objectForKey:@"text"] normalizeWhitespace];
     return [GRMustacheTemplate renderObject:self.renderContext
                                  fromString:text
                                       error:NULL];
@@ -514,7 +543,7 @@
   } else {
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
-    NSString* helpText = [[[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"] normalizeWhitespace];
+    NSString* helpText = [[[self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:section]] objectForKey:@"help_text"] normalizeWhitespace];
     return [GRMustacheTemplate renderObject:self.renderContext
                                  fromString:helpText
                                       error:NULL];
@@ -541,7 +570,7 @@
   if ([i indexAtPosition:0] > self.visibleSections.count) {
     return [NSDictionary dictionaryWithObjectsAndKeys:nil, @"qid", nil, @"aid", nil];
   }
-  NSString* uuid = [self.visibleSections objectAtIndex:[i indexAtPosition:0]];
+  NSString* uuid = [self visibleSectionUUIDForSection:[i indexAtPosition:0]];
   NSDictionary *qOrG = [self questionOrGroupWithUUID:uuid];
   if ([[qOrG objectForKey:@"type"] isEqualToString:@"grid"]) {
     if ([i indexAtPosition:0] < [self.visibleSections count] && [i indexAtPosition:1] < [[qOrG objectForKey:@"questions"] count] && [i indexAtPosition:2] < [[[[qOrG objectForKey:@"questions"] objectAtIndex:[i indexAtPosition:1]] objectForKey:@"answers"] count]) {
@@ -557,10 +586,10 @@
     }
   } else {
     if (i.section < [self.visibleSections count] && i.row < [[qOrG objectForKey:@"answers"] count]) {
-      NSDictionary* section = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:uuid]];
-      NSString *qid = [self.visibleSections objectAtIndex:i.section];
+      VisibleSection* v = [self.visibleSections objectAtIndex:i.section];
+      NSString *qid = v.uuid;
       NSString *aid = [[[qOrG objectForKey:@"answers"] objectAtIndex:i.row] objectForKey:@"uuid"];
-      NSString *rgid = [section objectForKey:@"rgid"];
+      NSNumber *rgid = v.rgid;
       //  DLog(@"i: %@ section: %d row: %d qid: %@ aid: %@", i, i.section, i.row, qid, aid);
       return [NSDictionary dictionaryWithObjectsAndKeys:qid, @"qid", aid, @"aid", rgid, @"rgid", nil];
     }else{
@@ -570,13 +599,29 @@
     }
   }
 }
+
+- (VisibleSection*)findVisibleSectionWithUUID:(NSString*)uuid {
+    for (VisibleSection* v in self.visibleSections) {
+        if ([v.uuid isEqualToString:uuid]) {
+            return v;
+        }
+    }
+    return NULL;
+}
+
+- (NSUInteger) indexOfVisibleQuestionWithUUID:(NSString*)uuid {
+    VisibleSection* v = [self findVisibleSectionWithUUID:uuid];
+    return v ? [self.visibleSections indexOfObject:v] : NSNotFound;
+}
+
 - (NSUInteger) indexForInsert:(NSString *)uuid {
   NSUInteger i = [self indexOfQuestionOrGroupWithUUID:uuid];
   if (i != NSNotFound) {
     for (int n = i-1; n >= 0; n--) {
       //    DLog(@"n: %d", n);
       if ([[self.allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
-        return [self.visibleSections indexOfObject:[[self.allSections objectAtIndex:n] objectForKey:@"uuid"]] + 1;
+          NSString* uuid = [[self.allSections objectAtIndex:n] objectForKey:@"uuid"];
+          return [self indexOfVisibleQuestionWithUUID:uuid] + 1;
       }
     }
   }
@@ -603,6 +648,7 @@
 }
 
 #pragma mark - Dependencies
+
 // We show first, then hide second, so hide always "wins"
 - (void) showAndHideDependenciesTriggeredBy:(NSIndexPath *)idx {
 	//  DLog(@"showAndHideDependenciesTriggeredBy: %@", idx);
@@ -610,12 +656,14 @@
 	//  DLog(@"showHide: %@", showHide);
   for (NSString *question in [showHide objectForKey:@"show"]) {
     // show the question and insert it in the right place
-    if ([self.visibleSections indexOfObject:question] == NSNotFound) {
+    if ([self findVisibleSectionWithUUID:question]) {
       NSUInteger i = [self indexForInsert:question];
       if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
         // insert into visibleSections before insertSections to get title right
-        [self.visibleSections insertObject:[[self questionOrGroupWithUUID:question] objectForKey:@"uuid"] atIndex:i];
+        NSDictionary* s = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]];
+        VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"]];
+        [self.visibleSections insertObject:v atIndex:i];
         [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
       }
@@ -626,10 +674,13 @@
       for (NSDictionary *q in [[[self.allSections objectAtIndex:qIdx] objectForKey:@"question"] objectForKey:@"questions"]) {
         NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
         if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
-          if ([self.visibleSections indexOfObject:[q objectForKey:@"uuid"]] == NSNotFound){
+          if ([self indexOfVisibleQuestionWithUUID:[q objectForKey:@"uuid"]] == NSNotFound){
             [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:NS_YES forKey:@"show"];
             // insert into visibleSections before insertSections to get title right
-            [self.visibleSections insertObject:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"uuid"] atIndex:i];
+            NSDictionary* s = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]];
+            VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"]];
+            [self.visibleSections insertObject:v atIndex:i];
+
             [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
           }
@@ -642,7 +693,7 @@
     NSUInteger gIdx = [self indexOfQuestionOrGroupWithUUID:question];
     if (gIdx != NSNotFound) {
       for (NSDictionary *q in [[[self.allSections objectAtIndex:gIdx] objectForKey:@"question"] objectForKey:@"questions"]) {
-        NSUInteger i = [self.visibleSections indexOfObject:[q objectForKey:@"uuid"]];
+        NSUInteger i = [self indexOfVisibleQuestionWithUUID:[q objectForKey:@"uuid"]];
         if (i != NSNotFound) {
           [self.visibleHeaders removeObjectAtIndex:i];
           //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
@@ -654,7 +705,7 @@
     }
 
     // hide the question
-    NSUInteger i = [self.visibleSections indexOfObject:question];
+    NSUInteger i = [self indexOfVisibleQuestionWithUUID:question];
     if (i != NSNotFound) {
       [self.visibleHeaders removeObjectAtIndex:i];
 //      [self removeSectionAtIndex:i withAnimation:UITableViewRowAnimationFade];
