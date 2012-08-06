@@ -50,8 +50,11 @@
 - (NSUInteger) indexOfQuestionOrGroupWithUUID:(NSString *)uuid;
 - (NSDictionary *)idsForIndexPath:(NSIndexPath *)i;
 - (NSUInteger) indexForInsert:(NSString *)uuid;
+- (VisibleSection*)findVisibleSectionWithUUID:(NSString*)uuid;
+- (NSArray*)findAllVisibleSectionsWithUUID:(NSString*)uuid;
 // Detail item
-- (void)createRows;- (void)createRows;
+- (void)createRows;
+- (BOOL)isLastRepeaterSection:(NSInteger)section;
 @end
 
 @implementation NUSectionTVC
@@ -410,6 +413,47 @@
 //  return 44.0;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    BOOL isGrouped = self.tableView.style == UITableViewStyleGrouped;
+    const CGFloat HorizontalMargin = isGrouped ? 45.0 : 30.0;
+    CGFloat height = 32.0;
+    UIView* v = NULL;
+    if ([self isLastRepeaterSection:section]) {
+        v = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, height)];
+        
+        NUButton *addRowButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, 0, 100.0, height)];
+        [addRowButton setTitle:@"+ add row" forState:UIControlStateNormal];    
+        [addRowButton addTarget:self action:@selector(addRow) forControlEvents:UIControlEventTouchUpInside];        
+        [v addSubview:addRowButton];
+    }
+    
+    return v;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return [self isLastRepeaterSection:section] ? 35 : 0;
+}
+
+- (BOOL)isLastRepeaterSection:(NSInteger)section {
+    BOOL result = false;
+    VisibleSection* cur = [self.visibleSections objectAtIndex:section];
+    if (cur.rgid) {
+        NSArray* all = [self findAllVisibleSectionsWithUUID:cur.uuid];
+        if ([all count] > 0) {
+            VisibleSection* last = [all lastObject];
+            if (cur == last) {
+                result = TRUE;
+            }
+        }
+    }
+    return result;
+}
+
+- (void)addRow {
+    [self createRows];
+}
+
+
 #pragma mark - Table and section headers (private)
 - (void)createHeader{
   // Section title
@@ -601,12 +645,18 @@
 }
 
 - (VisibleSection*)findVisibleSectionWithUUID:(NSString*)uuid {
+    NSArray* r = [self findAllVisibleSectionsWithUUID:uuid];
+    return [r count] > 0 ? [r objectAtIndex:0] : NULL;
+}
+
+- (NSArray*)findAllVisibleSectionsWithUUID:(NSString*)uuid {
+    NSMutableArray* result = [NSMutableArray new];
     for (VisibleSection* v in self.visibleSections) {
         if ([v.uuid isEqualToString:uuid]) {
-            return v;
+            [result addObject:v];
         }
     }
-    return NULL;
+    return result;
 }
 
 - (NSUInteger) indexOfVisibleQuestionWithUUID:(NSString*)uuid {
