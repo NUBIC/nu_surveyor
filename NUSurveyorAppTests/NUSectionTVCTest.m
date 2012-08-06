@@ -364,17 +364,4 @@ static NUResponseSet* rs;
     STAssertEqualObjects([i objectForKey:@"rgid"], [NSNumber numberWithInteger:rgid], @"Wrong rgid");
 }
 
-/*
- 1. collect all question ids for repeaters in create rows and use in  (ResponseGroup#countGroupResponsesForQuestionIds(qids)) (take max id + 1)
- 2. update generated ids to return response group id
- 3. modify delete response to accept response group id
- 4. Modify create to accept response set group id
- 5. Update did endEdit text methods
- 6. Update didSelect on cell classes
- 7. Interactive rebase and add issue # these are a part of
- 8. Update CHANGELOG.md
- 9. Do we need change NUResponseSet#evaluateConditions?
- 10. Can we remove NUResponseSet#responseForQuestion,newResponseForQuestion,deleteResponseForQuestion without rgid?
-*/
-
 @end

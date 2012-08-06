@@ -18,7 +18,7 @@
 	
     // Set-up code here.
 	self.bundle = [NSBundle bundleWithIdentifier:@"NUBIC.NUSurveyorTests"];
-	self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self.bundle URLForResource:@"NUSurveyor" withExtension:@"momd"]];
+	self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:[self.bundle URLForResource:@"NUSurveyor" withExtension:@"mom"]];
 	self.coord = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: self.model];
 	self.store = [self.coord addPersistentStoreWithType: NSInMemoryStoreType
                                           configuration: nil

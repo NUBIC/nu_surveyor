@@ -44,6 +44,7 @@
     [d setValue:[self valueForKey:@"uuid"] forKey:@"uuid"];
     [d setValue:[self valueForKey:@"answer"] forKey:@"answer_id"];
     [d setValue:[self valueForKey:@"question"] forKey:@"question_id"];
+    [d setValue:([self valueForKey:@"responseGroup"] ? [[self valueForKey:@"responseGroup"] description] : NULL) forKey:@"response_group"];
     [d setValue:[self valueForKey:@"value"] forKey:@"value"];
     [d setValue:createdAt forKey:@"created_at"];
     [d setValue:modifiedAt forKey:@"modified_at"];
