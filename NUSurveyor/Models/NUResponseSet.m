@@ -417,6 +417,9 @@
     [newResponse setValue:self forKey:@"responseSet"];
     [newResponse setValue:[response objectForKey:@"question_id"] forKey:@"question"];
     [newResponse setValue:[response objectForKey:@"answer_id"] forKey:@"answer"];
+    NSString* responseGroupRaw = [response objectForKey:@"response_group"];
+    NSNumber* responseGroup = responseGroupRaw ? [NSNumber numberWithInteger:[responseGroupRaw integerValue]] : NULL;
+    [newResponse setValue:responseGroup forKey:@"responseGroup"];
     NSString* value = [response objectForKey:@"value"] == [NSNull null] ? nil : [response objectForKey:@"value"];
     [newResponse setValue:[value description] forKey:@"value"];
     [newResponse setValue:[[NSDateFormatter rfc3339DateFormatter] dateFromString:[response objectForKey:@"created_at"]] forKey:@"createdAt"];
