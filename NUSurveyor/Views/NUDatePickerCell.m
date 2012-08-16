@@ -11,10 +11,11 @@
 @interface NUDatePickerCell()
 - (void) pickerDone;
 - (NSDateFormatter *) dateFormatterFromType:(NSString *)type;
+- (NSDateFormatter *) storedDateFormatterFromType:(NSString *)type;
 @end
 
 @implementation NUDatePickerCell
-@synthesize sectionTVC = _sectionTVC, pickerVC = _pickerVC, popoverController = _popoverController, dateFormatter = _dateFormatter;
+@synthesize sectionTVC = _sectionTVC, pickerVC = _pickerVC, popoverController = _popoverController, displayDateFormatter = _displayDateFormatter, storedDateFormatter = _storedDateFormatter;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -38,7 +39,8 @@
 }
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  self.dateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
+  self.displayDateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
+  self.storedDateFormatter = [self storedDateFormatterFromType:[dataObject objectForKey:@"type"]];
   
   // set up popover with datepicker
   if (self.pickerVC == nil) {
@@ -58,7 +60,7 @@
   if (existingResponse) {
     self.textLabel.text = [existingResponse valueForKey:@"value"];
     self.textLabel.textColor = RGB(1, 113, 233);
-    self.pickerVC.datePicker.date = [self.dateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
+    self.pickerVC.datePicker.date = [self.displayDateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
   } else {
     self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
     self.textLabel.textColor = [UIColor blackColor];
@@ -87,6 +89,16 @@
   }
   return formatter;
 }
+- (NSDateFormatter *) storedDateFormatterFromType:(NSString *)type {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    if ([type isEqualToString:@"datetime"]) {
+        [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mmZ"];
+    } else if ([type isEqualToString:@"time"]) {
+        [formatter setDateFormat:@"HH:mm"];
+    }
+    return formatter;
+}
 - (void) nowPressed{
   [self.pickerVC.datePicker setDate:[NSDate date] animated:YES];
   [self performSelector:@selector(pickerDone) withObject:nil afterDelay:0.4];
@@ -95,11 +107,12 @@
 - (void) pickerDone{
   [self.popoverController dismissPopoverAnimated:NO];
   
-  NSString *selectedDate = [self.dateFormatter stringFromDate:[self.pickerVC.datePicker date]]; 
   [self.sectionTVC deleteResponseForIndexPath:[self.sectionTVC.tableView indexPathForCell:self]];
-  [self.sectionTVC newResponseForIndexPath:[self.sectionTVC.tableView indexPathForCell:self] Value:selectedDate];
+  NSString *store = [self.storedDateFormatter stringFromDate:[self.pickerVC.datePicker date]]; 
+  [self.sectionTVC newResponseForIndexPath:[self.sectionTVC.tableView indexPathForCell:self] Value:store];
   [self.sectionTVC showAndHideDependenciesTriggeredBy:[self.sectionTVC.tableView indexPathForCell:self]];
-  self.textLabel.text = selectedDate;
+  NSString *display = [self.displayDateFormatter stringFromDate:[self.pickerVC.datePicker date]];
+  self.textLabel.text = display;
   self.textLabel.textColor = RGB(1, 113, 233);
 }
 - (void) pickerCancel{
