@@ -12,6 +12,6 @@
 
 @interface NUResponseTest : NUDatabaseTest
 
-- (void)assertResponse:(NSDictionary*)actual uuid:(NSString*)uuid answerId:(NSString*)answerId questionId:(NSString*)questionId value:(NSString*)value createdAt:(NSString*)createdAt modifiedAt:(NSString*)modifiedAt;
+- (void)assertResponse:(NSDictionary*)actual uuid:(NSString*)uuid answerId:(NSString*)answerId questionId:(NSString*)questionId response_group:(NSString*)rgid value:(NSString*)value createdAt:(NSString*)createdAt modifiedAt:(NSString*)modifiedAt;
 
 @end

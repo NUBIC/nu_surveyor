@@ -5,6 +5,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="modifiedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responseGroup" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="responseSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ResponseSet" inverseName="responses" inverseEntity="ResponseSet" syncable="YES"/>
@@ -17,7 +18,7 @@
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="responseSet" inverseEntity="Response" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Response" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Response" positionX="160" positionY="192" width="128" height="165"/>
         <element name="ResponseSet" positionX="261" positionY="189" width="128" height="120"/>
     </elements>
 </model>
