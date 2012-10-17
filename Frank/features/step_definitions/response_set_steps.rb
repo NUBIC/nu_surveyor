@@ -24,14 +24,19 @@ When /^I press done on the keyboard$/ do
   key code 36
   end tell
 APPLESCRIPT}
+  sleep 1
 end
 
 When /^I scroll to the bottom of the table$/ do
-  frankly_map( "tableView marked:'sectionTableView'", "scrollToBottom") 
+  frankly_map( "tableView marked:'sectionTableView'", "scrollToBottom")
 end
 
 Then /^I should see the label marked "([^"]*)" in the table$/ do |label_mark|
   check_element_exists("label marked:'#{label_mark}'")
+end
+
+Then /^I should see a "([^\"]*)" label$/ do |expected_mark|
+  check_element_exists("label marked:'#{expected_mark}'")
 end
 
 When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\\"]*)"$/ do |text_field_mark, text_to_type|
@@ -40,4 +45,11 @@ When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\
   touch( text_field_selector )
   frankly_map( text_field_selector, 'setText:', text_to_type )
   frankly_map( text_field_selector, 'endEditing:', true )
+end
+
+Given /^I go to the "(.*?)" section$/ do |section_mark|
+  touch( "button marked:'Sections'" )
+  sleep 0.5
+  touch("tableViewCell marked:'#{section_mark}'")
+  sleep 0.5
 end

@@ -19,6 +19,8 @@
 		3B2AB06F1522429E00525F25 /* NUOneStringOrNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */; };
 		3B2AB0721522483E00525F25 /* NUOneDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */; };
 		3B2AB0731522483E00525F25 /* NUOneDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB0711522483E00525F25 /* NUOneDatePickerCell.m */; };
+		3B5ACC18162F5203007EED1A /* sesame.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B5ACC17162F5203007EED1A /* sesame.json */; };
+		3B5ACC1A162F521C007EED1A /* hidden.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B5ACC19162F521C007EED1A /* hidden.feature */; };
 		3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */; };
 		3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA2E94814CDCD0F0057D05C /* NUSurvey.h */; };
 		3BA2E94B14CDCD0F0057D05C /* NUSurvey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA2E94914CDCD0F0057D05C /* NUSurvey.m */; };
@@ -193,6 +195,8 @@
 		3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUOneStringOrNumberCell.m; path = Views/NUOneStringOrNumberCell.m; sourceTree = "<group>"; };
 		3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUOneDatePickerCell.h; path = Views/NUOneDatePickerCell.h; sourceTree = "<group>"; };
 		3B2AB0711522483E00525F25 /* NUOneDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUOneDatePickerCell.m; path = Views/NUOneDatePickerCell.m; sourceTree = "<group>"; };
+		3B5ACC17162F5203007EED1A /* sesame.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sesame.json; sourceTree = "<group>"; };
+		3B5ACC19162F521C007EED1A /* hidden.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hidden.feature; sourceTree = "<group>"; };
 		3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "test-birth-date-survey.json"; sourceTree = "<group>"; };
 		3BA2E94814CDCD0F0057D05C /* NUSurvey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSurvey.h; path = Models/NUSurvey.h; sourceTree = "<group>"; };
 		3BA2E94914CDCD0F0057D05C /* NUSurvey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurvey.m; path = Models/NUSurvey.m; sourceTree = "<group>"; };
@@ -883,6 +887,7 @@
 		67DB49AC14D09454009CC8C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3B5ACC17162F5203007EED1A /* sesame.json */,
 				3BC61A9315211EC900A8C20C /* complex-responses.json */,
 				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
 				3BF970E01524F9DC008D3A9A /* mustache.json */,
@@ -909,6 +914,7 @@
 		67DB4A0714D09EB6009CC8C3 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				3B5ACC19162F521C007EED1A /* hidden.feature */,
 				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
 				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
 				3B08678E14FED8C100D43E02 /* group_dependency.feature */,

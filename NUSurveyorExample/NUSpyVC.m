@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIButton *complexResponses;
 @property (nonatomic, strong) UIButton *mustache;
 @property (nonatomic, strong) UIButton *pbj;
+@property (nonatomic, strong) UIButton *sesame;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -22,7 +23,7 @@
 
 @implementation NUSpyVC
 @synthesize delegate = _delegate, surveyTVC = _surveyTVC, sectionTVC = _sectionTVC;
-@synthesize responseSetCount = _responseSetCount, kitchenSink = _kitchenSink, complexResponses = _complexResponses, mustache = _mustache, pbj = _pbj;
+@synthesize responseSetCount = _responseSetCount, kitchenSink = _kitchenSink, complexResponses = _complexResponses, mustache = _mustache, pbj = _pbj, sesame = _sesame;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -86,6 +87,13 @@
   [self.pbj setTitle:@"Load PBJ" forState:UIControlStateNormal];
   [self.pbj addTarget:self action:@selector(loadPbj) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.pbj];
+  
+  self.sesame = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.sesame.frame = CGRectMake(10, 10.0 + 5*36.0 + 5*10.0, 400.0, 36.0);
+  self.sesame.accessibilityLabel = @"loadSesame";
+  [self.sesame setTitle:@"Load Sesame" forState:UIControlStateNormal];
+  [self.sesame addTarget:self action:@selector(loadSesame) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.sesame];
 
   
 }
@@ -101,6 +109,9 @@
 }
 - (void) loadPbj{
   [self.delegate loadSurvey:@"pbj"];
+}
+- (void) loadSesame{
+  [self.delegate loadSurvey:@"sesame"];  
 }
 
 - (void)viewWillAppear:(BOOL)animated {
