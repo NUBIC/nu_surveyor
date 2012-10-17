@@ -15,8 +15,6 @@
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
 		00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */; };
-		3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED414EEEA8400E7D04C /* basic_survey.feature */; };
-		3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 3B24DED614EEEABF00E7D04C /* response_set_steps.rb */; };
 		3B2AB06E1522429E00525F25 /* NUOneStringOrNumberCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2AB06C1522429E00525F25 /* NUOneStringOrNumberCell.h */; };
 		3B2AB06F1522429E00525F25 /* NUOneStringOrNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */; };
 		3B2AB0721522483E00525F25 /* NUOneDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */; };
@@ -29,11 +27,8 @@
 		3BC61A841520F75000A8C20C /* NUAnyDatePickerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BC61A821520F74F00A8C20C /* NUAnyDatePickerCell.h */; };
 		3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A831520F75000A8C20C /* NUAnyDatePickerCell.m */; };
 		3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A8B15210AB400A8C20C /* NUSpyVC.m */; };
-		3BC61A8D15210AB400A8C20C /* NUSpyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC61A8B15210AB400A8C20C /* NUSpyVC.m */; };
 		3BC61A9415211EC900A8C20C /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
-		3BC61A9515211EC900A8C20C /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
 		3BC61A9715211EF000A8C20C /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
-		3BC61A9815211EF000A8C20C /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
 		3BD52AA514C8B43500AB61E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
 		3BD52AAB14C8B43500AB61E8 /* NUSurveyor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AAA14C8B43500AB61E8 /* NUSurveyor.m */; };
 		3BD52AB314C8B43500AB61E8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AB214C8B43500AB61E8 /* SenTestingKit.framework */; };
@@ -70,7 +65,6 @@
 		3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52B2614C8B7EF00AB61E8 /* UILabel+NUResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */; };
 		3BDB4BD51536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
-		3BDB4BD61536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
 		3BDB4BD71536123A00868F97 /* pbj.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDB4BD41536123A00868F97 /* pbj.json */; };
 		3BE8673014CDF145002D04BD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
 		3BF20CFD15339792008227B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B114D09454009CC8C3 /* main.m */; };
@@ -93,7 +87,6 @@
 		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF20E9B1533A041008227B2 /* libKIF.a */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
-		3BF970E21524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E51524FA07008D3A9A /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970E31524FA07008D3A9A /* JSONKit.h */; };
 		3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF970E41524FA07008D3A9A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BF970FA1524FA28008D3A9A /* GRBoolean.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970E71524FA28008D3A9A /* GRBoolean.h */; };
@@ -115,7 +108,6 @@
 		3BF9710A1524FA28008D3A9A /* GRMustacheUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970F71524FA28008D3A9A /* GRMustacheUtils.h */; };
 		3BF9710B1524FA28008D3A9A /* GRMustacheVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970F81524FA28008D3A9A /* GRMustacheVersion.h */; };
 		3BF9710C1524FA28008D3A9A /* libGRMustache1-ios4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF970F91524FA28008D3A9A /* libGRMustache1-ios4.a */; };
-		3BF9710E1524FE08008D3A9A /* mustache.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BF9710D1524FE08008D3A9A /* mustache.feature */; };
 		671F3C9614C9C36D00CEE042 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
 		671F3C9914C9C37500CEE042 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
 		671F3C9B14C9C38100CEE042 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
@@ -142,24 +134,6 @@
 		67DB49D114D0952E009CC8C3 /* libNUSurveyor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */; };
 		67DB49D214D0953A009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
 		67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */; };
-		67DB49F314D09E8C009CC8C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B114D09454009CC8C3 /* main.m */; };
-		67DB49F414D09E8C009CC8C3 /* NUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49B514D09454009CC8C3 /* NUAppDelegate.m */; };
-		67DB49F514D09E8C009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */; };
-		67DB49F714D09E8C009CC8C3 /* libNUSurveyor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */; };
-		67DB49F814D09E8C009CC8C3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE8672F14CDF145002D04BD /* QuartzCore.framework */; };
-		67DB49F914D09E8C009CC8C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
-		67DB49FA14D09E8C009CC8C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD52AA414C8B43500AB61E8 /* Foundation.framework */; };
-		67DB49FB14D09E8C009CC8C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
-		67DB49FC14D09E8C009CC8C3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
-		67DB49FE14D09E8C009CC8C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49AE14D09454009CC8C3 /* InfoPlist.strings */; };
-		67DB49FF14D09E8C009CC8C3 /* kitchen-sink-survey.json in Resources */ = {isa = PBXBuildFile; fileRef = 67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */; };
-		67DB4A1014D09EB6009CC8C3 /* my_first.feature in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0814D09EB6009CC8C3 /* my_first.feature */; };
-		67DB4A1114D09EB6009CC8C3 /* launch_steps.rb in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */; };
-		67DB4A1214D09EB6009CC8C3 /* env.rb in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0C14D09EB6009CC8C3 /* env.rb */; };
-		67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67DB4A0D14D09EB6009CC8C3 /* frank_static_resources.bundle */; };
-		67DB4A1414D09EB6009CC8C3 /* libFrank.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A0E14D09EB6009CC8C3 /* libFrank.a */; };
-		67DB4A1514D09EB6009CC8C3 /* libShelley.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A0F14D09EB6009CC8C3 /* libShelley.a */; };
-		67DB4A1714D09ED0009CC8C3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DB4A1614D09ED0009CC8C3 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -405,7 +379,6 @@
 		67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kitchen-sink-survey.json"; sourceTree = "<group>"; };
 		67DB49D314D09583009CC8C3 /* NUSurveyorExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NUSurveyorExample.xcdatamodel; sourceTree = "<group>"; };
 		67DB49D514D09713009CC8C3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
-		67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Frank NUSurveyorExample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67DB4A0814D09EB6009CC8C3 /* my_first.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = my_first.feature; sourceTree = "<group>"; };
 		67DB4A0A14D09EB6009CC8C3 /* launch_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = launch_steps.rb; sourceTree = "<group>"; };
 		67DB4A0C14D09EB6009CC8C3 /* env.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = env.rb; sourceTree = "<group>"; };
@@ -470,22 +443,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		67DB49F614D09E8C009CC8C3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67DB49F714D09E8C009CC8C3 /* libNUSurveyor.a in Frameworks */,
-				67DB49F814D09E8C009CC8C3 /* QuartzCore.framework in Frameworks */,
-				67DB4A1714D09ED0009CC8C3 /* CFNetwork.framework in Frameworks */,
-				67DB49F914D09E8C009CC8C3 /* UIKit.framework in Frameworks */,
-				67DB49FA14D09E8C009CC8C3 /* Foundation.framework in Frameworks */,
-				67DB49FB14D09E8C009CC8C3 /* CoreGraphics.framework in Frameworks */,
-				67DB49FC14D09E8C009CC8C3 /* CoreData.framework in Frameworks */,
-				67DB4A1414D09EB6009CC8C3 /* libFrank.a in Frameworks */,
-				67DB4A1514D09EB6009CC8C3 /* libShelley.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -545,7 +502,6 @@
 				3BD52AA114C8B43500AB61E8 /* libNUSurveyor.a */,
 				3BD52AB114C8B43500AB61E8 /* NUSurveyorTests.octest */,
 				67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */,
-				67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */,
 				3BF20D1215339792008227B2 /* KIF NUSurveyorExample.app */,
 			);
 			name = Products;
@@ -1108,23 +1064,6 @@
 			productReference = 67DB49A514D09454009CC8C3 /* NUSurveyorExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		67DB49F114D09E8C009CC8C3 /* Frank NUSurveyorExample */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "Frank NUSurveyorExample" */;
-			buildPhases = (
-				67DB49F214D09E8C009CC8C3 /* Sources */,
-				67DB49F614D09E8C009CC8C3 /* Frameworks */,
-				67DB49FD14D09E8C009CC8C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Frank NUSurveyorExample";
-			productName = NUSurveyorExample;
-			productReference = 67DB4A0314D09E8C009CC8C3 /* Frank NUSurveyorExample.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1163,7 +1102,6 @@
 				3BD52AA014C8B43500AB61E8 /* NUSurveyor */,
 				3BD52AB014C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49A414D09454009CC8C3 /* NUSurveyorExample */,
-				67DB49F114D09E8C009CC8C3 /* Frank NUSurveyorExample */,
 				3BF20CFB15339792008227B2 /* KIF NUSurveyorExample */,
 			);
 		};
@@ -1235,26 +1173,8 @@
 				3BC61A9715211EF000A8C20C /* complex_responses.feature in Resources */,
 				3BF970E11524F9DC008D3A9A /* mustache.json in Resources */,
 				3BDB4BD51536123A00868F97 /* pbj.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		67DB49FD14D09E8C009CC8C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67DB49FE14D09E8C009CC8C3 /* InfoPlist.strings in Resources */,
-				67DB49FF14D09E8C009CC8C3 /* kitchen-sink-survey.json in Resources */,
-				67DB4A1014D09EB6009CC8C3 /* my_first.feature in Resources */,
-				67DB4A1114D09EB6009CC8C3 /* launch_steps.rb in Resources */,
-				67DB4A1214D09EB6009CC8C3 /* env.rb in Resources */,
-				67DB4A1314D09EB6009CC8C3 /* frank_static_resources.bundle in Resources */,
-				3B24DED514EEEA8400E7D04C /* basic_survey.feature in Resources */,
-				3B24DED714EEEABF00E7D04C /* response_set_steps.rb in Resources */,
-				3BC61A9515211EC900A8C20C /* complex-responses.json in Resources */,
-				3BC61A9815211EF000A8C20C /* complex_responses.feature in Resources */,
-				3BF970E21524F9DC008D3A9A /* mustache.json in Resources */,
-				3BF9710E1524FE08008D3A9A /* mustache.feature in Resources */,
-				3BDB4BD61536123A00868F97 /* pbj.json in Resources */,
+				3B5ACC18162F5203007EED1A /* sesame.json in Resources */,
+				3B5ACC1A162F521C007EED1A /* hidden.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1343,17 +1263,6 @@
 				67DB49B614D09454009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
 				3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		67DB49F214D09E8C009CC8C3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				67DB49F314D09E8C009CC8C3 /* main.m in Sources */,
-				67DB49F414D09E8C009CC8C3 /* NUAppDelegate.m in Sources */,
-				67DB49F514D09E8C009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
-				3BC61A8D15210AB400A8C20C /* NUSpyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1464,8 +1373,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/GRMustache\"",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/GRMustache\"",
 				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
 				);
@@ -1589,9 +1505,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
 				INFOPLIST_FILE = "NUSurveyorExample/NUSurveyorExample-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
+					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1613,51 +1535,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		67DB4A0114D09E8C009CC8C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
-				INFOPLIST_FILE = "NUSurveyorExample copy-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frank\"",
-				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PRODUCT_NAME = "Frank NUSurveyorExample";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		67DB4A0214D09E8C009CC8C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NUSurveyorExample/NUSurveyorExample-Prefix.pch";
-				INFOPLIST_FILE = "NUSurveyorExample copy-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frank\"",
-				);
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-ObjC",
-				);
-				PRODUCT_NAME = "Frank NUSurveyorExample";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				WRAPPER_EXTENSION = app;
@@ -1708,15 +1585,6 @@
 			buildConfigurations = (
 				67DB49CD14D09454009CC8C3 /* Debug */,
 				67DB49CE14D09454009CC8C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		67DB4A0014D09E8C009CC8C3 /* Build configuration list for PBXNativeTarget "Frank NUSurveyorExample" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				67DB4A0114D09E8C009CC8C3 /* Debug */,
-				67DB4A0214D09E8C009CC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

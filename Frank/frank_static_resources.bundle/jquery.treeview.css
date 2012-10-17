@@ -1,13 +1,5 @@
-.treeview, .treeview ul { 
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-.treeview ul {
-	background-color: white;
-	margin-top: 4px;
-}
+.treeview { padding: 5px; }
+.treeview ul { margin-top: 4px; }
 
 .treeview .hitarea {
 	background: url(images/treeview-default.gif) -64px -25px no-repeat;
@@ -28,13 +20,23 @@
 	padding: 3px 0pt 3px 16px;
 }
 
+.treeview a { 
+	padding: 5px 10px;
+	-webkit-border-radius: 3px;
+		 -moz-border-radius: 3px;
+		 			border-radius: 3px;
+}
+.treeview a:hover, .treeview .hover { 
+	color: #d33682; cursor: pointer;
+}
 .treeview a.selected {
-	background-color: #eee;
+	color: #fdf6e3;
+  font-weight: bold;
+	text-shadow: 0 -1px rgba(7,54,66, .3);
+	background-color: #2aa198;
 }
 
 #treecontrol { margin: 1em 0; display: none; }
-
-.treeview .hover { color: red; cursor: pointer; }
 
 .treeview li { background: url(images/treeview-default-line.gif) 0 0 no-repeat; }
 .treeview li.collapsable, .treeview li.expandable { background-position: 0 -176px; }
