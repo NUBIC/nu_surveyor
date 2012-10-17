@@ -1,0 +1,69 @@
+{
+    "title": "Sesame Street",
+    "sections": [
+        {
+            "title": "The Count",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "type": "hidden",
+                    "answers": [
+                        {
+                            "type": "string",
+                            "help_text": "(e.g. Count Von Count)",
+                            "uuid": "5c2dbc10-ed88-45e5-a77f-e1c86825fd49",
+                            "text": ""
+                        }
+                    ],
+                    "uuid": "356e80e0-9adf-44d2-8f2f-ca9034681513",
+                    "reference_identifier": "name",
+                    "text": "What is your name?"
+                },
+                {
+                    "type": "hidden",
+                    "questions": [
+                        {
+                            "answers": [
+                                {
+                                    "type": "string",
+                                    "uuid": "b94e97fe-f373-4625-8d6d-84d15bd774ee",
+                                    "text": ""
+                                }
+                            ],
+                            "uuid": "8c9f76d4-3a54-4c15-9b02-a15394e6a07f",
+                            "text": "Who are your friends?"
+                        }
+                    ],
+                    "uuid": "485b32c4-1bfe-4cd8-843c-7a26df5277ca",
+                    "text": "Friends"
+                },
+                {
+                    "type": "label",
+                    "uuid": "fbc81dc2-a861-4479-9531-8543b563a668",
+                    "text": "AH AH AH AH AH!"
+                },
+                {
+                    "answers": [
+                        {
+                            "uuid": "66c6326e-79ad-4412-a338-033a51e02437",
+                            "text": "One"
+                        },
+                        {
+                            "uuid": "3a3f9330-3ec7-4716-b1ee-84c368ac7d3f",
+                            "text": "Two"
+                        },
+                        {
+                            "uuid": "082961a6-e471-4bbf-9903-dcb9ed7ec740",
+                            "text": "Three!"
+                        }
+                    ],
+                    "uuid": "fb1e3727-69b4-47be-85a8-104ddfcb04d3",
+                    "pick": "one",
+                    "reference_identifier": "numbers",
+                    "text": "What is your favorite number?"
+                }
+            ]
+        }
+    ],
+    "uuid": "2a8de6fc-d354-4d90-97ae-b49846662b16"
+}

@@ -1,14 +1,15 @@
-Feature: 
+Feature:
   As an user
   I want to take the mustache survey
   So I can tell you about my facial hair in a survey with custom substituted text in questions and answers
 
   Scenario:
     Mustache styles
-  Given I launch the app using iOS 5.0 and the ipad simulator
+  Given I launch the app using iOS 5.1 and the ipad simulator
   Given the device is in portrait orientation
   And I touch the button marked "Inspect"
   And I touch the button marked "loadMustache"
+  And I wait for .5 seconds
   Then I should see "What does Jake wear these days?"
   And I should see "The imperial Northwestern"
   And I should see "How would Jake score these styles?"
@@ -33,4 +34,4 @@ Feature:
   And I should see "What is the best kind of facial hair for Jake?"
   And I should see "The Northwestern (null) of course"
   And I should see "Why did you choose this for Jake?"
-  And I should see "Given the realities of Northwestern, I believe"  
+  And I should see "Given the realities of Northwestern, I believe"
