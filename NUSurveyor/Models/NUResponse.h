@@ -10,7 +10,12 @@
 
 @interface NUResponse : NSManagedObject
 
++ (NSArray*)findAllWithPredicate:(NSPredicate*)predicate managedObjectContext:(NSManagedObjectContext*)ctx;
+
+#pragma mark - Serialization/Deserialization
+    
 - (NSDictionary*) toDict;
+
 - (NSString*) toJson;
 
 @end

@@ -104,7 +104,17 @@ NSDate* completedAt;
     NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
     [rs fromJson:jsonString];
     
-    STAssertEqualObjects([[[[rs valueForKey:@"responses"] objectEnumerator] nextObject] valueForKey:@"value"], @"7", @"Should be nil");
+    STAssertEqualObjects([[[[rs valueForKey:@"responses"] objectEnumerator] nextObject] valueForKey:@"value"], @"7", @"Should be 7");
+}
+
+- (void) testFromJsonWithResponseGroup {
+    NSString* jsonString = @"{\"uuid\":\"9af6d142-7fac-4ccb-9bca-58a05308a5a7\",\"survey_id\":\"94b3d750-fb63-4540-a1e2-dd7f88be9b4f\",\"created_at\":\"1970-02-04T05:15:30Z\",\"completed_at\":\"1990-03-06T07:21:42Z\",\"responses\":[{\"uuid\":\"07d72796-ebb2-4be2-91b9-68f5a30a0054\",\"answer_id\":\"9c788711-8373-44d7-b44b-754c31e596a9\",\"question_id\":\"376a501b-c32f-49de-b4d7-e28030a2ea94\",\"response_group\":\"1\",\"created_at\":\"1970-02-04T05:15:30Z\",\"modified_at\":\"1990-03-06T07:21:42Z\"}]}";
+    
+    NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+    NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+    [rs fromJson:jsonString];
+    
+    STAssertEqualObjects([[[[rs valueForKey:@"responses"] objectEnumerator] nextObject] valueForKey:@"responseGroup"], [NSNumber numberWithInt:1], @"Should be 1");
 }
 
 - (void) testFromJsonWithNullCompletedAt {
@@ -115,6 +125,38 @@ NSDate* completedAt;
     [rs fromJson:jsonString];
 
     STAssertNil([rs valueForKey:@"completedAt"], @"completed at");    
+}
+
+- (void)testCountGroupResponsesForQuestionIdsWithNoResponses {
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObject:@"abc"]];
+    STAssertEquals(count, 0U, @"Wrong response group count");
+}
+
+- (void)testCountGroupResponsesForQuestionIdsWithNoUsefulResponses {
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
+    NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObject:@"abc"]];
+    STAssertEquals(count, 0U, @"Wrong response group count");
+}
+
+- (void)testCountGroupResponsesForQuestionIdsWithOneResponses {
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
+    NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObject:@"xyz"]];
+    STAssertEquals(count, 1U, @"Wrong response group count");
+}
+
+- (void)testCountGroupResponsesForQuestionIdsWithTwoResponses {
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    [rs newResponseForQuestion:@"xyz" Answer:@"456" responseGroup:[NSNumber numberWithInteger:0] Value:@"bar"];
+    [rs newResponseForQuestion:@"abc" Answer:@"789" responseGroup:[NSNumber numberWithInteger:1] Value:@"foo"];
+    NSUInteger count = [rs countGroupResponsesForQuestionIds:[NSArray arrayWithObjects:@"xyz", @"abc", nil]];
+    STAssertEquals(count, 2U, @"Wrong response group count");
 }
 
 #pragma mark Helper Methods
