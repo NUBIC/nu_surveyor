@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "NUResponseSet.h"
 #import "NUCell.h"
+#import "GRMustache.h"
+
 
 @class NUSectionTVC;
 
@@ -19,7 +21,12 @@
 - (void)surveyDone;
 @end
 
-@interface NUSectionTVC : UITableViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate>
+@interface NUSectionTVC : UITableViewController <UIPopoverControllerDelegate, 
+                                                  UISplitViewControllerDelegate, 
+                                                  UITableViewDelegate, 
+                                                  UITextFieldDelegate, 
+                                                  UITextViewDelegate, 
+                                                  GRMustacheTemplateDelegate>
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIPopoverController *popController;
@@ -45,4 +52,6 @@
 // Dependencies
 - (void) showAndHideDependenciesTriggeredBy:(NSIndexPath *)i;
 
+// Mustache
+- (NSString *) renderMustacheFromString:(NSString *)string;
 @end

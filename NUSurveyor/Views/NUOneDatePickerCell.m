@@ -32,9 +32,7 @@
   
   self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   self.dateFormatter = [self dateFormatterFromType:[dataObject objectForKey:@"type"]];
-  self.textLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                              fromString:[dataObject objectForKey:@"text"]
-                                                   error:NULL];
+  self.textLabel.text = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"text"]];
   
   self.type = [dataObject objectForKey:@"type"];
   

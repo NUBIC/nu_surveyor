@@ -60,9 +60,7 @@
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   self.sectionTVC = (NUSectionTVC *)tableView.delegate;
   [[self.sectionTVC responsesForIndexPath:indexPath] lastObject] ? [self dot] : [self undot];
-	self.textLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                              fromString:[dataObject objectForKey:@"text"]
-                                                   error:NULL];
+	self.textLabel.text = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"text"]];
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	for (int i = 0; i < [tableView numberOfRowsInSection:indexPath.section]; i++) {

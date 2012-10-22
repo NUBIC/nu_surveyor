@@ -153,7 +153,6 @@
   l.direction = UISwipeGestureRecognizerDirectionLeft;
   [self.view addGestureRecognizer:r];
   [self.view addGestureRecognizer:l];
-
 }
 
 - (void)viewDidUnload
@@ -575,9 +574,7 @@
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"text"];
     NSString* text = [[[self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:section]] objectForKey:@"text"] normalizeWhitespace];
-    return [GRMustacheTemplate renderObject:self.renderContext
-                                 fromString:text
-                                      error:NULL];
+    return [self renderMustacheFromString:text];
 
   }
 }
@@ -588,9 +585,7 @@
 //    DLog(@"%@", [[self questionOrGroupWithUUID:[visibleSections objectAtIndex:section]] objectForKey:@"help_text"]);
 //    return [[self questionOrGroupWithUUID:[self.visibleSections objectAtIndex:section]] objectForKey:@"help_text"];
     NSString* helpText = [[[self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:section]] objectForKey:@"help_text"] normalizeWhitespace];
-    return [GRMustacheTemplate renderObject:self.renderContext
-                                 fromString:helpText
-                                      error:NULL];
+    return [self renderMustacheFromString:helpText];
   }
 }
 
@@ -824,5 +819,26 @@
   self.popController = nil;
 }
 
+#pragma mark - GRMustache
+
+- (NSString *) renderMustacheFromString:(NSString *)templateString{
+  NSError *error = NULL;
+  GRMustacheTemplate *template = [GRMustacheTemplate templateFromString:templateString error:&error];
+  template.delegate = self;
+  // NSLog(@"%@", template.description);
+  return [template renderObject:self.renderContext];
+}
+
+- (void)template:(GRMustacheTemplate *)template willInterpretReturnValueOfInvocation:(GRMustacheInvocation *)invocation as:(GRMustacheInterpretation)interpretation
+{
+  // When returnValue is nil, GRMustache could not find any value to render.
+  if (invocation.returnValue == nil) {
+    //    NSLog(@"GRMustache missing value for %@", invocation.description);
+    NSError *error = NULL;    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(\\{\\{.*\\}\\})" options:0 error:&error];
+    NSRange range = [regex rangeOfFirstMatchInString:invocation.description options:0 range:NSMakeRange(0, [invocation.description length])];
+    invocation.returnValue = [invocation.description substringWithRange:range];
+  }
+}
 
 @end

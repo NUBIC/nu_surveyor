@@ -101,9 +101,7 @@
                                      self.label.frame.origin.y + self.label.frame.size.height, 
                                      self.textView.frame.size.width,
                                      self.textView.frame.size.height);
-    self.label.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                            fromString:[dataObject objectForKey:@"text"]
-                                                 error:NULL];
+    self.label.text = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"text"]];
     [self.label setHidden:FALSE];
   }
 

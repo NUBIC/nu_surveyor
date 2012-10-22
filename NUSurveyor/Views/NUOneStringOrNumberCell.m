@@ -91,26 +91,20 @@
   if ([dataObject objectForKey:@"text"] == nil || [[dataObject objectForKey:@"text"] isEqualToString:@""]) {
     [self.label setHidden:YES];
   } else {
-    self.label.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                            fromString:[dataObject objectForKey:@"text"]
-                                                 error:NULL];
+    self.label.text = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"text"]];
   }
   
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
     self.textField.delegate = self.sectionTVC;
-    self.textField.placeholder = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                                       fromString:[dataObject objectForKey:@"help_text"]
-                                                            error:NULL];
+    self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
     // number
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.textField.delegate = self.sectionTVC;
-    self.textField.placeholder = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                                       fromString:[dataObject objectForKey:@"help_text"]
-                                                            error:NULL];
+    self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else {
     [self.textField setHidden:YES];
   }
@@ -119,9 +113,7 @@
   if ([dataObject objectForKey:@"post_text"] == nil || [[dataObject objectForKey:@"post_text"] isEqualToString:@""]) {
     [self.postLabel setHidden:YES];
   } else {
-    self.postLabel.text = [GRMustacheTemplate renderObject:self.sectionTVC.renderContext
-                                                fromString:[dataObject objectForKey:@"post_text"]
-                                                     error:NULL];
+    self.postLabel.text = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"post_text"]];
   }
   
   self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUOneStringOrNumberCell %@ %@ textField", self.label.text, self.postLabel.text];

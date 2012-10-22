@@ -35,3 +35,36 @@ Feature:
   And I should see "The Northwestern (null) of course"
   And I should see "Why did you choose this for Jake?"
   And I should see "Given the realities of Northwestern, I believe"
+
+  Scenario:
+    No mustache context
+  Given I launch the app using iOS 5.1 and the ipad simulator
+  Given the device is in portrait orientation
+  And I touch the button marked "Inspect"
+  And I touch the button marked "loadBlankMustache"
+  And I wait for .5 seconds
+  Then I should see "What does {{name}} wear these days?"
+  And I should see "The imperial {{site}}"
+  And I should see "How would {{name}} score these styles?"
+  And I should see "The {{site}} horseshoe: 1-5 (1 best)"
+  And I should see "The {{site}} lampshade: 1.0-9.9 (9.9 best)"
+  And I should see "The {{site}} pencil: comment"
+  And I should see "Where and when did {{name}} change their mustache style?"
+  And I should see "At {{site}}, today, at"
+  And I should see "At {{site}}, on this day"
+  And I should see "At {{site}}, at this time on this day"
+  And I should see "What would {{name}} wear in the future?"
+  And I should see "The {{site}} walrus"
+  And I should see "How many does {{name}} see?"
+  And I should see "The {{site}} horseshoe, today"
+  And I should see "The {{site}} lampshade, on average"
+  And I should see "The {{site}} pencil, qualitatively"
+  And I should see "Where and when does {{name}} trim their mustache?"
+  When I scroll to the bottom of the table
+  Then I should see "At {{site}}, daily, at"
+  And I should see "At {{site}}, last on this day"
+  And I should see "At {{site}}, last at this time on this day"
+  And I should see "What is the best kind of facial hair for {{name}}?"
+  And I should see "The {{site}} (null) of course"
+  And I should see "Why did you choose this for {{name}}?"
+  And I should see "Given the realities of {{site}}, I believe"

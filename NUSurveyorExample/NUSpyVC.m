@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIButton *mustache;
 @property (nonatomic, strong) UIButton *pbj;
 @property (nonatomic, strong) UIButton *sesame;
+@property (nonatomic, strong) UIButton *blankMustache;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -22,8 +23,16 @@
 @end
 
 @implementation NUSpyVC
-@synthesize delegate = _delegate, surveyTVC = _surveyTVC, sectionTVC = _sectionTVC;
-@synthesize responseSetCount = _responseSetCount, kitchenSink = _kitchenSink, complexResponses = _complexResponses, mustache = _mustache, pbj = _pbj, sesame = _sesame;
+@synthesize delegate = _delegate, 
+            surveyTVC = _surveyTVC, 
+            sectionTVC = _sectionTVC;
+@synthesize responseSetCount = _responseSetCount, 
+            kitchenSink = _kitchenSink, 
+            complexResponses = _complexResponses, 
+            mustache = _mustache, 
+            pbj = _pbj, 
+            sesame = _sesame, 
+            blankMustache = _blankMustache;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,7 +103,13 @@
   [self.sesame setTitle:@"Load Sesame" forState:UIControlStateNormal];
   [self.sesame addTarget:self action:@selector(loadSesame) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.sesame];
-
+  
+  self.blankMustache = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.blankMustache.frame = CGRectMake(10, 10.0 + 6*36.0 + 6*10.0, 400.0, 36.0);
+  self.blankMustache.accessibilityLabel = @"loadBlankMustache";
+  [self.blankMustache setTitle:@"Load Blank Mustache" forState:UIControlStateNormal];
+  [self.blankMustache addTarget:self action:@selector(loadBlankMustache) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.blankMustache];
   
 }
 - (void) loadKitchenSink{
@@ -107,6 +122,11 @@
   // thanks to http://www.americanmustacheinstitute.org/mustache-information/styles/
   [self.delegate loadSurvey:@"mustache" renderContext:[NSDictionary dictionaryWithObjectsAndKeys:@"Jake", @"name", @"Northwestern", @"site", nil]];
 }
+- (void) loadBlankMustache{
+  // thanks to http://www.americanmustacheinstitute.org/mustache-information/styles/
+  [self.delegate loadSurvey:@"mustache"];
+}
+
 - (void) loadPbj{
   [self.delegate loadSurvey:@"pbj"];
 }
