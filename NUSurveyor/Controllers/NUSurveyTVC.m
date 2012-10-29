@@ -12,7 +12,7 @@
 
 @interface NUSurveyTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
-@property (nonatomic, strong) NSDictionary *surveyNSD;
+
 @property (nonatomic, assign) NSUInteger currentSection;
 - (NSInteger) numberOfSections;
 - (void) showSection:(NSUInteger) index;

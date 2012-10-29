@@ -18,7 +18,7 @@
 @end
 
 @interface NUSurveyTVC : UITableViewController <NUSectionTVCDelegate>
-
+@property (nonatomic, strong) NSDictionary *surveyNSD;
 @property (nonatomic, strong) NUSectionTVC *sectionTVC;
 @property (nonatomic, strong) NUSurvey *survey;
 @property (nonatomic, weak) id <NUSurveyTVCDelegate> delegate;
