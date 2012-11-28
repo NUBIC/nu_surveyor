@@ -4,6 +4,7 @@ When /^I touch the upper left of the table cell marked "(.*)"$/ do |mark|
 end
 
 Then /^the cell marked "(.*)" should be (un)?(checked|dotted)/ do |cell_mark, negator, type|
+  wait_for_nothing_to_be_animating
   cell_selector = "tableViewCell marked:'#{cell_mark}'"
   check_element_exists( cell_selector )
   filled = frankly_map( cell_selector, type )

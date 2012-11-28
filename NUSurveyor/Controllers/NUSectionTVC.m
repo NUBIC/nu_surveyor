@@ -701,7 +701,7 @@
 	//  DLog(@"showHide: %@", showHide);
   for (NSString *question in [showHide objectForKey:@"show"]) {
     // show the question and insert it in the right place
-    if ([self findVisibleSectionWithUUID:question]) {
+    if (![self findVisibleSectionWithUUID:question]) {
       NSUInteger i = [self indexForInsert:question];
       if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
