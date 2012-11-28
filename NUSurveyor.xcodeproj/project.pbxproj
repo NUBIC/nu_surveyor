@@ -163,6 +163,13 @@
 			remoteGlobalIDString = 3BD52AA014C8B43500AB61E8;
 			remoteInfo = NUSurveyor;
 		};
+		3BDD77941666BAC0005A3E17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BD52A9814C8B43400AB61E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BD52AA014C8B43500AB61E8;
+			remoteInfo = NUSurveyor;
+		};
 		3BF20E9A1533A041008227B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BF20E371533A040008227B2 /* KIF.xcodeproj */;
@@ -1149,6 +1156,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3BDD77951666BAC0005A3E17 /* PBXTargetDependency */,
 			);
 			name = NUSurveyorExample;
 			productName = NUSurveyorExample;
@@ -1401,6 +1409,11 @@
 			isa = PBXTargetDependency;
 			target = 3BD52AA014C8B43500AB61E8 /* NUSurveyor */;
 			targetProxy = 3BD52AB714C8B43500AB61E8 /* PBXContainerItemProxy */;
+		};
+		3BDD77951666BAC0005A3E17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3BD52AA014C8B43500AB61E8 /* NUSurveyor */;
+			targetProxy = 3BDD77941666BAC0005A3E17 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
