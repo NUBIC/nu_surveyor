@@ -78,3 +78,39 @@ Feature:
   When I touch the upper left of the table cell marked "NUOneDatePickerCell On this day, at"
     And I touch the button marked "Cancel"
   Then there should be 1 response
+
+  Scenario:
+    Medications Pick One Formatting
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  When I touch the button marked "Inspect"
+    And I touch the button marked "loadComplexResponses"
+    And I go to the "One" section
+  Then I should see "When did you last take your medication?"
+  When I touch the upper left of the table cell marked "NUOneDatePickerCell On this very day"
+    And I wait for animations
+    And I touch the button marked "Today"
+    And I wait for animations
+  Then the cell marked "NUOneDatePickerCell On this very day" should be dotted
+    And there should be 1 response
+  When I go to the "Any" section
+    And I go to the "One" section
+  Then the cell marked "NUOneDatePickerCell On this very day" should have today as the date
+
+  Scenario:
+    Medications Pick Any Formatting
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  When I touch the button marked "Inspect"
+    And I touch the button marked "loadComplexResponses"
+    And I go to the "Any" section
+  Then I should see "Do you remember when you"
+  When I touch the upper left of the table cell marked "NUAnyDatePickerCell Woke up feeling refreshed"
+    And I wait for animations
+    And I touch the button marked "Today"
+    And I wait for animations
+  Then the cell marked "NUAnyDatePickerCell Woke up feeling refreshed" should be checked
+    And there should be 1 response
+  When I go to the "One" section
+    And I go to the "Any" section
+  Then the cell marked "NUAnyDatePickerCell Woke up feeling refreshed" should have today as the date

@@ -17,7 +17,6 @@ Feature:
     And I go to the "Complicated questions" section
   Then I should see "Tell us how often do you cover these each day"
 
-  @focus
   Scenario:
     Picking dates
   Given I launch the app using iOS 5.1 and the ipad simulator

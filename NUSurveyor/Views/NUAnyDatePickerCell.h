@@ -13,7 +13,8 @@
 
 @property (nonatomic, strong) NUPickerVC *pickerVC;
 @property (nonatomic, strong) UIPopoverController *popoverController;
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong) NSDateFormatter *displayDateFormatter;
+@property (nonatomic, strong) NSDateFormatter *storedDateFormatter;
 
 - (UIDatePickerMode)datePickerModeFromType:(NSString *)type;
 

@@ -15,6 +15,10 @@ Then /^the cell marked "(.*)" should be (un)?(checked|dotted)/ do |cell_mark, ne
   filled.should == (negator == "un" ? [false] : [true])
 end
 
+Then /^the cell marked "(.*?)" should have today as the date$/ do |mark|
+  frankly_map("view marked:'#{Date.today.strftime("%m/%d/%Y")}' parent parent", "accessibilityLabel")[0].should == mark
+end
+
 # When /^the (\d*)(?:st|nd|rd|th)? cell should be (un)?(checked|dotted)$/ do |ordinal, negator, type|
 #   cell_selector = ("tableViewCell index:#{ordinal.to_i - 1}")
 #   check_element_exists( cell_selector )
