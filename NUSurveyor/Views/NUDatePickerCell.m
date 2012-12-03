@@ -58,9 +58,10 @@
   self.sectionTVC = (NUSectionTVC *)[tableView delegate];
   NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:indexPath] lastObject];
   if (existingResponse) {
-    self.textLabel.text = [existingResponse valueForKey:@"value"];
+    self.pickerVC.datePicker.date = [self.storedDateFormatter dateFromString:[existingResponse valueForKey:@"value"]];    
+    NSString *display = [self.displayDateFormatter stringFromDate:[self.pickerVC.datePicker date]];
+    self.textLabel.text = display;
     self.textLabel.textColor = RGB(1, 113, 233);
-    self.pickerVC.datePicker.date = [self.displayDateFormatter dateFromString:[existingResponse valueForKey:@"value"]];
   } else {
     self.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Pick %@", @""), [dataObject objectForKey:@"type"]];
     self.textLabel.textColor = [UIColor blackColor];

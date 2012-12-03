@@ -17,6 +17,20 @@ Feature:
     And I go to the "Complicated questions" section
   Then I should see "Tell us how often do you cover these each day"
 
+  @focus
+  Scenario:
+    Picking dates
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  When I scroll the table to 1185px
+    Then I should see "Pick your favorite date AND time"
+  When I touch the cell marked "NUDatePickerCell Pick datetime"
+    And I touch the button marked "Now"
+    And I wait for animations
+    And I scroll the table to 1270px
+    And I scroll the table to 1185px
+  Then I should see "Pick your favorite date AND time"
+
 # Somehow, the touch table cell marked "Complicated questions" isn't working in landscape with the split view
 #  Scenario:
 #    Scrolling and switching sections, horizontal

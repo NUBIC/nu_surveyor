@@ -3,6 +3,10 @@ When /^I touch the upper left of the table cell marked "(.*)"$/ do |mark|
   frankly_map( "view marked:'#{mark}'", "touchx:y:", "10", "10" )
 end
 
+When /^I touch the cell marked "(.*?)"$/ do |mark|
+  touch("tableViewCell marked:'#{mark}'")
+end
+
 Then /^the cell marked "(.*)" should be (un)?(checked|dotted)/ do |cell_mark, negator, type|
   wait_for_nothing_to_be_animating
   cell_selector = "tableViewCell marked:'#{cell_mark}'"
@@ -33,6 +37,13 @@ When /^I scroll to the bottom of the table$/ do
   frankly_map( "tableView marked:'sectionTableView'", "scrollToBottom")
   wait_for_nothing_to_be_animating
   sleep 0.5 # seems to be required even after waiting for animations to finish
+end
+
+When /^I scroll the table to (\d+)px$/ do |y|
+  # http://code.google.com/p/uispec/source/browse/trunk/src/components/UIQueryTableView.h
+  frankly_map("tableView marked:'sectionTableView'","scrollDown:", y.to_i)
+  wait_for_nothing_to_be_animating
+  sleep 0.5
 end
 
 Then /^I should see the label marked "(.*)" in the table$/ do |label_mark|
