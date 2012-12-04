@@ -46,7 +46,6 @@ end
 When /^I scroll the table to (\d+)px$/ do |y|
   # http://code.google.com/p/uispec/source/browse/trunk/src/components/UIQueryTableView.h
   frankly_map("tableView marked:'sectionTableView'","scrollDown:", y.to_i)
-  wait_for_nothing_to_be_animating
   sleep 0.5
 end
 
@@ -62,9 +61,19 @@ When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\
   text_field_selector =  "view marked:'#{text_field_mark}'"
   check_element_exists( text_field_selector )
   touch( text_field_selector )
+  sleep 0.5
   frankly_map( text_field_selector, 'setText:', text_to_type )
   frankly_map( text_field_selector, 'endEditing:', true )
   wait_for_nothing_to_be_animating
+end
+                                                                             
+
+When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\\"]*)" without hitting done$/ do |text_field_mark, text_to_type|
+  text_field_selector =  "view marked:'#{text_field_mark}'"
+  check_element_exists( text_field_selector )
+  touch( text_field_selector )
+  sleep 0.5
+  frankly_map( text_field_selector, 'setText:', text_to_type )
 end
 
 Given /^I go to the "(.*)" section$/ do |section_mark|

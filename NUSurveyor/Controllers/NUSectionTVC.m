@@ -39,6 +39,7 @@
 @interface NUSectionTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 @property (nonatomic, retain) UIView *cursorView;
+@property (nonatomic, retain) NSIndexPath *cursorIndex;
 // Table and section headers
 - (void)createHeader;
 - (void)createFooter;
@@ -58,7 +59,7 @@
 @end
 
 @implementation NUSectionTVC
-@synthesize cursorView = _cursorView;
+@synthesize cursorView = _cursorView, cursorIndex = _cursorIndex;
 @synthesize pageControl = _pageControl, popController = _popController, detailItem = _detailItem, responseSet = _responseSet, visibleSections = _visibleSections, allSections = _allSections, visibleHeaders = _visibleHeaders, prevSectionTitle = _prevSectionTitle, nextSectionTitle = _nextSectionTitle, delegate = _delegate, renderContext = _renderContext;
 
 #pragma mark - Utility class methods
@@ -764,21 +765,18 @@
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
+  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
+  NSIndexPath *idx = [self.tableView indexPathForCell:cell];
+  self.cursorIndex = idx;
   self.cursorView = textField;
-//  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
-//  if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"]) {
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//  } else if ([cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"]) {
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//  }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder];
 	return YES;
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-  UITableViewCell *cell = (UITableViewCell *)textField.superview.superview;
-  NSIndexPath *idx = [self.tableView indexPathForCell:cell];
+  NSIndexPath *idx = self.cursorIndex;
+  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:idx];
   [self deleteResponseForIndexPath:idx];
   if ([cell.reuseIdentifier isEqualToString:@"NUAnyStringOrNumberCell"] || [cell.reuseIdentifier isEqualToString:@"NUOneStringOrNumberCell"]) {
     [self newResponseForIndexPath:idx Value:textField.text];
@@ -788,20 +786,25 @@
   }
   
   [self showAndHideDependenciesTriggeredBy:idx];
+  self.cursorIndex = nil;
   self.cursorView = nil;
 }
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidBeginEditing:(UITextView *)textView{
+  UITableViewCell *cell = (UITableViewCell *)textView.superview.superview;
+  NSIndexPath *idx = [self.tableView indexPathForCell:cell];
+  self.cursorIndex = idx;
   self.cursorView = textView;
 }
 - (void)textViewDidEndEditing:(UITextView *)aTextView {
-  NSIndexPath *idx = [self.tableView indexPathForCell:(UITableViewCell *)aTextView.superview.superview];
+  NSIndexPath *idx = self.cursorIndex;
   [self deleteResponseForIndexPath:idx];
   if (aTextView.text != nil && ![aTextView.text isEqualToString:@""]) {
     [self newResponseForIndexPath:idx Value:aTextView.text];
   }
   [self showAndHideDependenciesTriggeredBy:idx];
+  self.cursorIndex = nil;
   self.cursorView = nil;
 }
 

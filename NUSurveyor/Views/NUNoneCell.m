@@ -92,6 +92,7 @@
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
     self.textField.delegate = self.sectionTVC;
+    self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUNoneCell %@ %@ %@ textField", self.label.text, self.textField.text, self.postLabel.text];
     self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
