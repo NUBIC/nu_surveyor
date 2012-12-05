@@ -148,12 +148,13 @@
 	
 
   // Swipe gesture recognizers
-  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(prevSection)];
-  r.direction = UISwipeGestureRecognizerDirectionRight;      
-  UISwipeGestureRecognizer *l = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(nextSection)];
-  l.direction = UISwipeGestureRecognizerDirectionLeft;
-  [self.view addGestureRecognizer:r];
-  [self.view addGestureRecognizer:l];
+  // A left to right swipe is now used to bring up the master table view, so these conflict.
+  //  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(prevSection)];
+  //  r.direction = UISwipeGestureRecognizerDirectionRight;      
+  //  UISwipeGestureRecognizer *l = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(nextSection)];
+  //  l.direction = UISwipeGestureRecognizerDirectionLeft;
+  //  [self.view addGestureRecognizer:r];
+  //  [self.view addGestureRecognizer:l];
 }
 
 - (void)viewDidUnload
