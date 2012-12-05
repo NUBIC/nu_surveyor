@@ -1,0 +1,61 @@
+{
+  "sections": [
+               {
+               "questions_and_groups": [
+                                        {
+                                        "answers": [
+                                                    {
+                                                    "text": "AL", 
+                                                    "uuid": "41eb3580-2441-4abd-bfb3-21d3d0ad60c6"
+                                                    }, 
+                                                    {
+                                                    "text": "AK", 
+                                                    "uuid": "45960908-d454-47be-967d-eb8bf5f37ad3"
+                                                    }, 
+                                                    {
+                                                    "text": "AZ", 
+                                                    "uuid": "a38ec424-1ac9-4cd5-9da5-814d3bd5dd94"
+                                                    }, 
+                                                    {
+                                                    "text": "AR", 
+                                                    "uuid": "bb507c61-a256-4e81-890d-3014fd0aa9ca"
+                                                    }
+                                                    
+                                                    ], 
+                                        "pick": "one", 
+                                        "text": "STATE", 
+                                        "type": "dropdown", 
+                                        "uuid": "84bff7f9-e086-4fd0-b4ef-bd582abf617a"
+                                        }
+                                        ],
+               "title": "States"
+               }, 
+               {
+               "questions_and_groups": [
+                                        {
+                                        "answers": [
+                                                    {
+                                                    "text": "JANUARY", 
+                                                    "uuid": "66f56120-9ae4-4902-bad5-02c3bdc7d5fe"
+                                                    }, 
+                                                    {
+                                                    "text": "FEBRUARY", 
+                                                    "uuid": "adf3aa90-49f1-464b-b7ec-ced345374c8c"
+                                                    }, 
+                                                    {
+                                                    "text": "MARCH", 
+                                                    "uuid": "307803a1-4bc6-4ec8-aa23-ec7d4eccc5c0"
+                                                    }
+                                                    ], 
+                                        "pick": "one", 
+                                        "text": "MONTH:",
+                                        "type": "dropdown", 
+                                        "uuid": "a409f3e5-1514-46f0-9880-58863f76069b"
+                                        }
+                                        ],
+               "title": "Dates"
+               }
+               ], 
+  "title": "States and Dates", 
+  "uuid": "d91e5bfd-1567-4d18-b844-18a43cd20122"
+}

@@ -41,7 +41,32 @@ Feature:
     And I press done on the keyboard
     And I scroll the table to 676px
   Then I should see "NUNoneCell who me (null)"
-
+  @focus
+  Scenario:
+    Picking from dropdowns
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  When I touch the button marked "Inspect"
+    And I touch the button marked "loadStatesAndDates"
+    And I wait for .5 seconds
+  Then I should see "STATE"
+  When I touch the cell marked "NUPickerCell Pick one"
+    And I touch "AZ"
+    And I touch "Done"
+  Then I should see "NUPickerCell AZ"
+    And there should be 1 response
+  When I touch the cell marked "NUPickerCell AZ"
+    And I touch "AK"
+    And I touch a "UINavigationButton" marked "Done"
+  Then I should see "NUPickerCell AK"
+    And there should be 1 response
+  When I go to the "Dates" section
+    And I touch the cell marked "NUPickerCell Pick one"
+  Then I should see "JANUARY"
+  When I touch "MARCH"
+    And I touch a "UINavigationButton" marked "Done"
+  Then there should be 2 responses
+  
 # Somehow, the touch table cell marked "Complicated questions" isn't working in landscape with the split view
 #  Scenario:
 #    Scrolling and switching sections, horizontal

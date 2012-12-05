@@ -16,10 +16,12 @@
 @property (nonatomic, strong) UIButton *pbj;
 @property (nonatomic, strong) UIButton *sesame;
 @property (nonatomic, strong) UIButton *blankMustache;
+@property (nonatomic, strong) UIButton *statesAndDates;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
 - (void) loadPbj;
+- (void) loadStatesAndDates;
 @end
 
 @implementation NUSpyVC
@@ -32,7 +34,8 @@
             mustache = _mustache, 
             pbj = _pbj, 
             sesame = _sesame, 
-            blankMustache = _blankMustache;
+            blankMustache = _blankMustache,
+            statesAndDates = _statesAndDates;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,6 +114,12 @@
   [self.blankMustache addTarget:self action:@selector(loadBlankMustache) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.blankMustache];
   
+  self.statesAndDates = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.statesAndDates.frame = CGRectMake(10, 10.0 + 7*36.0 + 7*10.0, 400.0, 36.0);
+  self.statesAndDates.accessibilityLabel = @"loadStatesAndDates";
+  [self.statesAndDates setTitle:@"Load States And Dates" forState:UIControlStateNormal];
+  [self.statesAndDates addTarget:self action:@selector(loadStatesAndDates) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.statesAndDates];
 }
 - (void) loadKitchenSink{
   [self.delegate loadSurvey:@"kitchen-sink-survey"];
@@ -132,6 +141,9 @@
 }
 - (void) loadSesame{
   [self.delegate loadSurvey:@"sesame"];  
+}
+- (void) loadStatesAndDates {
+  [self.delegate loadSurvey:@"states-and-dates"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

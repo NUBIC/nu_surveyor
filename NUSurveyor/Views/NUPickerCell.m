@@ -37,21 +37,26 @@
   self.sectionTVC = (NUSectionTVC *)[tableView delegate];
   self.textLabel.text = @"Pick one";
   self.textLabel.textColor = [UIColor blackColor];
-  for (int i = 0; i < [self.answers count]; i++) {
-    if ([[self.sectionTVC responsesForIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]] lastObject]) {
-      self.textLabel.text = [[self.answers objectAtIndex:i] valueForKey:@"text"];
-      self.textLabel.textColor = RGB(1, 113, 233);
-    }
-  }
+  
   if (self.pickerController == nil) {
     self.pickerController = [[NUPickerVC alloc] init];    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.pickerController];
     self.pickerController.contentSizeForViewInPopover = CGSizeMake(384.0, 216.0);
     self.popoverController = [[UIPopoverController alloc] initWithContentViewController:nav];
-    [self.pickerController setupDelegate:self withTitle:@"Pick one" date:NO];
-    self.popoverController.delegate = self;
   }
-
+  [self.pickerController setupDelegate:self withTitle:@"Pick one" date:NO];
+  self.popoverController.delegate = self;
+  [self.pickerController.picker selectRow:0 inComponent:0 animated:NO];
+  
+  // look up existing response, fill in text and set picker
+  for (int i = 0; i < [self.answers count]; i++) {
+    NSManagedObject *existingResponse = [[self.sectionTVC responsesForIndexPath:[NSIndexPath indexPathForRow:i inSection:indexPath.section]] lastObject];
+    if (existingResponse) {
+      self.textLabel.text = [[self.answers objectAtIndex:i] valueForKey:@"text"];
+      self.textLabel.textColor = RGB(1, 113, 233);
+      [self.pickerController.picker selectRow:i inComponent:0 animated:NO];
+    }
+  }
 }
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 	[self.popoverController presentPopoverFromRect:self.frame inView:tableView permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
@@ -64,7 +69,9 @@
   [self.popoverController dismissPopoverAnimated:NO];
   NSUInteger selectedRow = [self.pickerController.picker selectedRowInComponent:0]; 
   if (selectedRow != -1) {
-    [self.sectionTVC deleteResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
+    for (int i = 0; i < [self.answers count]; i++) {
+      [self.sectionTVC deleteResponseForIndexPath:[self myIndexPathWithRow:i]];
+    }
     [self.sectionTVC newResponseForIndexPath:[self myIndexPathWithRow:selectedRow]];
     [self.sectionTVC showAndHideDependenciesTriggeredBy:[self myIndexPathWithRow:selectedRow]];
     self.textLabel.text = [(NSDictionary *)[self.answers objectAtIndex:selectedRow] objectForKey:@"text"];
