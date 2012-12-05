@@ -313,10 +313,14 @@
 			}
 		} else if ([operator isEqualToString:@">"] || [operator isEqualToString:@"<"] || [operator isEqualToString:@">="] || [operator isEqualToString:@"<="]) {
 			// >, <, >=, <=
-			NSPredicate *proposition = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ %@ %@", [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"], operator, value]
-                                                              arguments:nil];
-			[values setObject:[proposition evaluateWithObject:nil] ? NS_YES : NS_NO
-                       forKey:[condition objectForKey:@"rule_key"]];
+            if ([responsesToAnswer count] == 0) {
+                [values setObject:NS_NO forKey:[condition objectForKey:@"rule_key"]];
+            } else {
+                NSPredicate *proposition = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ %@ %@", [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"], operator, value]
+                                                                  arguments:nil];
+                [values setObject:[proposition evaluateWithObject:nil] ? NS_YES : NS_NO
+                           forKey:[condition objectForKey:@"rule_key"]];
+            }
 			
 		} else if ([operator isEqualToString:@"!="]) {
 			// !=

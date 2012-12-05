@@ -159,6 +159,22 @@ NSDate* completedAt;
     STAssertEquals(count, 2U, @"Wrong response group count");
 }
 
+- (void)testEvaluateConditions {
+    NSDictionary* s = [[NSDictionary alloc] initWithObjectsAndKeys:@"RECT", @"uuid", nil];
+    NSDictionary* condition = @{
+        @"question": @"xyz",
+        @"answer"  : @"aaa",
+        @"rule_key" : @"A",
+        @"operator": @">=",
+        @"value"   : @"1"
+    };
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+    [rs newResponseForQuestion:@"xyz" Answer:@"zzz" responseGroup:[NSNumber numberWithInteger:0] Value:nil];
+
+    NSDictionary* result = [rs evaluateConditions:[NSArray arrayWithObject:condition]];
+    STAssertEqualObjects([result valueForKey:@"A"], NS_NO, nil);
+}
+
 #pragma mark Helper Methods
 
 - (void)assertResponseSet:(NSDictionary *)actual uuid:(NSString*)uuid surveyId:(NSString*)surveyId createdAt:(NSString*)createdAt completedAt:(NSString*)completedAt responses:(NSInteger)responses {
