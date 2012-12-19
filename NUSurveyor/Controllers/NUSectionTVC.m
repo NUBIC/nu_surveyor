@@ -251,7 +251,7 @@
                 [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       [question objectForKey:@"uuid"], @"uuid",
                                       question, @"question",
-                                      ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO), @"show", nil]];
+                                      ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && ![[question objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO), @"show", nil]];
             }
         }
     }
