@@ -160,6 +160,12 @@ static NUResponseSet* rs;
     [self assertRow:r hasUUID:@"xyz" show:NO];
 }
 
+- (void)testCreateRowsForHiddenInsideQuestionGroup {
+    [self useQuestion:[self createQuestionGroupWithQuestion:[self createQuestionWithText:@"Where is waldo" uuid:@"xyz" type:@"hidden"]]];
+    STAssertEquals([t.allSections count], 2U, nil);
+    STAssertEquals([t.visibleSections count], 1U, nil);
+}
+
 #pragma mark - #createRows (Label)
 
 - (void)testRowAttributesForLabel {
@@ -328,6 +334,10 @@ static NUResponseSet* rs;
 - (NSIndexPath*)createGridIndexPathForGroup:(NSUInteger)g question:(NSUInteger)q answer:(NSUInteger)a {
     NSUInteger idx[] = {g, q, a};
     return [NSIndexPath indexPathWithIndexes:idx length:3];
+}
+
+- (NSString*)createQuestionGroupWithQuestion:(NSString*)q {
+    return [NSString stringWithFormat:@"{\"questions\":[%@]}", q];
 }
 
 - (NSDictionary*) idsForIndexPath:(NSIndexPath*)i {
