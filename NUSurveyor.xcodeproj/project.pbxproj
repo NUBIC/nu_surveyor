@@ -118,6 +118,7 @@
 		3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
 		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF20E9B1533A041008227B2 /* libKIF.a */; };
+		3BF8D16B1694C92F00E1D438 /* screener.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8D16A1694C92F00E1D438 /* screener.json */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E51524FA07008D3A9A /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970E31524FA07008D3A9A /* JSONKit.h */; };
 		3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF970E41524FA07008D3A9A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -394,6 +395,7 @@
 		3BF20E5F1533A040008227B2 /* KIF.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = KIF.xcodeproj; sourceTree = "<group>"; };
 		3BF20E621533A040008227B2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3BF20E631533A040008227B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		3BF8D16A1694C92F00E1D438 /* screener.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = screener.json; sourceTree = "<group>"; };
 		3BF970E01524F9DC008D3A9A /* mustache.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mustache.json; sourceTree = "<group>"; };
 		3BF970E31524FA07008D3A9A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = JSONKit/JSONKit.h; sourceTree = "<group>"; };
 		3BF970E41524FA07008D3A9A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = JSONKit/JSONKit.m; sourceTree = "<group>"; };
@@ -622,16 +624,16 @@
 		3BD52ABA14C8B43500AB61E8 /* NUSurveyorTests */ = {
 			isa = PBXGroup;
 			children = (
-				006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */,
-				006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */,
-				3BD52AC014C8B43500AB61E8 /* NUSurveyorTests.h */,
-				3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */,
 				3BD52ABB14C8B43500AB61E8 /* Supporting Files */,
 				008AE62515224CE000F4F14C /* NUDatabaseTest.h */,
 				008AE62615224CE000F4F14C /* NUDatabaseTest.m */,
 				005AA6481521676300E67C10 /* NUResponseTest.h */,
 				005AA6491521676300E67C10 /* NUResponseTest.m */,
+				006CE3B715214DB400DD32A2 /* NUResponseSetTest.h */,
+				006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */,
 				00BF07FA159104B500FAA14C /* NSStringTest.m */,
+				3BD52AC014C8B43500AB61E8 /* NUSurveyorTests.h */,
+				3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */,
 			);
 			path = NUSurveyorTests;
 			sourceTree = "<group>";
@@ -645,6 +647,7 @@
 				3BD52ABC14C8B43500AB61E8 /* NUSurveyorTests-Info.plist */,
 				3BD52ABD14C8B43500AB61E8 /* InfoPlist.strings */,
 				3B8CF200151B91C600EA4148 /* test-birth-date-survey.json */,
+				3BF8D16A1694C92F00E1D438 /* screener.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1258,6 +1261,7 @@
 				67DB496F14D07E6C009CC8C3 /* kitchen-sink-survey.json in Resources */,
 				67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */,
 				3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */,
+				3BF8D16B1694C92F00E1D438 /* screener.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

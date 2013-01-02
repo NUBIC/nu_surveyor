@@ -1,0 +1,67 @@
+{
+  "description": "Screener",
+  "sections": [
+     {
+     "questions_and_groups": [
+          {
+          "answers": [
+              {
+              "text": "NUMBER",
+              "type": "integer",
+              "uuid": "7043aa47-a431-4b78-8a21-42f4d8d6a720"
+              },
+              {
+              "text": "REFUSED",
+              "uuid": "6df97080-0a5d-4136-bc9d-bf354ec40c3c"
+              },
+              {
+              "text": "DON'T KNOW",
+              "uuid": "f69f46d6-acee-4fee-884e-2e3fe5bfa8cb"
+              }
+              ],
+          "help_text": "RESPONSE MUST BE > 0 AND < 15",
+          "pick": "one",
+          "reference_identifier": "HH_MEMBERS",
+          "text": "How many household members are supported by your total combined family income?",
+          "uuid": "1df73a6e-7516-4bd4-a496-16c5e7285403"
+          },
+          {
+          "answers": [
+              {
+              "text": "NUMBER",
+              "type": "string",
+              "uuid": "0655b8ff-5e6e-41ac-af92-55fd1d229a1c"
+              },
+              {
+              "text": "REFUSED",
+              "uuid": "185309a7-d71e-408f-8fd6-9eb1a2b777aa"
+              },
+              {
+              "text": "DON'T KNOW",
+              "uuid": "722a496b-b7e1-4434-bc6c-71a233d207e6"
+              }
+              ],
+          "dependency": {
+          "conditions": [
+               {
+               "answer": "7043aa47-a431-4b78-8a21-42f4d8d6a720",
+               "operator": ">=",
+               "question": "1df73a6e-7516-4bd4-a496-16c5e7285403",
+               "rule_key": "A",
+               "value": 1
+               }
+               ],
+          "rule": "A"
+          },
+          "pick": "one",
+          "reference_identifier": "NUM_CHILD",
+          "text": "How many of those people are children? Please include anyone under 18 years or anyone\n older than 18 years and in high school.",
+          "uuid": "87ccb8a0-e5b6-4938-bd97-2c7e59589a89"
+          }
+          ],
+     "title": "Demographic Questions"
+     }
+     ],
+  "title": "Screener",
+  "uuid": "e5fd2bc9-ff4c-4654-83a9-4652c7327f3a"
+}

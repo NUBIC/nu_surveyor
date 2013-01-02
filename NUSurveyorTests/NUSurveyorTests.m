@@ -253,5 +253,28 @@
   STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency birth date dependencies");
   STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency birth date dependencies");
 }
+- (void) testDependencyOnBlankInteger {
+  // JSON data
+  NSError *strError;
+  NSString *strPath = [self.bundle pathForResource:@"screener" ofType:@"json"];
+  NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+  NSDictionary *dict = [responseString objectFromJSONString];
+  
+	NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+  NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+	[rs generateDependencyGraph:dict];
+  
+  [rs newResponseForQuestion:@"1df73a6e-7516-4bd4-a496-16c5e7285403" Answer:@"7043aa47-a431-4b78-8a21-42f4d8d6a720" Value:@""]; // NUMBER
+  
+  NSDictionary *actual = [rs dependenciesTriggeredBy:@"1df73a6e-7516-4bd4-a496-16c5e7285403"];
+	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"87ccb8a0-e5b6-4938-bd97-2c7e59589a89", nil];
+  NSArray *expectShow = [[NSArray alloc] init];
+  
+  //	NSLog(@"%@", rs.dependencyGraph);
+  //  NSLog(@"%@", actual);
+  STAssertTrue([[actual valueForKey:@"hide"] isEqualToArray:expectHide], @"NUResponseSet Dependency on blank integer");
+  STAssertTrue([[actual valueForKey:@"show"] isEqualToArray:expectShow], @"NUResponseSet Dependency on blank integer");
+  
+}
 
 @end
