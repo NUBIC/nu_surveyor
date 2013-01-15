@@ -12,4 +12,10 @@
 
 + (NSDateFormatter*) rfc3339DateFormatter;
 
++ (NSDateFormatter*) dateTimeResponseFormatter;
+
++ (NSDateFormatter*) dateResponseFormatter;
+
++ (NSDateFormatter*) timeResponseFormatter;
+
 @end

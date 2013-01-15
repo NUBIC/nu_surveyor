@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0002A26816A5FC52004F3B5E /* NSDateFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */; };
 		005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */; };
 		005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA6491521676300E67C10 /* NUResponseTest.m */; };
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -203,6 +204,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0002A26616A5FC52004F3B5E /* NSDateFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatterTest.h; sourceTree = "<group>"; };
+		0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatterTest.m; sourceTree = "<group>"; };
 		005AA6481521676300E67C10 /* NUResponseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseTest.h; sourceTree = "<group>"; };
 		005AA6491521676300E67C10 /* NUResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseTest.m; sourceTree = "<group>"; };
 		005AA64D152208DE00E67C10 /* NUResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponse.h; path = Models/NUResponse.h; sourceTree = "<group>"; };
@@ -634,6 +637,8 @@
 				00BF07FA159104B500FAA14C /* NSStringTest.m */,
 				3BD52AC014C8B43500AB61E8 /* NUSurveyorTests.h */,
 				3BD52AC114C8B43500AB61E8 /* NUSurveyorTests.m */,
+				0002A26616A5FC52004F3B5E /* NSDateFormatterTest.h */,
+				0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */,
 			);
 			path = NUSurveyorTests;
 			sourceTree = "<group>";
@@ -1377,6 +1382,7 @@
 				67DB499314D085CA009CC8C3 /* NUSurveyor.xcdatamodel in Sources */,
 				008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */,
 				00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */,
+				0002A26816A5FC52004F3B5E /* NSDateFormatterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

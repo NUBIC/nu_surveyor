@@ -8,6 +8,7 @@
 
 #import "NUOneDatePickerCell.h"
 #import "NUOneStringOrNumberCell.h"
+#import "NSDateFormatter+NUAdditions.h"
 
 @interface NUOneDatePickerCell()
 - (void) pickerDone;
@@ -110,14 +111,13 @@
   return formatter;
 }
 - (NSDateFormatter *) storedDateFormatterFromType:(NSString *)type {
-  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"yyyy-MM-dd"];
-  if ([type isEqualToString:@"datetime"]) {
-    [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mmZ"];
-  } else if ([type isEqualToString:@"time"]) {
-    [formatter setDateFormat:@"HH:mm"];
-  }
-  return formatter;
+    NSDateFormatter *formatter = [NSDateFormatter dateResponseFormatter];
+    if ([type isEqualToString:@"datetime"]) {
+        formatter = [NSDateFormatter dateTimeResponseFormatter];
+    } else if ([type isEqualToString:@"time"]) {
+        formatter = [NSDateFormatter timeResponseFormatter];
+    }
+    return formatter;
 }
 - (void) nowPressed{
   [self.pickerVC.datePicker setDate:[NSDate date] animated:YES];

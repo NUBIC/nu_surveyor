@@ -7,6 +7,7 @@
 //
 
 #import "NUAnyDatePickerCell.h"
+#import "NSDateFormatter+NUAdditions.h"
 
 @interface NUAnyDatePickerCell()
 @property (nonatomic, strong) NSString *type;
@@ -101,12 +102,11 @@
   return formatter;
 }
 - (NSDateFormatter *) storedDateFormatterFromType:(NSString *)type {
-  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-  [formatter setDateFormat:@"yyyy-MM-dd"];
+  NSDateFormatter *formatter = [NSDateFormatter dateResponseFormatter];
   if ([type isEqualToString:@"datetime"]) {
-    [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mmZ"];
+    formatter = [NSDateFormatter dateTimeResponseFormatter];
   } else if ([type isEqualToString:@"time"]) {
-    [formatter setDateFormat:@"HH:mm"];
+    formatter = [NSDateFormatter timeResponseFormatter];
   }
   return formatter;
 }
