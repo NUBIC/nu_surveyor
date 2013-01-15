@@ -1,6 +1,6 @@
-#import "NSString+Additions.h"
+#import "NSString+NUAdditions.h"
 
-@implementation NSString (Additions)
+@implementation NSString (NUAdditions)
 
 static NSString* SPACE = @" ";
 

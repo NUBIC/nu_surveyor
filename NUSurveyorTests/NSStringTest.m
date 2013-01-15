@@ -1,6 +1,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 
-#import "NSString+Additions.h"
+#import "NSString+NUAdditions.h"
 
 @interface NSStringTest : SenTestCase 
 @end

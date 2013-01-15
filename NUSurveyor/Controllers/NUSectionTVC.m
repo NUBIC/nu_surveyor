@@ -7,10 +7,10 @@
 //
 
 #import "NUSectionTVC.h"
-#import "UUID.h"
+#import "NUUUID.h"
 #import "UILabel+NUResize.h"
 #import "NUButton.h"
-#import "NSString+Additions.h"
+#import "NSString+NUAdditions.h"
 
 @interface VisibleSection : NSObject {
     NSString* _uuid;
@@ -219,7 +219,7 @@
   for(NSDictionary *questionOrGroup in [self.detailItem objectForKey:@"questions_and_groups"]){
     // regular questions, grids
     [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                [questionOrGroup objectForKey:@"uuid"] == nil ? [UUID generateUuidString] : [questionOrGroup objectForKey:@"uuid"], @"uuid",
+                                [questionOrGroup objectForKey:@"uuid"] == nil ? [NUUUID generateUuidString] : [questionOrGroup objectForKey:@"uuid"], @"uuid",
                                  questionOrGroup, @"question",
                                  (![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]]) ? NS_YES : NS_NO, @"show", nil ]];
     //    DLog(@"uuid: %@ questionOrGroup: %@", [questionOrGroup objectForKey:@"uuid"], questionOrGroup);

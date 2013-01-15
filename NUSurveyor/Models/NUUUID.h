@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UUID : NSObject
+@interface NUUUID : NSObject
 
 + (NSString *)generateUuidString;
 

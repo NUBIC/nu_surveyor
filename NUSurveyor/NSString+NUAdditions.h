@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface NSString (Additions)
+@interface NSString (NUAdditions)
 
 - (NSString*) normalizeWhitespace;
 

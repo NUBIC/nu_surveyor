@@ -7,7 +7,7 @@
 //
 
 #import "NUSurveyorTests.h"
-#import "UUID.h"
+#import "NUUUID.h"
 #import "NUSectionTVC.h"
 #import "NUDatePickerCell.h"
 #import "JSONKit.h"
@@ -15,7 +15,7 @@
 @implementation NUSurveyorTests
 
 - (void)testUUID{
-  NSString *str = [UUID generateUuidString];
+  NSString *str = [NUUUID generateUuidString];
   STAssertEquals([str length], (NSUInteger)36, @"UUID length should be 36");
 }
 

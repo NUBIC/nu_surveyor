@@ -7,10 +7,10 @@
 //
 
 #import "NUResponseSet.h"
-#import "UUID.h"
+#import "NUUUID.h"
 #import "NUResponse.h"
 #import "JSONKit.h"
-#import "NSDateFormatter+Additions.h"
+#import "NSDateFormatter+NUAdditions.h"
 
 @implementation NUResponseSet
 @synthesize dependencyGraph = _dependencyGraph, dependencies = _dependencies;
@@ -26,7 +26,7 @@
                          initWithEntity:entity insertIntoManagedObjectContext:moc];
     [rs setValue:[NSDate date] forKey:@"createdAt"];
     [rs setValue:[survey objectForKey:@"uuid"] forKey:@"survey"];
-    [rs setValue:[UUID generateUuidString] forKey:@"uuid"];
+    [rs setValue:[NUUUID generateUuidString] forKey:@"uuid"];
     [self saveContext:moc withMessage:@"NUResponseSet newResponseSetForSurvey"];
     
     [rs generateDependencyGraph:survey];
@@ -149,7 +149,7 @@
     [newResponse setValue:rg forKey:@"responseGroup"];
     
     [newResponse setValue:[NSDate date] forKey:@"createdAt"];
-    [newResponse setValue:[UUID generateUuidString] forKey:@"uuid"];
+    [newResponse setValue:[NUUUID generateUuidString] forKey:@"uuid"];
     
     // Save the context.
     [self.class saveContext:self.managedObjectContext withMessage:@"ResponseSet newResponseForQuestionAnswerValue"];

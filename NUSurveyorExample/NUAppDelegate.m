@@ -10,7 +10,7 @@
 
 #import "NUSurveyTVC.h"
 #import "NUSectionTVC.h"
-#import "UUID.h"
+#import "NUUUID.h"
 
 #import "SectionTVCTest.h"
 
@@ -69,7 +69,7 @@
   NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] objectForKey:@"ResponseSet"];
   NUResponseSet *responseSet = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
   [responseSet setValue:[NSDate date] forKey:@"createdAt"];
-  [responseSet setValue:[UUID generateUuidString] forKey:@"uuid"];
+  [responseSet setValue:[NUUUID generateUuidString] forKey:@"uuid"];
   [self saveContext];
   
   NUSurveyTVC *masterViewController = [[NUSurveyTVC alloc] initWithSurvey:survey responseSet:responseSet renderContext:renderContext];

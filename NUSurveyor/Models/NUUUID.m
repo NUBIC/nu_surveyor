@@ -6,9 +6,9 @@
 //  Copyright (c) 2011-2012 Northwestern University. All rights reserved.
 //
 
-#import "UUID.h"
+#import "NUUUID.h"
 
-@implementation UUID
+@implementation NUUUID
 
 // http://blog.ablepear.com/2010/09/creating-guid-or-uuid-in-objective-c.html
 // with modifications for ARC

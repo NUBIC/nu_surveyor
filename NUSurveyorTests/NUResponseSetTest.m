@@ -9,7 +9,7 @@
 #import "NUResponseSetTest.h"
 #import "NUResponseSet.h"
 #import "NUSurvey.h"
-#import "NSDateFormatter+Additions.h"
+#import "NSDateFormatter+NUAdditions.h"
 #import "NUResponse.h"
 
 @implementation NUResponseSetTest

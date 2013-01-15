@@ -19,10 +19,10 @@
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
 		00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FA159104B500FAA14C /* NSStringTest.m */; };
-		00BF07FF15910C8A00FAA14C /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF07FD15910C8A00FAA14C /* NSString+Additions.h */; };
-		00BF080015910C8A00FAA14C /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+Additions.m */; };
-		00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */; };
+		00BF07FF15910C8A00FAA14C /* NSString+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */; };
+		00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */; };
+		00C8457F152263DF003B9213 /* NSDateFormatter+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00C84580152263DF003B9213 /* NSDateFormatter+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */; };
 		3B1022681635B1A500DA88ED /* GRMustache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022541635B1A500DA88ED /* GRMustache.h */; };
 		3B1022691635B1A500DA88ED /* GRMustacheAvailabilityMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */; };
 		3B10226A1635B1A500DA88ED /* GRMustacheDynamicPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022561635B1A500DA88ED /* GRMustacheDynamicPartial.h */; };
@@ -72,8 +72,8 @@
 		3BD52AD114C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ACF14C8B5A200AB61E8 /* NUSurveyTVC.m */; };
 		3BD52AD514C8B5B600AB61E8 /* NUSectionTVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AD314C8B5B600AB61E8 /* NUSectionTVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AD614C8B5B600AB61E8 /* NUSectionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD414C8B5B600AB61E8 /* NUSectionTVC.m */; };
-		3BD52ADA14C8B5FE00AB61E8 /* UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AD814C8B5FE00AB61E8 /* UUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BD52ADB14C8B5FE00AB61E8 /* UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD914C8B5FE00AB61E8 /* UUID.m */; };
+		3BD52ADA14C8B5FE00AB61E8 /* NUUUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AD814C8B5FE00AB61E8 /* NUUUID.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BD52ADB14C8B5FE00AB61E8 /* NUUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52AD914C8B5FE00AB61E8 /* NUUUID.m */; };
 		3BD52ADF14C8B62600AB61E8 /* NUPickerVC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52ADD14C8B62600AB61E8 /* NUPickerVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD52AE014C8B62600AB61E8 /* NUPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD52ADE14C8B62600AB61E8 /* NUPickerVC.m */; };
 		3BD52AE414C8B65400AB61E8 /* NUResponseSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD52AE214C8B65400AB61E8 /* NUResponseSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -219,10 +219,10 @@
 		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		00BF07FA159104B500FAA14C /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
-		00BF07FD15910C8A00FAA14C /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
-		00BF07FE15910C8A00FAA14C /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
-		00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+Additions.h"; path = "Models/NSDateFormatter+Additions.h"; sourceTree = "<group>"; };
-		00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+Additions.m"; path = "Models/NSDateFormatter+Additions.m"; sourceTree = "<group>"; };
+		00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NUAdditions.h"; sourceTree = "<group>"; };
+		00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NUAdditions.m"; sourceTree = "<group>"; };
+		00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+NUAdditions.h"; path = "Models/NSDateFormatter+NUAdditions.h"; sourceTree = "<group>"; };
+		00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+NUAdditions.m"; path = "Models/NSDateFormatter+NUAdditions.m"; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B1022541635B1A500DA88ED /* GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustache.h; sourceTree = "<group>"; };
 		3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheAvailabilityMacros.h; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 		3BD52ACF14C8B5A200AB61E8 /* NUSurveyTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSurveyTVC.m; path = Controllers/NUSurveyTVC.m; sourceTree = "<group>"; };
 		3BD52AD314C8B5B600AB61E8 /* NUSectionTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUSectionTVC.h; path = Controllers/NUSectionTVC.h; sourceTree = "<group>"; };
 		3BD52AD414C8B5B600AB61E8 /* NUSectionTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUSectionTVC.m; path = Controllers/NUSectionTVC.m; sourceTree = "<group>"; };
-		3BD52AD814C8B5FE00AB61E8 /* UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UUID.h; path = Models/UUID.h; sourceTree = "<group>"; };
-		3BD52AD914C8B5FE00AB61E8 /* UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UUID.m; path = Models/UUID.m; sourceTree = "<group>"; };
+		3BD52AD814C8B5FE00AB61E8 /* NUUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUUUID.h; path = Models/NUUUID.h; sourceTree = "<group>"; };
+		3BD52AD914C8B5FE00AB61E8 /* NUUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUUUID.m; path = Models/NUUUID.m; sourceTree = "<group>"; };
 		3BD52ADD14C8B62600AB61E8 /* NUPickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUPickerVC.h; path = Controllers/NUPickerVC.h; sourceTree = "<group>"; };
 		3BD52ADE14C8B62600AB61E8 /* NUPickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUPickerVC.m; path = Controllers/NUPickerVC.m; sourceTree = "<group>"; };
 		3BD52AE214C8B65400AB61E8 /* NUResponseSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponseSet.h; path = Models/NUResponseSet.h; sourceTree = "<group>"; };
@@ -693,18 +693,18 @@
 		3BD52ACC14C8B45000AB61E8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3BD52AD814C8B5FE00AB61E8 /* UUID.h */,
-				3BD52AD914C8B5FE00AB61E8 /* UUID.m */,
+				3BD52AD814C8B5FE00AB61E8 /* NUUUID.h */,
+				3BD52AD914C8B5FE00AB61E8 /* NUUUID.m */,
 				3BD52AE214C8B65400AB61E8 /* NUResponseSet.h */,
 				3BD52AE314C8B65400AB61E8 /* NUResponseSet.m */,
 				3BA2E94814CDCD0F0057D05C /* NUSurvey.h */,
 				3BA2E94914CDCD0F0057D05C /* NUSurvey.m */,
 				005AA64D152208DE00E67C10 /* NUResponse.h */,
 				005AA64E152208DE00E67C10 /* NUResponse.m */,
-				00C8457D152263DF003B9213 /* NSDateFormatter+Additions.h */,
-				00C8457E152263DF003B9213 /* NSDateFormatter+Additions.m */,
-				00BF07FD15910C8A00FAA14C /* NSString+Additions.h */,
-				00BF07FE15910C8A00FAA14C /* NSString+Additions.m */,
+				00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */,
+				00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */,
+				00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */,
+				00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1029,7 +1029,7 @@
 				3BD52AD014C8B5A200AB61E8 /* NUSurveyTVC.h in Headers */,
 				3BD52AD514C8B5B600AB61E8 /* NUSectionTVC.h in Headers */,
 				3BD52ADF14C8B62600AB61E8 /* NUPickerVC.h in Headers */,
-				3BD52ADA14C8B5FE00AB61E8 /* UUID.h in Headers */,
+				3BD52ADA14C8B5FE00AB61E8 /* NUUUID.h in Headers */,
 				3BD52AE414C8B65400AB61E8 /* NUResponseSet.h in Headers */,
 				3BA2E94A14CDCD0F0057D05C /* NUSurvey.h in Headers */,
 				671F3E8914CA318100CEE042 /* NUCell.h in Headers */,
@@ -1043,7 +1043,7 @@
 				3BD52B1B14C8B7A200AB61E8 /* NUMultiButton.h in Headers */,
 				3BD52B2514C8B7EF00AB61E8 /* UILabel+NUResize.h in Headers */,
 				005AA64F152208DE00E67C10 /* NUResponse.h in Headers */,
-				00C8457F152263DF003B9213 /* NSDateFormatter+Additions.h in Headers */,
+				00C8457F152263DF003B9213 /* NSDateFormatter+NUAdditions.h in Headers */,
 				67DB499814D0933E009CC8C3 /* NUGridAnyCell.h in Headers */,
 				67DB499A14D0933E009CC8C3 /* NUGridOneCell.h in Headers */,
 				0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */,
@@ -1052,7 +1052,7 @@
 				3B2AB06E1522429E00525F25 /* NUOneStringOrNumberCell.h in Headers */,
 				3B2AB0721522483E00525F25 /* NUOneDatePickerCell.h in Headers */,
 				3BF970E51524FA07008D3A9A /* JSONKit.h in Headers */,
-				00BF07FF15910C8A00FAA14C /* NSString+Additions.h in Headers */,
+				00BF07FF15910C8A00FAA14C /* NSString+NUAdditions.h in Headers */,
 				3B1022681635B1A500DA88ED /* GRMustache.h in Headers */,
 				3B1022691635B1A500DA88ED /* GRMustacheAvailabilityMacros.h in Headers */,
 				3B10226A1635B1A500DA88ED /* GRMustacheDynamicPartial.h in Headers */,
@@ -1341,7 +1341,7 @@
 				3BD52AAB14C8B43500AB61E8 /* NUSurveyor.m in Sources */,
 				3BD52AD114C8B5A200AB61E8 /* NUSurveyTVC.m in Sources */,
 				3BD52AD614C8B5B600AB61E8 /* NUSectionTVC.m in Sources */,
-				3BD52ADB14C8B5FE00AB61E8 /* UUID.m in Sources */,
+				3BD52ADB14C8B5FE00AB61E8 /* NUUUID.m in Sources */,
 				3BD52AE014C8B62600AB61E8 /* NUPickerVC.m in Sources */,
 				3BD52AE514C8B65400AB61E8 /* NUResponseSet.m in Sources */,
 				3BD52AEA14C8B6A400AB61E8 /* NUAnyCell.m in Sources */,
@@ -1361,9 +1361,9 @@
 				3BC61A851520F75000A8C20C /* NUAnyDatePickerCell.m in Sources */,
 				3B2AB06F1522429E00525F25 /* NUOneStringOrNumberCell.m in Sources */,
 				3B2AB0731522483E00525F25 /* NUOneDatePickerCell.m in Sources */,
-				00C84580152263DF003B9213 /* NSDateFormatter+Additions.m in Sources */,
+				00C84580152263DF003B9213 /* NSDateFormatter+NUAdditions.m in Sources */,
 				3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */,
-				00BF080015910C8A00FAA14C /* NSString+Additions.m in Sources */,
+				00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

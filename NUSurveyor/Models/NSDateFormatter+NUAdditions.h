@@ -1,5 +1,5 @@
 //
-//  NSDateFormatter+Additions.h
+//  NSDateFormatter+NUAdditions.h
 //  NUSurveyor
 //
 //  Created by John Dzak on 3/27/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDateFormatter (Additions)
+@interface NSDateFormatter (NUAdditions)
 
 + (NSDateFormatter*) rfc3339DateFormatter;
 

@@ -8,7 +8,7 @@
 
 #import "NUResponse.h"
 #import "JSONKit.h"
-#import "NSDateFormatter+Additions.h"
+#import "NSDateFormatter+NUAdditions.h"
 
 @implementation NUResponse
 

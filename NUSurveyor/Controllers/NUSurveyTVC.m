@@ -8,7 +8,7 @@
 
 #import "NUSurveyTVC.h"
 #import "JSONKit.h"
-#import "UUID.h"
+#import "NUUUID.h"
 
 @interface NUSurveyTVC()
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
