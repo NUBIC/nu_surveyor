@@ -17,15 +17,17 @@
 @property (nonatomic, strong) UIButton *sesame;
 @property (nonatomic, strong) UIButton *blankMustache;
 @property (nonatomic, strong) UIButton *statesAndDates;
+@property (nonatomic, strong) UIButton *animals;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
 - (void) loadPbj;
 - (void) loadStatesAndDates;
+- (void) loadAnimals;
 @end
 
 @implementation NUSpyVC
-@synthesize delegate = _delegate, 
+@synthesize delegate = _delegate,
             surveyTVC = _surveyTVC, 
             sectionTVC = _sectionTVC;
 @synthesize responseSetCount = _responseSetCount, 
@@ -120,6 +122,13 @@
   [self.statesAndDates setTitle:@"Load States And Dates" forState:UIControlStateNormal];
   [self.statesAndDates addTarget:self action:@selector(loadStatesAndDates) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.statesAndDates];
+    
+  self.animals = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.animals.frame = CGRectMake(10, 10.0 + 8*36.0 + 8*10.0, 400.0, 36.0);
+  self.animals.accessibilityLabel = @"loadAnimals";
+  [self.animals setTitle:@"Load Animals" forState:UIControlStateNormal];
+  [self.animals addTarget:self action:@selector(loadAnimals) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.animals];
 }
 - (void) loadKitchenSink{
   [self.delegate loadSurvey:@"kitchen-sink-survey"];
@@ -144,6 +153,9 @@
 }
 - (void) loadStatesAndDates {
   [self.delegate loadSurvey:@"states-and-dates"];
+}
+- (void) loadAnimals {
+  [self.delegate loadSurvey:@"animals"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

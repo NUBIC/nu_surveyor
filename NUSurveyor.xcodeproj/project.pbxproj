@@ -24,6 +24,8 @@
 		00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */; };
 		00C8457F152263DF003B9213 /* NSDateFormatter+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C84580152263DF003B9213 /* NSDateFormatter+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */; };
+		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
+		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
 		3B1022681635B1A500DA88ED /* GRMustache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022541635B1A500DA88ED /* GRMustache.h */; };
 		3B1022691635B1A500DA88ED /* GRMustacheAvailabilityMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */; };
 		3B10226A1635B1A500DA88ED /* GRMustacheDynamicPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022561635B1A500DA88ED /* GRMustacheDynamicPartial.h */; };
@@ -226,6 +228,8 @@
 		00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NUAdditions.m"; sourceTree = "<group>"; };
 		00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+NUAdditions.h"; path = "Models/NSDateFormatter+NUAdditions.h"; sourceTree = "<group>"; };
 		00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+NUAdditions.m"; path = "Models/NSDateFormatter+NUAdditions.m"; sourceTree = "<group>"; };
+		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
+		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B1022541635B1A500DA88ED /* GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustache.h; sourceTree = "<group>"; };
 		3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheAvailabilityMacros.h; sourceTree = "<group>"; };
@@ -977,6 +981,7 @@
 				67DB49AE14D09454009CC8C3 /* InfoPlist.strings */,
 				67DB49B114D09454009CC8C3 /* main.m */,
 				67DB49B314D09454009CC8C3 /* NUSurveyorExample-Prefix.pch */,
+				00DD775416A74CBA00D78EBE /* animals.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1003,6 +1008,7 @@
 				3BF9710D1524FE08008D3A9A /* mustache.feature */,
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
 				67DB4A0B14D09EB6009CC8C3 /* support */,
+				00DD775616A74E1900D78EBE /* complex_dependencies.feature */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -1296,6 +1302,8 @@
 				3B5ACC18162F5203007EED1A /* sesame.json in Resources */,
 				3B5ACC1A162F521C007EED1A /* hidden.feature in Resources */,
 				3BB92966166FE58E00C2D5AE /* states-and-dates.json in Resources */,
+				00DD775516A74CBA00D78EBE /* animals.json in Resources */,
+				00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

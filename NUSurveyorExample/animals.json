@@ -1,0 +1,125 @@
+{
+
+    "title": "Animals",
+    "uuid": "55c883e1-bc9e-4566-94a8-cf6bcd74b13f",
+    "sections": [
+        {
+            "title": "One",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "c0a1b5e3-4dc4-4b97-a960-8f87a39bf9e0",
+                    "text": "Are you ready?",
+                    "reference_identifier": "READY",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "080420d1-8cb9-456d-9cf3-472dd36433ed",
+                            "text": "Yes",
+                            "reference_identifier": "y"
+                        },
+                        {
+                            "uuid": "b3dd1204-84a0-492c-84f3-0f8e1a420eb9",
+                            "text": "No",
+                            "reference_identifier": "n"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "2aa6306d-0c72-4d6c-bae8-6614b057a8fa",
+                    "text": "Go",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "c0a1b5e3-4dc4-4b97-a960-8f87a39bf9e0",
+                                "answer": "080420d1-8cb9-456d-9cf3-472dd36433ed"
+                            }
+                        ]
+                    },
+                    "questions": [
+                        {
+                            "uuid": "08078ced-38cd-4c19-a702-a04c8e403d7b",
+                            "text": "Do you like dogs",
+                            "reference_identifier": "DOGS",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "91bc64ba-3ef0-40bf-b6c5-26a46842ae6a",
+                                    "text": "Yes",
+                                    "reference_identifier": "y"
+                                },
+                                {
+                                    "uuid": "99ad2067-d345-4458-a487-12789b457c49",
+                                    "text": "No",
+                                    "reference_identifier": "n"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "771596fb-288f-41a2-913d-746c8f7fc476",
+                            "text": "Do you like animals?",
+                            "reference_identifier": "ANIMALS",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "0a6878b3-79a1-434e-9a6b-8e9e4956a94d",
+                                    "text": "Yes",
+                                    "reference_identifier": "y"
+                                },
+                                {
+                                    "uuid": "6450ffbe-5f69-409b-8ead-322f33b29635",
+                                    "text": "No",
+                                    "reference_identifier": "n"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "08078ced-38cd-4c19-a702-a04c8e403d7b",
+                                        "answer": "99ad2067-d345-4458-a487-12789b457c49"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "uuid": "199cc38e-9abe-4e77-8524-fccfcb908704",
+                            "text": "Do you like anything?",
+                            "reference_identifier": "ANYTHING",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "e3eeeb7d-da64-4683-9924-3fe58f8575ea",
+                                    "text": "Yes",
+                                    "reference_identifier": "y"
+                                },
+                                {
+                                    "uuid": "e1660f2d-0caf-4014-9ed0-f4a40e7e23f1",
+                                    "text": "No",
+                                    "reference_identifier": "n"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "771596fb-288f-41a2-913d-746c8f7fc476",
+                                        "answer": "6450ffbe-5f69-409b-8ead-322f33b29635"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}

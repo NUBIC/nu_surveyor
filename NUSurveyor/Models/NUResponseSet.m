@@ -183,6 +183,29 @@
 
 #pragma mark - Dependencies
 
+/**
+ Builds a graph of dependencies that looks like...
+ 
+ self.dependency = @{
+     @"<question/group uuid>": @{
+         @"rule": "A",
+         @"conditions": @[
+             @{
+                 @"rule_key": "A",
+                 @"operator": "==",
+                 @"question": "c0a1b5e3-4dc4-4b97-a960-8f87a39bf9e0",
+                 @"answer": "080420d1-8cb9-456d-9cf3-472dd36433ed"
+             }
+         ]
+     }
+ }
+ 
+ self.dependencyGraph = @{
+     @"<condition question/group uuid>": @[ 
+         @"<source question/group uuid>"
+     ]
+ }
+ */
 - (void) generateDependencyGraph:(NSDictionary *)survey {
     self.dependencyGraph = [[NSMutableDictionary alloc] init];
     self.dependencies = [[NSMutableDictionary alloc] init];
