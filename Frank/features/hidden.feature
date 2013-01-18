@@ -14,3 +14,14 @@ Feature:
   And I should see "What is your favorite number?"
   And I should not see "What is your name?"
   And I should not see "Who are your friends?"
+
+  Scenario:
+    Hidden question within group
+  Given I launch the app using iOS 5.1 and the ipad simulator
+  Given the device is in portrait orientation
+  And I touch the button marked "Inspect"
+  And I touch the button marked "loadSesame"
+  And I wait for animations
+
+  When I touch the table cell marked "NUOneCell One"
+  And I should not see "Where do you live?"

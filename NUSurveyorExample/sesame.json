@@ -38,11 +38,6 @@
                     "text": "Friends"
                 },
                 {
-                    "type": "label",
-                    "uuid": "fbc81dc2-a861-4479-9531-8543b563a668",
-                    "text": "AH AH AH AH AH!"
-                },
-                {
                     "answers": [
                         {
                             "uuid": "66c6326e-79ad-4412-a338-033a51e02437",
@@ -61,6 +56,40 @@
                     "pick": "one",
                     "reference_identifier": "numbers",
                     "text": "What is your favorite number?"
+                }, 
+                {
+                    "type": "label",
+                    "uuid": "fbc81dc2-a861-4479-9531-8543b563a668",
+                    "text": "AH AH AH AH AH!"
+                },
+                {
+                    "questions": [
+                        {
+                            "answers": [
+                                {
+                                    "text": "", 
+                                    "type": "string", 
+                                    "uuid": "704e0652-06c0-4d95-9ab9-b504fc894260"
+                                }
+                            ], 
+                            "text": "Where do you live?", 
+                            "type": "hidden",
+                            "uuid": " 2fc13eeb-2f62-4017-bd20-5f22340595be"
+                        }
+                    ], 
+                    "uuid": "c2914f85-b75f-4a40-a174-22c4ba89e677",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "fb1e3727-69b4-47be-85a8-104ddfcb04d3",
+                                "answer": "66c6326e-79ad-4412-a338-033a51e02437"
+                            }
+                        ]
+                    }
+
                 }
             ]
         }

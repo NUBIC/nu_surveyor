@@ -722,7 +722,7 @@
         NSUInteger i = [self indexForInsert:[q objectForKey:@"uuid"]];
         if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
           if ([self indexOfVisibleQuestionWithUUID:[q objectForKey:@"uuid"]] == NSNotFound){
-            NSNumber* show = [self.responseSet showDependency:[q objectForKey:@"dependency"]] ? NS_YES : NS_NO;
+            NSNumber* show = (![[q objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[q objectForKey:@"dependency"]]) ? NS_YES : NS_NO;
             [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]] setObject:show forKey:@"show"];
             if (show == NS_YES) {
               // insert into visibleSections before insertSections to get title right
