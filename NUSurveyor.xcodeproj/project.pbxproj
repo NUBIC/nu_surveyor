@@ -24,6 +24,7 @@
 		00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */; };
 		00C8457F152263DF003B9213 /* NSDateFormatter+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		00C84580152263DF003B9213 /* NSDateFormatter+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */; };
+		00D61CA816B02E7400565A8B /* shoes.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D61CA716B02E7400565A8B /* shoes.json */; };
 		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
 		3B1022681635B1A500DA88ED /* GRMustache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022541635B1A500DA88ED /* GRMustache.h */; };
@@ -226,8 +227,10 @@
 		00BF07FA159104B500FAA14C /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
 		00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NUAdditions.h"; sourceTree = "<group>"; };
 		00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NUAdditions.m"; sourceTree = "<group>"; };
+		00C58E4016AF391300A77DE4 /* repeater.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repeater.feature; sourceTree = "<group>"; };
 		00C8457D152263DF003B9213 /* NSDateFormatter+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDateFormatter+NUAdditions.h"; path = "Models/NSDateFormatter+NUAdditions.h"; sourceTree = "<group>"; };
 		00C8457E152263DF003B9213 /* NSDateFormatter+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+NUAdditions.m"; path = "Models/NSDateFormatter+NUAdditions.m"; sourceTree = "<group>"; };
+		00D61CA716B02E7400565A8B /* shoes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoes.json; sourceTree = "<group>"; };
 		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
 		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
@@ -971,6 +974,7 @@
 		67DB49AC14D09454009CC8C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				00D61CA716B02E7400565A8B /* shoes.json */,
 				3B5ACC17162F5203007EED1A /* sesame.json */,
 				3BC61A9315211EC900A8C20C /* complex-responses.json */,
 				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
@@ -1009,6 +1013,7 @@
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
 				67DB4A0B14D09EB6009CC8C3 /* support */,
 				00DD775616A74E1900D78EBE /* complex_dependencies.feature */,
+				00C58E4016AF391300A77DE4 /* repeater.feature */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -1304,6 +1309,7 @@
 				3BB92966166FE58E00C2D5AE /* states-and-dates.json in Resources */,
 				00DD775516A74CBA00D78EBE /* animals.json in Resources */,
 				00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */,
+				00D61CA816B02E7400565A8B /* shoes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -271,6 +271,19 @@ static NUResponseSet* rs;
     [self assertId:r1 qid:@"abc" aid:@"aaa" rgid:1];
 }
 
+#pragma mark - #findVisibleSectionsWithGroupUUID
+
+- (void)testFindVisibleSectionsWithGroupUUID {
+    [self useQuestion:[self createQuestionRepeaterWithText:@"Favorite Car?" uuid:@"xyz" questions:[NSArray arrayWithObjects:
+                       [self createQuestionWithText:@"Car" uuid:@"abc" answer:
+                        [self createAnswerWithText:@"Model" uuid:@"aaa" type:@"string"]],
+                       [self createQuestionWithText:@"Car" uuid:@"cbs" type:@"hidden"], nil]]];
+    
+    NSArray* actual = [self findVisibleSectionsWithGroupUUID:@"xyz"];
+    STAssertEquals([actual count], 1U, nil);
+    STAssertEqualObjects([[actual objectAtIndex:0] valueForKey:@"uuid"], @"abc", nil);
+}
+
 #pragma mark - JSON Builder Helper Methods
      
 - (void)useQuestion:(NSString*)question {
@@ -344,6 +357,10 @@ static NUResponseSet* rs;
     return (NSDictionary*)[t performSelector:@selector(idsForIndexPath:) withObject:i];
 }
 
+- (NSArray*) findVisibleSectionsWithGroupUUID:(NSString*)s {
+    return (NSArray*)[t performSelector:@selector(findVisibleSectionsWithGroupUUID:) withObject:s];
+}
+
 #pragma mark - Assertion Helper Methods
 
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show {
@@ -354,7 +371,7 @@ static NUResponseSet* rs;
 }
 
 - (void)assertRow:(NSDictionary*)r hasUUID:(NSString*)uuid show:(BOOL)show rgid:(NSInteger)rgid {
-    STAssertEquals([[r allKeys] count], 4U, @"Wrong number of attributes");
+    STAssertEquals([[r allKeys] count], 5U, @"Wrong number of attributes");
     STAssertEqualObjects([r objectForKey:@"uuid"], uuid, @"Wrong uuid");
     STAssertEqualObjects([r objectForKey:@"show"], [NSNumber numberWithBool:show], @"Wrong show");
     STAssertEqualObjects([r objectForKey:@"rgid"],[NSNumber numberWithInteger:rgid], @"Wrong rgid");

@@ -18,12 +18,14 @@
 @property (nonatomic, strong) UIButton *blankMustache;
 @property (nonatomic, strong) UIButton *statesAndDates;
 @property (nonatomic, strong) UIButton *animals;
+@property (nonatomic, strong) UIButton *shoes;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
 - (void) loadPbj;
 - (void) loadStatesAndDates;
 - (void) loadAnimals;
+- (void) loadShoes;
 @end
 
 @implementation NUSpyVC
@@ -129,6 +131,14 @@
   [self.animals setTitle:@"Load Animals" forState:UIControlStateNormal];
   [self.animals addTarget:self action:@selector(loadAnimals) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.animals];
+    
+  self.shoes = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  self.shoes.frame = CGRectMake(10, 10.0 + 9*36.0 + 9*10.0, 400.0, 36.0);
+  self.shoes.accessibilityLabel = @"loadShoes";
+  [self.shoes setTitle:@"Load Shoes" forState:UIControlStateNormal];
+  [self.shoes addTarget:self action:@selector(loadShoes) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.shoes];
+
 }
 - (void) loadKitchenSink{
   [self.delegate loadSurvey:@"kitchen-sink-survey"];
@@ -156,6 +166,9 @@
 }
 - (void) loadAnimals {
   [self.delegate loadSurvey:@"animals"];
+}
+- (void) loadShoes {
+  [self.delegate loadSurvey:@"shoes"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

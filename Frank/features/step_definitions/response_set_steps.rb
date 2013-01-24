@@ -101,3 +101,13 @@ end
 Then /^I wait for animations$/ do
   wait_for_nothing_to_be_animating
 end
+
+When /^I should see "(.*?)" labels marked "(.*?)"$/ do |count, label|
+  labels = frankly_map( "label marked:'#{label}'", 'tag' )
+  labels.count.should == count.to_i
+end
+
+Then /^I should see "(.*?)" buttons marked "(.*?)"$/ do |count, button|
+  buttons = frankly_map( "button marked:'#{button}'", 'tag' )
+  buttons.count.should == count.to_i
+end

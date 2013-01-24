@@ -15,21 +15,25 @@
 @interface VisibleSection : NSObject {
     NSString* _uuid;
     NSNumber* _rgid;
+    NSString* _groupUUID;
 }
 @property(nonatomic,retain)NSString* uuid;
 @property(nonatomic,retain)NSNumber* rgid;
+@property(nonatomic,retain)NSString* groupUUID;
 @end
 
 @implementation VisibleSection
 
 @synthesize uuid = _uuid;
 @synthesize rgid = _rgid;
+@synthesize groupUUID = _groupUUID;
 
-- (id)initWithUUID:(NSString*)uuid rgid:(NSNumber*)rgid {
+- (id)initWithUUID:(NSString*)uuid rgid:(NSNumber*)rgid groupUUID:(NSString*)groupUUID {
     self = [super init];
     if (self) {
         _uuid = uuid;
         _rgid = rgid;
+        _groupUUID = groupUUID;
     }
     return self;
 }
@@ -55,7 +59,8 @@
 - (NSArray*)findAllVisibleSectionsWithUUID:(NSString*)uuid;
 // Detail item
 - (void)createRows;
-- (BOOL)isLastRepeaterSection:(NSInteger)section;
+- (BOOL)isLastSectionInRepeaterGroup:(NSInteger)section;
+- (NSArray*)findVisibleSectionsWithGroupUUID:(NSString*)uuid;
 @end
 
 @implementation NUSectionTVC
@@ -236,11 +241,12 @@
             for (int i=0; i < count; i++) {
                 for (NSDictionary *question in [questionOrGroup objectForKey:@"questions"]) {
                     // repeaters
-                    NSNumber* show = ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO);
+                    NSNumber* show = ((![[questionOrGroup objectForKey:@"type"] isEqualToString:@"hidden"] && ![[question objectForKey:@"type"] isEqualToString:@"hidden"] && [self.responseSet showDependency:[questionOrGroup objectForKey:@"dependency"]] && [self.responseSet showDependency:[question objectForKey:@"dependency"]]) ? NS_YES : NS_NO);
                     [self.allSections addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                  [question objectForKey:@"uuid"], @"uuid",
                                                  question, @"question",
                                                  [NSNumber numberWithInt:i], @"rgid",
+                                                 [questionOrGroup objectForKey:@"uuid"], @"groupUUID",
                                                  show, @"show", nil]];
 
                 }                    
@@ -263,9 +269,11 @@
   for (NSMutableDictionary *questionOrGroup in self.allSections) {
 		//    DLog(@"show: %@, question: %@, uuid: %@", [questionOrGroup objectForKey:@"show"], [[questionOrGroup objectForKey:@"question"] objectForKey:@"text"], [questionOrGroup objectForKey:@"uuid"] );
     if ([questionOrGroup objectForKey:@"show"] == NS_YES) {
-      VisibleSection* v = [[VisibleSection alloc] initWithUUID:[questionOrGroup objectForKey:@"uuid"] rgid:[questionOrGroup objectForKey:@"rgid"]];
+      NSString* uuid = [questionOrGroup objectForKey:@"uuid"];
+      NSNumber* rgid = [questionOrGroup objectForKey:@"rgid"];
+      NSString* groupUUID = [questionOrGroup objectForKey:@"groupUUID"];
+      VisibleSection* v = [[VisibleSection alloc] initWithUUID:uuid rgid:rgid groupUUID:groupUUID];
       [self.visibleSections addObject:v];
-      //      [self createQuestionWithIndex:self.visibleSections.count dictionary:[questionOrGroup objectForKey:@"question"]];
     }
   }
 	//  DLog(@"visible sections: %@", visibleSections);
@@ -419,12 +427,13 @@
     const CGFloat HorizontalMargin = isGrouped ? 45.0 : 30.0;
     CGFloat height = 32.0;
     UIView* v = NULL;
-    if ([self isLastRepeaterSection:section]) {
+
+    if ([self isLastSectionInRepeaterGroup:section]) {
         v = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, height)];
         
         NUButton *addRowButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, 0, 100.0, height)];
-        [addRowButton setTitle:@"+ add row" forState:UIControlStateNormal];    
-        [addRowButton addTarget:self action:@selector(addRow) forControlEvents:UIControlEventTouchUpInside];        
+        [addRowButton setTitle:@"+ add row" forState:UIControlStateNormal];
+        [addRowButton addTarget:self action:@selector(addRow) forControlEvents:UIControlEventTouchUpInside];
         [v addSubview:addRowButton];
     }
     
@@ -432,19 +441,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return [self isLastRepeaterSection:section] ? 35 : 0;
+    return [self isLastSectionInRepeaterGroup:section] ? 35 : 0;
 }
 
-- (BOOL)isLastRepeaterSection:(NSInteger)section {
+- (BOOL)isLastSectionInRepeaterGroup:(NSInteger)section {
     BOOL result = false;
     VisibleSection* cur = [self.visibleSections objectAtIndex:section];
     if (cur.rgid) {
-        NSArray* all = [self findAllVisibleSectionsWithUUID:cur.uuid];
-        if ([all count] > 0) {
-            VisibleSection* last = [all lastObject];
-            if (cur == last) {
-                result = TRUE;
-            }
+        NSArray* group = [self findVisibleSectionsWithGroupUUID:cur.groupUUID];
+        if ([cur isEqual:[group lastObject]]) {
+            result = true;
         }
     }
     return result;
@@ -677,6 +683,16 @@
   return 0;
 }
 
+- (NSArray*)findVisibleSectionsWithGroupUUID:(NSString*)uuid {
+    NSMutableArray* found = [NSMutableArray new];
+    for (VisibleSection* s in self.visibleSections) {
+        if ([s.groupUUID isEqual:uuid]) {
+            [found addObject:s];
+        }
+    }
+    return found;
+}
+
 #pragma mark - Core Data
 - (NSArray *) responsesForIndexPath:(NSIndexPath *)i{
   NSDictionary *ids = [self idsForIndexPath:i];
@@ -709,7 +725,7 @@
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
         // insert into visibleSections before insertSections to get title right
         NSDictionary* s = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]];
-        VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"]];
+        VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"] groupUUID:nil];
         [self.visibleSections insertObject:v atIndex:i];
         [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];
@@ -727,7 +743,8 @@
             if (show == NS_YES) {
               // insert into visibleSections before insertSections to get title right
               NSDictionary* s = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:[q objectForKey:@"uuid"]]];
-              VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"]];
+                NSString* groupUUID = [[[self allSections] objectAtIndex:qIdx] valueForKey:@"uuid"];
+              VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"] groupUUID:groupUUID];
               [self.visibleSections insertObject:v atIndex:i];
               
               [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:[q objectForKey:@"uuid"]] objectForKey:@"help_text"]] atIndex:i];
