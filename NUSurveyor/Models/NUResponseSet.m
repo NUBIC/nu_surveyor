@@ -331,24 +331,24 @@
 				[values setObject:responsesToAnswer.count > 0 ? NS_YES : NS_NO
                            forKey:[condition objectForKey:@"rule_key"]];
 			} else {
-        
+                
 				[values setObject:responsesToAnswer.count > 0 && [[[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] isEqualToString: value] ? NS_YES : NS_NO
                            forKey:[condition objectForKey:@"rule_key"]];
 			}
 		} else if ([operator isEqualToString:@">"] || [operator isEqualToString:@"<"] || [operator isEqualToString:@">="] || [operator isEqualToString:@"<="]) {
 			// >, <, >=, <=
-      if (responsesToAnswer.count == 0 ||
-          [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == (id)[NSNull null] ||
-          [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == nil ||
-          [[[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] isEqualToString:@""]) {
-        [values setObject:NS_NO
-                   forKey:[condition objectForKey:@"rule_key"]];
-      } else {
-        NSPredicate *proposition = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ %@ %@", [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"], operator, value]
-                                                          arguments:nil];
-        [values setObject:[proposition evaluateWithObject:nil] ? NS_YES : NS_NO
-                   forKey:[condition objectForKey:@"rule_key"]];
-      }
+            if (responsesToAnswer.count == 0 ||
+                [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == (id)[NSNull null] ||
+                [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] == nil ||
+                [[[responsesToAnswer objectAtIndex:0] valueForKey:@"value"] isEqualToString:@""]) {
+                [values setObject:NS_NO
+                           forKey:[condition objectForKey:@"rule_key"]];
+            } else {
+                NSPredicate *proposition = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ %@ %@", [[responsesToAnswer objectAtIndex:0] valueForKey:@"value"], operator, value]
+                                                                  arguments:nil];
+                [values setObject:[proposition evaluateWithObject:nil] ? NS_YES : NS_NO
+                           forKey:[condition objectForKey:@"rule_key"]];
+            }
 		} else if ([operator isEqualToString:@"!="]) {
 			// !=
 			if (value == (id)kCFNull || value == nil) {
