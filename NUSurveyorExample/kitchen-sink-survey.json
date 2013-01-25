@@ -1,309 +1,1585 @@
-{"sections":[
-{"questions_and_groups":[
-{"text":"These questions are examples of the basic supported input types","uuid":"764f9400-4540-012f-9ea4-00254bc472f4","type":"label"},
-{"pick":"one","text":"What is your favorite color?","uuid":"764fbd20-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"765294c0-4540-012f-9ea4-00254bc472f4","text":"red"},
-{"uuid":"7652bdf0-4540-012f-9ea4-00254bc472f4","text":"blue"},
-{"uuid":"7652dfc0-4540-012f-9ea4-00254bc472f4","text":"green"},
-{"uuid":"765301a0-4540-012f-9ea4-00254bc472f4","text":"yellow"},
-{"uuid":"765325b0-4540-012f-9ea4-00254bc472f4","text":"Other"}],"reference_identifier":"1"},
-{"pick":"any","text":"Choose the colors you don't like","uuid":"765351b0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76537bc0-4540-012f-9ea4-00254bc472f4","text":"red"},
-{"uuid":"76539f60-4540-012f-9ea4-00254bc472f4","text":"blue"},
-{"uuid":"7653c2d0-4540-012f-9ea4-00254bc472f4","text":"green"},
-{"uuid":"7653e550-4540-012f-9ea4-00254bc472f4","text":"yellow"},
-{"is_exclusive":true,"uuid":"76540a00-4540-012f-9ea4-00254bc472f4","text":"Omit"}],"reference_identifier":"2"},
-{"text":"Please explain why you don't like this color?","uuid":"765430d0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76545bb0-4540-012f-9ea4-00254bc472f4","text":"explanation","type":"text","help_text":"Please give an explanation for each color you don't like"}],"dependency":
-{"conditions":[
-{"operator":"==","answer":"76537bc0-4540-012f-9ea4-00254bc472f4","question":"765351b0-4540-012f-9ea4-00254bc472f4","rule_key":"A"},
-{"operator":"==","answer":"76539f60-4540-012f-9ea4-00254bc472f4","question":"765351b0-4540-012f-9ea4-00254bc472f4","rule_key":"B"},
-{"operator":"==","answer":"7653c2d0-4540-012f-9ea4-00254bc472f4","question":"765351b0-4540-012f-9ea4-00254bc472f4","rule_key":"C"},
-{"operator":"==","answer":"7653e550-4540-012f-9ea4-00254bc472f4","question":"765351b0-4540-012f-9ea4-00254bc472f4","rule_key":"D"}],"rule":"A or B or C or D"},"reference_identifier":"2a"},
-{"text":"Please explain why you dislike so many colors?","uuid":"765812f0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76584240-4540-012f-9ea4-00254bc472f4","text":"explanation","type":"text"}],"dependency":
-{"conditions":[
-{"operator":"count>2","question":"765351b0-4540-012f-9ea4-00254bc472f4","rule_key":"Z"}],"rule":"Z"},"reference_identifier":"2b"},
-{"text":"What... is your name? (e.g. It is 'Arthur', King of the Britons)","uuid":"7658ad20-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"7658d830-4540-012f-9ea4-00254bc472f4","text":"","type":"string"}],"reference_identifier":"montypython3"},
-{"text":"What... is your quest? (e.g. To seek the Holy Grail)","uuid":"7658fe10-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76592850-4540-012f-9ea4-00254bc472f4","text":"","type":"string"}],"dependency":
-{"conditions":[
-{"operator":"==","answer":"7658d830-4540-012f-9ea4-00254bc472f4","value":"It is 'Arthur', King of the Britons","question":"7658ad20-4540-012f-9ea4-00254bc472f4","rule_key":"A"}],"rule":"A"},"reference_identifier":"montypython4"},
-{"text":"What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)","uuid":"76598d90-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"7659b860-4540-012f-9ea4-00254bc472f4","text":"","type":"string"}],"dependency":
-{"conditions":[
-{"operator":"==","answer":"76592850-4540-012f-9ea4-00254bc472f4","value":"To seek the Holy Grail","question":"7658fe10-4540-012f-9ea4-00254bc472f4","rule_key":"A"}],"rule":"A"},"reference_identifier":"montypython5"},
-{"text":"Huh? I-- I don't know that! Auuuuuuuugh!","uuid":"765a19a0-4540-012f-9ea4-00254bc472f4","type":"label","dependency":
-{"conditions":[
-{"operator":"==","answer":"7659b860-4540-012f-9ea4-00254bc472f4","value":"What do you mean? An African or European swallow?","question":"76598d90-4540-012f-9ea4-00254bc472f4","rule_key":"A"}],"rule":"A"}},
-{"text":"Get me started on an improv sketch","uuid":"765a7c90-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"765aa6e0-4540-012f-9ea4-00254bc472f4","text":"who","type":"string"},
-{"uuid":"765ac9b0-4540-012f-9ea4-00254bc472f4","text":"what","type":"string"},
-{"uuid":"765aeef0-4540-012f-9ea4-00254bc472f4","text":"where","type":"string"}],"reference_identifier":"improv_start"},
-{"text":"How many pets do you own?","uuid":"765b1510-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"765b3f60-4540-012f-9ea4-00254bc472f4","text":"","type":"integer"}]},
-{"text":"What is your address?","uuid":"766c0980-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766c3d00-4540-012f-9ea4-00254bc472f4","text":"","type":"text"}]},
-{"text":"Pick your favorite date AND time","uuid":"766c9550-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766cc0f0-4540-012f-9ea4-00254bc472f4","text":"","type":"datetime"}]},
-{"text":"What time do you usually take a lunch break?","uuid":"766ce700-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766d1110-4540-012f-9ea4-00254bc472f4","text":"","type":"time"}],"reference_identifier":"time_lunch"},
-{"text":"When would you like to meet for dinner?","uuid":"766d37e0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766d6430-4540-012f-9ea4-00254bc472f4","text":"","type":"date"}]},
-{"pick":"one","text":"Adjust the slider to reflect your level of awesomeness","uuid":"766d9170-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766db890-4540-012f-9ea4-00254bc472f4","text":"1"},
-{"uuid":"766dd910-4540-012f-9ea4-00254bc472f4","text":"2"},
-{"uuid":"766df9b0-4540-012f-9ea4-00254bc472f4","text":"3"},
-{"uuid":"766e1a70-4540-012f-9ea4-00254bc472f4","text":"4"},
-{"uuid":"766e3a90-4540-012f-9ea4-00254bc472f4","text":"5"},
-{"uuid":"766e5b60-4540-012f-9ea4-00254bc472f4","text":"6"},
-{"uuid":"766e7b50-4540-012f-9ea4-00254bc472f4","text":"7"},
-{"uuid":"766e9b80-4540-012f-9ea4-00254bc472f4","text":"8"},
-{"uuid":"766ebbf0-4540-012f-9ea4-00254bc472f4","text":"9"},
-{"uuid":"766edc50-4540-012f-9ea4-00254bc472f4","text":"10"}],"type":"slider"},
-{"pick":"one","text":"How much do you like Ruby?","uuid":"766f01f0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"766f2cd0-4540-012f-9ea4-00254bc472f4","text":"not at all"},
-{"uuid":"766f4de0-4540-012f-9ea4-00254bc472f4","text":"a little"},
-{"uuid":"766f73b0-4540-012f-9ea4-00254bc472f4","text":"some"},
-{"uuid":"766f9470-4540-012f-9ea4-00254bc472f4","text":"a lot"},
-{"uuid":"766fb540-4540-012f-9ea4-00254bc472f4","text":"a ton"}],"type":"slider"},
-{"text":"How much money do you want?","uuid":"766fdae0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"767003d0-4540-012f-9ea4-00254bc472f4","text":"$","post_text":"USD","type":"float"}]},
-{"questions":[
-{"uuid":"7671d620-4540-012f-9ea4-00254bc472f4","text":"Quantity","answers":[
-{"text":"","uuid":"76720710-4540-012f-9ea4-00254bc472f4","type":"float"}]},
-{"pick":"one","uuid":"76722c00-4540-012f-9ea4-00254bc472f4","text":"Unit","answers":[
-{"text":"Barrels","uuid":"767252c0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Gallons","uuid":"76727330-4540-012f-9ea4-00254bc472f4"},
-{"text":"Quarts","uuid":"76729400-4540-012f-9ea4-00254bc472f4"}],"type":"dropdown"}],"text":"How much oil do you use per day?","uuid":"76719380-4540-012f-9ea4-00254bc472f4","type":"inline"},
-{"pick":"one","text":"Choose your Illinois county","uuid":"7672c170-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"7672e930-4540-012f-9ea4-00254bc472f4","text":"Adams"},
-{"uuid":"76730970-4540-012f-9ea4-00254bc472f4","text":"Alexander"},
-{"uuid":"767329b0-4540-012f-9ea4-00254bc472f4","text":"Bond"},
-{"uuid":"76734a10-4540-012f-9ea4-00254bc472f4","text":"Boone"},
-{"uuid":"76736a60-4540-012f-9ea4-00254bc472f4","text":"Brown"},
-{"uuid":"76738ad0-4540-012f-9ea4-00254bc472f4","text":"Bureau"},
-{"uuid":"7673aaf0-4540-012f-9ea4-00254bc472f4","text":"Calhoun"},
-{"uuid":"7673cb30-4540-012f-9ea4-00254bc472f4","text":"Carroll"},
-{"uuid":"7673eb40-4540-012f-9ea4-00254bc472f4","text":"Cass"},
-{"uuid":"76740b30-4540-012f-9ea4-00254bc472f4","text":"Champaign"},
-{"uuid":"76742b90-4540-012f-9ea4-00254bc472f4","text":"Christian"},
-{"uuid":"76744d90-4540-012f-9ea4-00254bc472f4","text":"Clark"},
-{"uuid":"76746e00-4540-012f-9ea4-00254bc472f4","text":"Clay"},
-{"uuid":"76749320-4540-012f-9ea4-00254bc472f4","text":"Clinton"},
-{"uuid":"7674b390-4540-012f-9ea4-00254bc472f4","text":"Coles"},
-{"uuid":"7674d3e0-4540-012f-9ea4-00254bc472f4","text":"Cook"},
-{"uuid":"7674f420-4540-012f-9ea4-00254bc472f4","text":"Crawford"},
-{"uuid":"76751430-4540-012f-9ea4-00254bc472f4","text":"Cumberland"},
-{"uuid":"767534c0-4540-012f-9ea4-00254bc472f4","text":"DeKalb"},
-{"uuid":"76755570-4540-012f-9ea4-00254bc472f4","text":"De Witt"},
-{"uuid":"76757580-4540-012f-9ea4-00254bc472f4","text":"Douglas"},
-{"uuid":"767595b0-4540-012f-9ea4-00254bc472f4","text":"DuPage"},
-{"uuid":"7675b590-4540-012f-9ea4-00254bc472f4","text":"Edgar"},
-{"uuid":"7675d570-4540-012f-9ea4-00254bc472f4","text":"Edwards"},
-{"uuid":"7675f540-4540-012f-9ea4-00254bc472f4","text":"Effingham"},
-{"uuid":"76761530-4540-012f-9ea4-00254bc472f4","text":"Fayette"},
-{"uuid":"767634f0-4540-012f-9ea4-00254bc472f4","text":"Ford"},
-{"uuid":"767654c0-4540-012f-9ea4-00254bc472f4","text":"Franklin"},
-{"uuid":"767674e0-4540-012f-9ea4-00254bc472f4","text":"Fulton"},
-{"uuid":"7676a180-4540-012f-9ea4-00254bc472f4","text":"Gallatin"},
-{"uuid":"7676c1a0-4540-012f-9ea4-00254bc472f4","text":"Greene"},
-{"uuid":"7676e1c0-4540-012f-9ea4-00254bc472f4","text":"Grundy"},
-{"uuid":"76770210-4540-012f-9ea4-00254bc472f4","text":"Hamilton"},
-{"uuid":"767726a0-4540-012f-9ea4-00254bc472f4","text":"Hancock"},
-{"uuid":"76774770-4540-012f-9ea4-00254bc472f4","text":"Hardin"},
-{"uuid":"767767e0-4540-012f-9ea4-00254bc472f4","text":"Henderson"},
-{"uuid":"76778820-4540-012f-9ea4-00254bc472f4","text":"Henry"},
-{"uuid":"7677a860-4540-012f-9ea4-00254bc472f4","text":"Iroquois"},
-{"uuid":"7677c880-4540-012f-9ea4-00254bc472f4","text":"Jackson"},
-{"uuid":"7677e900-4540-012f-9ea4-00254bc472f4","text":"Jasper"},
-{"uuid":"76780b40-4540-012f-9ea4-00254bc472f4","text":"Jefferson"},
-{"uuid":"76782be0-4540-012f-9ea4-00254bc472f4","text":"Jersey"},
-{"uuid":"76784c20-4540-012f-9ea4-00254bc472f4","text":"Jo Daviess"},
-{"uuid":"76786c60-4540-012f-9ea4-00254bc472f4","text":"Johnson"},
-{"uuid":"76788ca0-4540-012f-9ea4-00254bc472f4","text":"Kane"},
-{"uuid":"7678acf0-4540-012f-9ea4-00254bc472f4","text":"Kankakee"},
-{"uuid":"7678cda0-4540-012f-9ea4-00254bc472f4","text":"Kendall"},
-{"uuid":"7678edf0-4540-012f-9ea4-00254bc472f4","text":"Knox"},
-{"uuid":"76791f80-4540-012f-9ea4-00254bc472f4","text":"La Salle"},
-{"uuid":"76794000-4540-012f-9ea4-00254bc472f4","text":"Lake"},
-{"uuid":"767962f0-4540-012f-9ea4-00254bc472f4","text":"Lawrence"},
-{"uuid":"767983f0-4540-012f-9ea4-00254bc472f4","text":"Lee"},
-{"uuid":"7679a470-4540-012f-9ea4-00254bc472f4","text":"Livingston"},
-{"uuid":"7679c520-4540-012f-9ea4-00254bc472f4","text":"Logan"},
-{"uuid":"7679e5c0-4540-012f-9ea4-00254bc472f4","text":"Macon"},
-{"uuid":"767a1450-4540-012f-9ea4-00254bc472f4","text":"Macoupin"},
-{"uuid":"767a34a0-4540-012f-9ea4-00254bc472f4","text":"Madison"},
-{"uuid":"767a5530-4540-012f-9ea4-00254bc472f4","text":"Marion"},
-{"uuid":"767a7680-4540-012f-9ea4-00254bc472f4","text":"Marshall"},
-{"uuid":"767a9760-4540-012f-9ea4-00254bc472f4","text":"Mason"},
-{"uuid":"767ab770-4540-012f-9ea4-00254bc472f4","text":"Massac"},
-{"uuid":"767ad780-4540-012f-9ea4-00254bc472f4","text":"McDonough"},
-{"uuid":"767af7b0-4540-012f-9ea4-00254bc472f4","text":"McHenry"},
-{"uuid":"767b1810-4540-012f-9ea4-00254bc472f4","text":"McLean"},
-{"uuid":"767b4b50-4540-012f-9ea4-00254bc472f4","text":"Menard"},
-{"uuid":"767b6bf0-4540-012f-9ea4-00254bc472f4","text":"Mercer"},
-{"uuid":"767b8c70-4540-012f-9ea4-00254bc472f4","text":"Monroe"},
-{"uuid":"767bacd0-4540-012f-9ea4-00254bc472f4","text":"Montgomery"},
-{"uuid":"767bcd30-4540-012f-9ea4-00254bc472f4","text":"Morgan"},
-{"uuid":"767bed90-4540-012f-9ea4-00254bc472f4","text":"Moultrie"},
-{"uuid":"767c0dd0-4540-012f-9ea4-00254bc472f4","text":"Ogle"},
-{"uuid":"767c2e00-4540-012f-9ea4-00254bc472f4","text":"Peoria"},
-{"uuid":"767c6f80-4540-012f-9ea4-00254bc472f4","text":"Perry"},
-{"uuid":"767ca140-4540-012f-9ea4-00254bc472f4","text":"Piatt"},
-{"uuid":"767ccc20-4540-012f-9ea4-00254bc472f4","text":"Pike"},
-{"uuid":"767cf5f0-4540-012f-9ea4-00254bc472f4","text":"Pope"},
-{"uuid":"767d2030-4540-012f-9ea4-00254bc472f4","text":"Pulaski"},
-{"uuid":"767d40a0-4540-012f-9ea4-00254bc472f4","text":"Putnam"},
-{"uuid":"767d60e0-4540-012f-9ea4-00254bc472f4","text":"Randolph"},
-{"uuid":"767d93a0-4540-012f-9ea4-00254bc472f4","text":"Richland"},
-{"uuid":"767db450-4540-012f-9ea4-00254bc472f4","text":"Rock Island"},
-{"uuid":"767dd4e0-4540-012f-9ea4-00254bc472f4","text":"Saline"},
-{"uuid":"767df580-4540-012f-9ea4-00254bc472f4","text":"Sangamon"},
-{"uuid":"767e1620-4540-012f-9ea4-00254bc472f4","text":"Schuyler"},
-{"uuid":"767e3670-4540-012f-9ea4-00254bc472f4","text":"Scott"},
-{"uuid":"767e5690-4540-012f-9ea4-00254bc472f4","text":"Shelby"},
-{"uuid":"767e76e0-4540-012f-9ea4-00254bc472f4","text":"St. Clair"},
-{"uuid":"767ea880-4540-012f-9ea4-00254bc472f4","text":"Stark"},
-{"uuid":"767ec960-4540-012f-9ea4-00254bc472f4","text":"Stephenson"},
-{"uuid":"767ee9e0-4540-012f-9ea4-00254bc472f4","text":"Tazewell"},
-{"uuid":"767f0a30-4540-012f-9ea4-00254bc472f4","text":"Union"},
-{"uuid":"767f2a50-4540-012f-9ea4-00254bc472f4","text":"Vermilion"},
-{"uuid":"767f4ae0-4540-012f-9ea4-00254bc472f4","text":"Wabash"},
-{"uuid":"767f96c0-4540-012f-9ea4-00254bc472f4","text":"Warren"},
-{"uuid":"767fc970-4540-012f-9ea4-00254bc472f4","text":"Washington"},
-{"uuid":"767ff260-4540-012f-9ea4-00254bc472f4","text":"Wayne"},
-{"uuid":"76801cc0-4540-012f-9ea4-00254bc472f4","text":"White"},
-{"uuid":"768045e0-4540-012f-9ea4-00254bc472f4","text":"Whiteside"},
-{"uuid":"768070d0-4540-012f-9ea4-00254bc472f4","text":"Will"},
-{"uuid":"76809a60-4540-012f-9ea4-00254bc472f4","text":"Williamson"},
-{"uuid":"7680c280-4540-012f-9ea4-00254bc472f4","text":"Winnebago"},
-{"uuid":"7680ffc0-4540-012f-9ea4-00254bc472f4","text":"Woodford"}],"type":"dropdown"},
-{"pick":"any","text":"Choose your favorite meats","uuid":"76812d60-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76815a00-4540-012f-9ea4-00254bc472f4","text":"Chicken"},
-{"uuid":"76817ae0-4540-012f-9ea4-00254bc472f4","text":"Pork"},
-{"uuid":"76819b40-4540-012f-9ea4-00254bc472f4","text":"Beef"},
-{"uuid":"7681bbe0-4540-012f-9ea4-00254bc472f4","text":"Shellfish"},
-{"uuid":"7681dc00-4540-012f-9ea4-00254bc472f4","text":"Fish"},
-{"is_exclusive":true,"uuid":"76820c70-4540-012f-9ea4-00254bc472f4","text":"I don't eat meats!!!"}],"type":"inline"},
-{"pick":"one","text":"All out of ideas for questions?","uuid":"768232a0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76825ab0-4540-012f-9ea4-00254bc472f4","text":"yes"},
-{"uuid":"76827b70-4540-012f-9ea4-00254bc472f4","text":"maybe"},
-{"uuid":"76829c30-4540-012f-9ea4-00254bc472f4","text":"no"},
-{"uuid":"7682bd00-4540-012f-9ea4-00254bc472f4","text":"I don't know"}],"type":"inline"}],"display_order":0,"title":"Basic questions"},
-{"questions_and_groups":[
-{"questions":[
-{"pick":"one","uuid":"76837560-4540-012f-9ea4-00254bc472f4","text":"Head","answers":[
-{"text":"1","uuid":"768305f0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76831dc0-4540-012f-9ea4-00254bc472f4"},
-{"text":"3","uuid":"76833580-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"one","uuid":"76843870-4540-012f-9ea4-00254bc472f4","text":"Knees","answers":[
-{"text":"1","uuid":"768305f0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76831dc0-4540-012f-9ea4-00254bc472f4"},
-{"text":"3","uuid":"76833580-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"one","uuid":"7684f6c0-4540-012f-9ea4-00254bc472f4","text":"Toes","answers":[
-{"text":"1","uuid":"768305f0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76831dc0-4540-012f-9ea4-00254bc472f4"},
-{"text":"3","uuid":"76833580-4540-012f-9ea4-00254bc472f4"}]}],"text":"Tell us how often do you cover these each day","uuid":"7682eec0-4540-012f-9ea4-00254bc472f4","type":"grid"},
-{"questions":[
-{"pick":"one","uuid":"7686a6c0-4540-012f-9ea4-00254bc472f4","text":"down","post_text":"up","answers":[
-{"text":"-2","uuid":"76860200-4540-012f-9ea4-00254bc472f4"},
-{"text":"-1","uuid":"768621b0-4540-012f-9ea4-00254bc472f4"},
-{"text":"0","uuid":"76864200-4540-012f-9ea4-00254bc472f4"},
-{"text":"1","uuid":"768662a0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76867dc0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"one","uuid":"7687ef80-4540-012f-9ea4-00254bc472f4","text":"sad","post_text":"happy","answers":[
-{"text":"-2","uuid":"76860200-4540-012f-9ea4-00254bc472f4"},
-{"text":"-1","uuid":"768621b0-4540-012f-9ea4-00254bc472f4"},
-{"text":"0","uuid":"76864200-4540-012f-9ea4-00254bc472f4"},
-{"text":"1","uuid":"768662a0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76867dc0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"one","uuid":"76891ac0-4540-012f-9ea4-00254bc472f4","text":"limp","post_text":"perky","answers":[
-{"text":"-2","uuid":"76860200-4540-012f-9ea4-00254bc472f4"},
-{"text":"-1","uuid":"768621b0-4540-012f-9ea4-00254bc472f4"},
-{"text":"0","uuid":"76864200-4540-012f-9ea4-00254bc472f4"},
-{"text":"1","uuid":"768662a0-4540-012f-9ea4-00254bc472f4"},
-{"text":"2","uuid":"76867dc0-4540-012f-9ea4-00254bc472f4"}]}],"text":"Tell us how you feel today day","uuid":"7685e4d0-4540-012f-9ea4-00254bc472f4","type":"grid"},
-{"questions":[
-{"pick":"any","uuid":"768af080-4540-012f-9ea4-00254bc472f4","text":"SUV","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"768c2500-4540-012f-9ea4-00254bc472f4","text":"Sedan","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"768d5600-4540-012f-9ea4-00254bc472f4","text":"Coupe","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"769eeab0-4540-012f-9ea4-00254bc472f4","text":"Convertible","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"76a037a0-4540-012f-9ea4-00254bc472f4","text":"Minivan","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"76a153e0-4540-012f-9ea4-00254bc472f4","text":"Crossover","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"76a26ed0-4540-012f-9ea4-00254bc472f4","text":"Wagon","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]},
-{"pick":"any","uuid":"76a386c0-4540-012f-9ea4-00254bc472f4","text":"Other","answers":[
-{"text":"Leather seats","uuid":"768a5020-4540-012f-9ea4-00254bc472f4"},
-{"text":"Shiny rims","uuid":"768a6a00-4540-012f-9ea4-00254bc472f4"},
-{"text":"Subwoofer","uuid":"768a8410-4540-012f-9ea4-00254bc472f4"},
-{"text":"Sunroof","uuid":"768a9dd0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Turbocharger","uuid":"768ac5d0-4540-012f-9ea4-00254bc472f4"}]}],"text":"For each of the car types checked, what type of options would you prefer?","uuid":"768a3610-4540-012f-9ea4-00254bc472f4","type":"grid"},
-{"text":"Please rank the following foods based on how much you like them","uuid":"76a4a710-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76a4cf70-4540-012f-9ea4-00254bc472f4","text":"","post_text":"pizza","type":"integer"},
-{"uuid":"76a4f030-4540-012f-9ea4-00254bc472f4","text":"","post_text":"salad","type":"integer"},
-{"uuid":"76a510e0-4540-012f-9ea4-00254bc472f4","text":"","post_text":"sushi","type":"integer"},
-{"uuid":"76a53180-4540-012f-9ea4-00254bc472f4","text":"","post_text":"ice cream","type":"integer"},
-{"uuid":"76a55240-4540-012f-9ea4-00254bc472f4","text":"","post_text":"breakfast ceral","type":"integer"}]},
-{"pick":"any","text":"Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)","uuid":"76a57b90-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76a5b600-4540-012f-9ea4-00254bc472f4","text":"spoon","type":"string"},
-{"uuid":"76a5e240-4540-012f-9ea4-00254bc472f4","text":"fork","type":"string"},
-{"uuid":"76a602b0-4540-012f-9ea4-00254bc472f4","text":"knife","type":"string"},
-{"uuid":"76a62360-4540-012f-9ea4-00254bc472f4","text":"Other","type":"string"}]},
-{"pick":"one","text":"Do you own a car?","uuid":"76a647f0-4540-012f-9ea4-00254bc472f4","answers":[
-{"uuid":"76a66e90-4540-012f-9ea4-00254bc472f4","text":"Yes"},
-{"uuid":"76a68f30-4540-012f-9ea4-00254bc472f4","text":"No"}],"reference_identifier":"car"},
-{"questions":[
-{"pick":"one","uuid":"76a73520-4540-012f-9ea4-00254bc472f4","text":"Make","answers":[
-{"text":"Toyota","uuid":"76a75f10-4540-012f-9ea4-00254bc472f4"},
-{"text":"Ford","uuid":"76a791b0-4540-012f-9ea4-00254bc472f4"},
-{"text":"GMChevy","uuid":"76a7b230-4540-012f-9ea4-00254bc472f4"},
-{"text":"Ferrari","uuid":"76a7d330-4540-012f-9ea4-00254bc472f4"},
-{"text":"Tesla","uuid":"76a7f3e0-4540-012f-9ea4-00254bc472f4"},
-{"text":"Honda","uuid":"76a81470-4540-012f-9ea4-00254bc472f4"},
-{"text":"Other weak brand","uuid":"76a83520-4540-012f-9ea4-00254bc472f4"}],"type":"dropdown"},
-{"uuid":"76a86ba0-4540-012f-9ea4-00254bc472f4","text":"Model","answers":[
-{"text":"","uuid":"76a895b0-4540-012f-9ea4-00254bc472f4","type":"string"}]},
-{"uuid":"76a8ba80-4540-012f-9ea4-00254bc472f4","text":"Year","answers":[
-{"text":"","uuid":"76a8e3e0-4540-012f-9ea4-00254bc472f4","type":"string"}]}],"text":"Tell us about the cars you own","uuid":"76a6b120-4540-012f-9ea4-00254bc472f4","type":"repeater","dependency":
-{"conditions":[
-{"operator":"==","answer":"76a66e90-4540-012f-9ea4-00254bc472f4","question":"76a647f0-4540-012f-9ea4-00254bc472f4","rule_key":"A"}],"rule":"A"}},
-{"questions":[
-{"uuid":"76a919e0-4540-012f-9ea4-00254bc472f4","text":"Sibling","answers":[
-{"text":"Name","uuid":"76a945f0-4540-012f-9ea4-00254bc472f4","type":"string"},
-{"text":"Age","uuid":"76a966f0-4540-012f-9ea4-00254bc472f4","post_text":"years","type":"integer"}]}],"text":"Tell us the name and age of your siblings","uuid":"76a8f680-4540-012f-9ea4-00254bc472f4","type":"repeater"}],"display_order":0,"title":"Complicated questions"}],"title":"Kitchen Sink survey"}
+{
+
+    "title": "Kitchen Sink survey",
+    "uuid": "1d5830f2-d562-445f-a86b-75a5c943d0ab",
+    "sections": [
+        {
+            "title": "Basic questions",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "9524596c-7949-47a5-9af2-d2b2be97f423",
+                    "text": "These questions are examples of the basic supported input types",
+                    "type": "label"
+                },
+                {
+                    "uuid": "c8104505-77f9-4e03-8120-92e096b6d986",
+                    "text": "What is your favorite color?",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "e2db4c34-928c-4a00-9df9-db264b102b17",
+                            "text": "red"
+                        },
+                        {
+                            "uuid": "985a37b5-fe57-4799-b1ee-8e3c7a9da27d",
+                            "text": "blue"
+                        },
+                        {
+                            "uuid": "48b3052d-1e27-4540-a180-852fbfcaa388",
+                            "text": "green"
+                        },
+                        {
+                            "uuid": "f03d7582-01b7-4562-828e-619794f152ce",
+                            "text": "yellow"
+                        },
+                        {
+                            "uuid": "e97b7511-1e1b-432c-86ae-8237130c9026",
+                            "text": "Other"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                    "text": "Choose the colors you don't like",
+                    "reference_identifier": "2",
+                    "pick": "any",
+                    "answers": [
+                        {
+                            "uuid": "e4d53deb-51ed-45ad-a81c-cdd755b67b7f",
+                            "text": "red",
+                            "reference_identifier": "1"
+                        },
+                        {
+                            "uuid": "2091cf07-f4ec-457b-a745-13a25e9b67fd",
+                            "text": "blue",
+                            "reference_identifier": "2"
+                        },
+                        {
+                            "uuid": "f23a47ff-4a86-4c84-acf2-88605e5360ac",
+                            "text": "green",
+                            "reference_identifier": "3"
+                        },
+                        {
+                            "uuid": "ca185647-d8f0-4517-9333-acf432dce2ae",
+                            "text": "yellow",
+                            "reference_identifier": "4"
+                        },
+                        {
+                            "uuid": "30e79d17-e453-46b9-931b-1db5aae7621d",
+                            "exclusive": true,
+                            "text": "Omit"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "0c64dc71-ebc0-42fd-8fe0-6c1307201a62",
+                    "text": "Please explain why you don't like this color?",
+                    "reference_identifier": "2a",
+                    "answers": [
+                        {
+                            "uuid": "34f25c20-763a-4f3c-bd72-55973444ef90",
+                            "help_text": "Please give an explanation for each color you don't like",
+                            "text": "explanation",
+                            "type": "text",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "A or B or C or D",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "e4d53deb-51ed-45ad-a81c-cdd755b67b7f"
+                            },
+                            {
+                                "rule_key": "B",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "2091cf07-f4ec-457b-a745-13a25e9b67fd"
+                            },
+                            {
+                                "rule_key": "C",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "f23a47ff-4a86-4c84-acf2-88605e5360ac"
+                            },
+                            {
+                                "rule_key": "D",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "ca185647-d8f0-4517-9333-acf432dce2ae"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "9d80fa4c-c76e-4f58-9312-471a18ebdbcf",
+                    "text": "Please explain why you dislike so many colors?",
+                    "reference_identifier": "2b",
+                    "answers": [
+                        {
+                            "uuid": "584bd6db-e9cc-495d-a5b0-919ea5d553f7",
+                            "text": "explanation",
+                            "type": "text",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "Z",
+                        "conditions": [
+                            {
+                                "rule_key": "Z",
+                                "operator": "count>2",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "6ab657dd-7a6d-4067-9660-9f860bfa7091",
+                    "text": "What... is your name? (e.g. It is 'Arthur', King of the Britons)",
+                    "reference_identifier": "montypython3",
+                    "answers": [
+                        {
+                            "uuid": "c6bcfe7e-6d0a-4be0-aac1-fdf10304c81b",
+                            "text": "",
+                            "type": "string",
+                            "reference_identifier": "1"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "9959e84f-02dd-489a-8137-6614564cc489",
+                    "text": "What... is your quest? (e.g. To seek the Holy Grail)",
+                    "reference_identifier": "montypython4",
+                    "answers": [
+                        {
+                            "uuid": "1c4b9762-d2ff-441b-948a-929b14d0c9f2",
+                            "text": "",
+                            "type": "string",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "6ab657dd-7a6d-4067-9660-9f860bfa7091",
+                                "answer": "c6bcfe7e-6d0a-4be0-aac1-fdf10304c81b",
+                                "value": "It is 'Arthur', King of the Britons"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "9a015be2-8bb4-472a-aae7-2b4ca59c9bfe",
+                    "text": "What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)",
+                    "reference_identifier": "montypython5",
+                    "answers": [
+                        {
+                            "uuid": "734d515b-e4e0-4efc-8fd3-7957a237036d",
+                            "text": "",
+                            "type": "string",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "9959e84f-02dd-489a-8137-6614564cc489",
+                                "answer": "1c4b9762-d2ff-441b-948a-929b14d0c9f2",
+                                "value": "To seek the Holy Grail"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "a62d60cf-dbe4-49e7-9e2f-3448f2050b19",
+                    "text": "Huh? I-- I don't know that! Auuuuuuuugh!",
+                    "type": "label",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "9a015be2-8bb4-472a-aae7-2b4ca59c9bfe",
+                                "answer": "734d515b-e4e0-4efc-8fd3-7957a237036d",
+                                "value": "What do you mean? An African or European swallow?"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "317dcf6a-d355-4d19-9a44-fa9a1e77ab1a",
+                    "text": "How do you cool your home?",
+                    "reference_identifier": "cooling_1",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "37979e66-35b9-49ea-96ae-c321c5f60f69",
+                            "text": "Fans",
+                            "reference_identifier": "1"
+                        },
+                        {
+                            "uuid": "ab1cc94e-22c3-49c6-a728-00b822c8ef46",
+                            "text": "Window AC",
+                            "reference_identifier": "2"
+                        },
+                        {
+                            "uuid": "b0b08a5c-d7ad-4078-bd19-0d9bd1f17634",
+                            "text": "Central AC",
+                            "reference_identifier": "3"
+                        },
+                        {
+                            "uuid": "d8ede9e3-c80c-49b9-8fcd-08e016291e20",
+                            "text": "Passive",
+                            "reference_identifier": "4"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "6f819052-867b-46a0-9bfe-d0414bf7fd56",
+                    "text": "How much does it cost to run your non-passive cooling solutions? (This question hidden until you respond 'How do you cool your home?')",
+                    "reference_identifier": "cooling_2",
+                    "answers": [
+                        {
+                            "uuid": "08597b97-fd17-4d7b-a001-40d10d1e67be",
+                            "text": "$",
+                            "type": "float",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "A and B",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "!=",
+                                "question": "317dcf6a-d355-4d19-9a44-fa9a1e77ab1a",
+                                "answer": "d8ede9e3-c80c-49b9-8fcd-08e016291e20"
+                            },
+                            {
+                                "rule_key": "B",
+                                "operator": "count>0",
+                                "question": "317dcf6a-d355-4d19-9a44-fa9a1e77ab1a"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "829abcda-b120-42e6-87a9-7e49d60cc93d",
+                    "text": "Please consider passive cooling solutions (This question always shown, unless you respond 'Passive')",
+                    "type": "label",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "!=",
+                                "question": "317dcf6a-d355-4d19-9a44-fa9a1e77ab1a",
+                                "answer": "d8ede9e3-c80c-49b9-8fcd-08e016291e20"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "uuid": "2e587a88-a9ae-489f-b937-79c1388df01f",
+                    "text": "Get me started on an improv sketch",
+                    "reference_identifier": "improv_start",
+                    "data_export_identifier": "i_s",
+                    "answers": [
+                        {
+                            "uuid": "82d9b80f-aed6-4667-b37f-74aa2aa6cb53",
+                            "text": "who",
+                            "type": "string"
+                        },
+                        {
+                            "uuid": "453b86c5-d273-4d29-a856-6474c5bb6499",
+                            "text": "what",
+                            "type": "string"
+                        },
+                        {
+                            "uuid": "416a8962-d426-45d9-85f1-eac1b237306d",
+                            "text": "where",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "c2c2a45e-df93-48ab-a337-16cf483b9dff",
+                    "text": "How many pets do you own?",
+                    "answers": [
+                        {
+                            "uuid": "69bd4b2f-54b8-4a3f-86aa-0e4f0d3119c1",
+                            "text": "",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "15328371-f443-48a1-be5d-f6ccdf6977d0",
+                    "text": "What is your address?",
+                    "answers": [
+                        {
+                            "uuid": "01a42c77-6950-4f5e-a856-4079f56fd916",
+                            "text": "",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "63fdb74a-09cb-4f2e-b581-79640c0e0030",
+                    "text": "Pick your favorite date AND time",
+                    "answers": [
+                        {
+                            "uuid": "7ff6f0a3-8038-4260-b54d-f482bfaab1dd",
+                            "text": "",
+                            "type": "datetime"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "073fbc1a-6953-421b-ba03-ff9428590fec",
+                    "text": "What time do you usually take a lunch break?",
+                    "reference_identifier": "time_lunch",
+                    "answers": [
+                        {
+                            "uuid": "783c661a-168d-4f31-a61f-24a0e5d983ad",
+                            "text": "",
+                            "type": "time",
+                            "reference_identifier": "1"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "e8ad77c6-d62e-4229-8c6c-5f071e6e4bd6",
+                    "text": "When would you like to meet for dinner?",
+                    "answers": [
+                        {
+                            "uuid": "e6e98432-aba7-4a2c-a359-fb6fee7a20eb",
+                            "text": "",
+                            "type": "date"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "02f24c1a-e0ab-49cc-86ee-8e3723614fdf",
+                    "text": "Adjust the slider to reflect your level of awesomeness",
+                    "type": "slider",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "42e2c025-ce06-4935-b3fc-56fe24a0986f",
+                            "text": "1"
+                        },
+                        {
+                            "uuid": "ee780526-9f8e-4a61-b7cf-063f14044066",
+                            "text": "2"
+                        },
+                        {
+                            "uuid": "c4cba1bb-f900-4662-8f1c-f5c11ea7a06c",
+                            "text": "3"
+                        },
+                        {
+                            "uuid": "de9952c6-eaae-4a6b-b2ac-1b9714217e75",
+                            "text": "4"
+                        },
+                        {
+                            "uuid": "67bf92b9-3416-4986-869b-f2da371e4ce7",
+                            "text": "5"
+                        },
+                        {
+                            "uuid": "d4124d00-b944-45e7-afa8-a11cacfa18cb",
+                            "text": "6"
+                        },
+                        {
+                            "uuid": "c68fc0b3-fc1b-4ce6-bb00-168d8a2f2add",
+                            "text": "7"
+                        },
+                        {
+                            "uuid": "ab57ac5c-9762-4acc-a3ed-08e168a3f90c",
+                            "text": "8"
+                        },
+                        {
+                            "uuid": "ba17c732-4120-4642-b462-f5f16fab39bb",
+                            "text": "9"
+                        },
+                        {
+                            "uuid": "f554aa79-0e59-4379-951b-2e484d0068c1",
+                            "text": "10"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "6d8cfb0d-c15c-46df-a7f6-985d1b473b9b",
+                    "text": "How much do you like Ruby?",
+                    "type": "slider",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "33dae887-21b7-471f-8755-064e0fb6fc25",
+                            "text": "not at all"
+                        },
+                        {
+                            "uuid": "420735dc-bca4-4aa8-baa3-a58544146cca",
+                            "text": "a little"
+                        },
+                        {
+                            "uuid": "fb332f15-992c-45ca-babb-4c24aadd339f",
+                            "text": "some"
+                        },
+                        {
+                            "uuid": "b3ef4d92-c36c-4d97-a326-8d9366255f38",
+                            "text": "a lot"
+                        },
+                        {
+                            "uuid": "2bd78192-20df-45b6-8386-6fff09e7845d",
+                            "text": "a ton"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "68e1bbc3-aa49-499a-b8be-472355d16a7d",
+                    "text": "How much money do you want?",
+                    "answers": [
+                        {
+                            "uuid": "b27b2999-5feb-4cd6-b7f3-a59d77b88750",
+                            "text": "$",
+                            "post_text": "USD",
+                            "type": "float"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "a720a696-6df4-41cb-bb36-d2bfddfa45da",
+                    "text": "How much oil do you use per day?",
+                    "type": "inline",
+                    "questions": [
+                        {
+                            "uuid": "442e4bd9-f001-4155-85ed-c4739bbd383b",
+                            "text": "Quantity",
+                            "answers": [
+                                {
+                                    "uuid": "34def7bc-e9a5-40ee-964c-db194eacdfac",
+                                    "text": "",
+                                    "type": "float"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "8db498cf-79b2-4d38-935e-d15ca6bcd54e",
+                            "text": "Unit",
+                            "type": "dropdown",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "beb60417-2ed4-4c9a-82cd-6fa9525f5f45",
+                                    "text": "Barrels"
+                                },
+                                {
+                                    "uuid": "e15a6765-e5dd-4991-85a9-7203775e2ea7",
+                                    "text": "Gallons"
+                                },
+                                {
+                                    "uuid": "09d65589-7e2a-4fca-8f83-32180c57a43c",
+                                    "text": "Quarts"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "67ebed1d-2640-48bc-b62c-aac4e13b9bf0",
+                    "text": "Choose your Illinois county",
+                    "type": "dropdown",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "b93277ad-c1ec-4d7a-898d-a8e4bb433ebc",
+                            "text": "Adams"
+                        },
+                        {
+                            "uuid": "48bb1656-98b2-45da-964f-9f9f62ac26b1",
+                            "text": "Alexander"
+                        },
+                        {
+                            "uuid": "8c6ca38d-d4cd-4dc0-b345-71d8cd6f2ed4",
+                            "text": "Bond"
+                        },
+                        {
+                            "uuid": "7b4cc493-9436-4231-bd68-9ae3a0ff8a36",
+                            "text": "Boone"
+                        },
+                        {
+                            "uuid": "4ed56771-ea8f-4e50-a17b-d9e369354d10",
+                            "text": "Brown"
+                        },
+                        {
+                            "uuid": "5ad4fa97-f1a1-4aed-96c7-cbfc4cf4a3df",
+                            "text": "Bureau"
+                        },
+                        {
+                            "uuid": "47a2b754-2e5f-4086-bb9b-f42b5b0da69a",
+                            "text": "Calhoun"
+                        },
+                        {
+                            "uuid": "0c9a2231-9480-4bc8-90a4-b2ce40c17988",
+                            "text": "Carroll"
+                        },
+                        {
+                            "uuid": "dcf6a699-9818-4a51-9c5b-0f9621c5749f",
+                            "text": "Cass"
+                        },
+                        {
+                            "uuid": "865ab318-9583-4fc4-a8d5-6ccdbf69809b",
+                            "text": "Champaign"
+                        },
+                        {
+                            "uuid": "7e7a0fd5-5175-435b-9eb4-8178a108f5b9",
+                            "text": "Christian"
+                        },
+                        {
+                            "uuid": "59b55f82-6901-45be-9d9f-6993f2e513be",
+                            "text": "Clark"
+                        },
+                        {
+                            "uuid": "b482c3cf-b934-4c95-af25-bdd440f1d8d7",
+                            "text": "Clay"
+                        },
+                        {
+                            "uuid": "ef2338d0-f6c4-4103-971c-8a8f5a76e85f",
+                            "text": "Clinton"
+                        },
+                        {
+                            "uuid": "197bcf08-26be-44c4-8e3b-baea21fe8873",
+                            "text": "Coles"
+                        },
+                        {
+                            "uuid": "7f67d6f6-4abd-4d21-a514-64d8a552174a",
+                            "text": "Cook"
+                        },
+                        {
+                            "uuid": "b285a30d-fe47-493a-a5c0-310f1c56378a",
+                            "text": "Crawford"
+                        },
+                        {
+                            "uuid": "76beffa4-60fb-437f-b825-b17648550266",
+                            "text": "Cumberland"
+                        },
+                        {
+                            "uuid": "2f438c9a-3681-4774-86c5-c8cd9ad1c1b6",
+                            "text": "DeKalb"
+                        },
+                        {
+                            "uuid": "227527ab-0105-415b-99fb-1044d46d9b5f",
+                            "text": "De Witt"
+                        },
+                        {
+                            "uuid": "6f3fe3a8-8eb4-49f8-8c05-db5a95ebcce2",
+                            "text": "Douglas"
+                        },
+                        {
+                            "uuid": "af27ede5-ad8e-4130-8f56-14bd23ae8025",
+                            "text": "DuPage"
+                        },
+                        {
+                            "uuid": "65192173-7069-4697-a644-1fc798ce0c67",
+                            "text": "Edgar"
+                        },
+                        {
+                            "uuid": "6476a443-2365-407e-a964-466f8d275a2d",
+                            "text": "Edwards"
+                        },
+                        {
+                            "uuid": "4d2a7aa3-dd98-4962-a829-15f29cf70013",
+                            "text": "Effingham"
+                        },
+                        {
+                            "uuid": "06a0c357-18ad-4fe5-8bc7-c83457e4553c",
+                            "text": "Fayette"
+                        },
+                        {
+                            "uuid": "a19a63f5-81c6-47ab-8a11-bd64ba47119c",
+                            "text": "Ford"
+                        },
+                        {
+                            "uuid": "3378d8bb-c693-489b-9ec9-00e38555e51c",
+                            "text": "Franklin"
+                        },
+                        {
+                            "uuid": "49d16ab4-ad35-48aa-8e1f-e17783a0a3e9",
+                            "text": "Fulton"
+                        },
+                        {
+                            "uuid": "09774e31-9641-4161-ad6a-20ac6cecae53",
+                            "text": "Gallatin"
+                        },
+                        {
+                            "uuid": "76429360-ff40-4662-b54c-6bc38eeae2f5",
+                            "text": "Greene"
+                        },
+                        {
+                            "uuid": "d9c1447e-84e0-4b4c-b0bc-a977da7ddf6d",
+                            "text": "Grundy"
+                        },
+                        {
+                            "uuid": "be12ce18-a44a-4c32-b429-f55ec9f37303",
+                            "text": "Hamilton"
+                        },
+                        {
+                            "uuid": "75a27989-248c-4098-b365-ac958ccb13ac",
+                            "text": "Hancock"
+                        },
+                        {
+                            "uuid": "fda419d3-f18b-4ab0-bf4a-6d5f4793d077",
+                            "text": "Hardin"
+                        },
+                        {
+                            "uuid": "9fa3a6dc-e3fe-4811-b0a5-40f1d6d246d3",
+                            "text": "Henderson"
+                        },
+                        {
+                            "uuid": "b30ea764-7a70-4bef-99b4-f87ecbbaaca4",
+                            "text": "Henry"
+                        },
+                        {
+                            "uuid": "f6ce4471-66cd-489e-99c4-2191b4380fd2",
+                            "text": "Iroquois"
+                        },
+                        {
+                            "uuid": "fc85370e-9bd6-4791-8219-af4234bedfa7",
+                            "text": "Jackson"
+                        },
+                        {
+                            "uuid": "aa895161-eadd-43b3-99fc-fe238a8bd16f",
+                            "text": "Jasper"
+                        },
+                        {
+                            "uuid": "4248387f-00c7-426e-9380-ea8aed60fc44",
+                            "text": "Jefferson"
+                        },
+                        {
+                            "uuid": "e5eed590-d1bb-414b-9eb4-54752d3bce00",
+                            "text": "Jersey"
+                        },
+                        {
+                            "uuid": "1e10b8a9-afee-4c5b-8746-4ea1e99f0d34",
+                            "text": "Jo Daviess"
+                        },
+                        {
+                            "uuid": "1431ccd4-c07b-4a26-9d11-5cd77987f32e",
+                            "text": "Johnson"
+                        },
+                        {
+                            "uuid": "5da55752-fa66-47a2-a97f-f173837ceff5",
+                            "text": "Kane"
+                        },
+                        {
+                            "uuid": "4c1dea84-7932-4e28-8542-60651f2be4d0",
+                            "text": "Kankakee"
+                        },
+                        {
+                            "uuid": "e0e45cbb-ae6c-47db-b536-6f3783562af8",
+                            "text": "Kendall"
+                        },
+                        {
+                            "uuid": "1c4ec4af-1541-491f-ae88-20d2f08acb36",
+                            "text": "Knox"
+                        },
+                        {
+                            "uuid": "8c571074-86d1-44fb-a99a-c0f0ddedd944",
+                            "text": "La Salle"
+                        },
+                        {
+                            "uuid": "8961b0fc-aec7-49f0-83fb-5727bcb58e2c",
+                            "text": "Lake"
+                        },
+                        {
+                            "uuid": "67b7dfed-53f9-443e-90bf-77e87984253d",
+                            "text": "Lawrence"
+                        },
+                        {
+                            "uuid": "8a384327-8510-4746-906e-8979492c2387",
+                            "text": "Lee"
+                        },
+                        {
+                            "uuid": "1293e821-700e-4ee5-81ab-ea07d91fac01",
+                            "text": "Livingston"
+                        },
+                        {
+                            "uuid": "c0a2d3ae-8ab2-46b2-a0ba-e727c9ed01e1",
+                            "text": "Logan"
+                        },
+                        {
+                            "uuid": "c3d70fd1-d5b1-4cbb-bcd3-b53597f04070",
+                            "text": "Macon"
+                        },
+                        {
+                            "uuid": "4d1470ee-4450-4089-b561-f9d5630a5ece",
+                            "text": "Macoupin"
+                        },
+                        {
+                            "uuid": "5dcf97a5-39c6-4ed6-a3a2-8722494db7b3",
+                            "text": "Madison"
+                        },
+                        {
+                            "uuid": "430139d6-a645-4c41-a65b-f41c5e0a8048",
+                            "text": "Marion"
+                        },
+                        {
+                            "uuid": "3edb5db2-7427-4a13-ae20-520db0e97d85",
+                            "text": "Marshall"
+                        },
+                        {
+                            "uuid": "f1200be3-7a51-4ebc-96bb-344cb218de19",
+                            "text": "Mason"
+                        },
+                        {
+                            "uuid": "a2a99eac-f24c-49f6-b946-9c8487db2e10",
+                            "text": "Massac"
+                        },
+                        {
+                            "uuid": "b25a2c24-53d0-4c05-92ab-e7a71adbae3e",
+                            "text": "McDonough"
+                        },
+                        {
+                            "uuid": "56fa5c6c-a967-45de-9327-82bf307651aa",
+                            "text": "McHenry"
+                        },
+                        {
+                            "uuid": "52b763a3-60ac-4ec5-b7e5-762ce3122b52",
+                            "text": "McLean"
+                        },
+                        {
+                            "uuid": "e177f88b-a1be-411c-82f7-e70581e522ab",
+                            "text": "Menard"
+                        },
+                        {
+                            "uuid": "d87f9c06-bd2e-4ce1-a6b6-cf9da980d1f4",
+                            "text": "Mercer"
+                        },
+                        {
+                            "uuid": "842b9d08-0349-4bdf-b1c6-f66f5c47af00",
+                            "text": "Monroe"
+                        },
+                        {
+                            "uuid": "abd77cb2-24c6-4193-acd2-0382fb3cb551",
+                            "text": "Montgomery"
+                        },
+                        {
+                            "uuid": "ccbf5486-e81a-4721-9a6a-e744eb2b1280",
+                            "text": "Morgan"
+                        },
+                        {
+                            "uuid": "964ae5cd-ea46-4775-8c38-8001d8409093",
+                            "text": "Moultrie"
+                        },
+                        {
+                            "uuid": "4c1c3922-5d1f-461d-8091-c5aa0fd3e204",
+                            "text": "Ogle"
+                        },
+                        {
+                            "uuid": "e137ee64-50c0-4d45-a728-7d726b52242d",
+                            "text": "Peoria"
+                        },
+                        {
+                            "uuid": "5a507d95-f43a-4b20-93a3-4451057a5780",
+                            "text": "Perry"
+                        },
+                        {
+                            "uuid": "6412e474-c984-4d13-8333-62e378b3244a",
+                            "text": "Piatt"
+                        },
+                        {
+                            "uuid": "9e3e846f-bcb2-4c45-b813-6824fdaf4d58",
+                            "text": "Pike"
+                        },
+                        {
+                            "uuid": "063af895-b4ac-4368-a218-d1fe3d41b7cd",
+                            "text": "Pope"
+                        },
+                        {
+                            "uuid": "bcd59b4b-5f8e-43cc-83ef-a04ecfbab5ff",
+                            "text": "Pulaski"
+                        },
+                        {
+                            "uuid": "5e366ca6-af45-4972-9fc6-209e02d99592",
+                            "text": "Putnam"
+                        },
+                        {
+                            "uuid": "6a820ef7-55a2-49cf-87e2-e7a26564b291",
+                            "text": "Randolph"
+                        },
+                        {
+                            "uuid": "d61a9642-a53f-4f8d-b597-9e81679f2b59",
+                            "text": "Richland"
+                        },
+                        {
+                            "uuid": "ecacd5f8-875c-43e6-862b-066f731062bc",
+                            "text": "Rock Island"
+                        },
+                        {
+                            "uuid": "2a5091ff-800b-409b-905f-1eadb3f234bc",
+                            "text": "Saline"
+                        },
+                        {
+                            "uuid": "b45cd012-ca18-4956-b343-f495959b3972",
+                            "text": "Sangamon"
+                        },
+                        {
+                            "uuid": "56af58c1-0e6a-4ee8-a6b0-2206585b097c",
+                            "text": "Schuyler"
+                        },
+                        {
+                            "uuid": "333f8223-789d-4bd9-be43-2fc1c343063e",
+                            "text": "Scott"
+                        },
+                        {
+                            "uuid": "74dba6d4-a847-4ba9-9789-c3980f6fe7ac",
+                            "text": "Shelby"
+                        },
+                        {
+                            "uuid": "7dfc88c1-4265-4f5e-b534-22c80933662c",
+                            "text": "St. Clair"
+                        },
+                        {
+                            "uuid": "c2574b67-140f-476c-89cf-035a2c25dfeb",
+                            "text": "Stark"
+                        },
+                        {
+                            "uuid": "90f66c76-d4c2-4777-b94e-8ca002c1c2fa",
+                            "text": "Stephenson"
+                        },
+                        {
+                            "uuid": "bcc7def9-3da8-4de7-8985-d47f32498ba7",
+                            "text": "Tazewell"
+                        },
+                        {
+                            "uuid": "e0a92350-40c3-43ca-932e-366f7c9d6cac",
+                            "text": "Union"
+                        },
+                        {
+                            "uuid": "4b510cbb-cf50-4206-aecd-222a285b1934",
+                            "text": "Vermilion"
+                        },
+                        {
+                            "uuid": "ad278c2a-420f-4cbc-8ca0-5e50b979de3b",
+                            "text": "Wabash"
+                        },
+                        {
+                            "uuid": "b404e1ca-67da-401a-953f-1b3fc0d9ee2c",
+                            "text": "Warren"
+                        },
+                        {
+                            "uuid": "19cf0e8f-6ed2-423b-9f9b-05a7ff2c4c96",
+                            "text": "Washington"
+                        },
+                        {
+                            "uuid": "0310b864-f3e0-41c5-afdf-74112b212673",
+                            "text": "Wayne"
+                        },
+                        {
+                            "uuid": "ef3abcda-19dd-44ed-812b-489bcafcbeef",
+                            "text": "White"
+                        },
+                        {
+                            "uuid": "e8c8d9c2-58ec-4180-867a-ca9215c9ca92",
+                            "text": "Whiteside"
+                        },
+                        {
+                            "uuid": "4808fab7-4bd5-4a7b-badc-a9c4c28d1c62",
+                            "text": "Will"
+                        },
+                        {
+                            "uuid": "48390e9a-916d-4c4a-9d37-b30e7463f66e",
+                            "text": "Williamson"
+                        },
+                        {
+                            "uuid": "f8576233-9c16-49a9-afef-51947391fad5",
+                            "text": "Winnebago"
+                        },
+                        {
+                            "uuid": "5fb36c69-4410-4a6d-9e2f-7f71b3688414",
+                            "text": "Woodford"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "73181cda-15fc-491f-bb41-e5045bf3e36a",
+                    "text": "Choose your favorite meats",
+                    "type": "inline",
+                    "pick": "any",
+                    "answers": [
+                        {
+                            "uuid": "4bde47c8-2866-431c-b0dc-7b776d0b695b",
+                            "text": "Chicken"
+                        },
+                        {
+                            "uuid": "e8af9f3d-2df3-4b2e-b388-d40d5c2cc705",
+                            "text": "Pork"
+                        },
+                        {
+                            "uuid": "94a91c87-6c77-47a6-83ba-65cc86ba49d9",
+                            "text": "Beef"
+                        },
+                        {
+                            "uuid": "67828bf8-0324-47cc-8551-55d18766702a",
+                            "text": "Shellfish"
+                        },
+                        {
+                            "uuid": "5cad5dcd-47c5-4137-aa43-bba00e88b01d",
+                            "text": "Fish"
+                        },
+                        {
+                            "uuid": "04b010e3-18b4-4098-8eb6-82101492a946",
+                            "exclusive": true,
+                            "text": "I don't eat meats!!!"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "1251f529-a893-471d-aa05-41d27329788c",
+                    "text": "All out of ideas for questions?",
+                    "type": "inline",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "17c32367-b9cd-4e6d-a7f9-cc8d5edfef9f",
+                            "text": "yes"
+                        },
+                        {
+                            "uuid": "aa7be025-0733-4255-b66a-73aa321576c7",
+                            "text": "maybe"
+                        },
+                        {
+                            "uuid": "c956aa5c-dcb7-452d-bad5-72dd8f62472b",
+                            "text": "no"
+                        },
+                        {
+                            "uuid": "a051cc50-f5ab-44a5-a57d-c627507532a7",
+                            "text": "I don't know"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Complicated questions",
+            "display_order": 1,
+            "questions_and_groups": [
+                {
+                    "uuid": "081c9e23-5443-4361-84c5-eba69eb7b0f7",
+                    "text": "Tell us how often do you cover these each day",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "8747ef54-c19f-429a-b140-80e950c5e9a4",
+                            "text": "Head",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "0078161c-8202-450f-a820-3136633a2f5a",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "c936cc3b-93df-4a54-9816-3c903e4d67ee",
+                                    "text": "2"
+                                },
+                                {
+                                    "uuid": "a3f62ef7-8716-4d14-ba9b-ca743d42d52c",
+                                    "text": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "966b87a9-fec0-42ca-a470-962fd6de206a",
+                            "text": "Knees",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "da3422c8-1a00-4311-b3f2-688518388d32",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "9d98b565-aa3e-4480-8510-1df4030efd4d",
+                                    "text": "2"
+                                },
+                                {
+                                    "uuid": "3e909aad-dc62-4b44-8bad-9b0bf26d6987",
+                                    "text": "3"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "349a88ab-47bd-42a6-9577-6eae0fc5a4bb",
+                            "text": "Toes",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "6fd113af-5270-423c-bc42-6f0c8f42044e",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "5d925501-547f-4024-924f-61f8f807579c",
+                                    "text": "2"
+                                },
+                                {
+                                    "uuid": "aa621cc5-15c0-40a2-91bb-901f1fb63322",
+                                    "text": "3"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "69f89a84-4e13-4af5-9961-c3bebc26f7c5",
+                    "text": "Tell us how you feel today day",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "b32549f0-ad9e-4774-b8f8-32db92c551be",
+                            "text": "down",
+                            "post_text": "up",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "e097c144-38a8-411b-829c-3fb71165f400",
+                                    "text": "-2"
+                                },
+                                {
+                                    "uuid": "6a862c71-50d5-40ce-8af9-9e016fc45b97",
+                                    "text": "-1"
+                                },
+                                {
+                                    "uuid": "9e556bab-487d-4756-ada5-1a46c97e7ba7",
+                                    "text": "0"
+                                },
+                                {
+                                    "uuid": "1980b406-cedc-43a8-9196-fbc3f9023146",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "fa1bdf1b-de48-4c7f-ac8c-5553ea229621",
+                                    "text": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "db44c9af-576c-4e3d-8201-daed7c4bfb0a",
+                            "text": "sad",
+                            "post_text": "happy",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "9cc728ff-e415-4a76-b023-3a2ae31f37b1",
+                                    "text": "-2"
+                                },
+                                {
+                                    "uuid": "6cc4b110-d52e-40c0-941a-140ea2ee46ef",
+                                    "text": "-1"
+                                },
+                                {
+                                    "uuid": "b12c3d5f-7e63-4490-99b6-bc12335556c4",
+                                    "text": "0"
+                                },
+                                {
+                                    "uuid": "95d41908-4fe5-4f77-abe2-22ab72c8952b",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "ecc166dc-c666-47d3-9f00-b662bb7712b6",
+                                    "text": "2"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "27578d7d-8f5b-46fd-a633-1cd3941c9f7e",
+                            "text": "limp",
+                            "post_text": "perky",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "019813fd-ff1f-4d44-8ddc-f4873e8a4da3",
+                                    "text": "-2"
+                                },
+                                {
+                                    "uuid": "9958eef6-75cf-4645-926a-32d17203ae08",
+                                    "text": "-1"
+                                },
+                                {
+                                    "uuid": "91b1fe66-5097-4227-a4a4-9f6de42d4861",
+                                    "text": "0"
+                                },
+                                {
+                                    "uuid": "2b266bad-aa25-47f7-9d1c-7500e800ad42",
+                                    "text": "1"
+                                },
+                                {
+                                    "uuid": "0c1bca5f-dc74-46a9-9d18-b751a4d4cb87",
+                                    "text": "2"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "fa6d6ccd-3c10-457d-bb41-905cd0ffbc8f",
+                    "text": "For each of the car types checked, what type of options would you prefer?",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "032ea16c-9641-40eb-b5b9-0b1e706b80c0",
+                            "text": "SUV",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "5147db49-b99e-4d94-a11b-26bd94ed60d1",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "3d3d6983-d439-4555-9080-07b04045412a",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "dafef89f-1aaf-4e89-ac75-23384a1907a8",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "c328dd0a-a5ae-4998-86a5-7b2b36dc1742",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "4ba33af5-e2ee-45b3-a083-cb7330a4ca63",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "242bc751-11d0-45f9-adb8-6fb404fcea1b",
+                            "text": "Sedan",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "b2b25fbb-b59c-40ce-972a-7622f643ad4e",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "e794ad95-ddbc-4d9a-ba3e-161fa1efbc6a",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "e889f901-cc95-4870-9207-9ce11533ff94",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "f7cc01db-25d3-437d-9444-e55af46691d4",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "cd641266-55df-4e1d-b6a1-c73c14e47c4a",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "c87f6934-9228-4fa4-a406-ff6e73241d68",
+                            "text": "Coupe",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "e5c9e93f-6608-45a8-b481-3b7034703fb0",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "056542b2-8b8e-4460-9395-f4024f39f180",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "f9e9187b-bf5e-4b96-8af6-16807b67da4e",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "79310666-a01c-4ca8-ae84-d97d9e606ee5",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "0e186a98-bc4d-433c-be55-095c73c9d54d",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "2e1ed2da-ae6b-4860-a98b-d895aa698b33",
+                            "text": "Convertible",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "5f9225d2-4956-4a47-83ac-5a25ca88f1b9",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "73e896bf-67dc-4559-956c-65f1459dbb11",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "0a605d78-e3fa-4a13-b6ec-d13d525e798e",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "11ca841e-8873-48b3-8577-f34ce6757ace",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "e8966cc9-a1c9-4b81-8828-74444f8ae67b",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "0a32afd4-6ed3-4423-862d-6f63659bff75",
+                            "text": "Minivan",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "43ab05a9-db2c-4472-a054-1504f022a7ea",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "8cbf0b0b-7e5f-4fd0-b242-fda994db2e14",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "f36e4715-f1ad-4f20-a88c-eeccc5026bd9",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "f9bbe48c-d06e-4574-a06f-63ed55759fa1",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "c7f1493c-40ca-4653-8a09-2764148500a7",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "3ba17969-558c-444f-abee-0c2fb8e925ec",
+                            "text": "Crossover",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "da605146-07ae-4b52-b908-ff48ff55a459",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "1ebfd35a-21dd-47bb-a397-e5181aac95e4",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "726afd21-7921-4a78-8907-922f07d7993a",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "9d4a588a-a0eb-48e4-b35c-34533c32054d",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "df7f76b0-ebd8-41ea-862a-76bef5ad9b08",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "c0736527-e6a2-4392-8b26-d78b5b50c5a7",
+                            "text": "Wagon",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "da9e76da-66a8-411a-84e3-cb4da37339df",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "fb4fb1b9-675b-4a4a-9cdc-864f54d4c537",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "6db66905-94f9-4dd8-88af-7e43e97f1fa8",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "463253ac-2a25-43e5-95b5-dbd6709b7038",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "d073c960-4e3b-429f-abac-44e1557710e1",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "f19325dd-5351-402d-98b4-b3c8eb6e424b",
+                            "text": "Other",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "1a718d52-bc6a-47c5-a8a2-55f0b7823471",
+                                    "text": "Leather seats"
+                                },
+                                {
+                                    "uuid": "cf18f7d5-004b-41be-a466-3f08ea7e35b6",
+                                    "text": "Shiny rims"
+                                },
+                                {
+                                    "uuid": "630e9024-2f82-46de-835e-98d4ba668353",
+                                    "text": "Subwoofer"
+                                },
+                                {
+                                    "uuid": "77b0ac53-7fe1-460c-908f-d502e0f9a22e",
+                                    "text": "Sunroof"
+                                },
+                                {
+                                    "uuid": "9aaf86fb-0a63-42fd-aedb-df942731ee66",
+                                    "text": "Turbocharger"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "c6009110-ff10-4934-99c9-1b6c6c306171",
+                    "text": "Please rank the following foods based on how much you like them",
+                    "answers": [
+                        {
+                            "uuid": "61995427-2180-464a-8033-3261d607a449",
+                            "text": "",
+                            "post_text": "pizza",
+                            "type": "integer"
+                        },
+                        {
+                            "uuid": "f09e2857-6283-41a1-ad99-d0ad9d92986b",
+                            "text": "",
+                            "post_text": "salad",
+                            "type": "integer"
+                        },
+                        {
+                            "uuid": "039b760e-280f-4f9e-96a1-f62d32c1de71",
+                            "text": "",
+                            "post_text": "sushi",
+                            "type": "integer"
+                        },
+                        {
+                            "uuid": "72d54b48-0b42-43e5-8d84-eaab64e8c80d",
+                            "text": "",
+                            "post_text": "ice cream",
+                            "type": "integer"
+                        },
+                        {
+                            "uuid": "b52bd9df-cfac-4b07-bcf0-98c315e3a3ab",
+                            "text": "",
+                            "post_text": "breakfast ceral",
+                            "type": "integer"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "ca51ac4a-3c6c-4966-a3f0-403c3a6f9233",
+                    "text": "Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)",
+                    "pick": "any",
+                    "answers": [
+                        {
+                            "uuid": "cbd05b4e-a8b9-4b34-9386-9461af4dd3fb",
+                            "text": "spoon",
+                            "type": "string"
+                        },
+                        {
+                            "uuid": "d2fbc3a8-ca8d-4540-8f02-b64617b2f331",
+                            "text": "fork",
+                            "type": "string"
+                        },
+                        {
+                            "uuid": "4bb18c9c-12c0-452a-96c1-5f14bb6d2493",
+                            "text": "knife",
+                            "type": "string"
+                        },
+                        {
+                            "uuid": "e65ee6ee-ba26-4c9f-be82-2fc842038c9d",
+                            "text": "Other",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "8b583169-10d5-4d37-9f33-dc25b4346b77",
+                    "text": "What is your birth date?",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "0db7b29c-f6d8-4a99-aeec-d39b4dbe9182",
+                            "text": "I was born on",
+                            "type": "date"
+                        },
+                        {
+                            "uuid": "17f9a9c9-26da-4bd9-94bd-c48889775657",
+                            "text": "Refused"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "4de9c786-140f-49f6-97e4-daf9ef3a8b48",
+                    "text": "At what time were you born?",
+                    "pick": "any",
+                    "answers": [
+                        {
+                            "uuid": "7486e44c-c226-405b-8288-1d77bca558ad",
+                            "text": "I was born at",
+                            "type": "time"
+                        },
+                        {
+                            "uuid": "047b23fd-1265-4a5b-9b8d-70e8520cc2db",
+                            "text": "This time is approximate"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "2b693560-9aa0-49a8-bf9c-b00aa82f4fc2",
+                    "text": "When would you like to schedule your next appointment?",
+                    "answers": [
+                        {
+                            "uuid": "25bfb409-4d40-4817-81d6-e5f9af63a46b",
+                            "text": "",
+                            "type": "datetime"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "06bec7b7-1054-445f-ba3d-9016b116e655",
+                    "text": "Do you own a car?",
+                    "reference_identifier": "car",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "0a576e53-7642-4a5c-b6cf-75c3359d1921",
+                            "text": "Yes",
+                            "reference_identifier": "y"
+                        },
+                        {
+                            "uuid": "a8778128-51f9-4b53-af90-ab87eb6e2a1b",
+                            "text": "No",
+                            "reference_identifier": "n"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "b7c2b24d-0734-4da2-b9ff-337b99e77e63",
+                    "text": "Tell us about the cars you own",
+                    "type": "repeater",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "06bec7b7-1054-445f-ba3d-9016b116e655",
+                                "answer": "0a576e53-7642-4a5c-b6cf-75c3359d1921"
+                            }
+                        ]
+                    },
+                    "questions": [
+                        {
+                            "uuid": "ab3c0529-8483-4da8-ad15-3dac8d39fd7b",
+                            "text": "Make",
+                            "type": "dropdown",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "0eedb383-997a-4742-b8bb-e6090181d976",
+                                    "text": "Toyota"
+                                },
+                                {
+                                    "uuid": "7299b0cd-4399-40f7-a734-d6f45f93f341",
+                                    "text": "Ford"
+                                },
+                                {
+                                    "uuid": "98f9ef07-1fcd-4800-9b5f-886ee61cab2e",
+                                    "text": "GMChevy"
+                                },
+                                {
+                                    "uuid": "9139b5aa-30a8-4baa-b47a-75deadef29a8",
+                                    "text": "Ferrari"
+                                },
+                                {
+                                    "uuid": "77372e77-40f4-4a23-a5cb-01d26c8b4550",
+                                    "text": "Tesla"
+                                },
+                                {
+                                    "uuid": "ccaebca4-32f5-438f-a7c8-0eb941818882",
+                                    "text": "Honda"
+                                },
+                                {
+                                    "uuid": "310f1a55-2bd2-4f51-a800-15d476251c70",
+                                    "text": "Other weak brand"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "4db0e48b-a0b5-4e21-b10f-f1b1dc8b539c",
+                            "text": "Model",
+                            "answers": [
+                                {
+                                    "uuid": "ec7884d7-9c07-4567-b6e8-97aa46ca59b1",
+                                    "text": "",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "4c17ed42-8ec3-4696-ab2b-50aa2c54c19e",
+                            "text": "Year",
+                            "answers": [
+                                {
+                                    "uuid": "11db3515-bc54-4283-bae3-f41431f068ac",
+                                    "text": "",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "d54393f0-ed14-4752-934a-57f7c168beec",
+                    "text": "Tell us the name and age of your siblings",
+                    "type": "repeater",
+                    "questions": [
+                        {
+                            "uuid": "19163d8c-551c-4661-b8df-1e110f11bd5c",
+                            "text": "Sibling",
+                            "answers": [
+                                {
+                                    "uuid": "504f0b16-9764-44b2-a006-029f84b76837",
+                                    "text": "Name",
+                                    "type": "string"
+                                },
+                                {
+                                    "uuid": "f11415aa-0e63-4077-bc0c-ec9cc0f29cf5",
+                                    "text": "Age",
+                                    "post_text": "years",
+                                    "type": "integer"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}

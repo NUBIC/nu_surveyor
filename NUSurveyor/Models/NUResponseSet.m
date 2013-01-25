@@ -322,8 +322,12 @@
 			[values setObject:[[operator substringWithRange:[countNotMatch rangeAtIndex:1]] intValue] == responsesToQuestion.count ? NS_NO : NS_YES
                        forKey:[condition objectForKey:@"rule_key"]];
 		}	else if (responsesToQuestion.count == 0){
+            NSNumber* show = NS_NO;
+            if ([operator isEqualToString:@"!="]) {
+                show = NS_YES;
+            }
             // no responses to question
-            [values setObject:NS_NO
+            [values setObject:show
                        forKey:[condition objectForKey:@"rule_key"]];
         } else if ([operator isEqualToString:@"=="]) {
 			// ==

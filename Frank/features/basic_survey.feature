@@ -67,6 +67,13 @@ Feature:
   When I touch "MARCH"
     And I touch a "UINavigationButton" marked "Done"
   Then there should be 2 responses
+
+  Scenario:
+    Showing dependent question with '!=' condition
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  Then I should see a "Please consider passive cooling solutions" label
+  
   
 # Somehow, the touch table cell marked "Complicated questions" isn't working in landscape with the split view
 #  Scenario:

@@ -185,6 +185,20 @@ NSDate* completedAt;
     STAssertEqualObjects([result valueForKey:@"A"], NS_NO, nil);
 }
 
+- (void)testEvaluateConditionsWithNotEqualsAndNoResponse {
+    NSDictionary* s = @{@"uuid": @"RECT"};
+    NSDictionary* condition = @{
+        @"question": @"xyz",
+        @"answer"  : @"aaa",
+        @"rule_key" : @"A",
+        @"operator": @"!="
+    };
+    rs = [NUResponseSet newResponseSetForSurvey:s withModel:self.model inContext:self.ctx];
+
+    NSDictionary* result = [rs evaluateConditions:[NSArray arrayWithObject:condition]];
+    STAssertEqualObjects([result valueForKey:@"A"], NS_YES, nil);
+}
+
 #pragma mark Helper Methods
 
 - (void)assertResponseSet:(NSDictionary *)actual uuid:(NSString*)uuid surveyId:(NSString*)surveyId createdAt:(NSString*)createdAt completedAt:(NSString*)completedAt responses:(NSInteger)responses {

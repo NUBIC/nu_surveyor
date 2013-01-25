@@ -203,8 +203,8 @@
 	[rs generateDependencyGraph:dict];
   
   NSDictionary *actual = [rs dependenciesTriggeredBy:@"504ad9a0-566d-012f-9ede-00254bc472f4"];
-	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", @"505ee040-566d-012f-9ede-00254bc472f4", nil];
-  NSArray *expectShow = [[NSArray alloc] init];
+	NSArray *expectHide = [[NSArray alloc] initWithObjects:@"505ee040-566d-012f-9ede-00254bc472f4", nil];
+  NSArray *expectShow = [[NSArray alloc] initWithObjects:@"504e46b0-566d-012f-9ede-00254bc472f4", nil];
   
   //	NSLog(@"%@", rs.dependencyGraph);
   //  NSLog(@"%@", actual);
