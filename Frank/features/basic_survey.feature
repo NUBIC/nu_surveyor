@@ -15,6 +15,7 @@ Feature:
     And the device is in portrait orientation
   When I scroll to the bottom of the table
     And I go to the "Complicated questions" section
+    And I wait for animations
   Then I should see "Tell us how often do you cover these each day"
 
   Scenario:
