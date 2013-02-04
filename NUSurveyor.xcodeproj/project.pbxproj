@@ -28,6 +28,10 @@
 		00D61CA816B02E7400565A8B /* shoes.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D61CA716B02E7400565A8B /* shoes.json */; };
 		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
+		16F5F2AB16C02041007F0AD9 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
+		16F5F2AC16C02044007F0AD9 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
+		16F5F2AD16C02047007F0AD9 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; };
+		16F5F2B316C056C5007F0AD9 /* dependencyToolbox.json in Resources */ = {isa = PBXBuildFile; fileRef = 16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */; };
 		3B1022681635B1A500DA88ED /* GRMustache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022541635B1A500DA88ED /* GRMustache.h */; };
 		3B1022691635B1A500DA88ED /* GRMustacheAvailabilityMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */; };
 		3B10226A1635B1A500DA88ED /* GRMustacheDynamicPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1022561635B1A500DA88ED /* GRMustacheDynamicPartial.h */; };
@@ -119,9 +123,6 @@
 		3BF20D0B15339792008227B2 /* complex-responses.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9315211EC900A8C20C /* complex-responses.json */; };
 		3BF20D0C15339792008227B2 /* complex_responses.feature in Resources */ = {isa = PBXBuildFile; fileRef = 3BC61A9615211EF000A8C20C /* complex_responses.feature */; };
 		3BF20D0D15339792008227B2 /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
-		3BF20D2015339930008227B2 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
-		3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
-		3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3BF20EA51533A057008227B2 /* libKIF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF20E9B1533A041008227B2 /* libKIF.a */; };
 		3BF8D16B1694C92F00E1D438 /* screener.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8D16A1694C92F00E1D438 /* screener.json */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
@@ -235,6 +236,8 @@
 		00D61CA716B02E7400565A8B /* shoes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoes.json; sourceTree = "<group>"; };
 		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
 		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
+		16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dependencies_toolbox.feature; sourceTree = "<group>"; };
+		16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dependencyToolbox.json; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
 		3B1022541635B1A500DA88ED /* GRMustache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustache.h; sourceTree = "<group>"; };
 		3B1022551635B1A500DA88ED /* GRMustacheAvailabilityMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheAvailabilityMacros.h; sourceTree = "<group>"; };
@@ -983,6 +986,7 @@
 				67DB49CF14D094F2009CC8C3 /* kitchen-sink-survey.json */,
 				3BF970E01524F9DC008D3A9A /* mustache.json */,
 				3BDB4BD41536123A00868F97 /* pbj.json */,
+				16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */,
 				3BB92965166FE58E00C2D5AE /* states-and-dates.json */,
 				67DB49AD14D09454009CC8C3 /* NUSurveyorExample-Info.plist */,
 				67DB49AE14D09454009CC8C3 /* InfoPlist.strings */,
@@ -1011,6 +1015,7 @@
 				67DB4A0814D09EB6009CC8C3 /* my_first.feature */,
 				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
 				3B08678E14FED8C100D43E02 /* group_dependency.feature */,
+				16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */,
 				3BC61A9615211EF000A8C20C /* complex_responses.feature */,
 				3BF9710D1524FE08008D3A9A /* mustache.feature */,
 				67DB4A0914D09EB6009CC8C3 /* step_definitions */,
@@ -1194,7 +1199,7 @@
 		3BD52A9814C8B43400AB61E8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Northwestern University";
 			};
 			buildConfigurationList = 3BD52A9B14C8B43400AB61E8 /* Build configuration list for PBXProject "NUSurveyor" */;
@@ -1314,6 +1319,7 @@
 				00DD775516A74CBA00D78EBE /* animals.json in Resources */,
 				00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */,
 				00D61CA816B02E7400565A8B /* shoes.json in Resources */,
+				16F5F2B316C056C5007F0AD9 /* dependencyToolbox.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,9 +1418,9 @@
 				3BF20CFE15339792008227B2 /* NUAppDelegate.m in Sources */,
 				3BF20CFF15339792008227B2 /* NUSurveyorExample.xcdatamodel in Sources */,
 				3BF20D0015339792008227B2 /* NUSpyVC.m in Sources */,
-				3BF20D2015339930008227B2 /* SectionTVCTest.m in Sources */,
-				3BF20D26153399DA008227B2 /* KIFTestScenario+SectionAdditions.m in Sources */,
-				3BF20D2915339A6F008227B2 /* KIFTestStep+SectionAdditions.m in Sources */,
+				16F5F2AB16C02041007F0AD9 /* SectionTVCTest.m in Sources */,
+				16F5F2AC16C02044007F0AD9 /* KIFTestScenario+SectionAdditions.m in Sources */,
+				16F5F2AD16C02047007F0AD9 /* KIFTestStep+SectionAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1541,6 +1547,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1553,6 +1563,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
@@ -1565,11 +1576,16 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;

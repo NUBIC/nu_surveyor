@@ -15,10 +15,8 @@
 
     %script(data-main="/js/main" src="js/lib/require.js")
 
-    %link(href="reset.css" rel="stylesheet")
+    %link(href="/stylesheets/css/symbiote.css" rel="stylesheet")
     %link(href="pictos/pictos.css" rel="stylesheet")
-    %link(href="jquery.treeview.css" rel="stylesheet")
-    %link(href="symbiote.css" rel="stylesheet")
 
   %body
     %header#header
@@ -30,17 +28,17 @@
 
     %section.symbiote_shell
       %article#selector-test
-        %label.selector-engine-label
-          use &rarr;
-        .selector-engine.dropdown
+        .wrap.outter<>
+          %label.selector-engine-label use
+          .selector-engine.dropdown
 
-        %label
-        to select views that match &rarr;
-        %input#query(placeholder="Selector label marked:'Search'")
+        .wrap.middle<>
+          %label.query<> to select views matching
+          %input#query(placeholder="Selector label marked:'Search'")<>
 
-        %label
-          and then &rarr;
-        .action-buttons.dropdown
+        .wrap.outter>
+          %label and then
+          .action-buttons.dropdown
 
     %section.the-columns
       #list-tabs
@@ -63,9 +61,9 @@
             %a(href="#dom-detail") View Properties
           %li
             %a(href="#ui-locator") View Locator
-        #ui-locator 
+        #ui-locator
           #live-view
-            %button 
+            %button
               Live
               %span Y
           #asploder

@@ -12,10 +12,8 @@
     <script src='js/lib/backbone.js'></script>
     <script src='js/lib/json2.js'></script>
     <script data-main='/js/main' src='js/lib/require.js'></script>
-    <link href='reset.css' rel='stylesheet' />
+    <link href='/stylesheets/css/symbiote.css' rel='stylesheet' />
     <link href='pictos/pictos.css' rel='stylesheet' />
-    <link href='jquery.treeview.css' rel='stylesheet' />
-    <link href='symbiote.css' rel='stylesheet' />
   </head>
   <body>
     <header id='header'>
@@ -28,19 +26,11 @@
       </div>
     </header>
     <section class='symbiote_shell'>
-      <article id='selector-test'>
-        <label class='selector-engine-label'>
-          use &rarr;
-        </label>
-        <div class='selector-engine dropdown'></div>
-        <label></label>
-        to select views that match &rarr;
-        <input id='query' placeholder="Selector label marked:'Search'" />
-        <label>
-          and then &rarr;
-        </label>
-        <div class='action-buttons dropdown'></div>
-      </article>
+      <article id='selector-test'><div class='wrap outter'><label class='selector-engine-label'>use</label>
+        <div class='selector-engine dropdown'></div></div><div class='wrap middle'><label class='query'>to select views matching</label><input id='query' placeholder="Selector label marked:'Search'" /></div><div class='wrap outter'>
+          <label>and then</label>
+          <div class='action-buttons dropdown'></div>
+        </div></article>
     </section>
     <section class='the-columns'>
       <div id='list-tabs'>
