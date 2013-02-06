@@ -1,0 +1,87 @@
+{
+
+    "title": "Double Dependency",
+    "uuid": "cd759fed-f595-4ddf-9213-7582d67ffc95",
+    "sections": [
+        {
+            "title": "One",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "7945bbcd-9a3e-41ba-8ed5-66bc183ff25c",
+                    "text": "",
+                    "questions": [
+                        {
+                            "uuid": "9513a6b9-0fee-4146-a3d8-a3b6ad8af11b",
+                            "text": "Do you own a dog?",
+                            "reference_identifier": "dog",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "1bb5cb49-f158-4715-baf3-7381d7ea2d81",
+                                    "text": "Yes",
+                                    "reference_identifier": "yes"
+                                },
+                                {
+                                    "uuid": "b58874b9-9aa7-429f-95e9-065a30cf89fa",
+                                    "text": "No",
+                                    "reference_identifier": "no"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "e40e062e-898a-42b7-9c1f-81b8d80b6701",
+                            "text": "What is his name?",
+                            "answers": [
+                                {
+                                    "uuid": "bdb2e78e-97e5-4134-a3f9-33ae23a7b50d",
+                                    "text": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "9513a6b9-0fee-4146-a3d8-a3b6ad8af11b",
+                                        "answer": "1bb5cb49-f158-4715-baf3-7381d7ea2d81"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "uuid": "91efc704-0c80-40d3-b568-72159c93fb57",
+                            "text": "How old is he?",
+                            "answers": [
+                                {
+                                    "uuid": "1a8d664a-af03-4440-b5da-b7b83e5e45db",
+                                    "text": "",
+                                    "type": "integer"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A and B",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "count>0",
+                                        "question": "9513a6b9-0fee-4146-a3d8-a3b6ad8af11b"
+                                    },
+                                    {
+                                        "rule_key": "B",
+                                        "operator": "!=",
+                                        "question": "9513a6b9-0fee-4146-a3d8-a3b6ad8af11b",
+                                        "answer": "b58874b9-9aa7-429f-95e9-065a30cf89fa"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}

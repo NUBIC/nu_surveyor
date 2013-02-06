@@ -277,4 +277,21 @@
   
 }
 
+- (void)testGenerateDependencyGraphWithTwoConditionsReferencingOneQuestion {
+    // JSON data
+    NSError *strError;
+    NSString *strPath = [self.bundle pathForResource:@"double_dependency" ofType:@"json"];
+    NSString *responseString = [NSString stringWithContentsOfFile:strPath encoding:NSUTF8StringEncoding error:&strError];
+    NSDictionary *dict = [responseString objectFromJSONString];
+
+    NSEntityDescription *entity = [[self.model entitiesByName] objectForKey:@"ResponseSet"];
+    NUResponseSet *rs = [[NUResponseSet alloc] initWithEntity:entity insertIntoManagedObjectContext:self.ctx];
+	[rs generateDependencyGraph:dict];
+
+    NSArray *actual = [rs.dependencyGraph valueForKey:@"9513a6b9-0fee-4146-a3d8-a3b6ad8af11b"];
+	NSArray *expect = @[@"e40e062e-898a-42b7-9c1f-81b8d80b6701", @"91efc704-0c80-40d3-b568-72159c93fb57"];
+
+    STAssertTrue([actual isEqualToArray:expect], @"Should be equal");
+}
+
 @end
