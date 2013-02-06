@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0002A26816A5FC52004F3B5E /* NSDateFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */; };
+		0030EA2616C1FB2A00694153 /* double_dependency.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EA2516C1FB2A00694153 /* double_dependency.json */; };
 		005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */; };
 		005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA6491521676300E67C10 /* NUResponseTest.m */; };
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -209,6 +210,7 @@
 /* Begin PBXFileReference section */
 		0002A26616A5FC52004F3B5E /* NSDateFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatterTest.h; sourceTree = "<group>"; };
 		0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatterTest.m; sourceTree = "<group>"; };
+		0030EA2516C1FB2A00694153 /* double_dependency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = double_dependency.json; sourceTree = "<group>"; };
 		005AA6481521676300E67C10 /* NUResponseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseTest.h; sourceTree = "<group>"; };
 		005AA6491521676300E67C10 /* NUResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseTest.m; sourceTree = "<group>"; };
 		005AA64D152208DE00E67C10 /* NUResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponse.h; path = Models/NUResponse.h; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 		3BD52ABB14C8B43500AB61E8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0030EA2516C1FB2A00694153 /* double_dependency.json */,
 				67DB499214D085CA009CC8C3 /* NUSurveyor.xcdatamodel */,
 				67DB496E14D07E6C009CC8C3 /* kitchen-sink-survey.json */,
 				67DB497014D080AC009CC8C3 /* test-dependency-survey.json */,
@@ -1278,6 +1281,7 @@
 				67DB497114D080AC009CC8C3 /* test-dependency-survey.json in Resources */,
 				3B8CF201151B91C600EA4148 /* test-birth-date-survey.json in Resources */,
 				3BF8D16B1694C92F00E1D438 /* screener.json in Resources */,
+				0030EA2616C1FB2A00694153 /* double_dependency.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
