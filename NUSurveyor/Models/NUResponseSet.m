@@ -201,8 +201,8 @@
  }
  
  self.dependencyGraph = @{
-     @"<condition question/group uuid>": @[ 
-         @"<source question/group uuid>"
+     @"<question/group uuid>": @[
+         @"<dependent question/group uuid>"
      ]
  }
  */
@@ -229,11 +229,16 @@
 				if ([q objectForKey:@"dependency"] && [q objectForKey:@"uuid"] && [[q objectForKey:@"dependency"] objectForKey:@"conditions"]) {
 					[self.dependencies setObject:[q objectForKey:@"dependency"] forKey:[q objectForKey:@"uuid"]];
 					for (NSDictionary *condition in [[q objectForKey:@"dependency"] objectForKey:@"conditions"]) {
-						if ([self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] && ![(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] containsObject:[q objectForKey:@"uuid"]]) {
-							[(NSMutableArray *)[self.dependencyGraph objectForKey:[condition objectForKey:@"question"]] addObject:[q objectForKey:@"uuid"]];
-						} else {
-							[self.dependencyGraph setObject:[NSMutableArray arrayWithObject:[q objectForKey:@"uuid"]] forKey:[condition objectForKey:@"question"]];
-						}
+                        NSString *key = [condition objectForKey:@"question"];
+                        NSString *val = [q objectForKey:@"uuid"];
+                        
+                        if (![self.dependencyGraph objectForKey:key]) {
+                            [self.dependencyGraph setObject:[NSMutableArray new] forKey:key];
+                        }
+                        
+                        if (![(NSMutableArray *)[self.dependencyGraph objectForKey:key] containsObject:val]) {
+                            [(NSMutableArray *)[self.dependencyGraph objectForKey:key] addObject:val];
+                        }
 					}
 				}
 			}
