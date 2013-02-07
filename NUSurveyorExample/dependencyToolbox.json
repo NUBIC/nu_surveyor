@@ -1,0 +1,295 @@
+{
+    "title": "INS_QUE_PregVisit1_INT_EHPBHI_M3.0_V3.0",
+    "uuid": "7ec59ef1-4b2c-4d88-9221-a52f05b4468c",
+    "description": "Pregnancy Visit 1 Interview",
+    "sections": [
+        {
+            "title": "CURRENT PREGNANCY INFORMATION",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "a45c3ec9-ec8e-4fb7-adda-41d4a4d04b0f",
+                    "text": "This question will have ramifications on this section but others?",
+                    "reference_identifier": "LARGE_QUESTION",
+                    "data_export_identifier": "LARGE_QUESTION",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "f82b4a50-7a4d-4956-9da8-7450eaa7249c",
+                            "text": "YES",
+                            "reference_identifier": "1"
+                        },
+                        {
+                            "uuid": "1a4656ef-ff5d-4cd9-b231-39f05987a566",
+                            "text": "NO",
+                            "reference_identifier": "2"
+                        },
+                        {
+                            "uuid": "339e328b-30ad-4e7c-89f6-1bb5965b09f0",
+                            "text": "REFUSED",
+                            "reference_identifier": "neg_1"
+                        },
+                        {
+                            "uuid": "0f7d30cc-2263-4ef2-aa37-c9bc20509258",
+                            "text": "DON'T KNOW",
+                            "reference_identifier": "neg_2"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "3db2371f-9b3e-41b9-8100-4a4299620e12",
+                    "text": "NO GROUP",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "a45c3ec9-ec8e-4fb7-adda-41d4a4d04b0f",
+                                "answer": "1a4656ef-ff5d-4cd9-b231-39f05987a566"
+                            }
+                        ]
+                    },
+                    "questions": [
+                        {
+                            "uuid": "356c2cc1-5646-44db-8609-7f9a67391d4b",
+                            "text": "You answered no, many other questions should have disappeared.",
+                            "help_text": "At this point, other questions below should appear.",
+                            "type": "label"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "826e8cf2-7e92-4aa6-91f5-45e0451fc0ee",
+                    "text": "YES GROUP",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "a45c3ec9-ec8e-4fb7-adda-41d4a4d04b0f",
+                                "answer": "f82b4a50-7a4d-4956-9da8-7450eaa7249c"
+                            }
+                        ]
+                    },
+                    "questions": [
+                        {
+                            "uuid": "37c6ee7f-1dbf-469f-8d3e-cc26d09cc2d6",
+                            "text": "Congratulations, you pressed YES",
+                            "help_text": "At this point, other questions below should appear.",
+                            "type": "label"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "COMMUTING",
+            "display_order": 1,
+            "questions_and_groups": [
+                {
+                    "uuid": "2c37f63a-64d6-4e04-ac40-c7fdb9c6b118",
+                    "text": "",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "a45c3ec9-ec8e-4fb7-adda-41d4a4d04b0f",
+                                "answer": "f82b4a50-7a4d-4956-9da8-7450eaa7249c"
+                            }
+                        ]
+                    },
+                    "questions": [
+                        {
+                            "uuid": "126a3942-cb0c-445f-b8e6-3a3139196d13",
+                            "text": "Okay, let's see if this causes other issues.",
+                            "type": "label"
+                        },
+                        {
+                            "uuid": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                            "text": "Let's try selecting one of these answers.",
+                            "help_text": "ONE, TWO OR THREE SHOULD CAUSE A DEPENDENCY. FOUR SHOULD CAUSE TWO DEPENDENCIES. FIVE SHOULD CAUSE NO",
+                            "reference_identifier": "COMMUTE",
+                            "data_export_identifier": "PREG_VISIT_1_COMMUTE_3.COMMUTE",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "629e25d9-03b4-43ea-9e51-3247646623a8",
+                                    "text": "ONE",
+                                    "reference_identifier": "1"
+                                },
+                                {
+                                    "uuid": "0a9a9a00-4933-4b72-bc4c-a2bbdec14737",
+                                    "text": "TWO",
+                                    "reference_identifier": "2"
+                                },
+                                {
+                                    "uuid": "fe984f77-89c9-4831-b4cf-23121860f32c",
+                                    "text": "THREE",
+                                    "reference_identifier": "3"
+                                },
+                                {
+                                    "uuid": "4268aaf1-dce8-4215-b120-e31706679471",
+                                    "text": "FOUR",
+                                    "reference_identifier": "neg_5"
+                                },
+                                {
+                                    "uuid": "7446028c-3815-456c-ae94-3d5aaee14248",
+                                    "is_exclusive": true,
+                                    "text": "FIVE",
+                                    "reference_identifier": "neg_7"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "a4fc31bb-077b-4181-b49a-90b703af5fc7",
+                            "text": "HERE IS DEPENDENCY B",
+                            "reference_identifier": "COMMUTE_OTH",
+                            "data_export_identifier": "DEPENDENCY_B",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "35eca7f4-63f1-4fce-82dd-312cb738383d",
+                                    "text": "SPECIFY",
+                                    "type": "string",
+                                    "reference_identifier": "1"
+                                },
+                                {
+                                    "uuid": "a02b950c-e639-452d-a835-33283f15bed6",
+                                    "text": "REFUSED",
+                                    "reference_identifier": "neg_1"
+                                },
+                                {
+                                    "uuid": "de95387a-57a6-4050-a1e6-160d195aaea9",
+                                    "text": "DON'T KNOW",
+                                    "reference_identifier": "neg_2"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "4268aaf1-dce8-4215-b120-e31706679471"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "uuid": "afced202-333e-4ab0-9a55-561eba3f54fc",
+                            "text": "DEPENDENCY A",
+                            "reference_identifier": "COMMUTE_TIME",
+                            "data_export_identifier": "DEPENDENCY_A",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "70876f5d-109c-4501-aba6-44e321e2a775",
+                                    "text": "NUMBER OF MINUTES",
+                                    "type": "integer",
+                                    "reference_identifier": "1"
+                                },
+                                {
+                                    "uuid": "266f0f17-fe77-4d27-8567-7afd3632b29e",
+                                    "text": "REFUSED",
+                                    "reference_identifier": "neg_1"
+                                },
+                                {
+                                    "uuid": "a2c752f4-5e40-4e2c-872c-63cc4bd349d4",
+                                    "text": "DON'T KNOW",
+                                    "reference_identifier": "neg_2"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A or B or C",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "629e25d9-03b4-43ea-9e51-3247646623a8"
+                                    },
+                                    {
+                                        "rule_key": "B",
+                                        "operator": "==",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "0a9a9a00-4933-4b72-bc4c-a2bbdec14737"
+                                    },
+                                    {
+                                        "rule_key": "C",
+                                        "operator": "==",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "fe984f77-89c9-4831-b4cf-23121860f32c"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "uuid": "98022de6-b539-48b4-a025-feafa4873617",
+                            "text": "HERE IS DEPENDENCY A THAT SHOWS WITH B",
+                            "reference_identifier": "COMMUTE_TIME_ALT",
+                            "data_export_identifier": "DEPENDENCY_A+B",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "b4be31bc-163b-43f2-af91-0214108cf9f2",
+                                    "text": "NUMBER OF MINUTES",
+                                    "type": "integer",
+                                    "reference_identifier": "1"
+                                },
+                                {
+                                    "uuid": "2929606a-b708-4494-81ae-ad8d8d61cc7a",
+                                    "text": "REFUSED",
+                                    "reference_identifier": "neg_1"
+                                },
+                                {
+                                    "uuid": "f1026b2b-ec33-4716-926a-d698290d7d20",
+                                    "text": "DON'T KNOW",
+                                    "reference_identifier": "neg_2"
+                                }
+                            ],
+                            "dependency": {
+                                "rule": "A and B and C and D and E",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "count>0",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a"
+                                    },
+                                    {
+                                        "rule_key": "B",
+                                        "operator": "!=",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "629e25d9-03b4-43ea-9e51-3247646623a8"
+                                    },
+                                    {
+                                        "rule_key": "C",
+                                        "operator": "!=",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "0a9a9a00-4933-4b72-bc4c-a2bbdec14737"
+                                    },
+                                    {
+                                        "rule_key": "D",
+                                        "operator": "!=",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "fe984f77-89c9-4831-b4cf-23121860f32c"
+                                    },
+                                    {
+                                        "rule_key": "E",
+                                        "operator": "==",
+                                        "question": "f9f62c1d-54ca-4924-98f8-0289ba14625a",
+                                        "answer": "4268aaf1-dce8-4215-b120-e31706679471"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
