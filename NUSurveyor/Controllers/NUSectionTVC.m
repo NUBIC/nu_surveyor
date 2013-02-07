@@ -149,9 +149,8 @@
   self.pageControl.frame = CGRectMake(0.0, 19.0, self.view.frame.size.width, 36.0);
 	self.pageControl.userInteractionEnabled = NO;
 	[self.navigationController.view addSubview:self.pageControl];
-  self.tableView.accessibilityLabel = @"sectionTableView"; 
+  self.tableView.accessibilityLabel = @"sectionTableView";
 	
-
   // Swipe gesture recognizers
   // A left to right swipe is now used to bring up the master table view, so these conflict.
   //  UISwipeGestureRecognizer *r = [[UISwipeGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(prevSection)];
@@ -208,7 +207,7 @@
 }
 
 - (void)createRows
-{ 
+{
   
   [self createHeader];
   [self createFooter];
@@ -381,6 +380,7 @@
     [self.cursorView resignFirstResponder];
     self.cursorView = nil;
   }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	NSString *title = [self tableView:tableView titleForHeaderInSection:section];
