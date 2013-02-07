@@ -1,5 +1,6 @@
 (function() {
-  var RELOAD_INTERVAL, guessAtDeviceFamilyBasedOnViewDump;
+  var RELOAD_INTERVAL, guessAtDeviceFamilyBasedOnViewDump,
+    __slice = [].slice;
 
   RELOAD_INTERVAL = 500;
 
@@ -125,6 +126,12 @@
           accessibleViewsView.collection.reset(accessibleViews);
           ersatzView.render();
           return deferable.resolve();
+        }).fail(function() {
+          var args;
+          args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+          toastController.showToastMessage('encountered an error while talking to Frank');
+          window.alert("Ruh roh. Encountered an error while talking to Frank.\nSee the javascript console for all the details");
+          return console.log("Failed while talking to Frank.", args);
         });
         return deferable.promise();
       };

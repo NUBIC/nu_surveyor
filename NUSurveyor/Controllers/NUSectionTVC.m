@@ -649,7 +649,7 @@
 
 - (VisibleSection*)findVisibleSectionWithUUID:(NSString*)uuid {
     NSArray* r = [self findAllVisibleSectionsWithUUID:uuid];
-    return [r count] > 0 ? [r objectAtIndex:0] : NULL;
+    return [r lastObject];
 }
 
 - (NSArray*)findAllVisibleSectionsWithUUID:(NSString*)uuid {
@@ -664,23 +664,27 @@
 
 - (NSUInteger) indexOfVisibleQuestionWithUUID:(NSString*)uuid {
     VisibleSection* v = [self findVisibleSectionWithUUID:uuid];
-    return v ? [self.visibleSections indexOfObject:v] : NSNotFound;
+    return (v != nil) ? [self.visibleSections indexOfObject:v] : NSNotFound;
 }
 
-- (NSUInteger) indexForInsert:(NSString *)uuid {
-  NSUInteger i = [self indexOfQuestionOrGroupWithUUID:uuid];
-  if (i != NSNotFound) {
-    for (int n = i-1; n >= 0; n--) {
-      //    DLog(@"n: %d", n);
-      if ([[self.allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
-          NSString* uuid = [[self.allSections objectAtIndex:n] objectForKey:@"uuid"];
-          return [self indexOfVisibleQuestionWithUUID:uuid] + 1;
-      }
-    }
-  }
-	//  DLog(@"i: %d", i);
 
-  return 0;
+- (NSUInteger) indexForInsert:(NSString *)uuid {
+    NSUInteger i = [self indexOfQuestionOrGroupWithUUID:uuid];
+    if (i != NSNotFound) {
+        for (int n = i-1; n >= 0; n--) {
+            if ([[self.allSections objectAtIndex:n] objectForKey:@"show"] == NS_YES) {
+                NSString* secondUUID = [[self.allSections objectAtIndex:n] objectForKey:@"uuid"];
+                NSUInteger returnVal = [self indexOfVisibleQuestionWithUUID:secondUUID];
+                if (returnVal != NSNotFound) {
+                    return returnVal + 1;
+                }
+            }
+        }
+        return 0U;
+    }
+    else {
+        return 0U;
+    }
 }
 
 - (NSArray*)findVisibleSectionsWithGroupUUID:(NSString*)uuid {
@@ -719,13 +723,14 @@
 	//  DLog(@"showHide: %@", showHide);
   for (NSString *question in [showHide objectForKey:@"show"]) {
     // show the question and insert it in the right place
-    if (![self findVisibleSectionWithUUID:question]) {
+    if ([self findVisibleSectionWithUUID:question] == nil) {
       NSUInteger i = [self indexForInsert:question];
       if (i != 0U) { // NSUInteger 0 is returned by indexForInsert if nothing is found
         [[self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]] setObject:NS_YES forKey:@"show"];
         // insert into visibleSections before insertSections to get title right
         NSDictionary* s = [self.allSections objectAtIndex:[self indexOfQuestionOrGroupWithUUID:question]];
         VisibleSection* v = [[VisibleSection alloc] initWithUUID:[s objectForKey:@"uuid"] rgid:[s objectForKey:@"rgid"] groupUUID:nil];
+        NSAssert(!(self.visibleSections.count < i), @"tried to plant outside of bounds of visible sections with uuid: %@", question);
         [self.visibleSections insertObject:v atIndex:i];
         [self.visibleHeaders insertObject:[self headerViewWithTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"text"] SubTitle:[[self questionOrGroupWithUUID:question] objectForKey:@"help_text"]] atIndex:i];
         [self.tableView insertSections:[NSIndexSet indexSetWithIndex:i] withRowAnimation:UITableViewRowAnimationFade];

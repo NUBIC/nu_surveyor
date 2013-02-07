@@ -2,8 +2,6 @@
 
 @implementation NSString (NUAdditions)
 
-static NSString* SPACE = @" ";
-
 - (NSString*) normalizeWhitespace {
     NSCharacterSet *whitespaces = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSPredicate *noEmptyStrings = [NSPredicate predicateWithFormat:@"SELF != ''"];

@@ -209,7 +209,8 @@
 - (void) generateDependencyGraph:(NSDictionary *)survey {
     self.dependencyGraph = [[NSMutableDictionary alloc] init];
     self.dependencies = [[NSMutableDictionary alloc] init];
-    for (NSDictionary *section in [survey objectForKey:@"sections"]) {
+    NSArray *allSurveyDictionariesArray = [survey objectForKey:@"sections"];
+    for (NSDictionary *section in allSurveyDictionariesArray) {
         for (NSDictionary *questionOrGroup in [section objectForKey:@"questions_and_groups"]) {
 			// dependency directly on the question or group
 			if ([questionOrGroup objectForKey:@"dependency"] && [questionOrGroup objectForKey:@"uuid"] && [[questionOrGroup objectForKey:@"dependency"] objectForKey:@"conditions"]) {
@@ -250,7 +251,10 @@
     NSMutableArray *show = [[NSMutableArray alloc] init];
     NSMutableArray *hide = [[NSMutableArray alloc] init];
     for (NSString *q in [self.dependencyGraph objectForKey:qid]) {
-        [self showDependency:[self.dependencies objectForKey:q]] ? [show addObject:q] : [hide addObject:q];
+        NSDictionary *dependencyDictionary = [self.dependencies objectForKey:q];
+        BOOL shouldBeShowing = [self showDependency:dependencyDictionary];
+        (shouldBeShowing == YES) ? [show addObject:q] : [hide addObject:q];
+//        [self showDependency:[self.dependencies objectForKey:q]] ? [show addObject:q] : [hide addObject:q];
     }
     NSDictionary *triggered = [NSDictionary dictionaryWithObjectsAndKeys:show, @"show", hide, @"hide", nil];
     return triggered;

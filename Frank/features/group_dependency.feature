@@ -14,3 +14,12 @@ Feature:
   When I touch the table cell marked "NUOneCell Yes"
   Then the cell marked "NUOneCell Yes" should be dotted
     And I should see "Tell us about the cars you own"
+    
+  Scenario:
+    Dependencies work
+  Given I launch the app using iOS 5.1 and the ipad simulator
+    And the device is in portrait orientation
+  When I touch the table cell marked "red"
+  Then I should see "Please explain why you don't like this color?"
+  
+  

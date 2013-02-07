@@ -26,6 +26,7 @@
 - (void) loadStatesAndDates;
 - (void) loadAnimals;
 - (void) loadShoes;
+- (void) loadDependencyToolbox;
 @end
 
 @implementation NUSpyVC
@@ -138,6 +139,13 @@
   [self.shoes setTitle:@"Load Shoes" forState:UIControlStateNormal];
   [self.shoes addTarget:self action:@selector(loadShoes) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.shoes];
+    
+    self.shoes = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.shoes.frame = CGRectMake(10, 15.0 + 10*36.0 + 9*10.0, 400.0, 36.0);
+    self.shoes.accessibilityLabel = @"loadDependencyToolbox";
+    [self.shoes setTitle:@"Load Dependency Toolbox" forState:UIControlStateNormal];
+    [self.shoes addTarget:self action:@selector(loadDependencyToolbox) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.shoes];
 
 }
 - (void) loadKitchenSink{
@@ -169,6 +177,10 @@
 }
 - (void) loadShoes {
   [self.delegate loadSurvey:@"shoes"];
+}
+
+- (void) loadDependencyToolbox {
+    [self.delegate loadSurvey:@"dependencyToolbox"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

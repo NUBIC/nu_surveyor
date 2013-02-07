@@ -104,7 +104,7 @@ define ['frank'],(frank)->
         
     reload = ->
       deferable = $.Deferred()
-      $.when( frank.fetchViewHeirarchy(), frank.fetchOrientation() ).done ([rawHeir,],orientation)->
+      $.when( frank.fetchViewHeirarchy(), frank.fetchOrientation() ).done( ([rawHeir,],orientation)->
         deviceFamily = guessAtDeviceFamilyBasedOnViewDump(rawHeir)
 
         treeView.model.resetViewHeir(rawHeir)
@@ -115,6 +115,11 @@ define ['frank'],(frank)->
 
         ersatzView.render()
         deferable.resolve()
+      ).fail( (args...)->
+        toastController.showToastMessage('encountered an error while talking to Frank')
+        window.alert( "Ruh roh. Encountered an error while talking to Frank.\nSee the javascript console for all the details" )
+        console.log( "Failed while talking to Frank.", args ) 
+      )
 
       deferable.promise()
 
