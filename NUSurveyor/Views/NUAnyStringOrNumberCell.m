@@ -11,6 +11,7 @@
 
 @interface NUAnyStringOrNumberCell()
 - (void) resetContent;
+-(void)cellSectionWasDeselected:(NSNotification *)note;
 @end
 @implementation NUAnyStringOrNumberCell
 
@@ -58,6 +59,9 @@
     self.postLabel.backgroundColor = groupedBackgroundColor;;
     self.postLabel.autoresizingMask = UIViewAutoresizingNone;
     [self.contentView addSubview:self.postLabel];
+      
+      //Notification
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cellSectionWasDeselected:) name:MASTER_VC_DID_SELECT_ROW object:nil];      
   }
   return self;
 }
@@ -67,6 +71,10 @@
   [super setSelected:selected animated:animated];
   
   // Configure the view for the selected state
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
 }
 
 #pragma mark - NUCell
@@ -177,6 +185,12 @@
                                       self.textField.frame.size.height);
   }
   
+}
+
+#pragma mark notification
+
+-(void)cellSectionWasDeselected:(NSNotification *)note {
+    [self.textField resignFirstResponder];
 }
 
 

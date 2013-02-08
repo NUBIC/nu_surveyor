@@ -10,3 +10,5 @@
 #define RGBA(r, g, b, a)	[UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define NS_YES [NSNumber numberWithBool:YES]
 #define NS_NO  [NSNumber numberWithBool:NO]
+
+#define MASTER_VC_DID_SELECT_ROW @"MasterViewControllerDidSelectRow"

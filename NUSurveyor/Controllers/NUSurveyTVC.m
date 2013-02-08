@@ -215,7 +215,8 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-	[self showSection:indexPath.row];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MASTER_VC_DID_SELECT_ROW object:nil];
+    [self showSection:indexPath.row];
 }
 
 #pragma mark - Section navigation
