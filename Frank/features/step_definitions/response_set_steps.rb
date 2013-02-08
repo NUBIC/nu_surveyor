@@ -57,6 +57,16 @@ Then /^I should see a "([^\"]*)" label$/ do |expected_mark|
   check_element_exists("label marked:'#{expected_mark}'")
 end
 
+Then /^I should not see a "([^\"]*)" label$/ do |expected_mark|
+    check_element_does_not_exist("label marked:'#{expected_mark}'")
+end
+
+When /^touch the (\d*)(?:st|nd|rd|th)? table cell marked "(.*?)"$/ do |ordinal, mark|
+    total_found = frankly_map( "tableViewCell marked:'#{mark}'", 'tag' ).count
+    ordinal = total_found - (ordinal.to_i) # Order is always reversed for some reason
+    touch("tableViewCell marked:'#{mark}' index:#{ordinal}")
+end
+
 Then /^I touch a "(.*)" marked "(.*)"$/ do |viewClass, mark|
   touch("view:'#{viewClass}' marked:'#{mark}'")
 end
