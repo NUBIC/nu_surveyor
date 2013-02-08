@@ -8,6 +8,10 @@
 
 #import "NUNoneTextCell.h"
 
+@interface NUNoneTextCell()
+-(void)cellSectionWasDeselected:(NSNotification *)note;
+@end
+
 @implementation NUNoneTextCell
 @synthesize textView = _textView, label = _label, sectionTVC = _sectionTVC;
 
@@ -62,6 +66,9 @@
       self.label.shadowOffset = CGSizeMake(0, 1);
       
       [self.contentView addSubview:self.label];
+        
+        //Notification
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cellSectionWasDeselected:) name:MASTER_VC_DID_SELECT_ROW object:nil];
     }
     return self;
 }
@@ -71,6 +78,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
 }
 
 #pragma mark - NUCell
@@ -109,6 +120,12 @@
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
   [self.textView becomeFirstResponder];
   // Don't need deselect for: UITableViewCellSelectionStyleNone
+}
+
+#pragma mark notification
+
+-(void)cellSectionWasDeselected:(NSNotification *)note {
+    [self.textView resignFirstResponder];
 }
 
 @end
