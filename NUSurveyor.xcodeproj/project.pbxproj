@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0002A26816A5FC52004F3B5E /* NSDateFormatterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */; };
 		0030EA2616C1FB2A00694153 /* double_dependency.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EA2516C1FB2A00694153 /* double_dependency.json */; };
+		0030EA3816C458E900694153 /* red-green.json in Resources */ = {isa = PBXBuildFile; fileRef = 0030EA3716C458E900694153 /* red-green.json */; };
+		0030EA3E16C459D200694153 /* repeater_conditions.feature in Resources */ = {isa = PBXBuildFile; fileRef = 0030EA3D16C459D200694153 /* repeater_conditions.feature */; };
 		005AA64B1521F04B00E67C10 /* NUResponseSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 006CE3B815214DB400DD32A2 /* NUResponseSetTest.m */; };
 		005AA64C1521F04B00E67C10 /* NUResponseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 005AA6491521676300E67C10 /* NUResponseTest.m */; };
 		005AA64F152208DE00E67C10 /* NUResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 005AA64D152208DE00E67C10 /* NUResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -212,6 +214,8 @@
 		0002A26616A5FC52004F3B5E /* NSDateFormatterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatterTest.h; sourceTree = "<group>"; };
 		0002A26716A5FC52004F3B5E /* NSDateFormatterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatterTest.m; sourceTree = "<group>"; };
 		0030EA2516C1FB2A00694153 /* double_dependency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = double_dependency.json; sourceTree = "<group>"; };
+		0030EA3716C458E900694153 /* red-green.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "red-green.json"; sourceTree = "<group>"; };
+		0030EA3D16C459D200694153 /* repeater_conditions.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = repeater_conditions.feature; sourceTree = "<group>"; };
 		005AA6481521676300E67C10 /* NUResponseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUResponseTest.h; sourceTree = "<group>"; };
 		005AA6491521676300E67C10 /* NUResponseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUResponseTest.m; sourceTree = "<group>"; };
 		005AA64D152208DE00E67C10 /* NUResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUResponse.h; path = Models/NUResponse.h; sourceTree = "<group>"; };
@@ -980,6 +984,7 @@
 		67DB49AC14D09454009CC8C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0030EA3716C458E900694153 /* red-green.json */,
 				00D61CA716B02E7400565A8B /* shoes.json */,
 				3B5ACC17162F5203007EED1A /* sesame.json */,
 				3BC61A9315211EC900A8C20C /* complex-responses.json */,
@@ -1022,6 +1027,7 @@
 				67DB4A0B14D09EB6009CC8C3 /* support */,
 				00DD775616A74E1900D78EBE /* complex_dependencies.feature */,
 				00C58E4016AF391300A77DE4 /* repeater.feature */,
+				0030EA3D16C459D200694153 /* repeater_conditions.feature */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -1320,6 +1326,8 @@
 				00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */,
 				00D61CA816B02E7400565A8B /* shoes.json in Resources */,
 				16F5F2B316C056C5007F0AD9 /* dependencyToolbox.json in Resources */,
+				0030EA3816C458E900694153 /* red-green.json in Resources */,
+				0030EA3E16C459D200694153 /* repeater_conditions.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

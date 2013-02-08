@@ -1,0 +1,55 @@
+{
+
+    "title": "Repeater Condition",
+    "uuid": "23f58c43-c606-49f5-b7fd-69ef1fcb2d3f",
+    "sections": [
+        {
+            "title": "One",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "742f152a-b45d-43e3-ba52-3d9c59dd2c9e",
+                    "text": "Colors",
+                    "type": "repeater",
+                    "questions": [
+                        {
+                            "uuid": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                            "text": "Red or Green?",
+                            "reference_identifier": "color",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "9cc39117-42b0-4946-a0c0-e332f555f568",
+                                    "text": "Red",
+                                    "reference_identifier": "red"
+                                },
+                                {
+                                    "uuid": "0463e911-27f6-4882-a3bd-456dbd24989f",
+                                    "text": "Green",
+                                    "reference_identifier": "green"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "1bf4b42b-fcab-45d7-894c-5e247ebe5308",
+                    "text": "You Win!!",
+                    "type": "label",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                "answer": "0463e911-27f6-4882-a3bd-456dbd24989f"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+
+}

@@ -99,11 +99,23 @@
 // Look up responses
 //
 
-- (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid {
-    return [self responsesForQuestion:qid Answer:aid Response:NULL];
+- (NSArray *)responsesForQuestion:(NSString *)qid Answer:(NSString *)aid {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(responseSet == %@) AND (question == %@) AND (answer == %@)",
+                              self, qid, aid];
+    
+    return [self responsesWithPredicate:predicate];
 }
 
-- (NSArray *) responsesForQuestion:(NSString *)qid Answer:(NSString *)aid Response:(NSNumber*)rgid {
+- (NSArray *)responsesForQuestion:(NSString *)qid Answer:(NSString *)aid Response:(NSNumber*)rgid {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(responseSet == %@) AND (question == %@) AND (answer == %@) AND (responseGroup == %@)",
+                              self, qid, aid, rgid];
+    
+    return [self responsesWithPredicate:predicate];
+}
+
+- (NSArray*)responsesWithPredicate:(NSPredicate*)predicate {
     //  DLog(@"responsesForQuestion %@ answer %@", qid, aid);
     // setup fetch request
 	NSError *error = nil;
@@ -112,9 +124,6 @@
     [request setEntity:entity];
     
     // Set predicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"(responseSet == %@) AND (question == %@) AND (answer == %@) AND (responseGroup == %@)",
-                              self, qid, aid, rgid];
     [request setPredicate:predicate];
     
     NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -131,6 +140,7 @@
     //  DLog(@"responseForAnswer #:%d", [results count]);
     return results;
 }
+
 //
 // Create a response with value
 //
