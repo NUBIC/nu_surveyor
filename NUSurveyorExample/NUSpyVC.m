@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIButton *statesAndDates;
 @property (nonatomic, strong) UIButton *animals;
 @property (nonatomic, strong) UIButton *shoes;
+@property (nonatomic, strong) UIButton *redGreen;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -40,7 +41,8 @@
             pbj = _pbj, 
             sesame = _sesame, 
             blankMustache = _blankMustache,
-            statesAndDates = _statesAndDates;
+            statesAndDates = _statesAndDates,
+            redGreen = _redGreen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -141,11 +143,18 @@
   [self.view addSubview:self.shoes];
     
     self.shoes = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.shoes.frame = CGRectMake(10, 15.0 + 10*36.0 + 9*10.0, 400.0, 36.0);
+    self.shoes.frame = CGRectMake(10, 10.0 + 10*36.0 + 10*10.0, 400.0, 36.0);
     self.shoes.accessibilityLabel = @"loadDependencyToolbox";
     [self.shoes setTitle:@"Load Dependency Toolbox" forState:UIControlStateNormal];
     [self.shoes addTarget:self action:@selector(loadDependencyToolbox) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.shoes];
+    
+    self.redGreen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.redGreen.frame = CGRectMake(10, 15.0 + 11*36.0 + 11*10.0, 400.0, 36.0);
+    self.redGreen.accessibilityLabel = @"loadRedGreen";
+    [self.redGreen setTitle:@"Load Red Green (Repeater Conditions)" forState:UIControlStateNormal];
+    [self.redGreen addTarget:self action:@selector(loadRedGreen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.redGreen];
 
 }
 - (void) loadKitchenSink{
@@ -181,6 +190,10 @@
 
 - (void) loadDependencyToolbox {
     [self.delegate loadSurvey:@"dependencyToolbox"];
+}
+
+- (void) loadRedGreen {
+    [self.delegate loadSurvey:@"red-green"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
