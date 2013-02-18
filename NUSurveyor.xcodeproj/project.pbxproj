@@ -30,6 +30,7 @@
 		00D61CA816B02E7400565A8B /* shoes.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D61CA716B02E7400565A8B /* shoes.json */; };
 		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
+		167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 167C73EA16C56CA7003DE64B /* Default-568h@2x.png */; };
 		16F5F2AB16C02041007F0AD9 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
 		16F5F2AC16C02044007F0AD9 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
 		16F5F2AD16C02047007F0AD9 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; };
@@ -129,7 +130,7 @@
 		3BF8D16B1694C92F00E1D438 /* screener.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF8D16A1694C92F00E1D438 /* screener.json */; };
 		3BF970E11524F9DC008D3A9A /* mustache.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BF970E01524F9DC008D3A9A /* mustache.json */; };
 		3BF970E51524FA07008D3A9A /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF970E31524FA07008D3A9A /* JSONKit.h */; };
-		3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF970E41524FA07008D3A9A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF970E41524FA07008D3A9A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		671F3C9614C9C36D00CEE042 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9514C9C36D00CEE042 /* UIKit.framework */; };
 		671F3C9914C9C37500CEE042 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9814C9C37500CEE042 /* CoreData.framework */; };
 		671F3C9B14C9C38100CEE042 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671F3C9A14C9C38100CEE042 /* CoreGraphics.framework */; };
@@ -241,6 +242,7 @@
 		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
 		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
 		16274D3C16C45E5100DBBAFC /* textFieldResigns.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textFieldResigns.feature; sourceTree = "<group>"; };
+		167C73EA16C56CA7003DE64B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dependencies_toolbox.feature; sourceTree = "<group>"; };
 		16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dependencyToolbox.json; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 		3BD52A9614C8B43400AB61E8 = {
 			isa = PBXGroup;
 			children = (
+				167C73EA16C56CA7003DE64B /* Default-568h@2x.png */,
 				3BD52AA614C8B43500AB61E8 /* NUSurveyor */,
 				3BD52ABA14C8B43500AB61E8 /* NUSurveyorTests */,
 				67DB49AB14D09454009CC8C3 /* NUSurveyorExample */,
@@ -1330,6 +1333,7 @@
 				16F5F2B316C056C5007F0AD9 /* dependencyToolbox.json in Resources */,
 				0030EA3816C458E900694153 /* red-green.json in Resources */,
 				0030EA3E16C459D200694153 /* repeater_conditions.feature in Resources */,
+				167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
