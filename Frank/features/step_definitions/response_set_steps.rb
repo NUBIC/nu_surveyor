@@ -80,7 +80,6 @@ When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\
   wait_for_nothing_to_be_animating
 end
                                                                              
-
 When /^I use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\\"]*)" without hitting done$/ do |text_field_mark, text_to_type|
   text_field_selector =  "view marked:'#{text_field_mark}'"
   check_element_exists( text_field_selector )
@@ -120,4 +119,24 @@ end
 Then /^I should see "(.*?)" buttons marked "(.*?)"$/ do |count, button|
   buttons = frankly_map( "button marked:'#{button}'", 'tag' )
   buttons.count.should == count.to_i
+end
+
+# SLOWLY is used to acutally type the letters rather than set the text
+When /^I SLOWLY use the keyboard to fill in the textfield marked "([^\\"]*)" with "([^\\"]*)" without hitting done$/ do |text_field_mark, text_to_type|
+  text_field_selector =  "view marked:'#{text_field_mark}'"
+  check_element_exists( text_field_selector )
+  touch( text_field_selector )
+  sleep 0.5
+  type_into_keyboard( text_to_type )
+  end
+  
+Then /^I should see a textfield with the text "([^\\"]*)"$/ do |expected_mark|
+    puts "textfield marked:'#{expected_mark}'"
+    check_element_exists("textfield marked:'#{expected_mark}'")
+end
+
+Then /^I should really see "([^\"]*)" in the textfield marked "([^\"]*)"$/ do |expected_text, text_field_mark|
+    text_field_selector =  "view marked:'#{text_field_mark}'"
+    actual = frankly_map( text_field_selector, 'text')[0]
+    actual.should == expected_text
 end

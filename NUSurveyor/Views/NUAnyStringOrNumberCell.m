@@ -8,8 +8,10 @@
 
 #import "NUAnyStringOrNumberCell.h"
 #import "UILabel+NUResize.h"
+#import "NUMaskedInputDelegateObject.h"
 
 @interface NUAnyStringOrNumberCell()
+    @property (nonatomic, strong) NUMaskedInputDelegateObject *maskDelegate;
 - (void) resetContent;
 -(void)cellSectionWasDeselected:(NSNotification *)note;
 @end
@@ -73,7 +75,17 @@
   // Configure the view for the selected state
 }
 
+-(void)prepareForReuse {
+    if ([[self.textField.delegate class] isKindOfClass:[NUMaskedInputDelegateObject class]]) {
+        self.textField.delegate = nil;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
+}
+
 -(void)dealloc {
+    if ([[self.textField.delegate class] isKindOfClass:[NUMaskedInputDelegateObject class]]) {
+        self.textField.delegate = nil;
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
 }
 
@@ -104,14 +116,24 @@
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
-    self.textField.delegate = self.sectionTVC;
+        if ([dataObject valueForKey:@"text_mask"]) {
+            NSString *inputMask = [dataObject valueForKey:@"text_mask"];
+            NSString *placeholder = [dataObject valueForKey:@"placeholder"];
+            self.maskDelegate = [[NUMaskedInputDelegateObject alloc] initWithMask:inputMask andPlaceholder:placeholder];
+            self.textField.delegate = self.maskDelegate;
+            self.maskDelegate.regularDelegate = self.sectionTVC;
+            self.textField.placeholder = [self.maskDelegate temporaryPlaceholder];
+        }
+        else {
+            self.textField.delegate = self.sectionTVC;
+            self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
+        }
     self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
     // number
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.textField.delegate = self.sectionTVC;
-    self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else {
     [self.textField setHidden:YES];
   }

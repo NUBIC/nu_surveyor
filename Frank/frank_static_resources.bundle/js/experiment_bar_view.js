@@ -33,6 +33,9 @@
           }, {
             name: 'uiquery',
             text: 'UIQuery'
+          }, {
+            name: 'calabash_uispec',
+            text: 'Calabash'
           }
         ]);
         this.engineDropdownView.collection.at(0).select();

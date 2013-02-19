@@ -8,8 +8,10 @@
 
 #import "NUNoneCell.h"
 #import "UILabel+NUResize.h"
+#import "NUMaskedInputDelegateObject.h"
 
 @interface NUNoneCell()
+    @property (nonatomic, strong) NUMaskedInputDelegateObject *maskDelegate;
 - (void) resetContent;
 -(void)cellSectionWasDeselected:(NSNotification *)note;
 @end
@@ -71,7 +73,13 @@
     // Configure the view for the selected state
 }
 
+-(void)prepareForReuse {
+    self.maskDelegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
+}
+
 -(void)dealloc {
+    self.maskDelegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MASTER_VC_DID_SELECT_ROW object:nil];
 }
 
@@ -99,9 +107,20 @@
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
-    self.textField.delegate = self.sectionTVC;
+        if ([dataObject valueForKey:@"text_mask"]) {
+            NSString *inputMask = [dataObject valueForKey:@"text_mask"];
+            NSString *placeholder = [dataObject valueForKey:@"placeholder"];
+            self.maskDelegate = [[NUMaskedInputDelegateObject alloc] initWithMask:inputMask andPlaceholder:placeholder];
+            self.textField.delegate = self.maskDelegate;
+            self.maskDelegate.regularDelegate = self.sectionTVC;
+            self.textField.placeholder = [self.maskDelegate temporaryPlaceholder];
+        }
+        else {
+            self.textField.delegate = self.sectionTVC;
+            self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
+        }
+        
     self.textField.accessibilityLabel = [NSString stringWithFormat:@"NUNoneCell %@ %@ %@ textField", self.label.text, self.textField.text, self.postLabel.text];
-    self.textField.placeholder = [self.sectionTVC renderMustacheFromString:[dataObject objectForKey:@"help_text"]];
   } else if([[dataObject objectForKey:@"type"] isEqualToString:@"integer"] ||
             [[dataObject objectForKey:@"type"] isEqualToString:@"float"]){
     // number
