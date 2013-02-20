@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton *animals;
 @property (nonatomic, strong) UIButton *shoes;
 @property (nonatomic, strong) UIButton *redGreen;
+@property (nonatomic, strong) UIButton *grid;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -28,6 +29,7 @@
 - (void) loadAnimals;
 - (void) loadShoes;
 - (void) loadDependencyToolbox;
+- (void) loadGrid;
 @end
 
 @implementation NUSpyVC
@@ -42,7 +44,8 @@
             sesame = _sesame, 
             blankMustache = _blankMustache,
             statesAndDates = _statesAndDates,
-            redGreen = _redGreen;
+            redGreen = _redGreen,
+            grid = _grid;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -155,6 +158,13 @@
     [self.redGreen setTitle:@"Load Red Green (Repeater Conditions)" forState:UIControlStateNormal];
     [self.redGreen addTarget:self action:@selector(loadRedGreen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.redGreen];
+    
+    self.grid = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.grid.frame = CGRectMake(10, 15.0 + 12*36.0 + 12*10.0, 400.0, 36.0);
+    self.grid.accessibilityLabel = @"loadGrid";
+    [self.grid setTitle:@"Load Grid" forState:UIControlStateNormal];
+    [self.grid addTarget:self action:@selector(loadGrid) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.grid];
 
 }
 - (void) loadKitchenSink{
@@ -194,6 +204,10 @@
 
 - (void) loadRedGreen {
     [self.delegate loadSurvey:@"red-green"];
+}
+
+- (void) loadGrid {
+    [self.delegate loadSurvey:@"grid"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

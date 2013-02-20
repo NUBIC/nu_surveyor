@@ -17,4 +17,6 @@
 @property (nonatomic, strong) UISegmentedControl *segments;
 @property (nonatomic, strong) NSArray *answers;
 
++ (CGFloat)cellHeightForQuestion:(NSDictionary *)question contentWidth:(CGFloat)contentWidth;
+
 @end

@@ -122,6 +122,10 @@
   // Don't need deselect for: UITableViewCellSelectionStyleNone
 }
 
++ (CGFloat)cellHeightForQuestion:(NSDictionary *)question contentWidth:(CGFloat)contentWidth {
+    return 220.0f;
+}
+
 #pragma mark notification
 
 -(void)cellSectionWasDeselected:(NSNotification *)note {

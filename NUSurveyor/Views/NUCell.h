@@ -14,4 +14,6 @@
 - (NSString *)accessibilityLabel;
 - (void)configureForData:(id)dataObject tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 - (void)selectedinTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
+@optional
++ (CGFloat)cellHeightForQuestion:(NSDictionary *)question contentWidth:(CGFloat)contentWidth;
 @end

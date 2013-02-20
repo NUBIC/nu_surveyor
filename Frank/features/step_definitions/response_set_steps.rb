@@ -121,3 +121,8 @@ Then /^I should see "(.*?)" buttons marked "(.*?)"$/ do |count, button|
   buttons = frankly_map( "button marked:'#{button}'", 'tag' )
   buttons.count.should == count.to_i
 end
+
+Then /^the label "(.*?)" should have a height of "(.*?)"$/ do |label_selector, expected_height|
+  frame = frankly_map( "label marked:'#{label_selector}' index:0", 'frame' ).first
+  frame["size"]["height"].should == expected_height.to_i
+end
