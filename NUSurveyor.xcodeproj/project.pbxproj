@@ -30,7 +30,12 @@
 		00D61CA816B02E7400565A8B /* shoes.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D61CA716B02E7400565A8B /* shoes.json */; };
 		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
+		1613E7CF16D3DF2F0002FA0F /* NUMaskedInputDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1613E7CB16D3DF0A0002FA0F /* NUMaskedInputDelegateObject.m */; };
 		167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 167C73EA16C56CA7003DE64B /* Default-568h@2x.png */; };
+		16F4FB5A16D532B10001253F /* textfield_mask_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 16F4FB5316D52FFB0001253F /* textfield_mask_test.json */; };
+		16F4FB5B16D532FA0001253F /* textfield_mask_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 16F4FB5316D52FFB0001253F /* textfield_mask_test.json */; };
+		16F4FB6916D537320001253F /* textfield_mask.feature in Resources */ = {isa = PBXBuildFile; fileRef = 16F4FB6816D537320001253F /* textfield_mask.feature */; };
+		16F4FB6A16D537320001253F /* textfield_mask.feature in Resources */ = {isa = PBXBuildFile; fileRef = 16F4FB6816D537320001253F /* textfield_mask.feature */; };
 		16F5F2AB16C02041007F0AD9 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
 		16F5F2AC16C02044007F0AD9 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
 		16F5F2AD16C02047007F0AD9 /* KIFTestStep+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D2815339A6F008227B2 /* KIFTestStep+SectionAdditions.m */; };
@@ -241,8 +246,12 @@
 		00D61CA716B02E7400565A8B /* shoes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoes.json; sourceTree = "<group>"; };
 		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
 		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
+		1613E7CA16D3DF0A0002FA0F /* NUMaskedInputDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUMaskedInputDelegateObject.h; sourceTree = "<group>"; };
+		1613E7CB16D3DF0A0002FA0F /* NUMaskedInputDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUMaskedInputDelegateObject.m; sourceTree = "<group>"; };
 		16274D3C16C45E5100DBBAFC /* textFieldResigns.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textFieldResigns.feature; sourceTree = "<group>"; };
 		167C73EA16C56CA7003DE64B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		16F4FB5316D52FFB0001253F /* textfield_mask_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = textfield_mask_test.json; path = ../NUSurveyorTests/textfield_mask_test.json; sourceTree = "<group>"; };
+		16F4FB6816D537320001253F /* textfield_mask.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textfield_mask.feature; sourceTree = "<group>"; };
 		16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dependencies_toolbox.feature; sourceTree = "<group>"; };
 		16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dependencyToolbox.json; sourceTree = "<group>"; };
 		3B08678E14FED8C100D43E02 /* group_dependency.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = group_dependency.feature; sourceTree = "<group>"; };
@@ -540,6 +549,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1613E7C516D3DEE50002FA0F /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				1613E7CA16D3DF0A0002FA0F /* NUMaskedInputDelegateObject.h */,
+				1613E7CB16D3DF0A0002FA0F /* NUMaskedInputDelegateObject.m */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
 		3B1022531635B19300DA88ED /* GRMustache */ = {
 			isa = PBXGroup;
 			children = (
@@ -625,6 +643,7 @@
 		3BD52AA614C8B43500AB61E8 /* NUSurveyor */ = {
 			isa = PBXGroup;
 			children = (
+				1613E7C516D3DEE50002FA0F /* Delegates */,
 				3BD52ACD14C8B45100AB61E8 /* Controllers */,
 				3BD52ACC14C8B45000AB61E8 /* Models */,
 				3BD52ACB14C8B44C00AB61E8 /* Views */,
@@ -996,6 +1015,7 @@
 				3BF970E01524F9DC008D3A9A /* mustache.json */,
 				3BDB4BD41536123A00868F97 /* pbj.json */,
 				16F5F2B216C056C5007F0AD9 /* dependencyToolbox.json */,
+				16F4FB5316D52FFB0001253F /* textfield_mask_test.json */,
 				3BB92965166FE58E00C2D5AE /* states-and-dates.json */,
 				67DB49AD14D09454009CC8C3 /* NUSurveyorExample-Info.plist */,
 				67DB49AE14D09454009CC8C3 /* InfoPlist.strings */,
@@ -1025,6 +1045,7 @@
 				3B24DED414EEEA8400E7D04C /* basic_survey.feature */,
 				3B08678E14FED8C100D43E02 /* group_dependency.feature */,
 				16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */,
+				16F4FB6816D537320001253F /* textfield_mask.feature */,
 				3BC61A9615211EF000A8C20C /* complex_responses.feature */,
 				3BF9710D1524FE08008D3A9A /* mustache.feature */,
 				16274D3C16C45E5100DBBAFC /* textFieldResigns.feature */,
@@ -1311,6 +1332,8 @@
 				3BF20D0C15339792008227B2 /* complex_responses.feature in Resources */,
 				3BF20D0D15339792008227B2 /* mustache.json in Resources */,
 				3BDB4BD71536123A00868F97 /* pbj.json in Resources */,
+				16F4FB5B16D532FA0001253F /* textfield_mask_test.json in Resources */,
+				16F4FB6A16D537320001253F /* textfield_mask.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1357,8 @@
 				0030EA3816C458E900694153 /* red-green.json in Resources */,
 				0030EA3E16C459D200694153 /* repeater_conditions.feature in Resources */,
 				167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */,
+				16F4FB5A16D532B10001253F /* textfield_mask_test.json in Resources */,
+				16F4FB6916D537320001253F /* textfield_mask.feature in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1446,6 +1471,7 @@
 				67DB49B614D09454009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
 				3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */,
+				1613E7CF16D3DF2F0002FA0F /* NUMaskedInputDelegateObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1710,9 +1736,15 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "NUSurveyorExample copy2-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRANK_LIBRARY_SEARCH_PATHS)",
+				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-all_load",
 					"-ObjC",
+					"$(FRANK_LDFLAGS)",
 				);
 				PRODUCT_NAME = "KIF NUSurveyorExample";
 				TARGETED_DEVICE_FAMILY = "1,2";

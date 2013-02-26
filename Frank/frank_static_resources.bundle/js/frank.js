@@ -1,5 +1,5 @@
 (function() {
-  var baseUrlFor, cacheBust, displayErrorResponse, fetchOrientation, fetchViewHeirarchy, isErrorResponse, requestSnapshotRefresh, sendMapRequest;
+  var baseUrlFor, cacheBust, displayErrorResponse, fetchOrientation, fetchViewHierarchy, isErrorResponse, requestSnapshotRefresh, sendMapRequest;
 
   cacheBust = function(url) {
     return "" + url + "?" + ((new Date()).getTime());
@@ -17,7 +17,7 @@
     return alert("Frank isn't happy: " + response.reason + "\ndetails: " + response.details);
   };
 
-  fetchViewHeirarchy = function() {
+  fetchViewHierarchy = function() {
     var request;
     return request = $.ajax({
       type: "POST",
@@ -82,7 +82,7 @@
 
   define(function() {
     return {
-      fetchViewHeirarchy: fetchViewHeirarchy,
+      fetchViewHierarchy: fetchViewHierarchy,
       fetchOrientation: fetchOrientation,
       requestSnapshotRefresh: requestSnapshotRefresh,
       baseScreenshotUrl: function() {

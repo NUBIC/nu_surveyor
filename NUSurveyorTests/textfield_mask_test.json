@@ -1,0 +1,41 @@
+{
+    "title": "TextField Mask survey",
+    "uuid": "1d5830f2-d562-445f-a86b-75a5c943d0ab",
+    "sections": [
+        {
+            "title": "Text Field Masking",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "2e587a88-a9ae-489f-b937-79c1388df01f",
+                    "text": "This is a chance to test TextField Masking",
+                    "reference_identifier": "text_field_mask_start",
+                    "data_export_identifier": "i_s",
+                    "answers": [
+                        {
+                            "uuid": "82d9b80f-aed6-4667-b37f-74aa2aa6cb53",
+                            "text": "numeric",
+                            "type": "string",
+                            "input_mask" : "(999) 999-9999",
+                            "placeholder" : "_"
+                        },
+                        {
+                            "uuid": "453b86c5-d273-4d29-a856-6474c5bb6499",
+                            "text": "alpha",
+                            "type": "string",
+                            "input_mask" : "aaaaaaa",
+                            "placeholder" : "*"
+                        },
+                        {
+                            "uuid": "416a8962-d426-45d9-85f1-eac1b237306d",
+                            "text": "any",
+                            "type": "string",
+                            "input_mask" : "******"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}

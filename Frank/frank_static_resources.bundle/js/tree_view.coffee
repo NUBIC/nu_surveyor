@@ -1,4 +1,4 @@
-define ['view_heir_model'],(ViewHeirModel)->
+define ['view_hier_model'],(ViewHierModel)->
 
   TreeNodeView = Backbone.View.extend
     tagName: 'li'
@@ -42,7 +42,7 @@ define ['view_heir_model'],(ViewHeirModel)->
     el: $('#dom-dump > ul')
 
     initialize: ->
-      @model = new ViewHeirModel()
+      @model = new ViewHierModel()
       @model.on 'change', _.bind(@refresh,@)
 
     refresh: ->

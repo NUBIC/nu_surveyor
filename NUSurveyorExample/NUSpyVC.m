@@ -19,7 +19,9 @@
 @property (nonatomic, strong) UIButton *statesAndDates;
 @property (nonatomic, strong) UIButton *animals;
 @property (nonatomic, strong) UIButton *shoes;
+@property (nonatomic, strong) UIButton *dependency;
 @property (nonatomic, strong) UIButton *redGreen;
+@property (nonatomic, strong) UIButton *textFieldMask;
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -28,6 +30,7 @@
 - (void) loadAnimals;
 - (void) loadShoes;
 - (void) loadDependencyToolbox;
+- (void) loadTextfieldMask;
 @end
 
 @implementation NUSpyVC
@@ -142,19 +145,26 @@
   [self.shoes addTarget:self action:@selector(loadShoes) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.shoes];
     
-    self.shoes = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.shoes.frame = CGRectMake(10, 10.0 + 10*36.0 + 10*10.0, 400.0, 36.0);
-    self.shoes.accessibilityLabel = @"loadDependencyToolbox";
-    [self.shoes setTitle:@"Load Dependency Toolbox" forState:UIControlStateNormal];
-    [self.shoes addTarget:self action:@selector(loadDependencyToolbox) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.shoes];
+    self.dependency = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.dependency.frame = CGRectMake(10, 10.0 + 10*36.0 + 10*10.0, 400.0, 36.0);
+    self.dependency.accessibilityLabel = @"loadDependencyToolbox";
+    [self.dependency setTitle:@"Load Dependency Toolbox" forState:UIControlStateNormal];
+    [self.dependency addTarget:self action:@selector(loadDependencyToolbox) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.dependency];
     
     self.redGreen = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.redGreen.frame = CGRectMake(10, 15.0 + 11*36.0 + 11*10.0, 400.0, 36.0);
+    self.redGreen.frame = CGRectMake(10, 12.0 + 11*36.0 + 11*10.0, 400.0, 36.0);
     self.redGreen.accessibilityLabel = @"loadRedGreen";
     [self.redGreen setTitle:@"Load Red Green (Repeater Conditions)" forState:UIControlStateNormal];
     [self.redGreen addTarget:self action:@selector(loadRedGreen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.redGreen];
+    
+    self.textFieldMask = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.textFieldMask.frame = CGRectMake(10, 20.0 + 12*36.0 + 11*10.0, 400.0, 36.0);
+    self.textFieldMask.accessibilityLabel = @"loadTextFieldMask";
+    [self.textFieldMask setTitle:@"Load TextField Mask" forState:UIControlStateNormal];
+    [self.textFieldMask addTarget:self action:@selector(loadTextfieldMask) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.textFieldMask];
 
 }
 - (void) loadKitchenSink{
@@ -194,6 +204,10 @@
 
 - (void) loadRedGreen {
     [self.delegate loadSurvey:@"red-green"];
+}
+
+-(void) loadTextfieldMask {
+    [self.delegate loadSurvey:@"textfield_mask_test"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
