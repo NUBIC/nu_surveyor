@@ -28,7 +28,7 @@
     self = [super init];
     if (self) {
         self.mask = mask;
-        self.placeholder = placeholder;
+        self.placeholder = (placeholder != nil) ? placeholder : @"_";
     }
     return self;    
 }

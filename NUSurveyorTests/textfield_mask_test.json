@@ -16,22 +16,21 @@
                             "uuid": "82d9b80f-aed6-4667-b37f-74aa2aa6cb53",
                             "text": "numeric",
                             "type": "string",
-                            "text_mask" : "(999) 999-9999",
+                            "input_mask" : "(999) 999-9999",
                             "placeholder" : "_"
                         },
                         {
                             "uuid": "453b86c5-d273-4d29-a856-6474c5bb6499",
                             "text": "alpha",
                             "type": "string",
-                            "text_mask" : "aaaaaaa",
+                            "input_mask" : "aaaaaaa",
                             "placeholder" : "*"
                         },
                         {
                             "uuid": "416a8962-d426-45d9-85f1-eac1b237306d",
                             "text": "any",
                             "type": "string",
-                            "text_mask" : "******",
-                            "placeholder" : "?"
+                            "input_mask" : "******"
                         }
                     ]
                 }

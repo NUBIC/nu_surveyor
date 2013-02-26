@@ -12,7 +12,7 @@ Feature:
     Then I should really see "(123) 456-7890" in the textfield marked "NUNoneCell numeric (null) (null) textField"
   When I SLOWLY use the keyboard to fill in the textfield marked "*******" with "12ab34c567def8g90" without hitting done
     Then I should really see "abcdefg" in the textfield marked "NUNoneCell alpha (null) (null) textField"
-  When I SLOWLY use the keyboard to fill in the textfield marked "??????" with "12ab34c567def8g90" without hitting done
+  When I SLOWLY use the keyboard to fill in the textfield marked "______" with "12ab34c567def8g90" without hitting done
     Then I should really see "12ab34" in the textfield marked "NUNoneCell any (null) (null) textField"
 
 

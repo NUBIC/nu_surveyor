@@ -107,8 +107,8 @@
   // input
 	if ([[dataObject objectForKey:@"type"] isEqualToString:@"string"]) {
     // string
-        if ([dataObject valueForKey:@"text_mask"]) {
-            NSString *inputMask = [dataObject valueForKey:@"text_mask"];
+        if ([dataObject valueForKey:@"input_mask"]) {
+            NSString *inputMask = [dataObject valueForKey:@"input_mask"];
             NSString *placeholder = [dataObject valueForKey:@"placeholder"];
             self.maskDelegate = [[NUMaskedInputDelegateObject alloc] initWithMask:inputMask andPlaceholder:placeholder];
             self.textField.delegate = self.maskDelegate;
