@@ -15,4 +15,6 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UILabel *label;
 
++ (CGFloat)cellHeightForQuestion:(NSDictionary *)question contentWidth:(CGFloat)contentWidth;
+
 @end

@@ -11,6 +11,7 @@
 #import "UILabel+NUResize.h"
 #import "NUButton.h"
 #import "NSString+NUAdditions.h"
+#import "NUCell.h"
 
 @interface VisibleSection : NSObject {
     NSString* _uuid;
@@ -416,10 +417,29 @@
   [[self tableView:tableView viewForHeaderInSection:section] bounds].size.height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  NSDictionary *question = [self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:indexPath.section]];
-	NSString *CellIdentifier = [self.class classNameForQuestion:question answer:[[question objectForKey:@"answers"] objectAtIndex:indexPath.row]];
-  return [CellIdentifier isEqualToString:@"NUNoneTextCell"] ? 220.0 : 44.0;
-//  return 44.0;
+    CGFloat height = 44.0f;
+    
+    NSDictionary *questionOrGroup = [self questionOrGroupWithUUID:[self visibleSectionUUIDForSection:indexPath.section]];
+
+    NSDictionary* question = nil;
+    NSString* CellIdentifier = nil;
+    if ([[questionOrGroup objectForKey:@"type"] isEqualToString:@"grid"]) {
+        // Grid questions is within a section and each question has its own row
+        question = [questionOrGroup objectForKey:@"questions"][indexPath.row];
+        CellIdentifier = [self.class classNameForQuestion:questionOrGroup answer:question];
+    } else {
+        question = questionOrGroup;
+        CellIdentifier = [self.class classNameForQuestion:questionOrGroup answer:[[questionOrGroup objectForKey:@"answers"] objectAtIndex:indexPath.row]];
+    }
+
+    id cell = NSClassFromString(CellIdentifier);
+    if ([cell respondsToSelector:@selector(cellHeightForQuestion:contentWidth:)]) {
+        CGFloat calculatedHeight = [cell cellHeightForQuestion:question contentWidth:self.tableView.frame.size.width];
+        height = MAX(calculatedHeight, height);
+    }
+    
+    return height;
+     
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

@@ -22,6 +22,9 @@
 		0071908C15C33A64008CB666 /* NUSectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0071908B15C33A64008CB666 /* NUSectionTVCTest.m */; };
 		0083A90C14F746F5005C1D94 /* NUConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 0083A90B14F746F5005C1D94 /* NUConstants.h */; };
 		008AE62715224CE000F4F14C /* NUDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 008AE62615224CE000F4F14C /* NUDatabaseTest.m */; };
+		00B8755C16D5174100CED547 /* UIColor+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00B8755A16D5174100CED547 /* UIColor+NUAdditions.h */; };
+		00B8755D16D5174100CED547 /* UIColor+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B8755B16D5174100CED547 /* UIColor+NUAdditions.m */; };
+		00B8756316D518A600CED547 /* grid.json in Resources */ = {isa = PBXBuildFile; fileRef = 00B8756216D518A600CED547 /* grid.json */; };
 		00BF07FB159104B500FAA14C /* NSStringTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FA159104B500FAA14C /* NSStringTest.m */; };
 		00BF07FF15910C8A00FAA14C /* NSString+NUAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */; };
 		00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */; };
@@ -232,6 +235,9 @@
 		0083A90B14F746F5005C1D94 /* NUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUConstants.h; sourceTree = "<group>"; };
 		008AE62515224CE000F4F14C /* NUDatabaseTest.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = NUDatabaseTest.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 		008AE62615224CE000F4F14C /* NUDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = NUDatabaseTest.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		00B8755A16D5174100CED547 /* UIColor+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+NUAdditions.h"; path = "Views/UIColor+NUAdditions.h"; sourceTree = "<group>"; };
+		00B8755B16D5174100CED547 /* UIColor+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+NUAdditions.m"; path = "Views/UIColor+NUAdditions.m"; sourceTree = "<group>"; };
+		00B8756216D518A600CED547 /* grid.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = grid.json; sourceTree = "<group>"; };
 		00BF07FA159104B500FAA14C /* NSStringTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringTest.m; sourceTree = "<group>"; };
 		00BF07FD15910C8A00FAA14C /* NSString+NUAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NUAdditions.h"; sourceTree = "<group>"; };
 		00BF07FE15910C8A00FAA14C /* NSString+NUAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NUAdditions.m"; sourceTree = "<group>"; };
@@ -712,6 +718,8 @@
 				3BD52B1A14C8B7A200AB61E8 /* NUMultiButton.m */,
 				3BD52B2314C8B7EF00AB61E8 /* UILabel+NUResize.h */,
 				3BD52B2414C8B7EF00AB61E8 /* UILabel+NUResize.m */,
+				00B8755A16D5174100CED547 /* UIColor+NUAdditions.h */,
+				00B8755B16D5174100CED547 /* UIColor+NUAdditions.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -988,6 +996,7 @@
 		67DB49AC14D09454009CC8C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				00B8756216D518A600CED547 /* grid.json */,
 				0030EA3716C458E900694153 /* red-green.json */,
 				00D61CA716B02E7400565A8B /* shoes.json */,
 				3B5ACC17162F5203007EED1A /* sesame.json */,
@@ -1108,6 +1117,7 @@
 				3B1022791635B1A500DA88ED /* GRMustacheVariableTagHelper.h in Headers */,
 				3B10227A1635B1A500DA88ED /* GRMustacheVariableTagRenderingContext.h in Headers */,
 				3B10227B1635B1A500DA88ED /* GRMustacheVersion.h in Headers */,
+				00B8755C16D5174100CED547 /* UIColor+NUAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1334,6 +1344,7 @@
 				0030EA3816C458E900694153 /* red-green.json in Resources */,
 				0030EA3E16C459D200694153 /* repeater_conditions.feature in Resources */,
 				167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */,
+				00B8756316D518A600CED547 /* grid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1407,6 +1418,7 @@
 				00C84580152263DF003B9213 /* NSDateFormatter+NUAdditions.m in Sources */,
 				3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */,
 				00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */,
+				00B8755D16D5174100CED547 /* UIColor+NUAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
