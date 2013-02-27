@@ -8,6 +8,7 @@
 
 #import "NUGridAnyCell.h"
 #import "UILabel+NUResize.h"
+#import "UIColor+NUAdditions.h"
 
 @interface NUGridAnyCell()
 @property (nonatomic, strong) NSMutableIndexSet *selectedIndexes;
@@ -25,20 +26,15 @@
         // Initialization code
       [self.textLabel setHidden:YES];
       
-      CGFloat fontSize = [UIFont labelFontSize] - 2;
-      UIColor *groupedBackgroundColor = [UIColor colorWithRed:0.969 green:0.969 blue:0.969 alpha:1];
+      CGFloat fontSize = [[self class] fontSize];
+      UIColor *groupedBackgroundColor = [UIColor groupedBackgroundColor];
       self.selectionStyle = UITableViewCellSelectionStyleNone;
       
-      self.label = [[UILabel alloc] init];
+      self.label = [[self class] preTextLabel];
       self.buttons = [[NUMultiButton alloc] init];
       self.postLabel = [[UILabel alloc] init];
       
       // (pre) text
-      [self.label setUpCellLabelWithFontSize:fontSize];
-      self.label.textAlignment = UITextAlignmentRight;
-      //  self.label.backgroundColor = [UIColor redColor];
-      self.label.backgroundColor = groupedBackgroundColor;
-      self.label.autoresizingMask = UIViewAutoresizingNone;
       [self.contentView addSubview:self.label];
       
       // buttons
@@ -149,16 +145,20 @@
   self.selectedIndexes = nil;
   
 }
+
+static CGFloat widthSlice = 88.0f;
+static CGFloat widthPadding = 8.0f;
+static CGFloat heightPadding = 4.0f;
+static CGFloat preTextCellPercentage = 0.15f;
+
 - (void) layoutSubviews {
   [super layoutSubviews];
   
-  CGFloat groupedCellWidth = self.frame.size.width - 88.0;
-  CGFloat widthPadding = 8;
-  CGFloat heightPadding = 4;
+  CGFloat groupedCellWidth = self.frame.size.width - widthSlice;
 	CGFloat height = self.contentView.frame.size.height - heightPadding * 2;
 	CGFloat width = groupedCellWidth - widthPadding * 2;
   
-  self.label.frame = CGRectMake(widthPadding, heightPadding, .15 * width, height);
+  self.label.frame = CGRectMake(widthPadding, heightPadding, preTextCellPercentage * width, height);
   self.buttons.frame = CGRectMake(widthPadding + (.15 * width) + widthPadding, heightPadding, .7 * width -  (2 * widthPadding), height);
   self.postLabel.frame = CGRectMake(widthPadding + (.85 * width), heightPadding, .15 * width, height);
   
@@ -176,4 +176,27 @@
   }
   //  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, buttons.frame.size.height + 2 * heightPadding);
 }
+
++ (CGFloat)cellHeightForQuestion:(NSDictionary *)question contentWidth:(CGFloat)contentWidth {
+    NSString* text = [question objectForKey:@"text"];
+    CGFloat width = (contentWidth - widthSlice - (widthPadding * 2)) * preTextCellPercentage;
+    
+    CGFloat calculatedHeight = [text sizeWithFont:[[self class] preTextLabel].font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap].height + (heightPadding * 2);
+    
+    return calculatedHeight;
+}
+
++ (CGFloat)fontSize {
+    return [UIFont labelFontSize] - 2;
+}
+
++ (UILabel*)preTextLabel {
+    UILabel *label = [UILabel new];
+    [label setUpCellLabelWithFontSize:[self fontSize]];
+    label.textAlignment = UITextAlignmentRight;
+    label.backgroundColor = [UIColor groupedBackgroundColor];
+    label.autoresizingMask = UIViewAutoresizingNone;
+    return label;
+}
+
 @end

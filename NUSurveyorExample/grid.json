@@ -1,0 +1,104 @@
+{
+
+    "title": "Grid Questions",
+    "uuid": "b0ff7bdd-d2ea-4ff2-8d69-8fa4d16c326d",
+    "sections": [
+        {
+            "title": "One",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "b01d44d6-8e6b-42ae-9a17-d06dce08f66e",
+                    "text": "How do you feel about..",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "74e906b0-9333-4ccf-99a6-8bfb8a9e36e2",
+                            "text": "Rainbow suspenders.. the good kind with the glitter and good elastic",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "dccfc9b3-1a37-4844-85b9-eb657f7057ca",
+                                    "text": "Dislike"
+                                },
+                                {
+                                    "uuid": "b970551e-2878-473c-b90f-a6a5d9696fb3",
+                                    "text": "Meh"
+                                },
+                                {
+                                    "uuid": "fc889dcc-8a31-467c-bead-0175dce53e3f",
+                                    "text": "Gimme a pair"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "0e164585-9bf2-4949-8fa8-b8a547b3f484",
+                            "text": "Short",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "ca05551c-8fee-4bc7-bfea-3a8de9664a9c",
+                                    "text": "Dislike"
+                                },
+                                {
+                                    "uuid": "e2c11b34-c8af-4657-8ee5-3ce5b4d90456",
+                                    "text": "Meh"
+                                },
+                                {
+                                    "uuid": "2bb93f39-720f-40a8-a608-e5a504feaf77",
+                                    "text": "Gimme a pair"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "127e6c7d-4c28-4477-a8fc-48a935440e00",
+                    "text": "What colors make..",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "debb50e1-6a96-4d55-83b2-d5d966c13fcb",
+                            "text": "Yellow... Yes, the best color in the world if you are a bumble bee",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "72c40f38-27d0-4b22-bc65-49c00313f029",
+                                    "text": "Red"
+                                },
+                                {
+                                    "uuid": "1633a9ca-c084-49f3-99fd-ce7da8a4044b",
+                                    "text": "Green"
+                                },
+                                {
+                                    "uuid": "17a4bd8a-eda3-4fbc-b938-bc810cc7b3e4",
+                                    "text": "Blue"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "1ee8d64c-2452-49c2-936e-5fc5c5b29694",
+                            "text": "Blue",
+                            "pick": "any",
+                            "answers": [
+                                {
+                                    "uuid": "4e20462d-06c7-41f3-af8d-f47be6565931",
+                                    "text": "Red"
+                                },
+                                {
+                                    "uuid": "7d1a6bdd-f9d5-4577-8108-e4cdf4703849",
+                                    "text": "Green"
+                                },
+                                {
+                                    "uuid": "a26ddf83-a954-4470-8480-1233e19b383c",
+                                    "text": "Blue"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+}
