@@ -17,20 +17,21 @@
                             "text": "numeric",
                             "type": "string",
                             "input_mask" : "(999) 999-9999",
-                            "placeholder" : "_"
+                            "placeholder" : "(___) ___-____"
                         },
                         {
                             "uuid": "453b86c5-d273-4d29-a856-6474c5bb6499",
                             "text": "alpha",
                             "type": "string",
                             "input_mask" : "aaaaaaa",
-                            "placeholder" : "*"
+                            "placeholder" : "???????"
                         },
                         {
                             "uuid": "416a8962-d426-45d9-85f1-eac1b237306d",
                             "text": "any",
                             "type": "string",
-                            "input_mask" : "******"
+                            "input_mask" : "******",
+                            "placeholder" : "YYDDM"
                         }
                     ]
                 }

@@ -10,7 +10,9 @@
 
 @interface NUMaskedInputDelegateObject : NSObject <UITextFieldDelegate>
 
-@property (nonatomic, strong) NSString *temporaryPlaceholder;
+@property (nonatomic, strong, readonly) NSString *mask;
+@property (nonatomic, strong, readonly) NSString *placeholder;
+
 @property (nonatomic, weak) id regularDelegate;
 
 -(instancetype) initWithMask:(NSString *)mask andPlaceholder:(NSString *)placeholder;

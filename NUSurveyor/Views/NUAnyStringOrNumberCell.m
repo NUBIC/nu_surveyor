@@ -122,7 +122,7 @@
             self.maskDelegate = [[NUMaskedInputDelegateObject alloc] initWithMask:inputMask andPlaceholder:placeholder];
             self.textField.delegate = self.maskDelegate;
             self.maskDelegate.regularDelegate = self.sectionTVC;
-            self.textField.placeholder = [self.maskDelegate temporaryPlaceholder];
+            self.textField.placeholder = self.maskDelegate.placeholder;
         }
         else {
             self.textField.delegate = self.sectionTVC;
