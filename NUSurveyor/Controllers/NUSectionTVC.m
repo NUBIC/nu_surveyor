@@ -21,6 +21,9 @@
 @property(nonatomic,retain)NSString* uuid;
 @property(nonatomic,retain)NSNumber* rgid;
 @property(nonatomic,retain)NSString* groupUUID;
+
+-(void)deselectOtherNonExclusiveCellsInSectionOfIndex:(NSIndexPath *)idx;
+
 @end
 
 @implementation VisibleSection
@@ -377,6 +380,7 @@
 	UITableViewCell<NUCell> *cell = (UITableViewCell<NUCell> *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell selectedinTableView:tableView indexPath:indexPath];
 	[self showAndHideDependenciesTriggeredBy:indexPath];
+    [self deselectOtherNonExclusiveCellsInSectionOfIndex:indexPath];
   if (self.cursorView && ![self.cursorView isDescendantOfView:cell]) {
     [self.cursorView resignFirstResponder];
     self.cursorView = nil;
@@ -807,6 +811,58 @@
 
     }
   } 	
+}
+
+#pragma mark - Exclusive
+
+-(void)deselectOtherNonExclusiveCellsInSectionOfIndex:(NSIndexPath *)idx {
+    
+    NUSectionTVC __weak *weakSelf = self;
+    NSDictionary *(^answerDictionaryForIndexPath)(NSIndexPath *) = ^(NSIndexPath *indexPath) {
+        NSString *qid = [[weakSelf idsForIndexPath:indexPath] objectForKey:@"qid"];
+        NSString *aid = [[weakSelf idsForIndexPath:indexPath] objectForKey:@"aid"];
+        NSDictionary *questionDictionary = [weakSelf questionOrGroupWithUUID:qid];
+        NSDictionary *answerDictionary = [[questionDictionary[@"answers"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uuid MATCHES %@", aid]] lastObject];
+        return answerDictionary;
+    };
+    
+    void (^ deselectAnswerAtIndexPath)(NSIndexPath *) = ^(NSIndexPath *deselectedIndexPath) {
+        NSArray *answersMatchingDeselectArray = [self.responseSet responsesForQuestion:[[self idsForIndexPath:deselectedIndexPath] objectForKey:@"qid"] Answer:[[self idsForIndexPath:deselectedIndexPath] objectForKey:@"aid"]];
+        if (answersMatchingDeselectArray.count > 0) {
+            UITableViewCell<NUCell> *cell = (UITableViewCell<NUCell> *)[weakSelf.tableView cellForRowAtIndexPath:deselectedIndexPath];
+            [cell selectedinTableView:weakSelf.tableView indexPath:deselectedIndexPath];
+            [weakSelf showAndHideDependenciesTriggeredBy:deselectedIndexPath];
+            if (weakSelf.cursorView && ![weakSelf.cursorView isDescendantOfView:cell]) {
+                [weakSelf.cursorView resignFirstResponder];
+                weakSelf.cursorView = nil;
+            }
+        }
+    };
+    
+    NSDictionary *answerDictionary = answerDictionaryForIndexPath(idx);
+    if ([answerDictionary[@"exclusive"] isEqualToNumber:@(YES)]) {  //if the cell is exclusive…
+        NSUInteger numberOfCells = [self.tableView numberOfRowsInSection:idx.section];
+        for (int i = 0; i < numberOfCells ; i++) {
+            if (i != idx.row) {
+                NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:i inSection:idx.section];
+                deselectAnswerAtIndexPath(deselectIndexPath); //…deselect other rows
+            }
+        }
+        return;
+    }
+    else {
+        NSUInteger numberOfCells = [self.tableView numberOfRowsInSection:idx.section]; //otherwise, deselect any exclusive rows that are selected
+        for (int i = 0; i < numberOfCells ; i++) {
+            if (i != idx.row) {
+                NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:i inSection:idx.section];
+                NSDictionary *answerDictionary = answerDictionaryForIndexPath(deselectIndexPath);
+                if ([answerDictionary[@"exclusive"] isEqualToNumber:@(YES)]) {
+                    NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:i inSection:idx.section];
+                    deselectAnswerAtIndexPath(deselectIndexPath);
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - UITextFieldDelegate
