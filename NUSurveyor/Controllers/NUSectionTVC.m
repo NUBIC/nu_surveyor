@@ -22,7 +22,6 @@
 @property(nonatomic,retain)NSNumber* rgid;
 @property(nonatomic,retain)NSString* groupUUID;
 
--(void)deselectOtherNonExclusiveCellsInSectionOfIndex:(NSIndexPath *)idx;
 
 @end
 
@@ -65,6 +64,8 @@
 - (void)createRows;
 - (BOOL)isLastSectionInRepeaterGroup:(NSInteger)section;
 - (NSArray*)findVisibleSectionsWithGroupUUID:(NSString*)uuid;
+-(void)deselectOtherNonExclusiveCellsInSectionOfIndex:(NSIndexPath *)idx;
+
 @end
 
 @implementation NUSectionTVC
