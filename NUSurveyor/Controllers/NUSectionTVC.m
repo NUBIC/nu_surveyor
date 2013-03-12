@@ -841,7 +841,7 @@
     };
     
     NSDictionary *answerDictionary = answerDictionaryForIndexPath(idx);
-    if ([answerDictionary[@"exclusive"] isEqualToNumber:@(YES)]) {  //if the cell is exclusive…
+    if ([answerDictionary[@"exclusive"] isEqualToNumber:@(YES)] || [answerDictionary[@"is_exclusive"] isEqualToNumber:@(YES)]) {  //if the cell is exclusive…
         NSUInteger numberOfCells = [self.tableView numberOfRowsInSection:idx.section];
         for (int i = 0; i < numberOfCells ; i++) {
             if (i != idx.row) {
@@ -856,8 +856,8 @@
         for (int i = 0; i < numberOfCells ; i++) {
             if (i != idx.row) {
                 NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:i inSection:idx.section];
-                NSDictionary *answerDictionary = answerDictionaryForIndexPath(deselectIndexPath);
-                if ([answerDictionary[@"exclusive"] isEqualToNumber:@(YES)]) {
+                NSDictionary *subAnswerDictionary = answerDictionaryForIndexPath(deselectIndexPath);
+                if ([subAnswerDictionary[@"exclusive"] isEqualToNumber:@(YES)] || [subAnswerDictionary[@"is_exclusive"] isEqualToNumber:@(YES)]) {
                     NSIndexPath *deselectIndexPath = [NSIndexPath indexPathForRow:i inSection:idx.section];
                     deselectAnswerAtIndexPath(deselectIndexPath);
                 }
