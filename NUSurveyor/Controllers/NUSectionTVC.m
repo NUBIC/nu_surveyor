@@ -822,6 +822,7 @@
     NSDictionary *(^answerDictionaryForIndexPath)(NSIndexPath *) = ^(NSIndexPath *indexPath) {
         NSString *qid = [[weakSelf idsForIndexPath:indexPath] objectForKey:@"qid"];
         NSString *aid = [[weakSelf idsForIndexPath:indexPath] objectForKey:@"aid"];
+        if (aid == nil || qid == nil) { return @{}; }
         NSDictionary *questionDictionary = [weakSelf questionOrGroupWithUUID:qid];
         NSDictionary *answerDictionary = [[questionDictionary[@"answers"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"uuid MATCHES %@", aid]] lastObject];
         return answerDictionary;
