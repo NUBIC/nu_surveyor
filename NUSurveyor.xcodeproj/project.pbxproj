@@ -33,6 +33,9 @@
 		00D61CA816B02E7400565A8B /* shoes.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D61CA716B02E7400565A8B /* shoes.json */; };
 		00DD775516A74CBA00D78EBE /* animals.json in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775416A74CBA00D78EBE /* animals.json */; };
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
+		160549811704DF7800EEC46F /* NUMultiLineControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 160549801704DF7800EEC46F /* NUMultiLineControl.m */; };
+		160549881704E10900EEC46F /* NUMultiLineSegment.h in Headers */ = {isa = PBXBuildFile; fileRef = 160549861704E10900EEC46F /* NUMultiLineSegment.h */; };
+		160549891704E10900EEC46F /* NUMultiLineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 160549871704E10900EEC46F /* NUMultiLineSegment.m */; };
 		167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 167C73EA16C56CA7003DE64B /* Default-568h@2x.png */; };
 		16F5F2AB16C02041007F0AD9 /* SectionTVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D1F15339930008227B2 /* SectionTVCTest.m */; };
 		16F5F2AC16C02044007F0AD9 /* KIFTestScenario+SectionAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF20D25153399DA008227B2 /* KIFTestScenario+SectionAdditions.m */; };
@@ -247,6 +250,10 @@
 		00D61CA716B02E7400565A8B /* shoes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shoes.json; sourceTree = "<group>"; };
 		00DD775416A74CBA00D78EBE /* animals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animals.json; sourceTree = "<group>"; };
 		00DD775616A74E1900D78EBE /* complex_dependencies.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_dependencies.feature; sourceTree = "<group>"; };
+		1605497F1704DF7800EEC46F /* NUMultiLineControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUMultiLineControl.h; sourceTree = "<group>"; };
+		160549801704DF7800EEC46F /* NUMultiLineControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUMultiLineControl.m; sourceTree = "<group>"; };
+		160549861704E10900EEC46F /* NUMultiLineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NUMultiLineSegment.h; sourceTree = "<group>"; };
+		160549871704E10900EEC46F /* NUMultiLineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NUMultiLineSegment.m; sourceTree = "<group>"; };
 		16274D3C16C45E5100DBBAFC /* textFieldResigns.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = textFieldResigns.feature; sourceTree = "<group>"; };
 		1673249816E7C4CE00D982D5 /* exclusive_answer.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exclusive_answer.feature; sourceTree = "<group>"; };
 		167C73EA16C56CA7003DE64B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -713,6 +720,10 @@
 				67DB499514D0933E009CC8C3 /* NUGridAnyCell.m */,
 				67DB499614D0933E009CC8C3 /* NUGridOneCell.h */,
 				67DB499714D0933E009CC8C3 /* NUGridOneCell.m */,
+				1605497F1704DF7800EEC46F /* NUMultiLineControl.h */,
+				160549801704DF7800EEC46F /* NUMultiLineControl.m */,
+				160549861704E10900EEC46F /* NUMultiLineSegment.h */,
+				160549871704E10900EEC46F /* NUMultiLineSegment.m */,
 				3BD52B0F14C8B74800AB61E8 /* NUButton.h */,
 				3BD52B1014C8B74800AB61E8 /* NUButton.m */,
 				3BD52B1914C8B7A200AB61E8 /* NUMultiButton.h */,
@@ -1120,6 +1131,7 @@
 				3B10227A1635B1A500DA88ED /* GRMustacheVariableTagRenderingContext.h in Headers */,
 				3B10227B1635B1A500DA88ED /* GRMustacheVersion.h in Headers */,
 				00B8755C16D5174100CED547 /* UIColor+NUAdditions.h in Headers */,
+				160549881704E10900EEC46F /* NUMultiLineSegment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1421,6 +1433,7 @@
 				3BF970E61524FA07008D3A9A /* JSONKit.m in Sources */,
 				00BF080015910C8A00FAA14C /* NSString+NUAdditions.m in Sources */,
 				00B8755D16D5174100CED547 /* UIColor+NUAdditions.m in Sources */,
+				160549891704E10900EEC46F /* NUMultiLineSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1460,6 +1473,7 @@
 				67DB49B614D09454009CC8C3 /* NUAppDelegate.m in Sources */,
 				67DB49D414D09583009CC8C3 /* NUSurveyorExample.xcdatamodel in Sources */,
 				3BC61A8C15210AB400A8C20C /* NUSpyVC.m in Sources */,
+				160549811704DF7800EEC46F /* NUMultiLineControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

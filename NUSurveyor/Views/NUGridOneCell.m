@@ -10,6 +10,8 @@
 #import "UILabel+NUResize.h"
 #import "UIColor+NUAdditions.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface NUGridOneCell()
 @property (nonatomic, assign) BOOL configuringSegments;
 - (void) resetContent;
@@ -31,7 +33,7 @@
       self.selectionStyle = UITableViewCellSelectionStyleNone;
       
       self.label = [[self class] preTextLabel];
-      self.segments = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: nil]];
+      self.segments = [[NUMultiLineControl alloc] init];
       self.postLabel = [[UILabel alloc] init];
       
       // (pre) text
@@ -42,7 +44,6 @@
       [self.segments addTarget:self
                         action:@selector(segmentChanged:)
               forControlEvents:UIControlEventValueChanged];
-      self.segments.apportionsSegmentWidthsByContent = YES;
       
       // (post) text
       [self.postLabel setUpCellLabelWithFontSize:fontSize];
@@ -85,7 +86,7 @@
   
   // input
   for (NSDictionary *answer in self.answers) {
-    [self.segments insertSegmentWithTitle:[answer objectForKey:@"text"] atIndex:[self.segments numberOfSegments] animated:NO];
+    [self.segments insertSegmentWithTitle:[answer objectForKey:@"text"] atIndex:[self.segments numberOfSegments]];
   }
   // look up existing response, select corresponding segment
   for (int i = 0; i < [self.answers count]; i++) {
@@ -146,18 +147,24 @@ static CGFloat preTextCellPercentage = 0.15f;
   self.postLabel.frame = CGRectMake(widthPadding + (.85 * width), heightPadding, .15 * width, height);
   
   if ([self.label isHidden]) {
-    self.segments.frame = CGRectMake(self.label.frame.origin.x, 
-                                self.label.frame.origin.y, 
-                                self.segments.frame.origin.x - self.label.frame.origin.x + self.segments.frame.size.width, 
-                                self.segments.frame.size.height);
+    self.segments.frame = CGRectIntegral(CGRectMake(self.label.frame.origin.x,
+                                                    self.label.frame.origin.y, 
+                                                    self.segments.frame.origin.x - self.label.frame.origin.x + self.segments.frame.size.width, 
+                                                    self.segments.frame.size.height));
   }
   if ([self.postLabel isHidden]) {
-    self.segments.frame = CGRectMake(self.segments.frame.origin.x, 
-                                self.segments.frame.origin.y, 
-                                self.postLabel.frame.size.width + self.segments.frame.size.width, 
-                                self.segments.frame.size.height);
+    self.segments.frame = CGRectIntegral(CGRectMake(self.segments.frame.origin.x,
+                                                    self.segments.frame.origin.y,
+                                                    self.postLabel.frame.size.width + self.segments.frame.size.width, 
+                                                    self.segments.frame.size.height));
   }
-  
+    CGFloat segmentHeight = [NUMultiLineControl heightForAnswers:[self.answers valueForKeyPath:@"text"]  forSegmentControlWidth:(self.bounds.size.width + widthPadding - 90.0f)/[self.answers count]];
+    if (self.bounds.size.height < segmentHeight) {
+        self.bounds = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, segmentHeight);
+        
+    }
+    self.segments.center = CGPointMake(ceil(self.segments.center.x), ceil(CGRectGetMidY(self.bounds)));
+    [self.segments layoutSubviews];
 }
 - (void)segmentChanged:(UISegmentedControl *)segmentedControl {
   if (self.configuringSegments) {
@@ -182,7 +189,14 @@ static CGFloat preTextCellPercentage = 0.15f;
     CGFloat width = (contentWidth - widthSlice - (widthPadding * 2)) * preTextCellPercentage;
     
     CGFloat calculatedHeight = [text sizeWithFont:[[self class] preTextLabel].font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap].height + (heightPadding * 2);
+
+    NSArray *answerTextArray = [[question objectForKey:@"answers"] valueForKeyPath:@"text"];
+    CGFloat answerWidth = ([question objectForKey:@"post_text"]) ? ((contentWidth - 89.0f) - ((width * 2) + (widthPadding * 4))) : ((contentWidth - 90.0f) - ((width * 1) + (widthPadding * 4))) ;
+    answerWidth = answerWidth/[answerTextArray count];
     
+    CGFloat answerHeight = ([NUMultiLineControl heightForAnswers:answerTextArray forSegmentControlWidth:answerWidth] + heightPadding * 2);
+    calculatedHeight = (calculatedHeight < answerHeight) ? answerHeight : calculatedHeight;
+
     return calculatedHeight;
 }
 
