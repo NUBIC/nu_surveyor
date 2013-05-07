@@ -1,20 +1,8 @@
 (function() {
-  var RELOAD_INTERVAL, guessAtDeviceFamilyBasedOnViewDump,
+  var RELOAD_INTERVAL,
     __slice = [].slice;
 
   RELOAD_INTERVAL = 500;
-
-  guessAtDeviceFamilyBasedOnViewDump = function(viewHeir) {
-    switch (viewHeir.accessibilityFrame.size.height) {
-      case 1024:
-        return 'ipad';
-      case 480:
-        return 'iphone';
-      default:
-        console.warn("couldn't recognize device family based on screen height of " + data.accessibilityFrame.size.height + "px");
-        return 'unknown';
-    }
-  };
 
   define(['frank'], function(frank) {
     var createController;
@@ -116,12 +104,14 @@
       reload = function() {
         var deferable;
         deferable = $.Deferred();
-        $.when(frank.fetchViewHeirarchy(), frank.fetchOrientation()).done(function(_arg1, orientation) {
-          var accessibleViews, deviceFamily, rawHeir;
-          rawHeir = _arg1[0];
-          deviceFamily = guessAtDeviceFamilyBasedOnViewDump(rawHeir);
-          treeView.model.resetViewHeir(rawHeir);
-          ersatzView.model.resetViews(treeView.model.get('allViews'), deviceFamily, orientation);
+        $.when(frank.fetchViewHierarchy(), frank.fetchResolution(), frank.fetchOrientation(), frank.fetchDevice()).done(function(_arg1, resolution, orientation, deviceFamily) {
+          var accessibleViews, rawHier;
+          rawHier = _arg1[0];
+          if (deviceFamily == 'mac') {
+            $liveButton.hide();
+          }
+          treeView.model.resetViewHier(rawHier);
+          ersatzView.model.resetViews(treeView.model.get('allViews'), resolution, deviceFamily, orientation);
           accessibleViews = treeView.model.getAccessibleViews();
           accessibleViewsView.collection.reset(accessibleViews);
           ersatzView.render();

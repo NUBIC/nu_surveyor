@@ -1,6 +1,6 @@
 (function() {
 
-  define(['view_heir_model'], function(ViewHeirModel) {
+  define(['view_hier_model'], function(ViewHierModel) {
     var TreeNodeView, TreeView;
     TreeNodeView = Backbone.View.extend({
       tagName: 'li',
@@ -44,7 +44,7 @@
     return TreeView = Backbone.View.extend({
       el: $('#dom-dump > ul'),
       initialize: function() {
-        this.model = new ViewHeirModel();
+        this.model = new ViewHierModel();
         return this.model.on('change', _.bind(this.refresh, this));
       },
       refresh: function() {

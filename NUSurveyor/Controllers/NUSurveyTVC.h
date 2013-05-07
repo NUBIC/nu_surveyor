@@ -28,4 +28,5 @@
 - (void) nextSection;
 - (void) prevSection;
 - (void) surveyDone;
+-(void) surveySelectedLanguage:(NSString *)localeString;
 @end

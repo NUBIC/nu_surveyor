@@ -126,3 +126,8 @@ Then /^the label "(.*?)" should have a height of "(.*?)"$/ do |label_selector, e
   frame = frankly_map( "label marked:'#{label_selector}' index:0", 'frame' ).first
   frame["size"]["height"].should == expected_height.to_i
 end
+
+When(/^I touch in Done$/) do
+  touch "view:'UINavigationButton' marked:'Done'"
+end
+

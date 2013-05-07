@@ -54,4 +54,8 @@
 
 // Mustache
 - (NSString *) renderMustacheFromString:(NSString *)string;
+
+//Language
+-(void)setTranslationsArray:(NSArray *)translationsArray forSectionWithUUID:(NSString *)sectionUUID withCurrentLocale:(NSString *)localeString ;
+
 @end

@@ -18,7 +18,8 @@ define ['experiment_bar_model','dropdown_control'], (ExperimentBarModel,Dropdown
       @engineDropdownView.setElement(@$('.selector-engine'))
       @engineDropdownView.collection.reset([
         {name: 'shelley_compat', text:'Shelley'},
-        {name: 'uiquery', text:'UIQuery'}
+        {name: 'uiquery', text:'UIQuery'},
+        {name: 'calabash_uispec', text:'Calabash'}
       ])
       @engineDropdownView.collection.at(0).select()
       @engineDropdownView.collection.on 'option-clicked', (option)=> 

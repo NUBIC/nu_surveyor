@@ -21,6 +21,8 @@
 @property (nonatomic, strong) UIButton *shoes;
 @property (nonatomic, strong) UIButton *redGreen;
 @property (nonatomic, strong) UIButton *grid;
+@property (nonatomic, strong) UIButton *translations;
+
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -30,6 +32,7 @@
 - (void) loadShoes;
 - (void) loadDependencyToolbox;
 - (void) loadGrid;
+-(void) loadTranslations;
 @end
 
 @implementation NUSpyVC
@@ -165,6 +168,13 @@
     [self.grid setTitle:@"Load Grid" forState:UIControlStateNormal];
     [self.grid addTarget:self action:@selector(loadGrid) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.grid];
+    
+    self.translations = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.translations.frame = CGRectMake(10, 20.0 + 13*36.0 + 12*10.0, 400.0, 36.0);
+    self.translations.accessibilityLabel = @"loadTranslations";
+    [self.translations setTitle:@"Load Translations" forState:UIControlStateNormal];
+    [self.translations addTarget:self action:@selector(loadTranslations) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.translations];
 
 }
 - (void) loadKitchenSink{
@@ -208,6 +218,10 @@
 
 - (void) loadGrid {
     [self.delegate loadSurvey:@"grid"];
+}
+
+-(void) loadTranslations {
+    [self.delegate loadSurvey:@"translation"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

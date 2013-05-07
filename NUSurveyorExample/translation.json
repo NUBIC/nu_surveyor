@@ -1,0 +1,521 @@
+{
+    "title": "Translation Survey",
+    "uuid": "0F2BF47E-53A4-4106-A492-27C365A56969",
+    "translations": [
+        {
+            "locale": "fr",
+            "localizedName": "Français",
+            "uuid": "016718D0-2BEC-40DE-99DF-A6ADC37530BB",
+            "title": "Enquête sur la traduction",
+            "sections": [
+                {
+                    "title": "Question avec traduction",
+                    "display_order": 0,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "CDA0C007-E3B4-405E-B16C-642352CFDF59",
+                            "text": "Ceci est un exemple d'une question à la traduction",
+                            "type": "label"
+                        },
+                        {
+                            "uuid": "A2838C1A-9951-44DE-B456-1F0D4695BAB6",
+                            "text": "Quelle est votre couleur préférée?",
+                            "answers": [
+                                {
+                                    "uuid": "e2db4c34-928c-4a00-9df9-db264b102b17",
+                                    "text": "rouge"
+                                },
+                                {
+                                    "uuid": "985a37b5-fe57-4799-b1ee-8e3c7a9da27d",
+                                    "text": "bleu"
+                                },
+                                {
+                                    "uuid": "48b3052d-1e27-4540-a180-852fbfcaa388",
+                                    "text": "vert"
+                                },
+                                {
+                                    "uuid": "f03d7582-01b7-4562-828e-619794f152ce",
+                                    "text": "jaune"
+                                },
+                                {
+                                    "uuid": "e97b7511-1e1b-432c-86ae-8237130c9026",
+                                    "text": "autre"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "0c64dc71-ebc0-42fd-8fe0-6c1307201a62",
+                            "text": "S'il vous plaît expliquer pourquoi vous n'aimez pas ce langage de programmation",
+                            "reference_identifier": "2a",
+                            "answers": [
+                                {
+                                    "uuid": "34f25c20-763a-4f3c-bd72-55973444ef90",
+                                    "help_text": "S'il vous plaît donner une explication pour chaque langue que vous n'aimez pas",
+                                    "text": "explication",
+                                    "type": "text",
+                                    "reference_identifier": "1"
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid": "E46AF61E-35EC-4023-94DD-18DB325191EB"
+                },
+                {
+                    "title": "Section secondaire",
+                    "display_order": 1,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "88189C82-8A52-4D0E-A59F-1565A17A6F6A",
+                            "text": "Il s'agit de s'assurer que d'autres sections comportent",
+                            "type": "label"
+                        },
+                        {
+                            "uuid": "365736DF-4CF5-4527-B3EF-6701929AAD0E",
+                            "text": "Quelle est votre voiture préférée prendre?",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "11F12973-36F2-49CF-85D8-1341C5010852",
+                                    "text": "le BWM"
+                                },
+                                {
+                                    "uuid": "15068F0A-8919-47EF-9600-3FC4AD88F3D3",
+                                    "text": "le Audi"
+                                },
+                                {
+                                    "uuid": "76BBFFD7-1F2C-4FD6-9817-5DD7D9F17175",
+                                    "text": "le Volkswagen"
+                                },
+                                {
+                                    "uuid": "8B1859F3-403C-46C5-A7F2-C6F14D57A298",
+                                    "text": "le Mercedes"
+                                },
+                                {
+                                    "uuid": "D21D4267-A0E7-4A01-8097-ACAE4D40865A",
+                                    "text": "Autre"
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid": "749D81B3-4CEE-4792-B6B2-3E97411F3F79"
+                },
+                {
+                    "title": "Grille",
+                    "display_order": 3,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "b01d44d6-8e6b-42ae-9a17-d06dce08f66e",
+                            "text": "Comment vous sentez-vous ...",
+                            "type": "grid",
+                            "questions": [
+                                {
+                                    "uuid": "74e906b0-9333-4ccf-99a6-8bfb8a9e36e2",
+                                    "text": "Bretelles arc .. le bon type avec les paillettes et le bon élastique",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "dccfc9b3-1a37-4844-85b9-eb657f7057ca",
+                                            "text": "Dislike"
+                                        },
+                                        {
+                                            "uuid": "b970551e-2878-473c-b90f-a6a5d9696fb3",
+                                            "text": "Le Meh"
+                                        },
+                                        {
+                                            "uuid": "fc889dcc-8a31-467c-bead-0175dce53e3f",
+                                            "text": "Donne-moi une paire"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "uuid": "0e164585-9bf2-4949-8fa8-b8a547b3f484",
+                                    "text": "Short",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "ca05551c-8fee-4bc7-bfea-3a8de9664a9c",
+                                            "text": "Dislike"
+                                        },
+                                        {
+                                            "uuid": "e2c11b34-c8af-4657-8ee5-3ce5b4d90456",
+                                            "text": "Le Meh"
+                                        },
+                                        {
+                                            "uuid": "2bb93f39-720f-40a8-a608-e5a504feaf77",
+                                            "text": "Donne-moi une paire"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
+                }                
+            ]
+        },
+        {
+            "locale": "es",
+            "localizedName": "Espanol",
+            "uuid": "966B584B-0055-4F4A-B58C-AF8306A5495C",
+            "title": "Encuesta Traducción",
+            "sections": [
+                {
+                    "title": "Pregunta con la traducción",
+                    "display_order": 0,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "CDA0C007-E3B4-405E-B16C-642352CFDF59",
+                            "text": "Este es un ejemplo de una pregunta con la traducción",
+                            "type": "label"
+                        },
+                        {
+                            "uuid": "A2838C1A-9951-44DE-B456-1F0D4695BAB6",
+                            "text": "¿Cuál es tu color favorito?",
+                            "answers": [
+                                {
+                                    "uuid": "e2db4c34-928c-4a00-9df9-db264b102b17",
+                                    "text": "rojo"
+                                },
+                                {
+                                    "uuid": "985a37b5-fe57-4799-b1ee-8e3c7a9da27d",
+                                    "text": "azul"
+                                },
+                                {
+                                    "uuid": "48b3052d-1e27-4540-a180-852fbfcaa388",
+                                    "text": "verde"
+                                },
+                                {
+                                    "uuid": "f03d7582-01b7-4562-828e-619794f152ce",
+                                    "text": "amarillo"
+                                },
+                                {
+                                    "uuid": "e97b7511-1e1b-432c-86ae-8237130c9026",
+                                    "text": "otro"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "0c64dc71-ebc0-42fd-8fe0-6c1307201a62",
+                            "text": "Por favor, explique por qué no te gusta este lenguaje de programación",
+                            "reference_identifier": "2a",
+                            "answers": [
+                                {
+                                    "uuid": "34f25c20-763a-4f3c-bd72-55973444ef90",
+                                    "help_text": "Por favor dé una explicación para cada idioma que no le gusta",
+                                    "text": "explicación",
+                                    "type": "text",
+                                    "reference_identifier": "1"
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid": "E46AF61E-35EC-4023-94DD-18DB325191EB"
+                },
+                {
+                    "title": "Sección Secundaria",
+                    "display_order": 1,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "88189C82-8A52-4D0E-A59F-1565A17A6F6A",
+                            "text": "Esto es para asegurarse de que otras secciones se comportan",
+                            "type": "label"
+                        },
+                        {
+                            "uuid": "365736DF-4CF5-4527-B3EF-6701929AAD0E",
+                            "text": "¿Cuál es tu coche favorito hacen?",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "11F12973-36F2-49CF-85D8-1341C5010852",
+                                    "text": "el BWM"
+                                },
+                                {
+                                    "uuid": "15068F0A-8919-47EF-9600-3FC4AD88F3D3",
+                                    "text": "el Audi"
+                                },
+                                {
+                                    "uuid": "76BBFFD7-1F2C-4FD6-9817-5DD7D9F17175",
+                                    "text": "el Volkswagen"
+                                },
+                                {
+                                    "uuid": "8B1859F3-403C-46C5-A7F2-C6F14D57A298",
+                                    "text": "el Mercedes"
+                                },
+                                {
+                                    "uuid": "D21D4267-A0E7-4A01-8097-ACAE4D40865A",
+                                    "text": "Otro"
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid": "749D81B3-4CEE-4792-B6B2-3E97411F3F79"
+                },
+                {
+                    "title": "Cuadrícula",
+                    "display_order": 3,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "b01d44d6-8e6b-42ae-9a17-d06dce08f66e",
+                            "text": "¿Cómo te sientes acerca de…",
+                            "type": "grid",
+                            "questions": [
+                                {
+                                    "uuid": "74e906b0-9333-4ccf-99a6-8bfb8a9e36e2",
+                                    "text": "Rainbow tirantes… el buen tipo con el brillo y el buen elástico",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "dccfc9b3-1a37-4844-85b9-eb657f7057ca",
+                                            "text": "Aversión"
+                                        },
+                                        {
+                                            "uuid": "b970551e-2878-473c-b90f-a6a5d9696fb3",
+                                            "text": "El Meh"
+                                        },
+                                        {
+                                            "uuid": "fc889dcc-8a31-467c-bead-0175dce53e3f",
+                                            "text": "Dame un par"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "uuid": "0e164585-9bf2-4949-8fa8-b8a547b3f484",
+                                    "text": "Short",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "ca05551c-8fee-4bc7-bfea-3a8de9664a9c",
+                                            "text": "Aversión"
+                                        },
+                                        {
+                                            "uuid": "e2c11b34-c8af-4657-8ee5-3ce5b4d90456",
+                                            "text": "El Meh"
+                                        },
+                                        {
+                                            "uuid": "2bb93f39-720f-40a8-a608-e5a504feaf77",
+                                            "text": "Dame un par"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
+                }
+            ]
+        },
+        {
+            "locale": "en",
+            "localizedName": "English",
+            "uuid": "3E7CA3BF-0718-4966-AFC9-BDB36680EE8A"
+        }
+    ],
+    "sections": [
+        {
+            "title": "Question with Translation",
+            "display_order": 0,
+            "questions_and_groups": [
+                {
+                    "uuid": "CDA0C007-E3B4-405E-B16C-642352CFDF59",
+                    "text": "This is an example of a question with translation",
+                    "type": "label"
+                },
+                {
+                    "uuid": "A2838C1A-9951-44DE-B456-1F0D4695BAB6",
+                    "text": "What is your favorite color?",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "e2db4c34-928c-4a00-9df9-db264b102b17",
+                            "text": "red"
+                        },
+                        {
+                            "uuid": "985a37b5-fe57-4799-b1ee-8e3c7a9da27d",
+                            "text": "blue"
+                        },
+                        {
+                            "uuid": "48b3052d-1e27-4540-a180-852fbfcaa388",
+                            "text": "green"
+                        },
+                        {
+                            "uuid": "f03d7582-01b7-4562-828e-619794f152ce",
+                            "text": "yellow"
+                        },
+                        {
+                            "uuid": "e97b7511-1e1b-432c-86ae-8237130c9026",
+                            "text": "Other"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                    "text": "Choose the programming language you don't like",
+                    "reference_identifier": "2",
+                    "pick": "any",
+                    "answers": [
+                        {
+                            "uuid": "e4d53deb-51ed-45ad-a81c-cdd755b67b7f",
+                            "text": "Ruby",
+                            "reference_identifier": "1"
+                        },
+                        {
+                            "uuid": "2091cf07-f4ec-457b-a745-13a25e9b67fd",
+                            "text": "Objective-C",
+                            "reference_identifier": "2"
+                        },
+                        {
+                            "uuid": "f23a47ff-4a86-4c84-acf2-88605e5360ac",
+                            "text": "Python",
+                            "reference_identifier": "3"
+                        },
+                        {
+                            "uuid": "ca185647-d8f0-4517-9333-acf432dce2ae",
+                            "text": "Java",
+                            "reference_identifier": "4"
+                        },
+                        {
+                            "uuid": "30e79d17-e453-46b9-931b-1db5aae7621d",
+                            "exclusive": true,
+                            "text": "Omit"
+                        }
+                    ]
+                },
+                {
+                    "uuid": "0c64dc71-ebc0-42fd-8fe0-6c1307201a62",
+                    "text": "Please explain why you don't like this programming language",
+                    "reference_identifier": "2a",
+                    "answers": [
+                        {
+                            "uuid": "34f25c20-763a-4f3c-bd72-55973444ef90",
+                            "help_text": "Please give an explanation for each language you don't like",
+                            "text": "explanation",
+                            "type": "text",
+                            "reference_identifier": "1"
+                        }
+                    ],
+                    "dependency": {
+                        "rule": "A or B or C or D",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "e4d53deb-51ed-45ad-a81c-cdd755b67b7f"
+                            },
+                            {
+                                "rule_key": "B",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "2091cf07-f4ec-457b-a745-13a25e9b67fd"
+                            },
+                            {
+                                "rule_key": "C",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "f23a47ff-4a86-4c84-acf2-88605e5360ac"
+                            },
+                            {
+                                "rule_key": "D",
+                                "operator": "==",
+                                "question": "5f319f92-1916-4d44-8a45-ef079233e20b",
+                                "answer": "ca185647-d8f0-4517-9333-acf432dce2ae"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "uuid": "E46AF61E-35EC-4023-94DD-18DB325191EB"
+        },
+        {
+            "title": "Secondary Section",
+            "display_order": 1,
+            "questions_and_groups": [
+                {
+                    "uuid": "88189C82-8A52-4D0E-A59F-1565A17A6F6A",
+                    "text": "This is to make sure that other sections behave",
+                    "type": "label"
+                },
+                {
+                    "uuid": "365736DF-4CF5-4527-B3EF-6701929AAD0E",
+                    "text": "What is your favorite car make?",
+                    "pick": "one",
+                    "answers": [
+                        {
+                            "uuid": "11F12973-36F2-49CF-85D8-1341C5010852",
+                            "text": "BWM"
+                        },
+                        {
+                            "uuid": "15068F0A-8919-47EF-9600-3FC4AD88F3D3",
+                            "text": "Audi"
+                        },
+                        {
+                            "uuid": "76BBFFD7-1F2C-4FD6-9817-5DD7D9F17175",
+                            "text": "Volkswagen"
+                        },
+                        {
+                            "uuid": "8B1859F3-403C-46C5-A7F2-C6F14D57A298",
+                            "text": "Mercedes"
+                        },
+                        {
+                            "uuid": "D21D4267-A0E7-4A01-8097-ACAE4D40865A",
+                            "text": "Other"
+                        }
+                    ]
+                }
+            ],
+            "uuid": "749D81B3-4CEE-4792-B6B2-3E97411F3F79"
+        },
+        {
+            "title": "Grid",
+            "display_order": 3,
+            "questions_and_groups": [
+                {
+                    "uuid": "b01d44d6-8e6b-42ae-9a17-d06dce08f66e",
+                    "text": "How do you feel about..",
+                    "type": "grid",
+                    "questions": [
+                        {
+                            "uuid": "74e906b0-9333-4ccf-99a6-8bfb8a9e36e2",
+                            "text": "Rainbow suspenders.. the good kind with the glitter and good elastic",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "dccfc9b3-1a37-4844-85b9-eb657f7057ca",
+                                    "text": "Dislike"
+                                },
+                                {
+                                    "uuid": "b970551e-2878-473c-b90f-a6a5d9696fb3",
+                                    "text": "Meh"
+                                },
+                                {
+                                    "uuid": "fc889dcc-8a31-467c-bead-0175dce53e3f",
+                                    "text": "Gimme a pair"
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "0e164585-9bf2-4949-8fa8-b8a547b3f484",
+                            "text": "Short",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "ca05551c-8fee-4bc7-bfea-3a8de9664a9c",
+                                    "text": "Dislike"
+                                },
+                                {
+                                    "uuid": "e2c11b34-c8af-4657-8ee5-3ce5b4d90456",
+                                    "text": "Meh"
+                                },
+                                {
+                                    "uuid": "2bb93f39-720f-40a8-a608-e5a504feaf77",
+                                    "text": "Gimme a pair"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
+        }
+    ]
+}
