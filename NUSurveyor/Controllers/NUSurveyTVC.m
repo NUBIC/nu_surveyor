@@ -267,6 +267,7 @@
     self.sectionTVC.title = translatedTitle;
     self.currentLocale = localeString;
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentSection inSection:0] animated:NO scrollPosition:0];
 }
 
 -(NSArray *)translatedSectionTitleArray {

@@ -19,6 +19,7 @@
 - (void)prevSection;
 - (void)nextSection;
 - (void)surveyDone;
+-(void) surveySelectedLanguage:(NSString *)localeString;
 @end
 
 @interface NUSectionTVC : UITableViewController <UIPopoverControllerDelegate, 

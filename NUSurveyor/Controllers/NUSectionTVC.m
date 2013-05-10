@@ -573,7 +573,8 @@
     y+= height + VerticalMargin;
   }
   UILabel *section_title = [[UILabel alloc] initWithFrame:CGRectMake(HorizontalMargin, y, self.tableView.bounds.size.width - (2 * HorizontalMargin), 22.0)];
-  section_title.text = [self.detailItem valueForKey:@"title"];
+    
+    section_title.text = (self.selectedLanguageDictionary[@"title"]) ? self.selectedLanguageDictionary[@"title"] : [self.detailItem valueForKey:@"title"];
   [section_title setUpMultiLineVerticalResizeWithFont:[UIFont systemFontOfSize:22.0]];
   section_title.backgroundColor = isGrouped ? [UIColor clearColor] : [UIColor colorWithRed:0.46 green:0.52 blue:0.56 alpha:0.5];
   y += section_title.frame.size.height + VerticalMargin;
@@ -840,10 +841,7 @@
 
 -(void)refreshSectionWithTranslation:(NSDictionary *)translationDictionary {
     self.selectedLanguageDictionary = translationDictionary;
-    UINavigationController *surveyNavigationController = [[self splitViewController] viewControllers][0];
-    if ([surveyNavigationController.visibleViewController respondsToSelector:@selector(surveySelectedLanguage:)]) {
-        [[surveyNavigationController visibleViewController] performSelector:@selector(surveySelectedLanguage:) withObject:self.selectedLanguageDictionary[@"locale"]];
-    }
+    [self.delegate surveySelectedLanguage:self.selectedLanguageDictionary[@"locale"]];
     [self createRows];
 }
 
