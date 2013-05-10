@@ -81,3 +81,22 @@ Feature:
         Then I should see "Question avec traduction"
       When I touch "Question avec traduction"
         Then I should see "Ceci est un exemple d'une question à la traduction"  
+
+      Scenario:
+      Translation with repeater function
+      Given I touch "Repeater"
+        And I wait for 1 seconds
+      Given I touch the button marked "Language"
+        And I wait for 1 seconds
+      When I touch "Espanol"
+        And I wait for 1 seconds
+      When I touch in Done
+        And I wait for 1 seconds
+        Then I should see "Rojo"
+        When I touch the table cell marked "Rojo"
+          And  I wait for animations
+        When I touch the button marked "+ add row"
+          And  I wait for animations
+          And  touch the 2nd table cell marked "Verde"
+          And  I wait for animations
+          Then I should see a "Usted gana!!" label

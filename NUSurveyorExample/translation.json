@@ -150,7 +150,55 @@
                         }
                     ],
                     "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
-                }                
+                },
+                {
+                    "title": "Répétiteur",
+                    "display_order": 4,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "742f152a-b45d-43e3-ba52-3d9c59dd2c9e",
+                            "text": "Couleurs",
+                            "type": "repeater",
+                            "questions": [
+                                {
+                                    "uuid": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                    "text": "Rouge ou Vert?",
+                                    "reference_identifier": "color",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "9cc39117-42b0-4946-a0c0-e332f555f568",
+                                            "text": "Rouge",
+                                            "reference_identifier": "red"
+                                        },
+                                        {
+                                            "uuid": "0463e911-27f6-4882-a3bd-456dbd24989f",
+                                            "text": "Vert",
+                                            "reference_identifier": "green"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "1bf4b42b-fcab-45d7-894c-5e247ebe5308",
+                            "text": "Rouge ou vert?",
+                            "type": "label",
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                        "answer": "0463e911-27f6-4882-a3bd-456dbd24989f"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "uuid" : "8485DA70-2A73-4313-9B6D-105ECBEB3CA9"
+                }
             ]
         },
         {
@@ -301,6 +349,54 @@
                         }
                     ],
                     "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
+                },
+                {
+                    "title": "Repetidor",
+                    "display_order": 4,
+                    "questions_and_groups": [
+                        {
+                            "uuid": "742f152a-b45d-43e3-ba52-3d9c59dd2c9e",
+                            "text": "Colores",
+                            "type": "repeater",
+                            "questions": [
+                                {
+                                    "uuid": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                    "text": "Rojo o Verde?",
+                                    "reference_identifier": "color",
+                                    "pick": "one",
+                                    "answers": [
+                                        {
+                                            "uuid": "9cc39117-42b0-4946-a0c0-e332f555f568",
+                                            "text": "Rojo",
+                                            "reference_identifier": "red"
+                                        },
+                                        {
+                                            "uuid": "0463e911-27f6-4882-a3bd-456dbd24989f",
+                                            "text": "Verde",
+                                            "reference_identifier": "green"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "uuid": "1bf4b42b-fcab-45d7-894c-5e247ebe5308",
+                            "text": "Usted gana!!",
+                            "type": "label",
+                            "dependency": {
+                                "rule": "A",
+                                "conditions": [
+                                    {
+                                        "rule_key": "A",
+                                        "operator": "==",
+                                        "question": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                        "answer": "0463e911-27f6-4882-a3bd-456dbd24989f"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "uuid" : "8485DA70-2A73-4313-9B6D-105ECBEB3CA9"
                 }
             ]
         },
@@ -516,6 +612,54 @@
                 }
             ],
             "uuid" : "0D54072B-CADC-4FBF-8C2E-A297E09625D0"
+        },
+        {
+            "title": "Repeater",
+            "display_order": 4,
+            "questions_and_groups": [
+                {
+                    "uuid": "742f152a-b45d-43e3-ba52-3d9c59dd2c9e",
+                    "text": "Colors",
+                    "type": "repeater",
+                    "questions": [
+                        {
+                            "uuid": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                            "text": "Red or Green?",
+                            "reference_identifier": "color",
+                            "pick": "one",
+                            "answers": [
+                                {
+                                    "uuid": "9cc39117-42b0-4946-a0c0-e332f555f568",
+                                    "text": "Red",
+                                    "reference_identifier": "red"
+                                },
+                                {
+                                    "uuid": "0463e911-27f6-4882-a3bd-456dbd24989f",
+                                    "text": "Green",
+                                    "reference_identifier": "green"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "uuid": "1bf4b42b-fcab-45d7-894c-5e247ebe5308",
+                    "text": "You Win!!",
+                    "type": "label",
+                    "dependency": {
+                        "rule": "A",
+                        "conditions": [
+                            {
+                                "rule_key": "A",
+                                "operator": "==",
+                                "question": "53ce7fe0-0c79-4ba9-a33d-87212e21c544",
+                                "answer": "0463e911-27f6-4882-a3bd-456dbd24989f"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "uuid" : "8485DA70-2A73-4313-9B6D-105ECBEB3CA9"
         }
     ]
 }
