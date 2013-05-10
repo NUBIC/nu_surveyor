@@ -525,7 +525,8 @@
         v = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.tableView.bounds.size.width, height)];
         
         NUButton *addRowButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, 0, 100.0, height)];
-        [addRowButton setTitle:@"+ add row" forState:UIControlStateNormal];
+        NSString *addRowTitle = [NSString stringWithFormat:@"+ %@", [self localizedStringForKey:@"add row" value:@"add row" forLocale:self.selectedLanguageDictionary[@"locale"]]];
+        [addRowButton setTitle:addRowTitle forState:UIControlStateNormal];
         [addRowButton addTarget:self action:@selector(addRow) forControlEvents:UIControlEventTouchUpInside];
         [v addSubview:addRowButton];
     }
@@ -566,7 +567,7 @@
   if (self.prevSectionTitle) {
     CGFloat height = 32.0;
     NUButton *prevSectionButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, y, 100.0, height)];
-    [prevSectionButton setTitle:[NSString stringWithFormat:@"Previous: %@", self.prevSectionTitle] forState:UIControlStateNormal];    
+    [prevSectionButton setTitle:[NSString stringWithFormat:@"%@: %@", [self localizedStringForKey:@"Previous" value:@"Previous" forLocale:self.selectedLanguageDictionary[@"locale"]], self.prevSectionTitle] forState:UIControlStateNormal];
     [prevSectionButton addTarget:self.delegate action:@selector(prevSection) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:prevSectionButton];
     y+= height + VerticalMargin;
@@ -590,7 +591,7 @@
   
   UIView *footerView = [[UIView alloc] initWithFrame:CGRectZero];
   NUButton *nextSectionOrDoneButton = [[NUButton alloc] initWithFrame:CGRectMake(HorizontalMargin, y, 100.0, height)];
-  [nextSectionOrDoneButton setTitle:(self.nextSectionTitle ? [NSString stringWithFormat:@"Next: %@", self.nextSectionTitle] : @"Done") forState:UIControlStateNormal];    
+  [nextSectionOrDoneButton setTitle:(self.nextSectionTitle ? [NSString stringWithFormat:@"%@: %@",[self localizedStringForKey:@"Next" value:@"Next" forLocale:self.selectedLanguageDictionary[@"locale"]], self.nextSectionTitle] : [self localizedStringForKey:@"Done" value:@"Done" forLocale:self.selectedLanguageDictionary[@"locale"]]) forState:UIControlStateNormal];
   nextSectionOrDoneButton.frame = CGRectMake(self.tableView.frame.size.width - nextSectionOrDoneButton.frame.size.width - HorizontalMargin, y, nextSectionOrDoneButton.frame.size.width, height);
   [nextSectionOrDoneButton addTarget:self.delegate action:(self.nextSectionTitle ? @selector(nextSection) : @selector(surveyDone)) forControlEvents:UIControlEventTouchUpInside];
   [footerView addSubview:nextSectionOrDoneButton];
@@ -812,7 +813,7 @@
     }
     _translationsArray = [NSArray arrayWithArray:containerArray];
     self.selectedLanguageDictionary = [_translationsArray filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"locale == %@", (localeString) ? localeString : @"en"]].lastObject;
-
+    
     if ([_translationsArray count] > 0 && [self.navigationItem.rightBarButtonItems count] < 2) {
         UIBarButtonItem *languageButton = [[UIBarButtonItem alloc] initWithTitle:@"Language" style:UIBarButtonItemStyleBordered target:self action:@selector(languageButtonTapped:)];
         [self.navigationItem setRightBarButtonItems:[[self.navigationItem rightBarButtonItems] arrayByAddingObject:languageButton]];
@@ -845,6 +846,24 @@
     }
     [self createRows];
 }
+
+#pragma mark prototype
+
+- (NSString *)localizedStringForKey:(NSString *)key value:(NSString *)comment forLocale:(NSString *)newLanguage
+{
+    NSString *path = [[ NSBundle mainBundle ] pathForResource:newLanguage ofType:@"lproj" ];
+    NSBundle *bundle = nil;
+    
+    if (path == nil)
+        //in case the language does not exists
+        bundle = [NSBundle mainBundle];
+    else
+        bundle = [NSBundle bundleWithPath:path];
+
+    NSString *returnString = [bundle localizedStringForKey:key value:comment table:nil];
+    return (returnString) ? returnString : key;
+}
+
 
 #pragma mark - PickerVC delegate
 

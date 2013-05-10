@@ -95,7 +95,7 @@ Feature:
         Then I should see "Rojo"
         When I touch the table cell marked "Rojo"
           And  I wait for animations
-        When I touch the button marked "+ add row"
+        When I touch the button marked "+ sumar la fila"
           And  I wait for animations
           And  touch the 2nd table cell marked "Verde"
           And  I wait for animations

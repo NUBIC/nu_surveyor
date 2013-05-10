@@ -1,0 +1,19 @@
+/*
+ Localizable.strings
+ NUSurveyor
+ 
+ Created by Jacob Van Order on 5/10/13.
+ Copyright (c) 2013 Northwestern University. All rights reserved.
+ */
+
+/* Next Button */
+"Next" = "Next";
+
+/* Previous Button */
+"Previous" = "Previous";
+
+/* Add Row */
+"add row" = "add row";
+
+/* Done */
+"Done" = "Done";
