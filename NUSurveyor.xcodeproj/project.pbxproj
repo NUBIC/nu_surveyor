@@ -35,6 +35,7 @@
 		00DD775716A74E1900D78EBE /* complex_dependencies.feature in Resources */ = {isa = PBXBuildFile; fileRef = 00DD775616A74E1900D78EBE /* complex_dependencies.feature */; };
 		167C73EB16C56CA7003DE64B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 167C73EA16C56CA7003DE64B /* Default-568h@2x.png */; };
 		16B55249173D6D0F00B8DEB9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 16B5524B173D6D0F00B8DEB9 /* Localizable.strings */; };
+		16D938C31741845800129F56 /* NUSurveyTVC-Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 16D938C21741845800129F56 /* NUSurveyTVC-Private.h */; };
 		16E1277A173ACE3E00685C5E /* translations.feature in Resources */ = {isa = PBXBuildFile; fileRef = 16E12779173ACE3E00685C5E /* translations.feature */; };
 		16E76269173981AD00048AB7 /* translation.json in Resources */ = {isa = PBXBuildFile; fileRef = 16E76268173981AD00048AB7 /* translation.json */; };
 		16E7626A173981AD00048AB7 /* translation.json in Resources */ = {isa = PBXBuildFile; fileRef = 16E76268173981AD00048AB7 /* translation.json */; };
@@ -257,6 +258,7 @@
 		16B5524A173D6D0F00B8DEB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16B5524C173D6D1300B8DEB9 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16B5524D173D6D1400B8DEB9 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		16D938C21741845800129F56 /* NUSurveyTVC-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NUSurveyTVC-Private.h"; sourceTree = "<group>"; };
 		16E12779173ACE3E00685C5E /* translations.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = translations.feature; sourceTree = "<group>"; };
 		16E76268173981AD00048AB7 /* translation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = translation.json; sourceTree = "<group>"; };
 		16F5F2B116C03DDC007F0AD9 /* dependencies_toolbox.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dependencies_toolbox.feature; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 			children = (
 				3BD52ACE14C8B5A200AB61E8 /* NUSurveyTVC.h */,
 				3BD52ACF14C8B5A200AB61E8 /* NUSurveyTVC.m */,
+				16D938C21741845800129F56 /* NUSurveyTVC-Private.h */,
 				3BD52AD314C8B5B600AB61E8 /* NUSectionTVC.h */,
 				3BD52AD414C8B5B600AB61E8 /* NUSectionTVC.m */,
 				3BD52ADD14C8B62600AB61E8 /* NUPickerVC.h */,
@@ -1133,6 +1136,7 @@
 				3B10227A1635B1A500DA88ED /* GRMustacheVariableTagRenderingContext.h in Headers */,
 				3B10227B1635B1A500DA88ED /* GRMustacheVersion.h in Headers */,
 				00B8755C16D5174100CED547 /* UIColor+NUAdditions.h in Headers */,
+				16D938C31741845800129F56 /* NUSurveyTVC-Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

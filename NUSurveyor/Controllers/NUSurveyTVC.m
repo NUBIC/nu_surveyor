@@ -7,6 +7,7 @@
 //
 
 #import "NUSurveyTVC.h"
+#import "NUSurveyTVC-Private.h"
 #import "JSONKit.h"
 #import "NUUUID.h"
 
@@ -14,10 +15,9 @@
 // http://swish-movement.blogspot.com/2009/05/private-properties-for-iphone-objective.html
 
 @property (nonatomic, assign) NSUInteger currentSection;
-@property (nonatomic, strong) NSString *currentLocale;
 - (NSInteger) numberOfSections;
 - (void) showSection:(NSUInteger) index;
--(NSArray *)translatedSectionTitleArray;
+
 @end
 
 @implementation NUSurveyTVC
