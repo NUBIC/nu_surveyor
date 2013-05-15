@@ -286,7 +286,7 @@
 		3B1022671635B1A500DA88ED /* GRMustacheVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRMustacheVersion.h; sourceTree = "<group>"; };
 		3B10227C1635B1AF00DA88ED /* libGRMustache5-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGRMustache5-iOS.a"; sourceTree = "<group>"; };
 		3B24DED414EEEA8400E7D04C /* basic_survey.feature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = basic_survey.feature; sourceTree = "<group>"; };
-		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; };
+		3B24DED614EEEABF00E7D04C /* response_set_steps.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = response_set_steps.rb; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
 		3B2AB06C1522429E00525F25 /* NUOneStringOrNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUOneStringOrNumberCell.h; path = Views/NUOneStringOrNumberCell.h; sourceTree = "<group>"; };
 		3B2AB06D1522429E00525F25 /* NUOneStringOrNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NUOneStringOrNumberCell.m; path = Views/NUOneStringOrNumberCell.m; sourceTree = "<group>"; };
 		3B2AB0701522483E00525F25 /* NUOneDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NUOneDatePickerCell.h; path = Views/NUOneDatePickerCell.h; sourceTree = "<group>"; };

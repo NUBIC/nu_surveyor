@@ -18,6 +18,8 @@
 - (NSInteger) numberOfSections;
 - (void) showSection:(NSUInteger) index;
 
+-(NSArray *)translatedSectionTitleArray;
+
 @end
 
 @implementation NUSurveyTVC

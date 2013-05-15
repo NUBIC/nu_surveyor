@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Northwestern University. All rights reserved.
 //
 
-@interface NUSurveyTVC ()
+//http://stackoverflow.com/a/15640004/112862
+
+@interface NUSurveyTVC () 
 
 @property (nonatomic, strong) NSString *currentLocale;
-
--(NSArray *)translatedSectionTitleArray;
 
 @end
