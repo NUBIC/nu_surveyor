@@ -8,6 +8,12 @@
 
 #import "NUPickerVC.h"
 
+@interface NUPickerVC ()
+
+@property (nonatomic, weak) id<NUPickerVCDelegate> delegate;
+
+@end
+
 @implementation NUPickerVC
 @synthesize picker, datePicker, toolBar, nowButton;
 
@@ -50,7 +56,7 @@
 
   [self.view addSubview:self.picker];
   [self.view addSubview:self.datePicker];
-  [self.view addSubview:self.toolBar];
+    [self.view addSubview:self.toolBar];
 }
 
 - (void)viewDidUnload
@@ -67,14 +73,30 @@
 	return YES; // Any orientation
 }
 
+#pragma mark Delegate methods
+
+-(void)pickerCancel {
+    [self.delegate pickerViewControllerDidCancel:self];
+}
+
+-(void)pickerDone {
+    [self.delegate pickerViewControllerIsDone:self];
+}
+
 #pragma mark - Setup
-- (void)setupDelegate:(id)delegate withTitle:(NSString *)title date:(Boolean)isDate{
-  self.navigationItem.title = title;
-  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:delegate action:@selector(pickerCancel)];
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:delegate action:@selector(pickerDone)];
-  
-  if (isDate) {
-    self.nowButton = [[UIBarButtonItem alloc] initWithTitle:@"    Now    " style:UIBarButtonItemStyleBordered target:delegate action:@selector(nowPressed)];
+- (void)setupDelegate:(id<NUPickerVCDelegate>)delegate withTitle:(NSString *)title date:(Boolean)isDate{
+    self.delegate = delegate;
+    self.navigationItem.title = title;
+    
+    if ([delegate respondsToSelector:@selector(pickerViewControllerDidCancel:)]) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pickerCancel)];
+    }
+    if ([delegate respondsToSelector:@selector(pickerViewControllerIsDone:)]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDone)];
+    }
+    
+    if (isDate) {
+        self.nowButton = [[UIBarButtonItem alloc] initWithTitle:@"    Now    " style:UIBarButtonItemStyleBordered target:delegate action:@selector(nowPressed)];
     self.toolBar.items = [[NSArray alloc] initWithObjects:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], 
                           nowButton, 
                           [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil], nil];
@@ -86,8 +108,8 @@
     [self.toolBar setHidden:YES];
     [self.picker setHidden:NO];
     [self.datePicker setHidden:YES];
-    self.picker.delegate = delegate;
-    self.picker.dataSource = delegate;
+    self.picker.delegate = (id<UIPickerViewDelegate>)delegate;
+    self.picker.dataSource = (id<UIPickerViewDataSource>)delegate;
   }
 }
 

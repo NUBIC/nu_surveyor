@@ -8,6 +8,10 @@
 
 #import "NUPickerCell.h"
 
+@interface NUPickerCell () <NUPickerVCDelegate>
+
+@end
+
 @implementation NUPickerCell
 @synthesize pickerController = _pickerController, popoverController = _popoverController, answers = _answers, sectionTVC = _sectionTVC;
 
@@ -65,7 +69,7 @@
 - (NSIndexPath *)myIndexPathWithRow:(NSUInteger)r {
   return [NSIndexPath indexPathForRow:r inSection:[(UITableView *)self.sectionTVC.tableView indexPathForCell:self].section];
 }
-- (void) pickerDone{
+- (void) pickerViewControllerIsDone:(NUPickerVC *)pickerViewController {
   [self.popoverController dismissPopoverAnimated:NO];
   NSUInteger selectedRow = [self.pickerController.picker selectedRowInComponent:0]; 
   if (selectedRow != -1) {
@@ -78,7 +82,7 @@
     self.textLabel.textColor = RGB(1, 113, 233);
   }
 }
-- (void) pickerCancel{
+- (void) pickerViewControllerDidCancel:(NUPickerVC *)pickerViewController {
   [self.popoverController dismissPopoverAnimated:NO];
 }
 

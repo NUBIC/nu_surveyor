@@ -9,9 +9,8 @@
 #import "NUAnyDatePickerCell.h"
 #import "NSDateFormatter+NUAdditions.h"
 
-@interface NUAnyDatePickerCell()
+@interface NUAnyDatePickerCell() <NUPickerVCDelegate>
 @property (nonatomic, strong) NSString *type;
-- (void) pickerDone;
 - (NSDateFormatter *) dateFormatterFromType:(NSString *)type;
 - (NSDateFormatter *) storedDateFormatterFromType:(NSString *)type;
 @end
@@ -112,9 +111,9 @@
 }
 - (void) nowPressed{
   [self.pickerVC.datePicker setDate:[NSDate date] animated:YES];
-  [self performSelector:@selector(pickerDone) withObject:nil afterDelay:0.4];
+  [self performSelector:@selector(pickerViewControllerIsDone:) withObject:nil afterDelay:0.4];
 }
-- (void) pickerDone{
+- (void) pickerViewControllerIsDone:(NUPickerVC *)pickerViewController {
   [self.popoverController dismissPopoverAnimated:NO];
   
   [self.sectionTVC deleteResponseForIndexPath:[self.sectionTVC.tableView indexPathForCell:self]];
@@ -126,7 +125,7 @@
   self.detailTextLabel.text = display;
   self.detailTextLabel.textColor = RGB(1, 113, 233);
 }
-- (void) pickerCancel{
+- (void)pickerViewControllerDidCancel:(NUPickerVC *)pickerViewController {
   [self.popoverController dismissPopoverAnimated:NO];
 }
 

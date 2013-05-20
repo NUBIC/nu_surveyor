@@ -15,8 +15,9 @@
           return _this.temporaryHighlightTimeout = void 0;
         }, 1500);
       },
-      resetViews: function(views, deviceFamily, orientation) {
+      resetViews: function(views, resolution, deviceFamily, orientation) {
         this.set('allViews', views);
+        this.set('resolution', resolution);
         this.set('deviceFamily', deviceFamily);
         this.set('orientation', orientation);
         this.set('highlightFrames', []);

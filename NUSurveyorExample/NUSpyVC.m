@@ -8,6 +8,10 @@
 
 #import "NUSpyVC.h"
 
+#import "NUAppDelegate.h"
+
+#import "NUResponse.h"
+
 @interface NUSpyVC()
 @property (nonatomic, strong) UILabel *responseSetCount;
 @property (nonatomic, strong) UIButton *kitchenSink;
@@ -21,6 +25,14 @@
 @property (nonatomic, strong) UIButton *shoes;
 @property (nonatomic, strong) UIButton *redGreen;
 @property (nonatomic, strong) UIButton *grid;
+@property (nonatomic, strong) UIButton *translations;
+
+@property (nonatomic, strong) UILabel *questionOneUUIDLabel;
+@property (nonatomic, strong) UILabel *questionTwoUUIDLabel;
+
+@property (nonatomic, strong) UILabel *answerOneUUIDLabel;
+@property (nonatomic, strong) UILabel *answerTwoUUIDLabel;
+
 - (void) loadKitchenSink;
 - (void) loadComplexResponses;
 - (void) loadMustache;
@@ -30,6 +42,8 @@
 - (void) loadShoes;
 - (void) loadDependencyToolbox;
 - (void) loadGrid;
+-(void) loadTranslations;
+
 @end
 
 @implementation NUSpyVC
@@ -78,9 +92,40 @@
 {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor lightGrayColor];
-  
+
   self.responseSetCount = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 10.0, 100.0, 36.0)];
   [self.view addSubview:self.responseSetCount];
+    
+    UILabel *responseOneLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 46.0f, 275.0f, 36.0f)];
+    responseOneLabel.text = @"Last Response";
+    responseOneLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:responseOneLabel];
+    
+    self.questionOneUUIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 87.0f, 275.0f, 77.0f)];
+    self.questionOneUUIDLabel.numberOfLines = 0;
+    self.questionTwoUUIDLabel.accessibilityLabel = @"questionOneUUID";
+    self.questionOneUUIDLabel.tag = 1;
+    [self.view addSubview:self.questionOneUUIDLabel];
+    
+    self.answerOneUUIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 169.0f, 275.0f, 77.0f)];
+    self.answerOneUUIDLabel.numberOfLines = 0;
+    self.answerOneUUIDLabel.tag = 2;
+    [self.view addSubview:self.answerOneUUIDLabel];
+    
+    UILabel *responseTwoLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 256.0f, 275.0f, 36.0f)];
+    responseTwoLabel.text = @"Second-to-Last Response";
+    responseTwoLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:responseTwoLabel];
+    
+    self.questionTwoUUIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 297.0f, 275.0f, 77.0f)];
+    self.questionTwoUUIDLabel.numberOfLines = 0;
+    self.questionTwoUUIDLabel.tag = 3;
+    [self.view addSubview:self.questionTwoUUIDLabel];
+    
+    self.answerTwoUUIDLabel = [[UILabel alloc] initWithFrame:CGRectMake(420.0f, 379.0f, 275.0f, 77.0f)];
+    self.answerTwoUUIDLabel.numberOfLines = 0;
+    self.answerTwoUUIDLabel.tag = 4;
+    [self.view addSubview:self.answerTwoUUIDLabel];
   
   self.kitchenSink = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   self.kitchenSink.frame = CGRectMake(10.0, 10.0 + 36.0 + 10.0, 400.0, 36.0);
@@ -165,6 +210,13 @@
     [self.grid setTitle:@"Load Grid" forState:UIControlStateNormal];
     [self.grid addTarget:self action:@selector(loadGrid) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.grid];
+    
+    self.translations = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.translations.frame = CGRectMake(10, 20.0 + 13*36.0 + 12*10.0, 400.0, 36.0);
+    self.translations.accessibilityLabel = @"loadTranslations";
+    [self.translations setTitle:@"Load Translations" forState:UIControlStateNormal];
+    [self.translations addTarget:self action:@selector(loadTranslations) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.translations];
 
 }
 - (void) loadKitchenSink{
@@ -210,8 +262,30 @@
     [self.delegate loadSurvey:@"grid"];
 }
 
+-(void) loadTranslations {
+    [self.delegate loadSurvey:@"translation"];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   self.responseSetCount.text = [NSString stringWithFormat:@"%d %@", [self.sectionTVC.responseSet responseCount], ([self.sectionTVC.responseSet responseCount] == 1 ? @"response" : @"responses")];
+    [self fillLastTwoResponses];
+}
+
+-(void)fillLastTwoResponses {
+    NSManagedObjectContext *context = [(NUAppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Response"];
+    fetch.fetchLimit = 2;
+    fetch.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO]];
+    NSArray *lastTwoResponseArray = [context executeFetchRequest:fetch error:nil];
+    if ([lastTwoResponseArray count] > 1) {
+        NUResponse *responseOne = lastTwoResponseArray[0];
+        NUResponse *responseTwo = [lastTwoResponseArray lastObject];
+        self.questionOneUUIDLabel.text = [responseOne valueForKey:@"question"];
+        self.answerOneUUIDLabel.text = [responseOne valueForKey:@"answer"];
+        
+        self.questionTwoUUIDLabel.text = [responseTwo valueForKey:@"question"];
+        self.answerTwoUUIDLabel.text = [responseTwo valueForKey:@"answer"];
+    }
 }
 
 - (void)viewDidUnload

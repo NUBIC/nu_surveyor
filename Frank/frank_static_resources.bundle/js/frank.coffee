@@ -10,7 +10,7 @@ displayErrorResponse = (response)->
     """Frank isn't happy: #{response.reason}
     details: #{response.details}""")
 
-fetchViewHeirarchy = ->
+fetchViewHierarchy = ->
   request = $.ajax
     type: "POST",
     dataType: "json",
@@ -68,7 +68,7 @@ sendMapRequest = ({selector, engine, methodName, methodArgs} )->
 
 
 define ->
-  fetchViewHeirarchy: fetchViewHeirarchy
+  fetchViewHierarchy: fetchViewHierarchy
   fetchOrientation: fetchOrientation
   requestSnapshotRefresh: requestSnapshotRefresh
   baseScreenshotUrl: -> 

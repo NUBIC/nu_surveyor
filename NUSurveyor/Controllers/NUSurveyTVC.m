@@ -7,6 +7,7 @@
 //
 
 #import "NUSurveyTVC.h"
+#import "NUSurveyTVC-Private.h"
 #import "JSONKit.h"
 #import "NUUUID.h"
 
@@ -16,6 +17,9 @@
 @property (nonatomic, assign) NSUInteger currentSection;
 - (NSInteger) numberOfSections;
 - (void) showSection:(NSUInteger) index;
+
+-(NSArray *)translatedSectionTitleArray;
+
 @end
 
 @implementation NUSurveyTVC
@@ -41,8 +45,13 @@
     self.sectionTVC.renderContext = renderContext;
     
     [self.sectionTVC.responseSet setValue:[self.surveyNSD objectForKey:@"uuid"] forKey:@"survey"];
-		[self.sectionTVC.responseSet generateDependencyGraph:self.surveyNSD];
+    [self.sectionTVC.responseSet generateDependencyGraph:self.surveyNSD];
     [NUResponseSet saveContext:self.sectionTVC.responseSet.managedObjectContext withMessage:@"NUSurveyTVC initWithSurvey"];
+      
+    NSDictionary *defaultLanguageDictionary = [[_surveyNSD[@"translations"] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSDictionary *languageDictionary, NSDictionary *bindings) {
+        return (languageDictionary[@"sections"] == nil);
+    }]] lastObject];
+      _currentLocale = defaultLanguageDictionary[@"locale"];
   }
   return self;
 }
@@ -151,6 +160,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *CellIdentifier = @"NUSurveyVCCell";
+    
+    NSArray *translatedTitleArray = [self translatedSectionTitleArray];
   
   // Dequeue or create a cell of the appropriate type.
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -160,7 +171,8 @@
   }
   
   // Configure the cell.
-	cell.textLabel.text = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *defaultTitle = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
+	cell.textLabel.text = ([translatedTitleArray count] > indexPath.row) ? translatedTitleArray[indexPath.row] : defaultTitle;
   cell.accessibilityLabel = [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:indexPath.row] objectForKey:@"title"];
 	return cell;
 }
@@ -227,7 +239,9 @@
   self.currentSection = index;
   self.sectionTVC.prevSectionTitle = (index == 0 ? nil : [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index-1] objectForKey:@"title"]);
   self.sectionTVC.nextSectionTitle = (index == [[self.surveyNSD objectForKey:@"sections"] count] - 1 ? nil : [[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index+1] objectForKey:@"title"]);
-  [self.sectionTVC setDetailItem:[[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index]];
+    id detailItem = [[self.surveyNSD objectForKey:@"sections"] objectAtIndex:index];
+  [self.sectionTVC setTranslationsArray:[self.surveyNSD objectForKey:@"translations"] forSectionWithUUID:[detailItem valueForKey:@"uuid"] withCurrentLocale:self.currentLocale];
+  [self.sectionTVC setDetailItem:detailItem];
   [self.sectionTVC.tableView setContentOffset:CGPointMake(0.0, 0.0) animated:NO];
   self.sectionTVC.pageControl.currentPage = index;
 }
@@ -247,6 +261,20 @@
 }
 - (void) surveyDone{
   [self.delegate surveyDone];
+}
+
+-(void)surveySelectedLanguage:(NSString *)localeString {
+    NSDictionary *selectedLanguageDictionary = [[self.surveyNSD[@"translations"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"locale == %@", localeString]] lastObject];
+    NSString *translatedTitle = (selectedLanguageDictionary[@"title"]) ? selectedLanguageDictionary[@"title"] : self.surveyNSD[@"title"];
+    self.sectionTVC.title = translatedTitle;
+    self.currentLocale = localeString;
+    [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.currentSection inSection:0] animated:NO scrollPosition:0];
+}
+
+-(NSArray *)translatedSectionTitleArray {
+    NSDictionary *selectedLanguageDictionary = [[self.surveyNSD[@"translations"] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"locale == %@", self.currentLocale]] lastObject];
+    return [selectedLanguageDictionary[@"sections"] valueForKeyPath:@"title"];
 }
 
 @end

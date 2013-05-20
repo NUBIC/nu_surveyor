@@ -126,3 +126,24 @@ Then /^the label "(.*?)" should have a height of "(.*?)"$/ do |label_selector, e
   frame = frankly_map( "label marked:'#{label_selector}' index:0", 'frame' ).first
   frame["size"]["height"].should == expected_height.to_i
 end
+
+When(/^I touch in Done$/) do
+  touch "view:'UINavigationButton' marked:'Done'"
+end
+                                                                             
+Then(/^I should see that label with index (\d+) should match text of index with tag (\d+)$/) do |index1, index2|
+  label_one_selector = "view:'UILabel' index:#{index1}"
+  label_two_selector = "view:'UILabel' index:#{index2}"
+  label_one_string = frankly_map(label_one_selector, 'text')
+  label_two_string = frankly_map(label_two_selector, 'text')
+  frankly_map(label_one_selector, 'text').should == frankly_map(label_two_selector, 'text')
+end
+																																																																													
+Then(/^I should see that label with index (\d+) should NOT match text of index with tag (\d+)$/) do |index1, index2|
+		label_one_selector = "view:'UILabel' index:#{index1}"
+		label_two_selector = "view:'UILabel' index:#{index2}"
+		label_one_string = frankly_map(label_one_selector, 'text')
+		label_two_string = frankly_map(label_two_selector, 'text')
+		frankly_map(label_one_selector, 'text').should_not == frankly_map(label_two_selector, 'text')
+end
+                                                                             

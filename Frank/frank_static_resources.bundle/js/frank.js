@@ -1,5 +1,5 @@
 (function() {
-  var baseUrlFor, cacheBust, displayErrorResponse, fetchOrientation, fetchViewHeirarchy, isErrorResponse, requestSnapshotRefresh, sendMapRequest;
+  var baseUrlFor, cacheBust, displayErrorResponse, fetchResolution, fetchOrientation, fetchViewHierarchy, fetchDevice, isErrorResponse, requestSnapshotRefresh, sendMapRequest;
 
   cacheBust = function(url) {
     return "" + url + "?" + ((new Date()).getTime());
@@ -17,13 +17,26 @@
     return alert("Frank isn't happy: " + response.reason + "\ndetails: " + response.details);
   };
 
-  fetchViewHeirarchy = function() {
+  fetchViewHierarchy = function() {
     var request;
     return request = $.ajax({
       type: "POST",
       dataType: "json",
       url: baseUrlFor("/dump")
     });
+  };
+
+  fetchResolution = function() {
+    var deferable, request;
+    deferable = new $.Deferred();
+    request = $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: baseUrlFor("/resolution")
+    }).done(function(response) {
+      return deferable.resolve(response || 'unknown');
+    }).fail(deferable.reject);
+    return deferable.promise();
   };
 
   fetchOrientation = function() {
@@ -35,6 +48,19 @@
       url: baseUrlFor("/orientation")
     }).done(function(response) {
       return deferable.resolve(response && response.detailed_orientation || 'unknown');
+    }).fail(deferable.reject);
+    return deferable.promise();
+  };
+
+  fetchDevice = function() {
+    var deferable, request;
+    deferable = new $.Deferred();
+    request = $.ajax({
+      type: "GET",
+      dataType: "json",
+      url: baseUrlFor("/device")
+    }).done(function(response) {
+      return deferable.resolve(response && response.device || 'unknown');
     }).fail(deferable.reject);
     return deferable.promise();
   };
@@ -82,8 +108,10 @@
 
   define(function() {
     return {
-      fetchViewHeirarchy: fetchViewHeirarchy,
+      fetchViewHierarchy: fetchViewHierarchy,
+      fetchResolution: fetchResolution,
       fetchOrientation: fetchOrientation,
+      fetchDevice: fetchDevice,
       requestSnapshotRefresh: requestSnapshotRefresh,
       baseScreenshotUrl: function() {
         return cacheBust(baseUrlFor('/screenshot'));
